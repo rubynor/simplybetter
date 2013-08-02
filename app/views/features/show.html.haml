@@ -1,15 +1,15 @@
 %p#notice= notice
 
-%p
-  %b Title:
-  = @feature.title
-%p
-  %b Description:
-  = @feature.description
-%p
-  %b Creator:
-  = @feature.creator_id
+%div
+  %h1
+    = @feature.title
+  %div.desc
+    = @feature.description
+  %div.meta
+    %b Creator:
+    = @feature.creator_id
 
-= link_to 'Edit', edit_feature_path(@feature)
-\|
-= link_to 'Back', features_path
+  %div.buttons
+    = link_to 'Edit', edit_feature_path(@feature)
+    \|
+    = link_to 'Back', features_path
