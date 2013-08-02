@@ -11,15 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130802205715) do
+ActiveRecord::Schema.define(version: 20130802212341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "customers", force: true do |t|
+    t.string   "name"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "features", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "crator_id"
+    t.integer  "creator_id"
+    t.integer  "customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "feature_id"
+    t.string   "caster_id"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
