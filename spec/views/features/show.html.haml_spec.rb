@@ -5,7 +5,7 @@ describe "features/show" do
     @feature = assign(:feature, stub_model(Feature,
       :title => "Title",
       :description => "MyText",
-      :creator_id => 1
+      :crator_id => 1
     ))
   end
 
