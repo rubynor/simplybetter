@@ -2,6 +2,7 @@ Howhard::Application.routes.draw do
 
   resources :features
 
+  post '/vote' => "votes#cast"
   root 'features#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
