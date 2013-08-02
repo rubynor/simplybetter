@@ -6,12 +6,12 @@ describe "features/index" do
       stub_model(Feature,
         :title => "Title",
         :description => "MyText",
-        :crator_id => 1
+        :creator_id => 1
       ),
       stub_model(Feature,
         :title => "Title",
         :description => "MyText",
-        :crator_id => 1
+        :creator_id => 1
       )
     ])
   end
