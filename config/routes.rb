@@ -1,6 +1,7 @@
 Howhard::Application.routes.draw do
 
   resources :features
+  resources :customers, only: [:new, :create]
 
   post '/vote' => "votes#cast"
   root 'features#index'
