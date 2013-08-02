@@ -1,23 +1,12 @@
-%h1 Listing features
+%h1 Suggested features
+- @features.each do |f|
+  .feature
+    .title
+      %h2= f.title
+    .votes
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Crator
-    %th
-    %th
-    %th
+    .description
+      =f.description
 
-  - @features.each do |feature|
-    %tr
-      %td= feature.title
-      %td= feature.description
-      %td= feature.crator_id
-      %td= link_to 'Show', feature
-      %td= link_to 'Edit', edit_feature_path(feature)
-      %td= link_to 'Destroy', feature, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Feature', new_feature_path
+.feature
+  = link_to 'New Feature', new_feature_path
