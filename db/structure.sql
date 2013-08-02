@@ -37,7 +37,9 @@ CREATE TABLE customers (
     name character varying(255),
     token character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    email character varying(255),
+    password_digest character varying(255)
 );
 
 
@@ -199,3 +201,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130802205715');
 INSERT INTO schema_migrations (version) VALUES ('20130802211410');
 
 INSERT INTO schema_migrations (version) VALUES ('20130802212341');
+
+INSERT INTO schema_migrations (version) VALUES ('20130802231103');
