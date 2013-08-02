@@ -20,3 +20,9 @@ end
 
 Customer.blueprint do
 end
+
+Comment.blueprint do
+  user_id { User.make!.id }
+  feature_id { Feature.make!.id }
+  body { 'Hello bro' }
+end
