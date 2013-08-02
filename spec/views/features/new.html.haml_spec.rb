@@ -5,7 +5,7 @@ describe "features/new" do
     assign(:feature, stub_model(Feature,
       :title => "MyString",
       :description => "MyText",
-      :crator_id => 1
+      :creator_id => 1
     ).as_new_record)
   end
 
@@ -16,7 +16,7 @@ describe "features/new" do
     assert_select "form[action=?][method=?]", features_path, "post" do
       assert_select "input#feature_title[name=?]", "feature[title]"
       assert_select "textarea#feature_description[name=?]", "feature[description]"
-      assert_select "input#feature_crator_id[name=?]", "feature[crator_id]"
+      assert_select "input#feature_creator_id[name=?]", "feature[creator_id]"
     end
   end
 end
