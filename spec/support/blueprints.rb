@@ -21,3 +21,9 @@ end
 Customer.blueprint do
   token { (0...8).map{(65+rand(26)).chr}.join }
 end
+
+Comment.blueprint do
+  user_id { User.make!.id }
+  feature_id { Feature.make!.id }
+  body { 'Hello bro' }
+end
