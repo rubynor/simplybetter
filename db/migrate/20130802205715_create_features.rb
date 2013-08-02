@@ -3,7 +3,7 @@ class CreateFeatures < ActiveRecord::Migration
     create_table :features do |t|
       t.string :title
       t.text :description
-      t.integer :crator_id
+      t.integer :creator_id
 
       t.timestamps
     end
