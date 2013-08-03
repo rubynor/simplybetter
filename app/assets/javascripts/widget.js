@@ -62,7 +62,7 @@ HowHard.prototype = {
         var self = this;
 
         jQuery.ajax({
-            url: "http://l:3000/features.js",
+            url: "http://localhost:3000/features.js",
             type: "GET",
             dataType: 'jsonp',
             success: function (data) {
@@ -81,7 +81,7 @@ HowHard.prototype = {
 
         jQuery.ajax({
             type: "GET",
-            url: "http://l:3000/vote.js",
+            url: "http://localhost:3000/vote.js",
             data: {
                 token: self.appKey,
                 feature_id: id,

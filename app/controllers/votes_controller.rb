@@ -10,7 +10,8 @@ class VotesController < ApplicationController
     end
 
     vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
-    vote.value = params[:value]
+    vote.value ||= 0
+    vote.value += params[:value].to_i
     vote.save!
     vote_receiver.reload
 
