@@ -1,12 +1,13 @@
 Howhard::Application.routes.draw do
 
-  resources :features
+  resources :features do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :customers, only: [:index, :new, :create] do
     member do
       post :create_application
     end
   end
-  resources :comments, only: [:create, :destroy]
   post '/vote' => "votes#cast"
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"

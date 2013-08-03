@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
-
   def create
+    #TODO: add support for customer to add comments
     @comment = Comment.new(comment_attributes)
     @comment.creator = User.find_by(email: params[:user_id])
     if @comment.save!

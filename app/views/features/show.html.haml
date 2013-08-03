@@ -21,7 +21,7 @@
       %p=c.body
       %hr
   .add_comment
-    = form_tag "/comments", method: "post" do |f|
+    = form_tag "/features/#{@feature.id}/comments", method: "post" do |f|
       = text_area_tag(:body)
       = hidden_field_tag(:user_id, 'test@test.com')#TODO: update to current_user??
       = hidden_field_tag(:feature_id, @feature.id)
