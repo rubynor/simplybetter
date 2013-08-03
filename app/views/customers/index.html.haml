@@ -1,0 +1,13 @@
+%h1 Your applications
+- @applications.each do |application|
+  = application.name
+  Token:#{application.token}
+  %br/
+%br/
+
+%h3 New application
+= form_for Application.new, url: create_application_customer_path(current_customer) do |f|
+  = f.label :name
+  = f.text_field :name
+  %br/
+  = f.submit 'Lagre'

@@ -7,6 +7,9 @@
           %li= msg
 
   .field
+    = f.label :application_id
+    = f.select :application_id, Application.all.collect{|a| [a.name, a.id] }
+  .field
     = f.label :title
     = f.text_field :title
   .field
