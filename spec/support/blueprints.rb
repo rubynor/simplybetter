@@ -8,17 +8,21 @@ require 'machinist/active_record'
 #     body  { "Lorem ipsum..." }
 #   end
 
-Feature.blueprint do
+Application.blueprint do
   customer
+end
+
+Feature.blueprint do
+  application
   title { "New feature" }
   description { "Seriously, how hard can it be to move a todo list" }
 end
 
-Vote.blueprint do
-  # Attributes here
-end
-
 Customer.blueprint do
+  name { "Acme Inc" }
+  email { "test@example.com" }
+  password { "secret" }
+  password_confirmation { "secret" }
 end
 
 Comment.blueprint do

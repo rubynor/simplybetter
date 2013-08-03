@@ -6,9 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-c = Customer.create(token: 'beefbabeb33fb4b3')
+customer = Customer.create!(name: 'Acme Inc', email: 'test@example.com', password: 'secret', password_confirmation: 'secret') 
 
-f = Feature.create(title: 'Develop a natural and healthy energy bar', description:'At the same time, we want to inspire people and improve the World. This is our philosophy.', customer: c )
+application = customer.applications.create!(name: 'Howhard')
 
-f.votes.create!(voter_email: "oc@foo.mu", value: -1, feature: f )
-f.votes.create!(voter_email: "oc@foo.com", value: 2, feature: f )
+feature = application.features.create!(title: 'Develop a natural and healthy energy bar', description:'At the same time, we want to inspire people and improve the World. This is our philosophy.')
+
+feature.votes.create!(voter_email: "oc@foo.mu", value: -1)
+feature.votes.create!(voter_email: "oc@foo.com", value: 2)

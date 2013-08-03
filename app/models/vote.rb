@@ -1,6 +1,6 @@
 class Vote < ActiveRecord::Base
+  belongs_to :feature
 
-  validates_presence_of :voter_email
   validates_format_of :voter_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
 
   def Vote.vote_count
