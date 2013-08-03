@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_attributes)
+    @comment.creator = User.find_by(email: params[:user_id])
     if @comment.save!
       redirect_to feature_path(@comment.feature)
     end
@@ -20,6 +21,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_attributes
-    params.permit(:body, :feature_id, :user_id)
+    params.permit(:body, :feature_id)
   end
 end

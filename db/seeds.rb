@@ -22,5 +22,7 @@ f2 = application.features.create!(
 f1.votes.create!(voter_email: "oc@foo.mu", value: -1)
 f1.votes.create!(voter_email: "oc@foo.com", value: 2)
 
-Comment.create!(feature_id: f1.id, body: 'How hard can it be?', user_id: 1)
-Comment.create!(feature_id: f1.id, body: 'How hard can it be again?', user_id: 1)
+user = User.create!(name: "John", email: "test@test.com")
+
+Comment.create!(feature_id: f1.id, body: 'How hard can it be?', creator_id: user.id, creator_type: user.class.name)
+Comment.create!(feature_id: f1.id, body: 'How hard can it be again?', creator_id: user.id, creator_type: user.class.name)
