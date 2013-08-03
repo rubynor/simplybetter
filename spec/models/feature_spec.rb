@@ -9,4 +9,9 @@ describe Feature do
     f = Feature.new(title: "hey")
     expect{ f.save! }.to raise_error ActiveRecord::RecordInvalid, /description/i
   end
+
+  it 'should respond to comments' do
+    f = Feature.make!
+    f.should respond_to :comments
+  end
 end

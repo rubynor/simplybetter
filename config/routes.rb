@@ -2,7 +2,7 @@ Howhard::Application.routes.draw do
 
   resources :features
   resources :customers, only: [:new, :create]
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :index]
   post '/vote' => "votes#cast"
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
