@@ -25,6 +25,16 @@ class FeaturesController < ApplicationController
   # POST /features.json
   def create
     @feature = Feature.new(feature_params)
+    application = Application.find_by_token(params[:token])
+    if params[:user_id]
+      creator = application.users.find_by(email: params[:user][:email])
+    elsif params[:customer_id]
+      creator = application.customers.find_by(email: params[:creator][:email])
+    else
+      raise "No valid creator (user/customer) passed in"
+    end
+
+    @feature.creator = creator
 
     respond_to do |format|
       if @feature.save
@@ -69,6 +79,6 @@ class FeaturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feature_params
-      params.require(:feature).permit(:title, :description, :creator_id, :application_id)
+      params.require(:feature).permit(:title, :description, :application_id)
     end
 end

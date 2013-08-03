@@ -1,5 +1,6 @@
 class Application < ActiveRecord::Base
   belongs_to :customer
+  has_many :users
   has_many :features, -> { order("votes_count DESC") }
   has_many :comments, -> { order("comments.votes_count DESC") }, through: :features
 
