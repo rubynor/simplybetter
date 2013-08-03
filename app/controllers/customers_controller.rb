@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :authorize
+  before_action :authorize, except: [:new, :create]
 
   def index
     @applications = current_customer.applications
