@@ -10,9 +10,9 @@
           by foo at bar
       .vote-buttons
         .votes
-          = f.votes.count
-        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1 }, { :method => 'post', :remote => true, :class => "up" }
-        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1 }, { :method => 'post', :remote => true, :class => "down" }
+          = f.votes.vote_count
+        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1, :token => Customer.first.token }, { :method => 'post', :remote => true, :class => "up" }
+        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1, :token => Customer.first.token }, { :method => 'post', :remote => true, :class => "down" }
 
 
 .clearfix
