@@ -26,12 +26,18 @@ Customer.blueprint do
 end
 
 Comment.blueprint do
+  feature
   user_id { "test#{sn}@test.com" }
-  feature_id { Feature.make!.id }
   body { 'Hello bro' }
 end
 
 User.blueprint do
   name { "Machinist user" }
   email { "test@machinist.com" }
+end
+
+Vote.blueprint do
+  vote_receiver { Feature.make! }
+  voter_email { "test@example.com"}
+  value { 1 }
 end

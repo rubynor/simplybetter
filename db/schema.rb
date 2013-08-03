@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20130803121826) do
     t.integer  "feature_id"
     t.integer  "creator_id"
     t.string   "creator_type"
+    t.integer  "feature_id"
+    t.integer  "votes_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,7 +61,8 @@ ActiveRecord::Schema.define(version: 20130803121826) do
   end
 
   create_table "votes", force: true do |t|
-    t.integer  "feature_id"
+    t.integer  "vote_receiver_id"
+    t.string   "vote_receiver_type"
     t.string   "voter_email"
     t.integer  "value"
     t.datetime "created_at"
