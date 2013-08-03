@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
 
-  validates_presence_of :body, :user_id, :feature_id
+  validates_presence_of :body, :feature_id, :user_id
+
+  belongs_to :feature
 end
