@@ -1,26 +1,85 @@
-.feature {
-  width: 500px;
-  height: 100px;
-  display: block;
-  clear: both;
-  border-bottom: 1px solid gray;
-  margin-top: 10px;
-  position: relative;
-}
-.title{
-  float: left;
-  width: 300px;
+.features {
+  text-align: center;
+  width: 96%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &>.feature-container {
+    &>.feature {
+      float: left;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+
+      text-align: left;
+
+      height: 100px;
+      margin-bottom: 10px;
+
+      padding: 10px;
+      border: 3px solid #a9a9a9;
+      border-radius: 4px;
+
+      min-width: 300px;
+
+      &>h1 {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+      }
+
+      &>.desc {
+        position: absolute;
+        left: 10px;
+        top: 50px;
+      }
+
+      &>.meta {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+
+    &>.vote-buttons {
+      float: left;
+      margin-left:10px;
+      &>.votes {
+        display: block;
+        //margin: 10px 0 10px 20px;
+        //width: 30px;
+        //height: 30px;
+        //border: 3px solid #a9a9a9;
+        //border-radius: 50%;
+        line-height: 30px;
+        text-align: center;
+        font-size: 24px;
+      }
+      .up {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid #8fbc8f;
+        //margin: 0 0 0 18px;
+      }
+      .down {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 20px solid #cd5c5c;
+        //margin: 0 0 0 18px;
+      }
+    }
+  }
+
 }
 
-.votes{
-  float: right;
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
-}
-
-.description{
-  float: left;
-  width: 300px;
+.clearfix {
   clear: both;
 }

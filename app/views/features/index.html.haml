@@ -1,12 +1,19 @@
-%h1 Suggested features
-- @features.each do |f|
-  .feature
-    .title
-      %h2= f.title
-    .votes
+.features
+  - @features.each do |f|
+    .feature-container
+      .feature
+        %h1
+          = f.title
+        .desc
+          = f.description
+        .meta
+          by foo at bar
+      .vote-buttons
+        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1, :token => Customer.first.token }, { :method => 'post', :remote => true, :class => "up" }
+        .votes
+          = f.votes.vote_count
+        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1, :token => Customer.first.token }, { :method => 'post', :remote => true, :class => "down" }
 
-    .description
-      =f.description
 
-.feature
+.clearfix
   = link_to 'New Feature', new_feature_path

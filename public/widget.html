@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>Foo</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://l:3000/assets/widget.js"></script>
+</head>
+
+<body>
+fooo bar
+<div id="c"></div>
+<script>
+    $(document).ready(function () {
+        var appKey = "beefbabeb33fb4b3";
+        var userEmail = "oc@foo.bar";
+
+        new HowHard($('#c', appKey, userEmail)).features();
+    });
+</script>
+</body>
+</html>
