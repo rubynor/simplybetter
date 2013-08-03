@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CommentsController do
   example 'adding a comment' do
     f = Feature.make!.id
-    post :create, {body: 'Oh, hi thar!', feature_id: f, user_id: 1}
+    post :create, {body: 'Oh, hi thar!', feature_id: f, user_id: "test5@test.com"}
     response.should redirect_to feature_path(f)
   end
 
@@ -13,14 +13,14 @@ describe CommentsController do
     it 'deletes a comment' do
       comment
       expect {
-        delete :destroy, id: comment.id, user_id: 1 #Pål: Passing in user_id is not optimal
+        delete :destroy, id: comment.id, user_id: comment.user_id #Pål: Passing in user_id is not optimal
                                          # perhaps we should retrieve the user_id
                                          # from session/current_user method
       }.to change(Comment, :count).by(-1)
     end
 
     it 'redirects to feature' do
-      delete :destroy, id: comment.id, user_id: 1
+      delete :destroy, id: comment.id, user_id: comment.user_id
       response.should redirect_to feature_path(comment.feature.id)
     end
 
@@ -28,7 +28,7 @@ describe CommentsController do
       pending "waiting for current_user"
       comment
       expect{
-        delete :destroy, id: comment.id, user_id: 2
+        delete :destroy, id: comment.id, user_id: comment.user_id
       }.to raise_error
     end
   end
