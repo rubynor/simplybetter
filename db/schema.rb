@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20130803081556) do
     t.text     "description"
     t.integer  "creator_id"
     t.integer  "application_id"
-    t.integer  "votes_count"
+    t.integer  "votes_count",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
