@@ -2,7 +2,7 @@ Howhard::Application.routes.draw do
 
   resources :features
   resources :customers, only: [:new, :create]
-
+  resources :comments, only: [:create]
   post '/vote' => "votes#cast"
   root 'features#index'
   # The priority is based upon order of creation: first created -> highest priority.
