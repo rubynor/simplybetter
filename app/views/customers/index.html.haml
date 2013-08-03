@@ -1,13 +1,19 @@
-%h1 Your applications
-- @applications.each do |application|
-  = application.name
-  Token:#{application.token}
-  %br/
-%br/
-
-%h3 New application
+%h2 New application
 = form_for Application.new, url: create_application_customer_path(current_customer) do |f|
   = f.label :name
   = f.text_field :name
+  = f.submit
+
+%h2 Existing applications
+
+- @applications.each do |application|
+  %b= application.name
+  Token:#{application.token}
   %br/
-  = f.submit 'Lagre'
+  - if application.features.count > 0
+    %ul
+      - application.features.each do |feature|
+        %li
+          = feature.votes_count
+          = feature.title
+%br/

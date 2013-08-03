@@ -1,6 +1,6 @@
 class Application < ActiveRecord::Base
   belongs_to :customer
-  has_many :features
+  has_many :features, -> { order("votes_count DESC") }
 
   validates_uniqueness_of :token
 
