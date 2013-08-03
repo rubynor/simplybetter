@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20130802231103) do
 
   create_table "votes", force: true do |t|
     t.integer  "feature_id"
-    t.string   "caster_id"
+    t.string   "voter_email"
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"

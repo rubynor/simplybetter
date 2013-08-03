@@ -11,7 +11,10 @@ fooo bar
 <div id="c"></div>
 <script>
     $(document).ready(function () {
-        new HowHard($('#c')).features();
+        var appKey = "beefbabeb33fb4b3";
+        var userEmail = "oc@foo.bar";
+
+        new HowHard($('#c', appKey, userEmail)).features();
     });
 </script>
 </body>

@@ -45,14 +45,15 @@
 
     &>.vote-buttons {
       float: left;
+      margin-left:10px;
       &>.votes {
         display: block;
-        margin: 0 0 10px 10px;
-        width: 50px;
-        height: 50px;
-        border: 3px solid #a9a9a9;
-        border-radius: 50%;
-        line-height: 52px;
+        //margin: 10px 0 10px 20px;
+        //width: 30px;
+        //height: 30px;
+        //border: 3px solid #a9a9a9;
+        //border-radius: 50%;
+        line-height: 30px;
         text-align: center;
         font-size: 24px;
       }
@@ -63,7 +64,7 @@
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
         border-bottom: 20px solid #8fbc8f;
-        margin: 0 0 0 18px;
+        //margin: 0 0 0 18px;
       }
       .down {
         display: block;
@@ -72,7 +73,7 @@
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
         border-top: 20px solid #cd5c5c;
-        margin: 10px 0 0 18px;
+        //margin: 0 0 0 18px;
       }
     }
   }
