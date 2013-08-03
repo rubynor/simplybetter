@@ -34,7 +34,7 @@ ActiveRecord::Base.transaction do
   f1.votes.create!(voter_email: "oc@foo.mu", value: -1)
   f1.votes.create!(voter_email: "oc@foo.com", value: 2)
 
-  Comment.create!(feature_id: f1.id, body: 'How hard can it be?', user_id: 1)
-  Comment.create!(feature_id: f1.id, body: 'How hard can it be again?', user_id: 1)
+  Comment.create!(feature_id: f1.id, body: 'How hard can it be?', creator_id: 1, creator_type: "User")
+  Comment.create!(feature_id: f1.id, body: 'How hard can it be again?', creator_id: 1, creator_type: "User")
 end
 
