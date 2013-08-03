@@ -6,7 +6,7 @@ Howhard::Application.routes.draw do
       post :create_application
     end
   end
-  resources :comments, only: [:create, :index]
+  resources :comments, only: [:create, :destroy]
   post '/vote' => "votes#cast"
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
