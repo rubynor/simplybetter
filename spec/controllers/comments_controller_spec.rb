@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe CommentsController do
   example 'adding a comment' do
+    pending
     f = Feature.make!.id
     post :create, {body: 'Oh, hi thar!', feature_id: f, user_id: "test5@test.com"}
     response.should redirect_to feature_path(f)
