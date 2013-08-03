@@ -30,3 +30,9 @@ Comment.blueprint do
   feature_id { Feature.make!.id }
   body { 'Hello bro' }
 end
+
+Vote.blueprint do
+  feature
+  voter_email { "test@example.com"}
+  value { 1 }
+end
