@@ -137,6 +137,7 @@ CREATE TABLE features (
     description text,
     creator_id integer,
     application_id integer,
+    votes_count integer DEFAULT 0,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

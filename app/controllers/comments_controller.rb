@@ -8,6 +8,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    #TODO: add check for current_user and delete only if params[:user_id] is current_user
+    @comment = Comment.find(params[:id])
+
+    if @comment.destroy!
+      redirect_to feature_path(@comment.feature.id)
+    end
+  end
+
   private
 
   def comment_attributes
