@@ -5,7 +5,7 @@ class CreateFeatures < ActiveRecord::Migration
       t.text :description
       t.integer :creator_id, :application_id
 
-      t.integer :votes_count
+      t.integer :votes_count, default: 0
 
       t.timestamps
     end
