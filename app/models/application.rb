@@ -2,6 +2,8 @@ class Application < ActiveRecord::Base
   belongs_to :customer
   has_many :features
 
+  validates_uniqueness_of :token
+
   before_create :generate_token
 
   private
