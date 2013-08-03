@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     #TODO: add support for customer to add comments
     @comment = Comment.new(comment_attributes)
-    @comment.creator = User.find_by(email: params[:user_id])
+    @comment.creator = User.find_or_create_by(email: params[:email], name: params[:name])
     if @comment.save!
       redirect_to feature_path(@comment.feature)
     end
