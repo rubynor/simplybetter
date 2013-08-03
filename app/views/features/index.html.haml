@@ -1,7 +1,7 @@
 .features
   - @features.each do |f|
-    .feature-container
-      .feature
+    %ol.feature-container
+      %li.feature
         %h1
           = f.title
         .desc
@@ -11,7 +11,7 @@
         .vote-buttons
           = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'post', :remote => true, :class => "up" }
           .votes
-            = f.votes.vote_count
+            = f.votes_count
           = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'post', :remote => true, :class => "down" }
 
 

@@ -4,8 +4,9 @@
   max-width: 600px;
   margin: 0 auto;
 
-  &>.feature-container {
-    &>.feature {
+  &>ol.feature-container {
+    &>li.feature {
+      cursor: pointer;
       float: left;
       position: relative;
       display: inline-block;
