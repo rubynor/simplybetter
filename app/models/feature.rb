@@ -6,4 +6,8 @@ class Feature < ActiveRecord::Base
   validates_presence_of :title, :description
   validates_uniqueness_of :title
 
+  def update_votes_count
+    self.update_attribute(:votes_count, votes.sum(:value))
+  end
+
 end
