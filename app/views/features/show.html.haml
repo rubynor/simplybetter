@@ -13,3 +13,10 @@
     = link_to 'Edit', edit_feature_path(@feature)
     \|
     = link_to 'Back', features_path
+
+%div
+  .comments
+    - @feature.comments.each do |c|
+      %h2=c.title
+      %p=c.body
+      %hr

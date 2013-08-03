@@ -14,3 +14,6 @@ feature = application.features.create!(title: 'Develop a natural and healthy ene
 
 feature.votes.create!(voter_email: "oc@foo.mu", value: -1)
 feature.votes.create!(voter_email: "oc@foo.com", value: 2)
+
+Comment.create!(feature_id: feature.id, body: 'How hard can it be?', user_id: 1)
+Comment.create!(feature_id: feature.id, body: 'How hard can it be again?', user_id: 1)

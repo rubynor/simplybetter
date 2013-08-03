@@ -8,10 +8,10 @@ class CommentsController < ApplicationController
     end
   end
 
-  def index
-    f = Feature.find_by(id: params[:feature_id])
-    @comments = f.comments
-  end
+  #def index
+  #  f = Feature.find_by(id: params[:feature_id])
+  #  @comments = f.comments
+  #end
 
   private
 
