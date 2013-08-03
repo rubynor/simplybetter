@@ -1,6 +1,6 @@
 .features
   - @features.each do |f|
-    %ol.feature-container
+    %ol.feature-container{id: "feature_#{f.id}"}
       %li.feature
         %h1
           = f.title
