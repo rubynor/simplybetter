@@ -30,3 +30,8 @@ Comment.blueprint do
   feature_id { Feature.make!.id }
   body { 'Hello bro' }
 end
+
+User.blueprint do
+  name { "Machinist user" }
+  email { "test@machinist.com" }
+end
