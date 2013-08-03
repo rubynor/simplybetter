@@ -1,5 +1,5 @@
 class Feature < ActiveRecord::Base
-  belongs_to :customer
+  belongs_to :application
   has_many :votes
 
   validates_presence_of :title, :description
