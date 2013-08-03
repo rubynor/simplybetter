@@ -10,6 +10,7 @@ ActiveRecord::Base.transaction do
   customer = Customer.create!(name: 'Acme Inc', email: 'test@example.com', password: 'secret', password_confirmation: 'secret') 
 
   application = customer.applications.create!(name: 'Howhard')
+  application.update_attribute(:token, 'beefbabeb33fb4b3') # Force a stable token...
 
   f0 = application.features.create!(
       title: 'Cure cancer',
@@ -31,7 +32,7 @@ ActiveRecord::Base.transaction do
   Comment.create!(feature_id: f1.id, body: 'How hard can it be?', creator_id: user.id, creator_type: user.class.name)
   Comment.create!(feature_id: f1.id, body: 'How hard can it be again?', creator_id: user.id, creator_type: user.class.name)
 
-  f1.votes.create!(voter_email: "oc@foo.mu", value: -1)
-  f1.votes.create!(voter_email: "oc@foo.com", value: 2)
+  f1.votes.create!(voter_email: "abc@foo.mu", value: -1)
+  f1.votes.create!(voter_email: "def@foo.com", value: 1)
 end
 
