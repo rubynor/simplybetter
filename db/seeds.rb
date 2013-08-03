@@ -13,8 +13,8 @@ application = customer.applications.create!(name: 'Howhard')
 f1 = application.features.create!(title: 'Develop a natural and healthy energy bar', description:'At the same time, we want to inspire people and improve the World. This is our philosophy.')
 f2 = application.features.create!(title: 'Develop a coconut energy bar', description:'Not too sweet!')
 
-feature.votes.create!(voter_email: "oc@foo.mu", value: -1)
-feature.votes.create!(voter_email: "oc@foo.com", value: 2)
+f1.votes.create!(voter_email: "oc@foo.mu", value: -1)
+f1.votes.create!(voter_email: "oc@foo.com", value: 2)
 
 Comment.create!(feature_id: f1.id, body: 'How hard can it be?', user_id: 1)
 Comment.create!(feature_id: f1.id, body: 'How hard can it be again?', user_id: 1)
