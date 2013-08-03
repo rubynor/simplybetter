@@ -9,10 +9,10 @@
         .meta
           by foo at bar
       .vote-buttons
-        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1, :token => Customer.first.token }, { :method => 'post', :remote => true, :class => "up" }
+        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'post', :remote => true, :class => "up" }
         .votes
           = f.votes.vote_count
-        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1, :token => Customer.first.token }, { :method => 'post', :remote => true, :class => "down" }
+        = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'post', :remote => true, :class => "down" }
 
 
 .clearfix
