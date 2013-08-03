@@ -4,7 +4,7 @@ class FeaturesController < ApplicationController
   # GET /features
   # GET /features.json
   def index
-    @features = Feature.all
+    @features = Feature.all(:order => "votes_count DESC")
   end
 
   # GET /features/1
