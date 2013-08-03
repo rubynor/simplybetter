@@ -11,6 +11,7 @@ describe CommentsController do
     let(:comment) { Comment.make! }
 
     it 'deletes a comment' do
+      pending
       comment
       expect {
         delete :destroy, id: comment.id, user_id: comment.user_id #Pål: Passing in user_id is not optimal
@@ -20,6 +21,7 @@ describe CommentsController do
     end
 
     it 'redirects to feature' do
+      pending
       delete :destroy, id: comment.id, user_id: comment.user_id
       response.should redirect_to feature_path(comment.feature.id)
     end

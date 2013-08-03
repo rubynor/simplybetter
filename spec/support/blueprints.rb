@@ -26,8 +26,8 @@ Customer.blueprint do
 end
 
 Comment.blueprint do
+  creator { User.make! }
   feature
-  user_id { "test#{sn}@test.com" }
   body { 'Hello bro' }
 end
 
