@@ -68,8 +68,9 @@ ALTER SEQUENCE applications_id_seq OWNED BY applications.id;
 CREATE TABLE comments (
     id integer NOT NULL,
     body text,
-    user_id integer,
+    user_id character varying(255),
     feature_id integer,
+    votes_count integer DEFAULT 0,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -135,8 +136,8 @@ CREATE TABLE features (
     id integer NOT NULL,
     title character varying(255),
     description text,
-    creator_id integer,
-    application_id integer,
+    creator_id character varying(255),
+    application_id character varying(255),
     votes_count integer DEFAULT 0,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
@@ -177,7 +178,8 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE votes (
     id integer NOT NULL,
-    feature_id integer,
+    vote_receiver_id integer,
+    vote_receiver_type character varying(255),
     voter_email character varying(255),
     value integer,
     created_at timestamp without time zone,

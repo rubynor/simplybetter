@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20130803081556) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
-    t.integer  "user_id"
+    t.string   "user_id"
     t.integer  "feature_id"
+    t.integer  "votes_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,15 +44,16 @@ ActiveRecord::Schema.define(version: 20130803081556) do
   create_table "features", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "creator_id"
-    t.integer  "application_id"
+    t.string   "creator_id"
+    t.string   "application_id"
     t.integer  "votes_count",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "votes", force: true do |t|
-    t.integer  "feature_id"
+    t.integer  "vote_receiver_id"
+    t.string   "vote_receiver_type"
     t.string   "voter_email"
     t.integer  "value"
     t.datetime "created_at"

@@ -32,7 +32,7 @@ Comment.blueprint do
 end
 
 Vote.blueprint do
-  feature
+  vote_receiver { Feature.make! }
   voter_email { "test@example.com"}
   value { 1 }
 end
