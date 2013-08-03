@@ -15,8 +15,14 @@
     = link_to 'Back', features_path
 
 %div
+  %h1 comments
   .comments
     - @feature.comments.each do |c|
-      %h2=c.title
       %p=c.body
       %hr
+  .add_comment
+    = form_tag "/comments", method: "post" do |f|
+      = text_area_tag(:body)
+      = hidden_field_tag(:user_id, 1)#TODO: update to current_user??
+      = hidden_field_tag(:feature_id, @feature.id)
+      = submit_tag("Post comment")
