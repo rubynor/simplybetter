@@ -2,17 +2,22 @@
 (function () {
     var cache = {};
 
-    // template is either a template string or the id of a dom element containing the template
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
     window.tmpl = function tmpl(str, data) {
         var fn = !/\W/.test(str) ?
             cache[str] = cache[str] ||
                 tmpl(document.getElementById(str).innerHTML) :
 
+            // Generate a reusable function that will serve as a template
+            // generator (and which will be cached).
             new Function("obj",
                 "var p=[],print=function(){p.push.apply(p,arguments);};" +
 
+                    // Introduce the data as local variables using with(){}
                     "with(obj){p.push('" +
 
+                    // Convert the template into pure JavaScript
                     str
                         .replace(/[\r\t\n]/g, " ")
                         .split("{{").join("\t")
@@ -66,11 +71,7 @@ HowHard.prototype = {
             type: "GET",
             dataType: 'jsonp',
             success: function (data) {
-                var list = JSON.parse(data['features']);
-
-                $.map(list, function (e) {
-                    self.features[e.id] = e;
-                });
+                $.map(data, function (e) { self.features[e.id] = e; });
 
                 self.render();
             }
@@ -96,5 +97,45 @@ HowHard.prototype = {
                 self.render();
             }
         });
+    },
+    comment: function (id, body) {
+        var self = this;
+
+        jQuery.ajax({
+            type: "GET",
+            url: "http://localhost:3000/comments/create.js",
+            data: {
+                token: self.appKey,
+                feature_id: id,
+                body: body,
+                voter_email: self.userEmail,
+                voter_name: self.userName
+            },
+            dataType: 'jsonp',
+            success: function (data) {
+                self.features[id] = JSON.parse(data['feature']);
+                self.render();
+            }
+        });
+    },
+    destroyComment: function (id) {
+        var self = this;
+
+        jQuery.ajax({
+            type: "GET",
+            url: "http://localhost:3000/comments/destroy.js",
+            data: {
+                token: self.appKey,
+                feature_id: id,
+                voter_email: self.userEmail,
+                voter_name: self.userName
+            },
+            dataType: 'jsonp',
+            success: function (data) {
+                delete self.features[id];
+                self.render();
+            }
+        });
     }
+
 };
