@@ -18,7 +18,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       format.js { render :json => {
           vote_receiver.class.to_s.downcase.to_sym => vote_receiver.to_json
-      }, :callback => params[:callback] } if params[:callback]
+      }, :callback => params[:callback] || vote_receiver.class.to_s.downcase }
     end
   end
 end
