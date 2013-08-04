@@ -15,10 +15,10 @@ class VotesController < ApplicationController
     vote.save!
     vote_receiver.reload
 
+    @feature = vote_receiver.instance_of?(Comment)? vote_receiver.feature : vote_receiver
+
     respond_to do |format|
-      format.js { render :json => {
-          vote_receiver.class.to_s.downcase.to_sym => vote_receiver.to_json
-      }, :callback => params[:callback] || vote_receiver.class.to_s.downcase }
+      format.json
     end
   end
 end

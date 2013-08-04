@@ -40,8 +40,8 @@ function HowHard(root, appKey, userName, userEmail) {
     this.userEmail = userEmail;
 
     this.features = {};
-    this.featureTemplate = '<li class="feature"><h1>{{= title }}</h1><div class="desc">{{= description }}</div><div class="meta">by fixme</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.vote({{= id }},1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.vote({{= id }},-1);"></a></div><a href="#more" onclick="window.$HowHard.comments({{= id }})">expand</a></li>';
-    this.commentTemplate = '<li class="comment"><div class="body">{{= body }}</div><div class="meta">by {{= creator_id }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, 1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, -1);"></a></div></li>';
+    this.featureTemplate = '<li class="feature"><h1>{{= title }}</h1><div class="desc">{{= description }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.vote({{= id }},1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.vote({{= id }},-1);"></a></div><a href="#more" onclick="window.$HowHard.comments({{= id }})">expand</a></li>';
+    this.commentTemplate = '<li class="comment"><div class="body">{{= body }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, 1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, -1);"></a></div></li>';
 
     var self = this;
 
@@ -76,24 +76,10 @@ HowHard.prototype = {
         var self = this;
 
         jQuery.ajax({
-            url: "http://localhost:3000/features.js",
+            url: "http://localhost:3000/features.json",
             type: "GET",
-            dataType: 'jsonp',
+            dataType: 'json',
             success: function (data) {
-                $.map(data, function (e) { self.features[e.id] = e; });
-                self.render();
-            }
-        });
-    },
-    comments: function (featureId) {
-        var self = this;
-
-        jQuery.ajax({
-            url: "http://localhost:3000/features/" + featureId + "/comments.js",
-            type: "GET",
-            dataType: 'jsonp',
-            success: function (data) {
-                console.log(data);
                 $.map(data, function (e) { self.features[e.id] = e; });
                 self.render();
             }
@@ -104,7 +90,7 @@ HowHard.prototype = {
 
         jQuery.ajax({
             type: "GET",
-            url: "http://localhost:3000/vote.js",
+            url: "http://localhost:3000/vote.json",
             data: {
                 token: self.appKey,
                 feature_id: featureId,
@@ -112,9 +98,9 @@ HowHard.prototype = {
                 voter_email: self.userEmail,
                 voter_name: self.userName
             },
-            dataType: 'jsonp',
+            dataType: 'json',
             success: function (data) {
-                self.features[featureId] = JSON.parse(data['feature']);
+                self.features[featureId] = data;
                 self.render();
             }
         });
@@ -124,7 +110,7 @@ HowHard.prototype = {
 
         jQuery.ajax({
             type: "GET",
-            url: "http://localhost:3000/vote.js",
+            url: "http://localhost:3000/vote.json",
             data: {
                 token: self.appKey,
                 comment_id: commentId,
@@ -132,9 +118,9 @@ HowHard.prototype = {
                 voter_email: self.userEmail,
                 voter_name: self.userName
             },
-            dataType: 'jsonp',
+            dataType: 'json',
             success: function (data) {
-                self.features[featureId] = JSON.parse(data['feature']);
+                self.features[featureId] = data;
                 self.render();
             }
         });
@@ -144,7 +130,7 @@ HowHard.prototype = {
 
         jQuery.ajax({
             type: "GET",
-            url: "http://localhost:3000/features/" + id + "/comments/create.js",
+            url: "http://localhost:3000/features/" + id + "/comments/create",
             data: {
                 token: self.appKey,
                 feature_id: id,
@@ -152,9 +138,9 @@ HowHard.prototype = {
                 voter_email: self.userEmail,
                 voter_name: self.userName
             },
-            dataType: 'jsonp',
+            dataType: 'json',
             success: function (data) {
-                self.features[id] = JSON.parse(data['feature']);
+                self.features[id] = data; //TODO: or should it just return the comment?
                 self.render();
             }
         });
@@ -163,7 +149,7 @@ HowHard.prototype = {
         var self = this;
 
         jQuery.ajax({
-            type: "GET",
+            type: "DELETE",
             url: "http://localhost:3000/comments/destroy.js",
             data: {
                 token: self.appKey,

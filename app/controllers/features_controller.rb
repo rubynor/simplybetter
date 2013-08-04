@@ -7,7 +7,7 @@ class FeaturesController < ApplicationController
     @features = Feature.includes(:comments).order("votes_count DESC")
     respond_to do |format|
       format.html # @features
-      format.js { render :json => @features.to_json( :include => [ :comments => { :include => :creator }, :creator => {}]), :callback => params[:callback] || 'features' }
+      format.json
     end
   end
 

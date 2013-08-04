@@ -1,3 +1,4 @@
+# TODO: just use the feature/show plugin or redirect?
 json.extract! @feature, :id, :title, :description, :created_at, :updated_at, :votes_count
 json.creator_name @feature.creator.name
 json.url feature_url(@feature, format: :js)
