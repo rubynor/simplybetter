@@ -1,8 +1,9 @@
 Howhard::Application.routes.draw do
 
   resources :features do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: :create
   end
+  resources :comments, only: :destroy
   resources :customers, only: [:index, :new, :create] do
     member do
       post :create_application
