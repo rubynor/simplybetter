@@ -7,7 +7,7 @@ class FeaturesController < ApplicationController
     @features = Feature.order("votes_count DESC")
     respond_to do |format|
       format.html # @features
-      format.js { render :json => {:features => @features.to_json}, :callback => params[:callback] } if params[:callback]
+      format.js { render :json => @features.to_json, :callback => params[:callback] || 'features' }
     end
   end
 
