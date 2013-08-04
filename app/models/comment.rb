@@ -5,6 +5,10 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body, :feature, :creator
   belongs_to :creator, polymorphic: true, inverse_of: :comments
 
+  def creator_name
+    creator.name
+  end
+
   def update_votes_count
     self.update_attribute(:votes_count, votes.sum(:value))
   end

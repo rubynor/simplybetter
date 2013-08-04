@@ -4,10 +4,10 @@ class FeaturesController < ApplicationController
   # GET /features
   # GET /features.json
   def index
-    @features = Feature.order("votes_count DESC")
+    @features = Feature.includes(:comments).order("votes_count DESC")
     respond_to do |format|
       format.html # @features
-      format.js { render :json => @features.to_json, :callback => params[:callback] || 'features' }
+      format.js { render :json => @features.to_json( :include => [ :comments => { :include => :creator }, :creator => {}]), :callback => params[:callback] || 'features' }
     end
   end
 
