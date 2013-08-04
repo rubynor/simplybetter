@@ -1,4 +1,4 @@
-.features
+#features
   - @features.each do |f|
     %ol.feature-container{id: "feature_#{f.id}"}
       %li.feature
@@ -9,10 +9,10 @@
         .meta
           by foo at bar
         .vote-buttons
-          = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'post', :remote => true, :class => "up" }
+          = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => 1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'get', :remote => true, :class => "up" }
           .votes
             = f.votes_count
-          = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'post', :remote => true, :class => "down" }
+          = link_to '', { :controller => 'votes', :action =>'cast', :feature_id=>"#{f.id}", :value => -1, voter_email: "test@example.com", :token => Application.first.token }, { :method => 'get', :remote => true, :class => "down" }
 
 
 .clearfix

@@ -9,7 +9,10 @@ Howhard::Application.routes.draw do
       post :create_application
     end
   end
-  post '/vote' => "votes#cast"
+
+  get '/comments/create' => "comments#create"
+  get '/comments/destroy' => "comments#destroy"
+  get '/vote' => "votes#cast"
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
   root 'features#index'

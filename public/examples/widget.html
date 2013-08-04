@@ -3,18 +3,22 @@
 <head>
     <title>Foo</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="http://l:3000/assets/widget.js"></script>
+    <script src="http://localhost:3000/assets/widget.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/assets/widget.css"/>
 </head>
 
 <body>
-fooo bar
-<div id="c"></div>
+
+<h1>An example website.</h1>
+<button onclick="$('#features').show(); $(this).hide()">Press me</button>
+
+<div id="features" style="display:none"></div>
 <script>
     $(document).ready(function () {
         var appKey = "beefbabeb33fb4b3";
+        var userName = "Ole Christian";
         var userEmail = "oc@foo.bar";
-
-        new HowHard($('#c', appKey, userEmail)).features();
+        new HowHard($('#features'), appKey, userName, userEmail).list();
     });
 </script>
 </body>

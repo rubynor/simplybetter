@@ -4,7 +4,11 @@ class FeaturesController < ApplicationController
   # GET /features
   # GET /features.json
   def index
-    @features = Feature.all(:order => "votes_count DESC")
+    @features = Feature.order("votes_count DESC")
+    respond_to do |format|
+      format.html # @features
+      format.js { render :json => {:features => @features.to_json}, :callback => params[:callback] } if params[:callback]
+    end
   end
 
   # GET /features/1

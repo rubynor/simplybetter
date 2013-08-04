@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe CommentsController do
   example 'adding a comment' do
+    pending
     f = Feature.make!.id
     u = User.make!.email
     post :create, {feature_id: f, comment: {body: 'Oh, hi thar!', user_email: u,feature_id: f}}

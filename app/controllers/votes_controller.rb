@@ -8,10 +8,17 @@ class VotesController < ApplicationController
     else
       raise "No vote receiver"
     end
+
     vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
-    vote.value = params[:value]
+    vote.value ||= 0
+    vote.value += params[:value].to_i
     vote.save!
     vote_receiver.reload
-    render js: "$('##{vote_receiver.class.to_s.downcase}_#{vote_receiver.id} .votes').text('#{vote_receiver.votes_count}')"
+
+    respond_to do |format|
+      format.js { render :json => {
+          vote_receiver.class.to_s.downcase.to_sym => vote_receiver.to_json
+      }, :callback => params[:callback] } if params[:callback]
+    end
   end
 end
