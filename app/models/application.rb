@@ -1,13 +1,17 @@
 class Application < ActiveRecord::Base
   belongs_to :customer
-  has_one :feature_group
+  belongs_to :feature_group
   has_many :users
   has_many :features, -> { order("votes_count DESC") }
   has_many :comments, -> { order("comments.votes_count DESC") }, through: :features
 
   validates_uniqueness_of :token
 
-  before_create :generate_token
+  before_create :generate_token, :create_feature_group
+
+  def feature_group
+    FeatureGroup.find_or_create_by(application_id: self.id)
+  end
 
   private
 
