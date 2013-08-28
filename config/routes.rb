@@ -13,6 +13,7 @@ Howhard::Application.routes.draw do
   get 'applications/:id' => "applications#administrate"
   get 'applications/:id/feature/new' => "applications#new_feature", as: "application_new_feature"
   post 'applications/:id/feature/create' => "applications#create_feature"
+  get 'applications/:id/administrate_group' => "applications#administrate_group", as: "administrate_group"
 
   get '/comments/create' => "comments#create"
   get '/comments/destroy' => "comments#destroy"

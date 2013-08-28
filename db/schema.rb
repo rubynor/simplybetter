@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 20130828131451) do
     t.string   "application_id"
     t.integer  "creator_id"
     t.string   "creator_type"
-    t.integer  "votes_count",    default: 0
+    t.integer  "votes_count",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "group_id"
+    t.integer  "feature_group_id"
   end
 
   create_table "users", force: true do |t|

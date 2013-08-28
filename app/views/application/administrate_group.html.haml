@@ -1,0 +1,31 @@
+.applications
+  =render 'sidebar'
+  .col-md-8
+    .row
+      .alert.alert-info
+        %i.icon-info
+        Click on features on the left, to add them to the group. Click on features
+        in the group to remove them from the group.
+    .row
+      .col-md-6
+        .panel.panel-default
+          .panel-heading
+            %h3.panel-title All features
+          .panel-body
+            #allFeatures.list-group
+              - @features.each do |f|
+                %a.list-group-item{:href => "#"}
+                  %h4.list-group-item-heading= f.title
+                  %p.list-group-item-text= f.description
+
+      .col-md-6
+        .panel.panel-default
+          .panel-heading
+            %h3.panel-title Features for voting
+          .panel-body
+            #featuresForVoting.list-group
+              - unless @feature_group.blank?
+                - @feature_group.each do |f|
+                  %a.list-group-item{:href => "#"}
+                    %h4.list-group-item-heading= f.title
+                    %p.list-group-item-text= f.description
