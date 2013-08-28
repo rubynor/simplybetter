@@ -1,11 +1,2 @@
 .application
-  .row
-    .col-md-2
-      .list-group
-        %a.list-group-item{:href => "new_feature.html"}
-          %i.icon-plus-sign
-          Create a new feature request
-        %a.list-group-item{:href => "select_features.html"}
-          %i.icon-list-alt
-          Select features for voting
-    .col-md-4
+  =render 'sidebar'

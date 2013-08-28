@@ -11,6 +11,8 @@ Howhard::Application.routes.draw do
   end
 
   get 'applications/:id' => "application#administrate"
+  get 'applications/:id/feature/new' => "application#new_feature", as: "application_new_feature"
+  post 'applications/:id/feature/create' => "application#create_feature"
 
   get '/comments/create' => "comments#create"
   get '/comments/destroy' => "comments#destroy"
