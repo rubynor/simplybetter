@@ -10,6 +10,8 @@ Howhard::Application.routes.draw do
     end
   end
 
+  get 'applications/:id' => "application#administrate"
+
   get '/comments/create' => "comments#create"
   get '/comments/destroy' => "comments#destroy"
   get '/vote' => "votes#cast"

@@ -5,12 +5,18 @@
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
   %body
-    - if current_customer
-      = "Logged in as #{current_customer.name}"
-      = link_to "Admin", customers_path
-      = link_to "Features", features_path
-    - else
-      = link_to "Log in", login_path
-      = link_to "Register", new_customer_path
+    %nav.navbar.navbar-default.navbar-static-top{:role => "navigation"}
+      %a.navbar-brand{:href => "#"}
+        FEATURE VOTING
+      %p.navbar-text.pull-right
+        - if current_customer
+          = "Logged in as #{current_customer.name}"
+          |
+          = link_to "Admin", customers_path, class: 'navbar-link'
+          = link_to "Features", features_path, class: 'navbar-link'
+        - else
+          = link_to "Log in", login_path, class: 'navbar-link'
+          = link_to "Register", new_customer_path, class: 'navbar-link'
     = yield
