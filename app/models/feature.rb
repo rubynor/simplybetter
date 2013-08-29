@@ -15,7 +15,7 @@ class Feature < ActiveRecord::Base
 
 
   def self.features_in_group(token)
-     application(token).feature_group.features
+    application(token).feature_group.features
   end
 
   private
