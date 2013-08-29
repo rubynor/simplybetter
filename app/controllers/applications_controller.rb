@@ -19,20 +19,20 @@ class ApplicationsController < ApplicationController
   end
 
   def administrate_group
-    @features = current_application.features #TODO: exclude features in group
+    @features = current_application.features_not_in_group
     @feature_group = current_application.feature_group.features
   end
 
   def add_feature_request_to_group
     @feature = get_feature
     @feature.feature_group = current_application.feature_group
-    respond_to_js @feature
+    respond_to_js
   end
 
   def remove_feature_request_from_group
     @feature = get_feature
-    @feature.feature_group = nil
-    respond_to_js @feature
+    @feature.feature_group_id = nil
+    respond_to_js
   end
 
   private
@@ -43,17 +43,17 @@ class ApplicationsController < ApplicationController
   helper_method :current_application
 
   def feature_attributes
-    params.require(:feature).permit(:title, :description)
+    params.require(:feature).permit(:title, :description, :id)
   end
 
   def get_feature
     current_application.features.find(params[:fid])
   end
 
-  def respond_to_js(feature)
+  def respond_to_js
     respond_to do |format|
-      if feature.save!
-        format.js {  }
+      if @feature.save!
+        format.js { @feature }
       end
     end
   end

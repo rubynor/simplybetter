@@ -13,6 +13,10 @@ class Application < ActiveRecord::Base
     FeatureGroup.find_or_create_by(application_id: self.id)
   end
 
+  def features_not_in_group
+    self.features.where("feature_group_id IS NULL or feature_group_id != ?", self.feature_group.id)
+  end
+
   private
 
   def generate_token
