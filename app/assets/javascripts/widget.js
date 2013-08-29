@@ -40,13 +40,13 @@ function HowHard(root, appKey, userName, userEmail) {
     this.userEmail = userEmail;
 
     this.features = [];
-    this.featureTemplate = '<li class="feature"><h1>{{= title }}</h1><div class="desc">{{= description }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.vote({{= id }},1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.vote({{= id }},-1);"></li></a></div>'; // <a href="#more" onclick="window.$HowHard.comments({{= id }})">expand</a>
+    this.featureTemplate = '<li class="feature"><h1>{{= title }}</h1><div class="desc">{{= description }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.vote({{= id }},1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.vote({{= id }},-1);"></a></div></li>'; // <a href="#more" onclick="window.$HowHard.comments({{= id }})">expand</a>
     this.commentTemplate = '<li class="comment"><div class="body">{{= body }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, 1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, -1);"></a></div></li>';
 
     var self = this;
 
     this.render = function () {
-        var html = '<ol class="feature-container">';
+        var html = '<div class="featureVotingCloseButton"></div><div class="features_inner"><ol class="feature-container">';
         $.map(this.features, function (feature) {
             html += tmpl(self.featureTemplate, feature);
 
@@ -62,6 +62,14 @@ function HowHard(root, appKey, userName, userEmail) {
 
 
         this.root.html(html);
+        $('body').append('<div id="fatureVotingBackdropLayer" style="display:none"></div>');
+        $('.featureVotingCloseButton').on('click', function(){
+            console.log("Button clicked");
+            $('#fatureVotingBackdropLayer').hide();
+            $('#featureVotingFeaturesModal').hide();
+            $(this).hide();
+            $('.howHardBtn').show();
+        });
     };
 
     // Store the instance in the browser (for actions, etc).

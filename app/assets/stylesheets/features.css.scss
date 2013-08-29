@@ -1,10 +1,42 @@
-#features {
-  text-align: center;
+@import url(http://fonts.googleapis.com/css?family=Kavoon|Roboto:100,300);
+#fatureVotingBackdropLayer {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(9, 9, 9, 0.57);
+}
+#featureVotingFeaturesModal {
+  position: absolute;
   width: 96%;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 620px;
+  left: 30%;
+  top: 10%;
+  z-index: 1000;
+  height: 60%;
+  background-color: white;
+  border: 3px solid lightgray;
+  border-radius: 10px;
 
+  .featureVotingCloseButton {
+    width: 41px;
+    height: 43px;
+    background: url('/assets/modal-close-button.png');
+    position: absolute;
+    z-index: 2000;
+    right: -20px;
+    top: -20px;
+  }
+  .features_inner{
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-Y: scroll;
+    position: relative;
+  }
   ol.feature-container {
+    padding-left: 0px;
     li.feature {
       float: left;
       position: relative;
@@ -16,7 +48,7 @@
       height: 100px;
       margin-bottom: 10px;
 
-      padding: 10px 10px 10px 50px;
+      padding: 10px 10px 10px 0px;
       border-bottom: 1px solid #a9a9a9;
       width: 100%;
       max-width: 580px;
@@ -77,8 +109,8 @@
         }
       }
     }
-
   }
+
 
 }
 

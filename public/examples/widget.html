@@ -4,16 +4,14 @@
     <title>Foo</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="http://localhost:3000/assets/widget.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://localhost:3000/assets/widget.css"/>
-    <link href='http://fonts.googleapis.com/css?family=Kavoon|Roboto:100,300' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 
 <h1>An example website.</h1>
-<button onclick="$('#features').show(); $(this).hide()">Press me</button>
+<button onclick="$('#featureVotingFeaturesModal').show();$('#backdrop').show();$('.close').show(); $(this).hide()" class='howHardBtn'>Press me</button>
 
-<div id="features" style="display:none"></div>
+<div id="featureVotingFeaturesModal" style="display:none"></div>
 <script>
     $(document).ready(function () {
         var appKey = "JZTIJBHV";
