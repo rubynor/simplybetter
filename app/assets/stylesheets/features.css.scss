@@ -4,57 +4,57 @@
   max-width: 600px;
   margin: 0 auto;
 
-  &>ol.feature-container {
-    &>li.feature {
-      cursor: pointer;
+  ol.feature-container {
+    li.feature {
       float: left;
       position: relative;
       display: inline-block;
       overflow: hidden;
-
+      font-family: 'Roboto', sans-serif;
       text-align: left;
 
       height: 100px;
       margin-bottom: 10px;
 
-      padding: 10px;
-      border: 3px solid #a9a9a9;
-      border-radius: 4px;
+      padding: 10px 10px 10px 50px;
+      border-bottom: 1px solid #a9a9a9;
       width: 100%;
       max-width: 580px;
       min-width: 300px;
 
-      &>h1 {
+      h1 {
+        font-family: 'Kavoon', cursive;
+        color: rgb(63, 63, 63);
         max-width: 520px;
         margin: 0;
         padding: 0;
         position: absolute;
         white-space: nowrap;
         overflow: hidden;
-        font-size: 18px;
-        left: 10px;
-        top: 10px;
+        font-size: 25px;
+        left: 60px;
+        top: 5px;
       }
 
-      &>.desc {
+      .desc {
         max-width: 500px;
         position: absolute;
-        left: 10px;
+        left: 60px;
         top: 50px;
       }
 
-      &>.meta {
+      .meta {
         position: absolute;
         right: 10px;
         bottom: 10px;
       }
 
-      &>.vote-buttons {
+      .vote-buttons {
         position: absolute;
-        right: 10px;
+        left: 0px;
         top: 10px;
 
-        &>.votes {
+        .votes {
           display: block;
           line-height: 30px;
           text-align: center;
@@ -64,14 +64,16 @@
           display: block;
           width: 0;
           height: 0;
-          border-left: 20px solid transparent;
-          border-right: 20px solid transparent;
+          border-left: 15px solid transparent;
+          border-right: 15px solid transparent;
+          border-radius: 3px;
+          cursor: pointer;
         }
         .up {
-          border-bottom: 20px solid #8fbc8f;
+          border-bottom: 16px solid gray;
         }
         .down {
-          border-top: 20px solid #cd5c5c;
+          border-top: 16px solid gray;
         }
       }
     }

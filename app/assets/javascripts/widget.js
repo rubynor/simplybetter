@@ -40,7 +40,7 @@ function HowHard(root, appKey, userName, userEmail) {
     this.userEmail = userEmail;
 
     this.features = {};
-    this.featureTemplate = '<li class="feature"><h1>{{= title }}</h1><div class="desc">{{= description }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.vote({{= id }},1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.vote({{= id }},-1);"></a></div><a href="#more" onclick="window.$HowHard.comments({{= id }})">expand</a></li>';
+    this.featureTemplate = '<li class="feature"><h1>{{= title }}</h1><div class="desc">{{= description }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.vote({{= id }},1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.vote({{= id }},-1);"></li></a></div>'; // <a href="#more" onclick="window.$HowHard.comments({{= id }})">expand</a>
     this.commentTemplate = '<li class="comment"><div class="body">{{= body }}</div><div class="meta">by {{= creator_name }}</div><div class="vote-buttons"><a href="#up" class="up" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, 1);"></a><div class="votes">{{= votes_count }}</div><a href="#down" class="down" onclick="window.$HowHard.like({{= feature_id }}, {{= id }}, -1);"></a></div></li>';
 
     var self = this;
@@ -79,6 +79,9 @@ HowHard.prototype = {
             url: "http://localhost:3000/features.json",
             type: "GET",
             dataType: 'json',
+            data: {
+                token: self.appKey
+            },
             success: function (data) {
                 $.map(data, function (e) { self.features[e.id] = e; });
                 self.render();

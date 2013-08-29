@@ -12,4 +12,16 @@ class Feature < ActiveRecord::Base
     self.update_attribute(:votes_count, votes.sum(:value))
   end
 
+
+
+  def self.features_in_group(token)
+     application(token).feature_group.features
+  end
+
+  private
+
+  def self.application(token)
+    Application.find_by(token: token)
+  end
+
 end

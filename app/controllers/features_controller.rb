@@ -1,32 +1,24 @@
 class FeaturesController < ApplicationController
   before_action :set_feature, only: [:show, :edit, :update, :destroy]
 
-  # GET /features
-  # GET /features.json
   def index
-    @features = Feature.includes(:comments).order("votes_count DESC")
+    @features = Feature.features_in_group(params[:token]).includes(:comments).order("votes_count DESC")
     respond_to do |format|
       format.html # @features
       format.json
     end
   end
 
-  # GET /features/1
-  # GET /features/1.json
   def show
   end
 
-  # GET /features/new
   def new
     @feature = Feature.new
   end
 
-  # GET /features/1/edit
   def edit
   end
 
-  # POST /features
-  # POST /features.json
   def create
     @feature = Feature.new(feature_params)
     application = Application.find_by_token(params[:token])
@@ -51,8 +43,6 @@ class FeaturesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /features/1
-  # PATCH/PUT /features/1.json
   def update
     respond_to do |format|
       if @feature.update(feature_params)
@@ -65,8 +55,6 @@ class FeaturesController < ApplicationController
     end
   end
 
-  # DELETE /features/1
-  # DELETE /features/1.json
   def destroy
     @feature.destroy
     respond_to do |format|
