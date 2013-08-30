@@ -4,12 +4,13 @@
     <title>Foo</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="http://localhost:3000/assets/widget.js"></script>
+    <link href="http://localhost:3000/assets/widget.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
 <h1>An example website.</h1>
-<button onclick="$('#featureVotingFeaturesModal').show();$('#backdrop').show();$('.close').show(); $(this).hide()" class='howHardBtn'>Press me</button>
+<button onclick="$('#featureVotingFeaturesModal').show();$('#fatureVotingBackdropLayer').show();$('.close').show(); $(this).hide()" class='howHardBtn'>Press me</button>
 
 <div id="featureVotingFeaturesModal" style="display:none"></div>
 <script>
@@ -17,7 +18,7 @@
         var appKey = "JZTIJBHV";
         var userName = "Ole Christian";
         var userEmail = "oc@foo.bar";
-        new HowHard($('#features'), appKey, userName, userEmail).list();
+        new HowHard($('#featureVotingFeaturesModal'), appKey, userName, userEmail).list();
     });
 </script>
 </body>
