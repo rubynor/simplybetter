@@ -1,3 +1,3 @@
 = link_to send(path, current_application.id,f), class: 'list-group-item', id: "feature_#{f.id}",remote: true,method: method do
   %h4.list-group-item-heading= f.title
-  %p.list-group-item-text= f.description
+  %p.list-group-item-text= truncate(f.description, length: 100)
