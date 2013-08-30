@@ -1,4 +1,9 @@
 class ApplicationsController < ApplicationController
+
+  def index
+    @applications = current_customer.applications
+  end
+
   def administrate
     @application = current_application
   end
