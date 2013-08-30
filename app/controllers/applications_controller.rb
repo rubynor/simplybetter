@@ -49,7 +49,7 @@ class ApplicationsController < ApplicationController
   private
 
   def current_application
-    @current_application ||= current_customer.applications.find(params[:id])
+    @current_application ||= current_customer.applications.find(params[:id]) if params[:id]
   end
   helper_method :current_application
 
