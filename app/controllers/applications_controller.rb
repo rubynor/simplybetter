@@ -1,7 +1,8 @@
 class ApplicationsController < ApplicationController
 
   def index
-    @applications = current_customer.applications
+    @applications = current_customer.applications.includes(:features)
+    @application = Application.new
   end
 
   def administrate
@@ -21,6 +22,11 @@ class ApplicationsController < ApplicationController
         format.html { redirect_to application_new_feature_path(current_application.id), notice: 'Feature request was successfully created.' }
       end
     end
+  end
+
+  def create
+    current_customer.applications.create! = Application.new(application_attributes)
+    redirect_to action: :index, notice: 'Application successfully created!'
   end
 
   def administrate_group
@@ -49,6 +55,9 @@ class ApplicationsController < ApplicationController
 
   def feature_attributes
     params.require(:feature).permit(:title, :description, :id)
+  end
+  def application_attributes
+    params.require(:application).permit(:name)
   end
 
   def get_feature
