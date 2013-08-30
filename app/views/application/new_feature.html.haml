@@ -1,12 +1,7 @@
 .applications
   =render 'sidebar'
   .col-md-8
-    - if notice
-      .row
-        .alert.alert-success.alert-dismissable
-          = notice
-          %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
-            &times;
+    =render 'alert_success', notice: notice
     .row
       .panel.panel-default
         .panel-heading Create a new feature request!

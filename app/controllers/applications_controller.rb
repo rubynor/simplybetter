@@ -26,7 +26,7 @@ class ApplicationsController < ApplicationController
 
   def create
     current_customer.applications.create!(application_attributes)
-    redirect_to action: :index, notice: 'Application successfully created!'
+    redirect_to applications_path, notice: 'Application successfully created!'
   end
 
   def administrate_group

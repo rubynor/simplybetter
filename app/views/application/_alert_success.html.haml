@@ -1,0 +1,5 @@
+- unless notice.blank?
+  .alert.alert-success.alert-dismissable
+    = notice
+    %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+      &times;

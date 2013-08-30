@@ -1,19 +1,36 @@
-%row
-  .col-md-6
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title
-          Choose to administrate one of your applications!
-      - unless @applications.blank?
-        .list-group
-          - @applications.each do |a|
-            =link_to application_administrate_path(a.id), class: 'list-group-item' do
-              =a.name
-              %span.badge.pull-right
-                =a.features.count
-      - else
-        .panel-body
-          .alert.alert-info
-            You have not created any applications yet
+.col-md-12
+  =render 'alert_success', notice: notice
+
+.col-md-4
+  .panel.panel-info
+    .panel-heading
+      %h3.panel-title
+        Choose to administrate one of your applications!
+    - unless @applications.blank?
+      .list-group
+        - @applications.each do |a|
+          =link_to application_administrate_path(a.id), class: 'list-group-item' do
+            =a.name
+            %span.badge.pull-right
+              =a.features.count
+    - else
+      .panel-body
+        .alert.alert-info
+          You have not created any applications yet
+.col-md-8
+  .panel.panel-success
+    .panel-heading
+      %h3.panel-title
+        Create a new application!
+    .panel-body
+      = form_for @application, url: {action: :create},html: {class: "form-horizontal", role: "form"} do |f|
+        .form-group
+          %label.col-md-4.control-label New application name
+          .col-md-8
+            = f.text_field :name, class: 'form-control'
+        .form-group
+          .col-md-offset-4.col-md-8
+            = f.button 'Create application', class: 'btn btn-default'
+
 
 

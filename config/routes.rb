@@ -10,7 +10,8 @@ Howhard::Application.routes.draw do
     end
   end
 
-  get 'applications' => "applications#index", as: "applications"
+  resources :applications, only: [:index, :create]
+
   get 'applications/:id' => "applications#administrate", as: "application_administrate"
   get 'applications/:id/feature/new' => "applications#new_feature", as: "application_new_feature"
   post 'applications/:id/feature/create' => "applications#create_feature"
