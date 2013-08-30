@@ -25,7 +25,7 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    current_customer.applications.create! = Application.new(application_attributes)
+    current_customer.applications.create!(application_attributes)
     redirect_to action: :index, notice: 'Application successfully created!'
   end
 
