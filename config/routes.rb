@@ -21,7 +21,8 @@ Howhard::Application.routes.draw do
 
   get '/comments/create' => "comments#create"
   get '/comments/destroy' => "comments#destroy"
-  get '/vote' => "votes#cast"
+  post '/vote_up' => "votes#up"
+  post '/vote_down' => "votes#down"
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
   root 'sessions#new'
