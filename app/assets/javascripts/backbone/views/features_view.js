@@ -1,4 +1,4 @@
-var FeaturesView = Backbone.View.extend({
+var FeaturesCollectionView = Backbone.View.extend({
     template: function(){
         var tmp = "";
         $.ajax({
@@ -15,17 +15,13 @@ var FeaturesView = Backbone.View.extend({
 
     render: function (){
         var self = this;
-        var theList = [];
-        this.$el.html(function(){
-            _.each(self.collection.models, function(model){
-                var item = new FeatureView({model: model});
-                theList.push(item);
-            });
-            return _.template(self.template(),{list: theList,features: function(theList){
-                _.each(theList, function(feature){
-                    feature.render();
-                });
-            }});
+        this.$el.html(_.template(self.template()));
+
+        //Render item views
+        var ol = this.$el.find('ol');
+        _.each(self.collection.models, function(model){
+            var feature = new FeatureItemView({model: model});
+            ol.append(feature.render().el);
         });
     }
 });
