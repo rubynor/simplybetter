@@ -9,25 +9,23 @@ var FeaturesView = Backbone.View.extend({
                 tmp = response;
             }
         });
-//        $.get("http://localhost:3000/assets/backbone/templates/index.html", function(response){
-//            template = _.template(response);
-//        }, {async: false});
-//        console.log(template);
         return tmp;
     },
     el: '#features',
 
-    render: function(){
+    render: function (){
         var self = this;
-//        this.$el.html("<h1> hei </h1>" + this.template());
+        var theList = [];
         this.$el.html(function(){
-            var theList = [];
             _.each(self.collection.models, function(model){
                 var item = new FeatureView({model: model});
-                theList.push(item.render());
+                theList.push(item);
             });
-            console.log(self.template());
-            return _.template(self.template(),{features: theList});
+            return _.template(self.template(),{list: theList,features: function(theList){
+                _.each(theList, function(feature){
+                    feature.render();
+                });
+            }});
         });
     }
 });

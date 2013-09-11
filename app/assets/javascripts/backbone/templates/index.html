@@ -1,5 +1,10 @@
-
-<h1>Render successful!</h1>
-<ol>
-    {{= features}}
-</ol>
+<div id="featureVotingFeaturesModal">
+    <div class="featureVotingCloseButton"></div>
+    <div class="features_inner">
+        <ol class="feature-container">
+            {{ _.each(list, function(unit){ }}
+                {{= unit.render() }}
+            {{ }); }}
+        </ol>
+    </div>
+</div>
