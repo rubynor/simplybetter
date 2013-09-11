@@ -10,8 +10,8 @@
     %nav.navbar.navbar-default.navbar-static-top{:role => "navigation"}
       %a.navbar-brand{:href => "#"}
         FEATURE VOTING
-        - unless current_application.blank?
-          = " - #{current_application.name}"
+        -#- unless current_application
+        -#  = " - #{current_application.name}"
       %p.navbar-text.pull-right
         - if current_customer
           = "Logged in as #{current_customer.name}"

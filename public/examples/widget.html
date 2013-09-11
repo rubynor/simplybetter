@@ -2,24 +2,31 @@
 <html>
 <head>
     <title>Foo</title>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="http://localhost:3000/assets/widget.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>-->
+    <!--<script src="http://localhost:3000/assets/widget.js"></script>-->
+    <!--<script src="http://localhost:3000/assets/backbone/models/feature_model.js"></script>-->
+    <script src="http://localhost:3000/assets/widget2.js"></script>
     <link href="http://localhost:3000/assets/widget.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
 <h1>An example website.</h1>
+<div id="features"></div>
 <button onclick="$('#featureVotingFeaturesModal').show();$('#fatureVotingBackdropLayer').show();$('.close').show(); $(this).hide()" class='howHardBtn'>Press me</button>
 
 <div id="featureVotingFeaturesModal" style="display:none"></div>
 <script>
-    $(document).ready(function () {
-        var appKey = "JZTIJBHV";
-        var userName = "Ole Christian";
-        var userEmail = "oc@foo.bar";
-        new HowHard($('#featureVotingFeaturesModal'), appKey, userName, userEmail).list();
-    });
+//    $(document).ready(function () {
+//        var appKey = "JZTIJBHV";
+//        var userName = "Ole Christian";
+//        var userEmail = "oc@foo.bar";
+//        new HowHard($('#featureVotingFeaturesModal'), appKey, userName, userEmail).list();
+//    });
 </script>
 </body>
 </html>
