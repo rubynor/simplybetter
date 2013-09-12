@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Howhard::Application.config.secret_key_base = 'a17438c4d9e6259abb7917898bc8ca4579f3037cd7241787627142b315f51658ca544e5a12e205e50497b5a390e99ea44174ed761f6c897890ab81c60152ab7e'
+SimplyBetter::Application.config.secret_key_base = 'a17438c4d9e6259abb7917898bc8ca4579f3037cd7241787627142b315f51658ca544e5a12e205e50497b5a390e99ea44174ed761f6c897890ab81c60152ab7e'

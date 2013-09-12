@@ -9,7 +9,7 @@
 ActiveRecord::Base.transaction do
   customer = Customer.create!(name: 'Acme Inc', email: 'test@example.com', password: 'secret', password_confirmation: 'secret')
 
-  application = customer.applications.create!(name: 'Howhard')
+  application = customer.applications.create!(name: 'SimplyBetter')
   application.update_attribute(:token, 'beefbabeb33fb4b3') # Force a stable token...
 
   user = application.users.create!(name: "John", email: "test@test.com")

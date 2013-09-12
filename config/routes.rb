@@ -1,4 +1,4 @@
-Howhard::Application.routes.draw do
+SimplyBetter::Application.routes.draw do
 
   resources :features do
     resources :comments, only: :create
