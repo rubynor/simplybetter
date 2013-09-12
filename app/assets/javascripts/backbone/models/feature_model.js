@@ -1,15 +1,19 @@
 SimplyBetterApplication.Features = (function (features) {
     app = features;
-
     app.model = Backbone.Model.extend({
         url: function(){
-            return '/features/' + this.id + '?token=JZTIJBHV';
+            return SimplyBetterApplication.config.featuresModelUrl(this.id);
         }
     });
 
     app.collection = Backbone.Collection.extend({
-        model: app.model,
-        url: '/features?token=' + 'JZTIJBHV'
+//        initialize: function(options){
+//            this.url = options.url;
+//        },
+        url: function(){
+            return SimplyBetterApplication.config.featuresCollectionUrl();
+        },
+        model: app.model
     });
     return app;
 }(SimplyBetterApplication.Features || {}));
