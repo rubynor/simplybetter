@@ -18,10 +18,9 @@ var FeatureItemView = Backbone.View.extend({
         "click .down" : "vote_down"
     },
 
-    vote: function(upOrDown,element){
+    vote: function(upOrDown){
         var self = this;
         var id = this.model.get('id');
-        var element = $(element.target).closest('li');
         $.ajax({
             type: 'POST',
             url: 'http://localhost:3000/vote_'+upOrDown,
@@ -40,15 +39,11 @@ var FeatureItemView = Backbone.View.extend({
             }
         });
     },
-    vote_up: function(e){
-        console.log("You triggered vote_up!");
-        console.log("I am "+ this.model.get('id'));
-        this.vote('up',e);
+    vote_up: function(){
+        this.vote('up');
     },
-    vote_down: function(e){
-        console.log("You triggered vote_down!");
-        console.log("I am "+ this.model.get('id'));
-        this.vote('down',e);
+    vote_down: function(){
+        this.vote('down');
     },
 
     render: function(){
