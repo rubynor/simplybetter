@@ -17,16 +17,18 @@
 
 <h1>An example website.</h1>
 <div id="features"></div>
+<div id="fatureVotingBackdropLayer" style="display:none"></div>
+<div id="featureVotingFeaturesModal" style="display:none"></div>
 <button onclick="$('#featureVotingFeaturesModal').show();$('#fatureVotingBackdropLayer').show();$('.close').show(); $(this).hide()" class='howHardBtn'>Press me</button>
-
-<!--<div id="featureVotingFeaturesModal" style="display:none"></div>-->
 <script>
     $(document).ready(function(){
         window.appKey = "JZTIJBHV";
         window.userName = "Ole Christian";
         window.userEmail = "oc@foosdb.bar";
+        SimplyBetterApplication.init.start(window.appKey);
     });
-
+</script>
+<script>
 //    $(document).ready(function () {
 //        var appKey = "JZTIJBHV";
 //        var userName = "Ole Christian";
