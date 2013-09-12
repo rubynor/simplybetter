@@ -38,7 +38,7 @@ SimplyBetterApplication.init = (function (){
 $(document).ready(function(){
     // Required since ruby uses <%= tags ..
     // Fix for underscore <%= %> to {{= }}
-    // TODO: This should only affect our underscore library. But how??
+    // TODO: This should only affect OUR underscore library. But how??
     _.templateSettings = {
         interpolate: /\{\{\=(.+?)\}\}/g,
         evaluate: /\{\{(.+?)\}\}/g
