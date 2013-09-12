@@ -10,9 +10,10 @@ class VotesController < ApplicationController
 
   def cast_vote(value)
     vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
-    vote.value = 0
-    vote.value += value
-    vote.save!
+    vote.cast(value)
+    respond_to do |format|
+      format.json { head :ok }
+    end
   end
 
   def find_application
