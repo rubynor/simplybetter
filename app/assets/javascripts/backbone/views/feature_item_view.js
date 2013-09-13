@@ -1,26 +1,11 @@
 SimplyBetterApplication.Features = (function(features){
     app = features;
 
-    app.itemView = Backbone.View.extend({
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.baseUrl + '/assets/backbone/templates/feature_item.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
-        tagName: 'li',
+    app.BaseItemView = Backbone.View.extend({
         events: {
             "click .up" : "vote_up",
-            "click .down" : "vote_down",
-            "click h1" : "showFeature"
+            "click .down" : "vote_down"
         },
-
         vote: function(upOrDown){
             var self = this;
             var id = this.model.get('id');
@@ -48,11 +33,6 @@ SimplyBetterApplication.Features = (function(features){
         vote_down: function(){
             this.vote('down');
         },
-
-        showFeature: function(){
-            var feature = new SimplyBetterApplication.Features.show({model: this.model});
-            feature.render();
-        },
         voteStatusClass: function(voteStatus){
             var voteStatusValue = voteStatus.get('value');
             var result = {
@@ -77,6 +57,36 @@ SimplyBetterApplication.Features = (function(features){
                 async: false
             });
             return this;
+        }
+    });
+
+
+
+
+    app.itemView = app.BaseItemView.extend({
+        template: function(){
+            var tmp = "";
+            $.ajax({
+                url: SimplyBetterApplication.config.baseUrl + '/assets/backbone/templates/feature_item.html',
+                method: 'GET',
+                async: false,
+                success: function(response){
+                    tmp = response;
+                }
+            });
+            return tmp;
+        },
+        tagName: 'li',
+
+        events: {
+            "click .up" : "vote_up",
+            "click .down" : "vote_down",
+            "click h1" : "showFeature"
+        },
+
+        showFeature: function(){
+            var feature = new SimplyBetterApplication.Features.showFeature({model: this.model});
+            feature.render();
         }
     });
 

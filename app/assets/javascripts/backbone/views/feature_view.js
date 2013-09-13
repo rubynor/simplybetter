@@ -1,6 +1,6 @@
 SimplyBetterApplication.Features = (function(features){
-    var app = features;
-    app.show = Backbone.View.extend({
+    var module = features;
+    module.showFeature = SimplyBetterApplication.Features.BaseItemView.extend ({
         template: function(){
             var tmp = "";
             $.ajax({
@@ -13,11 +13,8 @@ SimplyBetterApplication.Features = (function(features){
             });
             return tmp;
         },
-        el: '#featureVotingFeaturesModalContent',
-
-        render: function(){
-            this.$el.html(_.template(this.template(), this.model.attributes));
-        }
+        el: '#featureVotingFeaturesModalContent'
     });
-    return app;
+
+    return module;
 }(SimplyBetterApplication.Features || {}));
