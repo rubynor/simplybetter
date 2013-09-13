@@ -34,7 +34,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         render: function() {
-            this.$el.html(_.template(self.template()))
+            this.$el.html(_.template(this.template()));
         }
 
     });
