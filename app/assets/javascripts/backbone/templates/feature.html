@@ -1,12 +1,12 @@
 <ol class="feature-container">
     <li class="featureView">
-        <h1>{{= title }}</h1>
-        <div class="desc">{{= description }}</div>
-        <div class="meta">by {{= creator_name }}</div>
+        <h1>{{= feature.title }}</h1>
+        <div class="desc">{{= feature.description }}</div>
+        <div class="meta">by {{= feature.creator_name }}</div>
         <div class="vote-buttons">
-            <a href="#" class="up"></a>
-            <div class="votes">{{= votes_count }}</div>
-            <a href="#" class="down"></a>
+            <a href="#" class="up {{= voteClass.up }}"></a>
+            <div class="votes">{{= feature.votes_count }}</div>
+            <a href="#" class="down {{= voteClass.down }}"></a>
         </div>
     </li>
 </ol>
