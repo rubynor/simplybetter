@@ -53,10 +53,29 @@ SimplyBetterApplication.Features = (function(features){
             var feature = new SimplyBetterApplication.Features.show({model: this.model});
             feature.render();
         },
+        voteStatusClass: function(voteStatus){
+            var voteStatusValue = voteStatus.get('value');
+            var result = {
+                up: '',
+                down: ''
+            };
+            if (voteStatusValue === 1){
+                result.up = 'active';
+            } else if (voteStatusValue === -1){
+                result.down = 'active';
+            }
+            return result;
+        },
 
         render: function(){
-            var self = this;
-            this.$el.addClass('feature').html(_.template(self.template(),this.model.attributes));
+            self = this;
+            var voteStatus = new app.VoteStatusModel({feature_id: this.model.get('id'), email: SimplyBetterApplication.config.userEmail});
+            voteStatus.fetch({
+                success: function(response){
+                    self.$el.addClass('feature').html(_.template(self.template(),{feature: self.model.attributes, voteClass: self.voteStatusClass(response)}));
+                },
+                async: false
+            });
             return this;
         }
     });
