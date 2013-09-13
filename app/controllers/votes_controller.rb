@@ -7,15 +7,14 @@ class VotesController < ApplicationController
   end
 
   def status
+    puts params[:email]
     vote = Vote.find_by(voter_email: params[:email], vote_receiver_id: params[:feature_id])
     value = if vote
       vote.value
     else
       0
     end
-    respond_to do |format|
-      format.json { render json: {value: value}.to_json }
-    end
+    render json: {value: value}.to_json
   end
 
   private
