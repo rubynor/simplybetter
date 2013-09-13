@@ -30,7 +30,9 @@ SimplyBetterApplication.Navigator = (function(navigator){
             });
         },
         navigateNewFeature: function(){
-            console.log('I am not implemented yet');
+            var fm = new SimplyBetterApplication.Features.model();
+            var nfView = new SimplyBetterApplication.Features.newFeatureView({model: fm});
+            nfView.render();
         },
 
         render: function() {
