@@ -19,6 +19,11 @@
   border: 3px solid lightgray;
   border-radius: 10px;
 
+  #featureVotingNavbar {
+    width: 100%;
+    height: 50px;
+  }
+
   .featureVotingCloseButton {
     width: 41px;
     height: 43px;
@@ -28,7 +33,8 @@
     right: -20px;
     top: -20px;
   }
-  .features_inner{
+  #featureVotingFeaturesModalContent{
+    clear: both;
     height: 100%;
     width: 100%;
     overflow-x: hidden;

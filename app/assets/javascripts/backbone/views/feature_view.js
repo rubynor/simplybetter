@@ -13,7 +13,7 @@ SimplyBetterApplication.Features = (function(features){
             });
             return tmp;
         },
-        el: '#featureVotingFeaturesModal',
+        el: '#featureVotingFeaturesModalContent',
 
         render: function(){
             this.$el.html(_.template(this.template(), this.model.attributes));

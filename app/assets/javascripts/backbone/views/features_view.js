@@ -14,7 +14,7 @@ SimplyBetterApplication.Features = (function(features){
             });
             return tmp;
         },
-        el: '#featureVotingFeaturesModal',
+        el: '#featureVotingFeaturesModalContent',
 
         render: function (){
             var self = this;
