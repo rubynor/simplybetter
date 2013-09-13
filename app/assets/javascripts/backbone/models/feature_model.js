@@ -7,9 +7,6 @@ SimplyBetterApplication.Features = (function (features) {
     });
 
     app.collection = Backbone.Collection.extend({
-//        initialize: function(options){
-//            this.url = options.url;
-//        },
         url: function(){
             return SimplyBetterApplication.config.featuresCollectionUrl();
         },

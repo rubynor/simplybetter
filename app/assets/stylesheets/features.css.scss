@@ -1,4 +1,4 @@
-//@import url(http://fonts.googleapis.com/css?family=Kavoon|Roboto:100,300);
+@import url(http://fonts.googleapis.com/css?family=Gudea);
 #fatureVotingBackdropLayer {
   top: 0px;
   left: 0px;
@@ -38,25 +38,10 @@
   ol.feature-container {
     padding-left: 0px;
     margin: 10px 0px 0px 10px;
-    li.feature {
-      float: left;
-      position: relative;
-      display: inline-block;
-      overflow: hidden;
-      font-family: 'Roboto', sans-serif;
-      text-align: left;
 
-      height: 100px;
-      margin-bottom: 10px;
-
-      padding: 10px 10px 10px 0px;
-      border-bottom: 1px solid #a9a9a9;
-      width: 100%;
-      max-width: 580px;
-      min-width: 300px;
-
+    @mixin liStructure {
       h1 {
-        font-family: 'Kavoon', cursive;
+        font-family: 'Gudea', sans-serif;;
         color: rgb(63, 63, 63);
         max-width: 520px;
         margin: 0;
@@ -67,6 +52,10 @@
         font-size: 25px;
         left: 60px;
         top: 5px;
+        &:hover{
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
 
       .desc {
@@ -109,6 +98,44 @@
           border-top: 16px solid gray;
         }
       }
+    }
+
+    li.featureView {
+      // Create a special style for this view, not just reuse
+      float: left;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      text-align: left;
+
+      height: 300px;
+      margin-bottom: 10px;
+
+      padding: 10px 10px 10px 0px;
+      border-bottom: 1px solid #a9a9a9;
+      width: 100%;
+      max-width: 580px;
+      min-width: 300px;
+      @include liStructure;
+    }
+
+    li.feature {
+      float: left;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      text-align: left;
+
+      height: 100px;
+      margin-bottom: 10px;
+
+      padding: 10px 10px 10px 0px;
+      border-bottom: 1px solid #a9a9a9;
+      width: 100%;
+      max-width: 580px;
+      min-width: 300px;
+      @include liStructure;
+
     }
   }
 
