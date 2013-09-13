@@ -30,8 +30,9 @@ SimplyBetterApplication.Features = (function(features){
                 }
             },{
                 success: function(model){
-                    //Append dialog box with success msg
-                    console.log("SUCCESS!");
+                    var successMessage = "Your feature request has been sent. Thank you :)";
+                    var successView = new SimplyBetterApplication.Features.successView({successMessage: successMessage});
+                    successView.render();
                 }
             });
         },
