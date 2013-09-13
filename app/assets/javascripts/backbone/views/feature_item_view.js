@@ -13,9 +13,9 @@ SimplyBetterApplication.Features = (function(features){
                 type: 'POST',
                 url: SimplyBetterApplication.config.baseUrl + '/vote_'+upOrDown,
                 data: {
-                    token: window.appKey,
-                    voter_email: window.userEmail,
-                    voter_name: window.userName,
+                    token: SimplyBetterApplication.config.appKey,
+                    voter_email: SimplyBetterApplication.config.userEmail,
+                    voter_name: SimplyBetterApplication.config.userName,
                     feature_id: id
                 },
                 success: function(response){
