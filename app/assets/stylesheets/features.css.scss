@@ -100,8 +100,14 @@
         .up {
           border-bottom: 16px solid gray;
         }
+        .up.active {
+          border-bottom: 16px solid #fe7a15;
+        }
         .down {
           border-top: 16px solid gray;
+        }
+        .down.active {
+          border-top: 16px solid #fe7a15;
         }
       }
     }
