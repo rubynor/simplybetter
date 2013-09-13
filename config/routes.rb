@@ -12,6 +12,7 @@ SimplyBetter::Application.routes.draw do
 
   resources :applications, only: [:index, :create]
 
+  get 'features/:feature_id/vote/:email' => "votes#status"
   get 'applications/:id' => "applications#administrate", as: "application_administrate"
   get 'applications/:id/feature/new' => "applications#new_feature", as: "application_new_feature"
   post 'applications/:id/feature/create' => "applications#create_feature"

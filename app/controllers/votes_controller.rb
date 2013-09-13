@@ -6,6 +6,18 @@ class VotesController < ApplicationController
     cast_vote(-1)
   end
 
+  def status
+    vote = Vote.find_by(voter_email: params[:email], vote_receiver_id: params[:feature_id])
+    value = if vote
+      vote.value
+    else
+      0
+    end
+    respond_to do |format|
+      format.json { render json: {value: value}.to_json }
+    end
+  end
+
   private
 
   def cast_vote(value)
