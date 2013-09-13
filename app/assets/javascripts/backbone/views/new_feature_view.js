@@ -21,12 +21,17 @@ SimplyBetterApplication.Features = (function(features){
 
         createFeatureRequest: function(){
             this.model.save({
-                title: '',// form elements
-                description: '',
-                creator: '' //etc
+                title: this.$el.find('.title').val(),// form elements
+                description: this.$el.find('.description').val(),
+                token: SimplyBetterApplication.config.appKey,
+                user: {
+                    email: SimplyBetterApplication.config.userEmail,
+                    name: SimplyBetterApplication.config.userName
+                }
             },{
                 success: function(model){
                     //Append dialog box with success msg
+                    console.log("SUCCESS!");
                 }
             });
         },
