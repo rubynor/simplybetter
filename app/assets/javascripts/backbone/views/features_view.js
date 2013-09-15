@@ -17,10 +17,8 @@ SimplyBetterApplication.Features = (function(features){
             });
             return tmp;
         },
-        el: '#featureVotingFeaturesModalContent',
         close: function(){
             this.remove();
-            this.options.navigator.trigger('refresh');
         },
         render: function (){
             var self = this;
@@ -31,6 +29,7 @@ SimplyBetterApplication.Features = (function(features){
                 var feature = new app.itemView({model: model, navigator: self.options.navigator});
                 ol.append(feature.render().el);
             });
+            return this;
         }
     });
 

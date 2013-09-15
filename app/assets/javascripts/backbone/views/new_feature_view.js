@@ -17,7 +17,6 @@ SimplyBetterApplication.Features = (function(features){
             });
             return tmp;
         },
-        el: '#featureVotingFeaturesModalContent',
         events: {
             "click .submit": "createFeatureRequest"
         },
@@ -45,7 +44,8 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         render: function(){
-            this.$el.html(_.template(this.template()))
+            this.$el.html(_.template(this.template()));
+            return this;
         }
 
     });

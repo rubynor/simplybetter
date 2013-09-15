@@ -21,7 +21,7 @@ SimplyBetterApplication.Features = (function(features){
                     voter_name: SimplyBetterApplication.config.userName,
                     feature_id: id
                 },
-                success: function(response){
+                success: function(){
                     self.model.fetch({
                         success: function(){
                             self.render();
@@ -51,7 +51,6 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         close: function(){
-            console.log('yoo closed meeh');
             this.remove();
         },
         render: function(){
@@ -93,7 +92,8 @@ SimplyBetterApplication.Features = (function(features){
 
         showFeature: function(){
             var feature = new SimplyBetterApplication.Features.showFeature({model: this.model, navigator: this.options.navigator});
-            feature.render();
+            this.options.navigator.trigger('close');
+            this.options.navigator.$el.find('#featureVotingFeaturesModalContent').html(feature.render().el);
         }
     });
 
