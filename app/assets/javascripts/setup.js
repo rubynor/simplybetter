@@ -20,7 +20,7 @@ SimplyBetterApplication.init = (function (){
             app.appKey = key;
             app.userEmail = email;
             app.userName = name;
-            app.baseUrl = 'http://192.168.10.104:3000';
+            app.baseUrl = 'http://simplybetter.io';
 
             // URLs
             app.featuresCollectionUrl = function(){

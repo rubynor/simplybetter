@@ -4,10 +4,17 @@
     %title SimplyBetter
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "http://simplybetter.io/assets/widget2.js"
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
   %body
+    :javascript
+        $(document).ready(function(){
+        $('head').append('<link rel="stylesheet" type="text/css" href="http://simplybetter.io/assets/widget.css">');
+        SimplyBetterApplication.init.start("BYGKGJYA", "#{current_customer.try(:email)}", "#{current_customer.try(:name)}");
+        });
     %nav.navbar.navbar-default.navbar-static-top{:role => "navigation"}
+
       %a.navbar-brand{:href => "#"}
         FEATURE VOTING
         -#- unless current_application
