@@ -60,13 +60,15 @@
   }
 
   .featureVotingCloseButton {
-    width: 41px;
-    height: 43px;
-    background: url('/assets/modal-close-button.png');
+    font-size: 40px;
+    line-height: 30px;
+    color: grey;
+    font-family: 'PT Sans', sans-serif;
     position: absolute;
     z-index: 2000;
-    right: -20px;
-    top: -20px;
+    right: 5px;
+    top: 0px;
+    cursor: pointer;
   }
   #featureVotingFeaturesModalContent{
     clear: both;
@@ -75,6 +77,26 @@
     overflow-x: hidden;
     overflow-Y: scroll;
     position: relative;
+
+    .newFeature {
+      padding: 10px;
+      input[type="text"]{
+        width: 98%;
+        height: 30px;
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+      input[type="submit"]{
+        border: 1px solid grey;
+        padding: 10px;
+        color: grey;
+        font-family: 'PT Sans', sans-serif;
+      }
+      textarea{
+        width: 98%;
+        height: 150px;
+      }
+    }
   }
   ol.feature-container {
     padding-left: 0px;

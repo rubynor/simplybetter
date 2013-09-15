@@ -17,7 +17,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
         el: '#featureVotingFeaturesModal',
         events: {
             "click .goToFeatures": "navigateFeatures",
-            "click .goToNewFeature": "navigateNewFeature"
+            "click .goToNewFeature": "navigateNewFeature",
+            "click .featureVotingCloseButton": "closeModal"
         },
 
         navigateFeatures: function(e){
@@ -40,6 +41,10 @@ SimplyBetterApplication.Navigator = (function(navigator){
             var fm = new SimplyBetterApplication.Features.model();
             var nfView = new SimplyBetterApplication.Features.newFeatureView({model: fm, navigator: this});
             this.$el.find('#featureVotingFeaturesModalContent').html(nfView.render().el);
+        },
+        closeModal: function(){
+            this.$el.hide();
+            this.$el.prev().hide();
         },
 
         render: function() {
