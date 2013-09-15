@@ -20,8 +20,10 @@ SimplyBetterApplication.Navigator = (function(navigator){
             "click .goToNewFeature": "navigateNewFeature"
         },
 
-        navigateFeatures: function(){
+        navigateFeatures: function(e){
             this.trigger('close');
+            this.$el.find('.active').removeClass('active');
+            $(e.target).addClass('active');
             var col = new SimplyBetterApplication.Features.collection();
             var cv = new SimplyBetterApplication.Features.collectionView({collection: col, navigator: this});
             self = this;
@@ -31,8 +33,10 @@ SimplyBetterApplication.Navigator = (function(navigator){
                 }
             });
         },
-        navigateNewFeature: function(){
+        navigateNewFeature: function(e){
             this.trigger('close');
+            this.$el.find('.active').removeClass('active');
+            $(e.target).addClass('active');
             var fm = new SimplyBetterApplication.Features.model();
             var nfView = new SimplyBetterApplication.Features.newFeatureView({model: fm, navigator: this});
             this.$el.find('#featureVotingFeaturesModalContent').html(nfView.render().el);

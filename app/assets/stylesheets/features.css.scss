@@ -1,11 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Gudea);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:700);
 #fatureVotingBackdropLayer {
   top: 0px;
   left: 0px;
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: rgba(9, 9, 9, 0.57);
+  background-color: rgba(20, 20, 20, 0.20);
 }
 #featureVotingFeaturesModal {
   position: absolute;
@@ -16,13 +16,47 @@
   z-index: 1000;
   height: 60%;
   background-color: white;
-  border: 3px solid lightgray;
-  border-radius: 10px;
+  box-shadow: 0 1px 1px #eee;
+  border: 2px solid #edf0f4;
+
 
   #featureVotingNavbar {
     width: 100%;
     height: 10%;
-    background-color: #dddddd;
+    background-color: #edf0f4;
+    position: relative;
+
+    .featureVotingNavbarContent {
+     position: absolute;
+     bottom: 0px;
+    }
+
+    .link{
+      background-color: #fbfbfc;
+      padding: 5px 10px 5px 10px;
+      box-shadow: 0px -1px 1px #eee;
+      position: relative;
+      display: inline-block;
+      float: left;
+      margin-left: 10px;
+      font-family: 'PT Sans', sans-serif;
+      border-bottom: 2px solid #edf0f4;
+      &.active{
+        background-color: white;
+        border-bottom: 2px solid white;
+      }
+    }
+
+    a {
+      color: #85898b;
+      text-decoration: none;
+      &:hover{
+
+      }
+      &:visited{
+        font-family: 'PT Sans', sans-serif;
+      }
+    }
   }
 
   .featureVotingCloseButton {
@@ -44,12 +78,12 @@
   }
   ol.feature-container {
     padding-left: 0px;
-    margin: 10px 0px 0px 10px;
+    margin: 10px 0px 0px 5px;
 
     @mixin liStructure {
       h1 {
-        font-family: 'Gudea', sans-serif;;
-        color: rgb(63, 63, 63);
+        font-family: 'PT Sans', sans-serif;
+        color: #85898b;
         max-width: 520px;
         margin: 0;
         padding: 0;
@@ -81,7 +115,7 @@
 
       .vote-buttons {
         position: absolute;
-        left: 0px;
+        left: 10px;
         top: 10px;
 
         .votes {
@@ -139,12 +173,13 @@
       display: inline-block;
       overflow: hidden;
       text-align: left;
-
+      background-color: #fbfbfc;
+      border-radius: 10px;
+      box-shadow: 0 1px 1px #eee;
       height: 60px;
       margin-bottom: 10px;
 
       padding: 10px 10px 10px 0px;
-      border-bottom: 1px solid #a9a9a9;
       width: 100%;
       max-width: 580px;
       min-width: 300px;
