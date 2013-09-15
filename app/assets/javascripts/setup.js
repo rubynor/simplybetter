@@ -6,7 +6,7 @@ var SimplyBetterApplication = (function (app){
 SimplyBetterApplication.init = (function (){
     var app = {};
     // Add init actions here
-    app.start = function(appKey, email, name){
+    app.start = function(appKey, email, name, baseUrl){
         $('body').append('<div id="fatureVotingBackdropLayer" style="display:none"></div><div id="featureVotingFeaturesModal" style="display:none"></div>');
         $('body').append('<button class="simplyBetterBtn">Press me</button>');
         $('.simplyBetterBtn').on('click', function(){
@@ -14,17 +14,17 @@ SimplyBetterApplication.init = (function (){
             $('#featureVotingBackdropLayer').show();
         });
         // Set configurations on start of app
-        SimplyBetterApplication.config = (function (key){
+        SimplyBetterApplication.config = (function (key, baseUrl){
             var app = {};
             // Add configurations here
             app.appKey = key;
             app.userEmail = email;
             app.userName = name;
-            app.baseUrl = 'http://simplybetter.io';
+            app.baseUrl = baseUrl;
 
             // URLs
             app.featuresCollectionUrl = function(){
-                return '/features?token=' + key;
+                return app.baseUrl + '/features?token=' + key;
             };
             app.featuresModelUrl = function(id){
                 return '/features/' + id + '?token=' + key;
@@ -33,7 +33,7 @@ SimplyBetterApplication.init = (function (){
                 return '/features?token=' + key;
             };
             return app;
-        }(appKey));
+        }(appKey, baseUrl));
 
         // Create main view
         var n = new SimplyBetterApplication.Navigator.NavigatorView();
