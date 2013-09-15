@@ -7,6 +7,12 @@ SimplyBetterApplication.init = (function (){
     var app = {};
     // Add init actions here
     app.start = function(appKey, email, name){
+        $('body').append('<div id="fatureVotingBackdropLayer" style="display:none"></div><div id="featureVotingFeaturesModal" style="display:none"></div>');
+        $('body').append('<button class="simplyBetterBtn">Press me</button>');
+        $('.simplyBetterBtn').on('click', function(){
+            $('#featureVotingFeaturesModal').show();
+            $('#featureVotingBackdropLayer').show();
+        });
         // Set configurations on start of app
         SimplyBetterApplication.config = (function (key){
             var app = {};

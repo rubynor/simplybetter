@@ -9,19 +9,19 @@
     <!--<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>-->
     <!--<script src="http://localhost:3000/assets/widget.js"></script>-->
     <!--<script src="http://localhost:3000/assets/backbone/models/feature_model.js"></script>-->
-    <script src="http://192.168.10.104:3000/assets/widget2.js"></script>
+    <!--<script src="http://192.168.10.104:3000/assets/widget2.js"></script>-->
     <link href="http://192.168.10.104:3000/assets/widget.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
 <h1>An example website.</h1>
-<div id="features"></div>
-<div id="fatureVotingBackdropLayer" style="display:none"></div>
-<div id="featureVotingFeaturesModal" style="display:none"></div>
-<button onclick="$('#featureVotingFeaturesModal').show();$('#fatureVotingBackdropLayer').show();$('.close').show(); $(this).hide()" class='howHardBtn'>Press me</button>
 <script>
     $(document).ready(function(){
+        var script = document.createElement('scritp');
+        script.type = 'text/javascript';
+        script.src = 'http://simplythebest.io/assets/widget2.js';
+        $('head').append(script);
         SimplyBetterApplication.init.start("JZTIJBHV", "lolPatrol@lol.com", "Pål André");
     });
 </script>
