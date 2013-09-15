@@ -2,6 +2,9 @@ SimplyBetterApplication.Features = (function(features){
     app = features;
 
     app.BaseItemView = Backbone.View.extend({
+        initialize: function(){
+            this.listenTo(this.options.navigator, 'close', this.close);
+        },
         events: {
             "click .up" : "vote_up",
             "click .down" : "vote_down"
@@ -47,6 +50,10 @@ SimplyBetterApplication.Features = (function(features){
             return result;
         },
 
+        close: function(){
+            console.log('yoo closed meeh');
+            this.remove();
+        },
         render: function(){
             self = this;
             var voteStatus = new app.VoteStatusModel({feature_id: this.model.get('id'), email: SimplyBetterApplication.config.userEmail});
@@ -85,7 +92,7 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         showFeature: function(){
-            var feature = new SimplyBetterApplication.Features.showFeature({model: this.model});
+            var feature = new SimplyBetterApplication.Features.showFeature({model: this.model, navigator: this.options.navigator});
             feature.render();
         }
     });

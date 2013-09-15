@@ -13,7 +13,14 @@ SimplyBetterApplication.Features = (function(features){
             });
             return tmp;
         },
-        el: '#featureVotingFeaturesModalContent'
+        el: '#featureVotingFeaturesModalContent',
+        close: function(){
+            console.log('yoo destroied meeh');
+            this.remove();
+            console.log(this.options.navigator);
+            this.options.navigator.trigger('refresh');
+
+        }
     });
 
     return module;

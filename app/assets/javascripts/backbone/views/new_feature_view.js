@@ -2,6 +2,9 @@ SimplyBetterApplication.Features = (function(features){
     var module = features;
 
     module.newFeatureView = Backbone.View.extend({
+        initialize: function(){
+            this.listenTo(this.options.navigator, 'close', this.close);
+        },
         template: function(){
             var tmp = "";
             $.ajax({
@@ -36,6 +39,11 @@ SimplyBetterApplication.Features = (function(features){
                 }
             });
         },
+
+        close: function(){
+            this.remove();
+        },
+
         render: function(){
             this.$el.html(_.template(this.template()))
         }

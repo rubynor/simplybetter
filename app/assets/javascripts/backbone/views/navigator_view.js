@@ -2,6 +2,9 @@ SimplyBetterApplication.Navigator = (function(navigator){
     var module = navigator;
 
     module.NavigatorView = Backbone.View.extend({
+        initialize: function(){
+            this.on('refresh', this.render);
+        },
         template: function(){
             var tmp = "";
             $.ajax({
@@ -21,22 +24,27 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         navigateFeatures: function(){
+            this.trigger('close');
             var col = new SimplyBetterApplication.Features.collection();
-            var cv = new SimplyBetterApplication.Features.collectionView({collection: col});
+            var cv = new SimplyBetterApplication.Features.collectionView({collection: col, navigator: this});
+            console.log(cv);
             col.fetch({
                 success: function(){
                     cv.render();
                 }
             });
+            console.log(self.features);
         },
         navigateNewFeature: function(){
+            this.trigger('close');
             var fm = new SimplyBetterApplication.Features.model();
-            var nfView = new SimplyBetterApplication.Features.newFeatureView({model: fm});
+            var nfView = new SimplyBetterApplication.Features.newFeatureView({model: fm, navigator: this});
             nfView.render();
         },
 
         render: function() {
             this.$el.html(_.template(this.template()));
+            console.log("navigator rendered!");
         }
 
     });
