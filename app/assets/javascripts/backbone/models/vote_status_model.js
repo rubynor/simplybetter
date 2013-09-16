@@ -3,7 +3,7 @@ SimplyBetterApplication.Features = (function(features){
 
     module.VoteStatusModel = Backbone.Model.extend({
         initialize: function(options){
-            this.url = '/features/'+ options.feature_id + '/vote_status?email=' + options.email;
+            this.url = SimplyBetterApplication.config.featuresVoteStatusUrl(options);
         }
     });
 

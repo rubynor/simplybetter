@@ -23,7 +23,7 @@ class VotesController < ApplicationController
     vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
     vote.cast(value)
     respond_to do |format|
-      format.json { head :ok }
+      format.json { render :json => vote }
     end
   end
 

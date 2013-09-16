@@ -11,7 +11,7 @@
     :javascript
         $(document).ready(function(){
         $('head').append('<link rel="stylesheet" type="text/css" href="http://simplybetter.io/assets/widget.css">');
-        SimplyBetterApplication.init.start("BYGKGJYA", "#{current_customer.try(:email)}", "#{current_customer.try(:name)}");
+        SimplyBetterApplication.init.start("BYGKGJYA", "#{current_customer.try(:email)}", "#{current_customer.try(:name)}", 'http://simplybetter.io');
         });
     %nav.navbar.navbar-default.navbar-static-top{:role => "navigation"}
 

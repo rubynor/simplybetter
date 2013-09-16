@@ -27,6 +27,12 @@ SimplyBetterApplication.Features = (function(features){
                             self.render();
                         }
                     });
+                },
+                error: function(e, textStatus, error){
+                    console.log('Error');
+                    console.log(e);
+                    console.log(textStatus);
+                    console.log(error);
                 }
             });
         },

@@ -7,7 +7,7 @@ SimplyBetterApplication.init = (function (){
     var app = {};
     // Add init actions here
     app.start = function(appKey, email, name, baseUrl){
-        $('body').append('<div id="fatureVotingBackdropLayer" style="display:none"></div><div id="featureVotingFeaturesModal" style="display:none"></div>');
+        $('body').append('<div id="featureVotingBackdropLayer" style="display:none"></div><div id="featureVotingFeaturesModal" style="display:none"></div>');
         $('body').append('<button class="simplyBetterBtn">Press me</button>');
         $('.simplyBetterBtn').on('click', function(){
             $('#featureVotingFeaturesModal').show();
@@ -24,13 +24,16 @@ SimplyBetterApplication.init = (function (){
 
             // URLs
             app.featuresCollectionUrl = function(){
-                return app.baseUrl + '/features?token=' + key;
+                return app.baseUrl + '/features.json?token=' + key;
             };
             app.featuresModelUrl = function(id){
-                return '/features/' + id + '?token=' + key;
+                return app.baseUrl + '/features/' + id + '.json?token=' + key;
             };
             app.featuresNewModelUrl = function(){
-                return '/features?token=' + key;
+                return app.baseUrl + '/features.json?token=' + key;
+            };
+            app.featuresVoteStatusUrl = function(options){
+                return app.baseUrl + '/features/'+ options.feature_id + '/vote_status.json?email=' + options.email;
             };
             return app;
         }(appKey, baseUrl));
