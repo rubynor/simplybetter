@@ -80,21 +80,36 @@
 
     .newFeature {
       padding: 10px;
+      font-family: sans-serif;
+
       input[type="text"]{
         width: 98%;
         height: 30px;
         font-size: 25px;
         margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid grey;
       }
       input[type="submit"]{
-        border: 1px solid grey;
-        padding: 10px;
+        border: 0px;
+        border-bottom: 3px solid grey;
+        border-radius: 5px;
+        padding: 5px 10px;
         color: grey;
         font-family: 'PT Sans', sans-serif;
+        &:hover {
+          cursor: pointer;
+        }
+        &:active {
+          border-bottom: 0px;
+          margin-top: 5px;
+        }
       }
       textarea{
         width: 98%;
         height: 150px;
+        border-radius: 5px;
+        border: 1px solid grey;
       }
     }
   }
