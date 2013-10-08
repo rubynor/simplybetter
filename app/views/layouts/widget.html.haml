@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title SimplyBetter
+    = stylesheet_link_tag    "widget", media: "all"
+    = javascript_include_tag "widget2"
+    = csrf_meta_tags
+  %body
+
+    #featureVotingFeaturesModal
+
+    :javascript
+        $(document).ready(function(){
+        SimplyBetterApplication.init.start("#{@appkey}", "#{@email}", "#{@name}", "#{root_url.chop}");
+        });
