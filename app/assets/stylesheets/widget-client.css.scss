@@ -49,6 +49,12 @@
   background: red url('http://localhost:3000/feedback_button.png') no-repeat;
   background-position: center;
   padding: 5px 0px 0px 5px;
-  border: 2px solid black;
+  border: 3px solid rgb(255, 158, 162);
   border-left: 0px;
+
+  &:hover{
+    background-color: #ff3f41;
+    width: 35px;
+    cursor: pointer;
+  }
 }
