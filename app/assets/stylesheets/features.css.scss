@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:700);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
 #featureVotingBackdropLayer {
   top: 0px;
   left: 0px;
@@ -18,8 +19,6 @@
   height: 100%;
   background-color: white;
   box-shadow: 0 1px 1px #eee;
-  //border: 2px solid #edf0f4;
-
 
   #featureVotingNavbar {
     width: 100%;
@@ -100,8 +99,7 @@
     }
   }
   ol.feature-container {
-    padding-left: 0px;
-    margin: 10px 0px 0px 5px;
+    padding: 0px 0px 0px 0px;
 
     @mixin liStructure {
       h1 {
@@ -123,10 +121,14 @@
       }
 
       .desc {
-        max-width: 500px;
-        position: absolute;
-        left: 0px;
+        position: relative;
+        width: 90%;
         top: 90px;
+        padding: 0px 20px 0px 20px;
+        color: #333;
+        font-size: 22px;
+        font-family: 'Droid Serif', serif;
+        line-height: 34px;
       }
 
       .meta {
@@ -135,59 +137,88 @@
         left: 60px;
         top: 40px;
       }
+    }
+    @mixin vote-buttons {
+        .vote-buttons {
+          position: absolute;
+          left: 10px;
+          top: 10px;
 
-      .vote-buttons {
-        position: absolute;
-        left: 10px;
-        top: 10px;
-
-        .votes {
-          display: block;
-          line-height: 30px;
-          text-align: center;
-          font-size: 24px;
-        }
-        .up, .down {
-          display: block;
-          width: 0;
-          height: 0;
-          border-left: 15px solid transparent;
-          border-right: 15px solid transparent;
-          border-radius: 3px;
-          cursor: pointer;
-        }
-        .up {
-          border-bottom: 16px solid gray;
-        }
-        .up.active {
-          border-bottom: 16px solid #fe7a15;
-        }
-        .down {
-          border-top: 16px solid gray;
-        }
-        .down.active {
-          border-top: 16px solid #fe7a15;
+          .votes {
+            display: block;
+            line-height: 30px;
+            text-align: center;
+            font-size: 24px;
+          }
+          .up, .down {
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          .up {
+            border-bottom: 16px solid gray;
+          }
+          .up.active {
+            border-bottom: 16px solid #fe7a15;
+          }
+          .down {
+            border-top: 16px solid gray;
+          }
+          .down.active {
+            border-top: 16px solid #fe7a15;
+          }
         }
       }
-    }
 
     li.featureView {
       // Create a special style for this view, not just reuse
       float: left;
       position: relative;
       display: inline-block;
-      overflow: hidden;
       text-align: left;
 
-      height: 300px;
-      margin-bottom: 10px;
+      overflow: visible;
 
-      padding: 10px 10px 10px 0px;
-      border-bottom: 1px solid #a9a9a9;
-      width: 100%;
-      max-width: 580px;
-      min-width: 300px;
-      @include liStructure;
+      padding: 0px 20px 0px 20px;
+      width: 90%;
+
+      h1{
+        font-family: 'PT Sans', sans-serif;
+        color: #3f3f3f;
+        padding: 0px 0px 0px 45px;
+        margin: 0px 0px 0px 0px;
+        display: block;
+      }
+
+      .desc {
+        position: relative;
+        width: 100%;
+        padding: 10px 0px 10px 0px;
+        color: #333;
+        font-size: 22px;
+        font-family: 'Droid Serif', serif;
+        line-height: 34px;
+      }
+
+      .meta {
+        font-family: sans-serif;
+        display: block;
+        width: 100%;
+        text-align: right;
+        font-size: 14px;
+        color: #444;
+        padding: 4px 0px 20px 0px;
+        border-top: 1px dotted #888
+      }
+      @include vote-buttons;
+
+      .vote-buttons{
+        left: 20px;
+      }
     }
 
     li.feature {
@@ -203,10 +234,9 @@
       margin-bottom: 10px;
 
       padding: 10px 10px 10px 0px;
-      width: 100%;
-      max-width: 580px;
-      min-width: 300px;
+      width: 97%;
       @include liStructure;
+      @include vote-buttons;
 
     }
   }
