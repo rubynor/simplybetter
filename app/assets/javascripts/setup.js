@@ -7,12 +7,6 @@ SimplyBetterApplication.init = (function (){
     var app = {};
     // Add init actions here
     app.start = function(appKey, email, name, baseUrl){
-        $('body').append('<div id="featureVotingBackdropLayer" style="display:none"></div><div id="featureVotingFeaturesModal" style="display:none"></div>');
-        $('body').append('<button class="simplyBetterBtn">Press me</button>');
-        $('.simplyBetterBtn').on('click', function(){
-            $('#featureVotingFeaturesModal').show();
-            $('#featureVotingBackdropLayer').show();
-        });
         // Set configurations on start of app
         SimplyBetterApplication.config = (function (key, baseUrl){
             var app = {};
@@ -50,7 +44,6 @@ SimplyBetterApplication.init = (function (){
 $(document).ready(function(){
     // Required since ruby uses <%= tags ..
     // Fix for underscore <%= %> to {{= }}
-    // TODO: This should only affect OUR underscore library. But how??
     _.templateSettings = {
         interpolate: /\{\{\=(.+?)\}\}/g,
         evaluate: /\{\{(.+?)\}\}/g
