@@ -56,9 +56,17 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.$el.prev().hide();
         },
 
+        navigateToRootPage: function(){
+            root_link = $('.goToFeatures');
+            if (!root_link.hasClass('active')) {
+                root_link.click();
+            }
+            return false;
+        },
+
         render: function() {
             this.$el.html(_.template(this.template()));
-            $('.goToFeatures').click();
+            this.navigateToRootPage();
         }
 
     });

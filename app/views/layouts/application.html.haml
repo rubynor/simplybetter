@@ -11,8 +11,8 @@
     :javascript
       (function(){
       var appKey = 'JZTIJBHV';
-      var email = "#{current_customer.email}";
-      var name = "#{current_customer.name}";
+      var email = "#{current_customer.try(:email)}";
+      var name = "#{current_customer.try(:name)}";
       var urlRoot = 'http://localhost:3000';
       var cssId = 'simplyBetterWidgetStyle';
       if (!document.getElementById(cssId))
