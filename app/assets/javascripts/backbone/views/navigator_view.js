@@ -21,8 +21,14 @@ SimplyBetterApplication.Navigator = (function(navigator){
             "click .featureVotingCloseButton": "closeModal"
         },
 
+        showSpinner: function(){
+            var target = document.getElementById('featureVotingFeaturesModalContent');
+            var spinner = new Spinner(SimplyBetterApplication.config.opts).spin(target);
+        },
+
         navigateFeatures: function(e){
             e.preventDefault();
+            this.showSpinner();
             this.trigger('close');
             this.$el.find('.active').removeClass('active');
             $(e.target).addClass('active');
@@ -37,6 +43,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
         navigateNewFeature: function(e){
             e.preventDefault();
+            this.showSpinner();
             this.trigger('close');
             this.$el.find('.active').removeClass('active');
             $(e.target).addClass('active');
@@ -51,6 +58,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
 
         render: function() {
             this.$el.html(_.template(this.template()));
+            $('.goToFeatures').click();
         }
 
     });
