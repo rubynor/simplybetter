@@ -22,6 +22,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         navigateFeatures: function(e){
+            e.preventDefault();
             this.trigger('close');
             this.$el.find('.active').removeClass('active');
             $(e.target).addClass('active');
@@ -35,6 +36,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
             });
         },
         navigateNewFeature: function(e){
+            e.preventDefault();
             this.trigger('close');
             this.$el.find('.active').removeClass('active');
             $(e.target).addClass('active');

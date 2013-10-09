@@ -59,12 +59,22 @@ SimplyBetterApplication.Features = (function(features){
         close: function(){
             this.remove();
         },
+
+        truncate: function(string, length){
+            var returnValue = string.substring(0,length);
+            if (string.length > length){
+                returnValue += '...'
+            }
+            return returnValue;
+        },
+
+
         render: function(){
             self = this;
             var voteStatus = new app.VoteStatusModel({feature_id: this.model.get('id'), email: SimplyBetterApplication.config.userEmail});
             voteStatus.fetch({
                 success: function(response){
-                    self.$el.addClass('feature').html(_.template(self.template(),{feature: self.model.attributes, voteClass: self.voteStatusClass(response)}));
+                    self.$el.addClass('feature').html(_.template(self.template(),{feature: self.model.attributes, voteClass: self.voteStatusClass(response), helpers: self}));
                 },
                 async: false
             });
