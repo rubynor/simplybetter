@@ -11,11 +11,11 @@
     :javascript
       var _smplyBtr = _smplyBtr || {};
       _smplyBtr.appKey = 'BYGKGJYA';
-      _smplyBtr.email = "";
-      _smplyBtr.name = "" ;
+      _smplyBtr.email = "#{current_customer.email}";
+      _smplyBtr.name = "#{current_customer.name}" ;
 
       (function() {
-      var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = 'http://192.168.10.104:3000/assets/widget-client.js'; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+      var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = 'http://simplybetter.io/assets/widget-client.js'; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
       })();
 
 
