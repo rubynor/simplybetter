@@ -1,2 +1,14 @@
 .applications
   =render 'sidebar'
+
+%textarea
+  <script>
+  var _smplyBtr = _smplyBtr || {};
+  _smplyBtr.email = "";
+  _smplyBtr.name = "" ;
+
+  _smplyBtr.appKey = "#{@application.token}";
+  (function() {
+  var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = 'http://192.168.10.104:3000/assets/widget-client.js'; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+  })();
+  </script>
