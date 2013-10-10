@@ -1,0 +1,20 @@
+#administrate_group{
+  .edit-panel{
+    font-size: 22px;
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    padding: 3px 10px;
+    float: right;
+    a{
+      &:hover{
+        color: #888;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .clear{
+    clear: both;
+  }
+}
