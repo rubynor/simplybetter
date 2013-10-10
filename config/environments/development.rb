@@ -28,4 +28,6 @@ SimplyBetter::Application.configure do
   config.assets.debug = true
 
   config.action_controller.action_on_unpermitted_parameters = :raise
+
+  ENV['WIDGET_PATH'] = "http://localhost:3000"
 end
