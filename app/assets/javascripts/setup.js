@@ -20,16 +20,19 @@ SimplyBetterApplication.init = (function (){
 
             // URLs
             app.featuresCollectionUrl = function(){
-                return app.baseUrl + '/features.json?token=' + key;
+                return app.baseUrl + '/widget_api/features.json?token=' + key;
             };
             app.featuresModelUrl = function(id){
-                return app.baseUrl + '/features/' + id + '.json?token=' + key;
+                return app.baseUrl + '/widget_api/features/' + id + '.json?token=' + key;
             };
             app.featuresNewModelUrl = function(){
-                return app.baseUrl + '/features.json?token=' + key;
+                return app.baseUrl + '/widget_api/features.json?token=' + key;
             };
             app.featuresVoteStatusUrl = function(options){
-                return app.baseUrl + '/features/'+ options.feature_id + '/vote_status.json?email=' + options.email;
+                return app.baseUrl + '/widget_api/votes/status.json?email=' + options.email + '&feature_id=' + options.feature_id;
+            };
+            app.featuresCastVoteRoot = function(){
+                return app.baseUrl + '/widget_api/votes/'
             };
 
             // Spinner settings

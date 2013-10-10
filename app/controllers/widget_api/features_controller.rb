@@ -1,4 +1,4 @@
-class FeaturesController < ApplicationController
+class WidgetApi::FeaturesController < ApplicationController
   before_action :set_feature, only: [:show, :edit, :update, :destroy]
 
   def index

@@ -1,4 +1,4 @@
-class VotesController < ApplicationController
+class WidgetApi::VotesController < ApplicationController
   def up
     cast_vote(1)
   end
@@ -7,7 +7,6 @@ class VotesController < ApplicationController
   end
 
   def status
-    puts params[:email]
     vote = Vote.find_by(voter_email: params[:email], vote_receiver_id: params[:feature_id])
     value = if vote
       vote.value
