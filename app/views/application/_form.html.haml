@@ -1,0 +1,12 @@
+= form_for @feature, url: {action: action},html: {class: "form-horizontal", role: "form"} do |f|
+  .form-group
+    %label.col-md-2.control-label Title
+    .col-md-8
+      = f.text_field :title, class: 'form-control'
+  .form-group
+    %label.col-md-2.control-label Description
+    .col-md-8
+      = f.text_area :description, class: 'form-control'
+  .form-group
+    .col-md-offset-2.col-md-8
+      = f.button 'Create request', class: 'btn btn-default'
