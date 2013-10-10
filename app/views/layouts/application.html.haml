@@ -23,8 +23,8 @@
 
       %a.navbar-brand{:href => "#"}
         FEATURE VOTING
-        - if current_customer && current_application
-          = " - #{current_application.name}"
+        - if @application
+          = " - #{@application.name}"
       %p.navbar-text.pull-right
         - if current_customer
           = "Logged in as #{current_customer.name}"

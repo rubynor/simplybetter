@@ -15,7 +15,7 @@
             #allFeatures.list-group
               - unless @features.blank?
                 - @features.each do |f|
-                  = render 'feature_unit', f: f, path: :add_feature_request_to_group_path, method: :post
+                  = render 'feature_unit', f: f, path: :add_to_group_application_feature_path, method: :post
 
       .col-md-6
         .panel.panel-default
@@ -25,4 +25,4 @@
             #featuresForVoting.list-group
               - unless @feature_group.blank?
                 - @feature_group.each do |f|
-                  = render 'feature_unit', f: f, path: :remove_feature_request_from_group_path, method: :delete
+                  = render 'feature_unit', f: f, path: :remove_from_group_application_feature_path, method: :delete

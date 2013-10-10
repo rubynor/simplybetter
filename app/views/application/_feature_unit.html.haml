@@ -2,11 +2,11 @@
   %h4.list-group-item-heading= f.title
   %p.list-group-item-text= truncate(f.description, length: 100)
   .edit-panel
-    = link_to applications_edit_feature_path(@application.id, f.id) do
+    = link_to edit_application_feature_path(@application.id, f.id) do
       %i.icon-edit
-    = link_to applications_delete_feature_path(@application.id, f.id), method: :delete, confirm: "Are you sure?" do
+    = link_to application_feature_path(@application.id, f.id), method: :delete, confirm: "Are you sure?" do
       %i.icon-remove
-    = link_to send(path, current_application.id,f),remote: true,method: method do
+    = link_to send(path, @application.id,f),remote: true,method: method do
       - if method == :post
         %i.icon-mail-forward
       - else

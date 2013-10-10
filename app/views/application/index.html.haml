@@ -9,7 +9,7 @@
     - unless @applications.blank?
       .list-group
         - @applications.each do |a|
-          =link_to application_administrate_path(a.id), class: 'list-group-item' do
+          =link_to application_path(a.id), class: 'list-group-item' do
             =a.name
             %span.badge.pull-right
               =a.features.count
