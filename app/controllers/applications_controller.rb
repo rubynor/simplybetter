@@ -1,4 +1,6 @@
 class ApplicationsController < ApplicationController
+  before_action :current_application, only: [:administrate_group]
+  before_action :get_feature, only: [:edit_feature, :update_feature, :add_feature_request_to_group, :remove_feature_request_from_group, :delete_feature]
 
   def index
     @applications = current_customer.applications.includes(:features)
@@ -24,6 +26,19 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def edit_feature
+  end
+
+  def update_feature
+    @feature.update_attributes!(feature_attributes)
+    redirect_to administrate_group_path, notice: 'Feature request was updated'
+  end
+
+  def delete_feature
+    @feature.destroy!
+    redirect_to administrate_group_path, notice: 'Feature request was removed'
+  end
+
   def create
     current_customer.applications.create!(application_attributes)
     redirect_to applications_path, notice: 'Application successfully created!'
@@ -35,13 +50,11 @@ class ApplicationsController < ApplicationController
   end
 
   def add_feature_request_to_group
-    @feature = get_feature
     @feature.feature_group = current_application.feature_group
     respond_to_js
   end
 
   def remove_feature_request_from_group
-    @feature = get_feature
     @feature.feature_group_id = nil
     respond_to_js
   end
@@ -49,7 +62,7 @@ class ApplicationsController < ApplicationController
   private
 
   def current_application
-    @current_application ||= current_customer.applications.find(params[:id]) if params[:id]
+    @application ||= current_customer.applications.find(params[:id]) if params[:id]
   end
   helper_method :current_application
 
@@ -61,7 +74,7 @@ class ApplicationsController < ApplicationController
   end
 
   def get_feature
-    current_application.features.find(params[:fid])
+    @feature = current_application.features.find(params[:fid])
   end
 
   def respond_to_js
