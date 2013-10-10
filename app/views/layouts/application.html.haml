@@ -15,7 +15,7 @@
       _smplyBtr.name = "#{current_customer.try(:name)}" ;
 
       (function() {
-      var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = 'http://simplybetter.io/assets/widget-client.js'; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+      var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = "#{ENV['WIDGET_PATH']}/assets/widget-client.js.erb"; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
       })();
 
 
@@ -23,15 +23,15 @@
 
       %a.navbar-brand{:href => "#"}
         FEATURE VOTING
-        -#- unless current_application
-        -#  = " - #{current_application.name}"
+        - if current_customer && current_application
+          = " - #{current_application.name}"
       %p.navbar-text.pull-right
         - if current_customer
           = "Logged in as #{current_customer.name}"
           |
-          = link_to "Admin", customers_path, class: 'navbar-link'
-          = link_to "Features", features_path, class: 'navbar-link'
+          = link_to "Sign out", sign_out_path, class: 'navbar-link', method: :delete
         - else
           = link_to "Log in", login_path, class: 'navbar-link'
+          |
           = link_to "Register", new_customer_path, class: 'navbar-link'
     = yield
