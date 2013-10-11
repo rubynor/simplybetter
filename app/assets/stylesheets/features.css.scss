@@ -136,21 +136,13 @@
       }
 
       .desc {
-        position: relative;
-        width: 90%;
-        top: 90px;
-        padding: 0px 20px 0px 20px;
-        color: #333;
-        font-size: 22px;
-        font-family: 'Droid Serif', serif;
-        line-height: 34px;
-      }
-
-      .meta {
         position: absolute;
-        color: grey;
-        left: 60px;
+        width: 90%;
         top: 40px;
+        left: 60px;
+        color: grey;
+        font-size: 14px;
+        font-family: 'Droid Serif', serif;
       }
     }
     @mixin vote-buttons {
