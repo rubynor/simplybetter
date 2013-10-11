@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
+  before_filter :set_controller_and_action_names
+
 
 
   private
@@ -14,6 +16,11 @@ class ApplicationController < ActionController::Base
 
   def authorize
     redirect_to login_url, alert: "Not authorized" if current_customer.nil?
+  end
+
+  def set_controller_and_action_names
+    @current_controller = controller_name
+    @current_action     = action_name
   end
 
 end

@@ -7,7 +7,7 @@
     = javascript_include_tag "http://simplybetter.io/assets/widget2.js"
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-  %body
+  %body{class: "#{@current_controller} #{@current_action}"}
     :javascript
       var _smplyBtr = _smplyBtr || {};
       _smplyBtr.appKey = 'BYGKGJYA';
