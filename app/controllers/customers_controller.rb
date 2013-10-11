@@ -10,9 +10,13 @@ class CustomersController < ApplicationController
   end
 
   def create
-    customer = Customer.create!(customer_attributes)
-    session[:customer_id] = customer.id
-    redirect_to root_url, notice: "Congratulations! You are now a registered customer of simplybetter.io"
+    @customer = Customer.new(customer_attributes)
+    if @customer.save
+      session[:customer_id] = customer.id
+      redirect_to root_url, notice: "Congratulations! You are now a registered customer of simplybetter.io"
+    else
+      render action: :new
+    end
   end
 
   def create_application

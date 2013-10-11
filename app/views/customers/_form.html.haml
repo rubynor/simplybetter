@@ -1,0 +1,31 @@
+.center-box
+  %h1 Register customer
+
+  - if @customer.errors.any?
+    .notice
+      - @customer.errors.full_messages.reverse_each do |msg|
+        %p
+          \-
+          = msg
+
+  = form_for @customer do |f|
+    .field
+      %label
+        %i.icon-user
+      = f.text_field :name, placeholder: 'name / company'
+    .field
+      %label
+        %i.icon-envelope
+      = f.email_field :email, placeholder: 'email'
+    .field
+      %label
+        %i.icon-lock
+      = f.password_field :password, placeholder: 'password'
+    .field
+      %label
+        %i.icon-lock
+      = f.password_field :password_confirmation, placeholder: 'confirm password'
+    .field
+      = f.submit 'Register'
+
+  = link_to 'Back to sign in', root_path

@@ -11,8 +11,7 @@ class SessionsController < ApplicationController
       session[:customer_id] = customer.id
       redirect_to root_url, notice: "Logged in!"
     else
-      #flash.now.alert = "Email or password is invalid"
-      raise "Email or password invalid"
+      flash.now.alert = "Email or password is invalid"
       render "new"
     end
   end

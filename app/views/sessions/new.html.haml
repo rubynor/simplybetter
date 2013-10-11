@@ -1,13 +1,17 @@
-.center-box
+.center-box{class: "#{'error' if flash.alert}"}
   %h1 simplybetter.io
-
+  -if flash.alert
+    .notice
+      = flash.alert
   = form_tag '/sessions/create' do
     .field
-      = label_tag :email
-      = text_field_tag :email, params[:email]
+      %label
+        %i.icon-envelope
+      = text_field_tag :email, params[:email], placeholder: 'email'
     .field
-      = label_tag :password
-      = password_field_tag :password
+      %label
+        %i.icon-lock
+      = password_field_tag :password, nil, placeholder: 'password'
     .field
       .actions= submit_tag "Sign in"
   %br

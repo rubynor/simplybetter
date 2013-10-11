@@ -1,4 +1,4 @@
-.sessions.new, .customers.new {
+.sessions.new, .sessions.create, .customers.new, .customers.create {
 
   background: image-url('background-img.jpg') no-repeat center;
   width: 100%;
@@ -32,7 +32,7 @@
 
     input[type=text], input[type=password], input[type=email]{
       line-height: 20px;
-      width: 70%;
+      width: 80%;
       padding: 2px 5px;
       height: 40px;
       border: 2px solid #9dce2c;
@@ -81,30 +81,48 @@
       display: inline-block;
       width: 300px;
       label{
-        width: 30%;
+        font-size: 20px;
+        width: 20%;
         height: 40px;
         background-color: #eee;
         border: 2px solid #9dce2c;
         border-right: 0px;
         display: inline-block;
         float: left;
-        padding-top: 10px;
+        padding-top: 5px;
       }
+
+      .field_with_errors{
+        input[type=text],input[type=email], input[type=password] {
+          border-left: 2px solid;
+          border-color: red;
+        }
+      }
+    }
+
+    .notice{
+      text-align: left;
+      padding: 10px;
+      display: block;
+      border: 2px solid red;
+      background-color: #940000;
+      color: red;
+      width: 300px;
+      margin: 0px auto;
+      margin-bottom: 10px;
     }
   }
 
-}
+  .center-box.error{
 
-.customers.new{
-  .center-box{
     .field{
-      width: 100%;
       label{
-        height: 60px;
+        border-color: red;
       }
-    }
-    input[type=password], input[type=email], input[type=text] {
-      height: 60px;
+      input[type=text],input[type=email], input[type=password] {
+        border-color: red;
+      }
     }
   }
 }
+
