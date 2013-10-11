@@ -11,8 +11,10 @@ class FeaturesController < ApplicationController
     @feature.application = @application
     @feature.creator = current_customer
     respond_to do |format|
-      if @feature.save!
+      if @feature.save
         format.html { redirect_to new_application_feature_path(@application.id), notice: 'Feature request was successfully created.' }
+      else
+        format.html { render action: :edit }
       end
     end
   end
