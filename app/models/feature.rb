@@ -6,7 +6,7 @@ class Feature < ActiveRecord::Base
   has_many :comments, inverse_of: :feature
 
   validates_presence_of :title, :description
-  validates_uniqueness_of :title
+  validates_uniqueness_of :title, scope: :application
 
   def update_votes_count
     self.update_attribute(:votes_count, votes.sum(:value))
