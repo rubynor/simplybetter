@@ -1,5 +1,5 @@
 .col-md-12
-  =render 'alert_success', notice: notice
+  =render 'shared/alert_success', notice: notice
 
 .col-md-4
   .panel.panel-info
@@ -23,7 +23,7 @@
       %h3.panel-title
         Create a new application!
     .panel-body
-      = form_for @application, url: {action: :create},html: {class: "form-horizontal", role: "form"} do |f|
+      = form_for @application,html: {class: "form-horizontal", role: "form"} do |f|
         .form-group
           %label.col-md-4.control-label New application name
           .col-md-8

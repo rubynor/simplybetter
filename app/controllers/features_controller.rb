@@ -1,6 +1,6 @@
 class FeaturesController < ApplicationController
-  before_action :set_application, only: [:add_to_group, :remove_from_group]
-  before_action :set_feature, except: [:new]
+  before_action :set_application, only: [:add_to_group, :remove_from_group, :update, :destroy, :new, :create]
+  before_action :set_feature, except: [:new, :create]
 
   def new
     @feature = Feature.new
@@ -12,7 +12,7 @@ class FeaturesController < ApplicationController
     @feature.creator = current_customer
     respond_to do |format|
       if @feature.save!
-        format.html { redirect_to application_new_feature_path(@application.id), notice: 'Feature request was successfully created.' }
+        format.html { redirect_to new_application_feature_path(@application.id), notice: 'Feature request was successfully created.' }
       end
     end
   end
@@ -22,12 +22,12 @@ class FeaturesController < ApplicationController
 
   def update
     @feature.update_attributes!(feature_attributes)
-    redirect_to administrate_group_path, notice: 'Feature request was updated'
+    redirect_to administrate_group_application_path(@application.id), notice: 'Feature request was updated'
   end
 
   def destroy
     @feature.destroy!
-    redirect_to administrate_group_path, notice: 'Feature request was removed'
+    redirect_to administrate_group_application_path(@application.id), notice: 'Feature request was removed'
   end
 
   def add_to_group

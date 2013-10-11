@@ -36,10 +36,8 @@ class WidgetApi::FeaturesController < ApplicationController
 
     respond_to do |format|
       if @feature.save
-        format.html { redirect_to @feature, notice: 'Feature was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @feature }
+        format.json { render action: 'show', status: :created }
       else
-        format.html { render action: 'new' }
         format.json { render json: @feature.errors, status: :unprocessable_entity }
       end
     end

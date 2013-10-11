@@ -1,7 +1,9 @@
-%h1 Editing feature
-
-= render 'form'
-
-= link_to 'Show', @feature
-\|
-= link_to 'Back', features_path
+.applications
+  =render 'shared/sidebar'
+  .col-md-8
+    =render 'shared/alert_success', notice: notice
+    .row
+      .panel.panel-default
+        .panel-heading Edit feature request!
+        .panel-body
+          = render 'form'

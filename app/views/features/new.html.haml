@@ -1,5 +1,8 @@
-%h1 New feature
-
-= render 'form'
-
-= link_to 'Back', features_path
+.applications
+  =render 'shared/sidebar'
+  .col-md-8
+    =render 'shared/alert_success', notice: notice
+    .panel.panel-default
+      .panel-heading Create a new feature request!
+      .panel-body
+        =render 'form'

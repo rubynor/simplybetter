@@ -1,11 +1,11 @@
 .applications
-  =render 'sidebar'
+  =render 'shared/sidebar'
   .col-md-8#administrate_group
-    .row
-      .alert.alert-info
-        %i.icon-info
-        Click on features on the left, to add them to the group. Click on features
-        in the group to remove them from the group.
+    =render 'shared/alert_success', notice: notice
+    .alert.alert-info
+      %i.icon-info
+      Feature requests that are in the right group is active and will be shown to users.
+      You can move requests back and forth by clicking the arrow-buttons.
     .row
       .col-md-6
         .panel.panel-default

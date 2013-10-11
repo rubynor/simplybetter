@@ -1,0 +1,2 @@
+$("#feature_<%=@feature.id%>").remove()
+$('#allFeatures').append("<%=j render 'feature_unit',f: @feature, path: :add_to_group_application_feature_path, method: :post%>")

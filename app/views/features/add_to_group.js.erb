@@ -1,0 +1,2 @@
+$("#feature_<%=@feature.id%>").remove()
+$('#featuresForVoting').append("<%=j render 'feature_unit',f: @feature, path: :remove_from_group_application_feature_path, method: :delete%>")
