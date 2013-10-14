@@ -4,7 +4,6 @@
 
 1. clone repo
 2. bundle
-3. rake db:migrate
-4. rake setup
+3. rake db:setup
 
 You're good to go!

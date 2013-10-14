@@ -5,9 +5,19 @@
     background-color: #edf0f4;
     position: relative;
 
+    h1{
+      font-family: 'PT Sans', sans-serif;
+      font-size: 18px;
+      position: relative;
+      display: inline-block;
+      float: left;
+      margin: 0px 10px;
+    }
+
     .featureVotingNavbarContent {
-     position: absolute;
-     bottom: 0px;
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
     }
 
     .link{
