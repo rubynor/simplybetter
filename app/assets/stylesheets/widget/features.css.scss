@@ -1,13 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:700);
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
-#featureVotingBackdropLayer {
-  top: 0px;
-  left: 0px;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(20, 20, 20, 0.20);
-}
+
 #featureVotingFeaturesModal {
   position: absolute;
   margin: 0px 0px 0px 0px;
@@ -19,56 +12,6 @@
   background-color: white;
   box-shadow: 0 1px 1px #eee;
 
-  #featureVotingNavbar {
-    width: 100%;
-    height: 10%;
-    background-color: #edf0f4;
-    position: relative;
-
-    .featureVotingNavbarContent {
-     position: absolute;
-     bottom: 0px;
-    }
-
-    .link{
-      background-color: #fbfbfc;
-      padding: 5px 10px 5px 10px;
-      box-shadow: 0px -1px 1px #eee;
-      position: relative;
-      display: inline-block;
-      float: left;
-      margin-left: 10px;
-      font-family: 'PT Sans', sans-serif;
-      border-bottom: 2px solid #edf0f4;
-      &.active{
-        background-color: white;
-        border-bottom: 2px solid white;
-      }
-    }
-
-    a {
-      color: #85898b;
-      text-decoration: none;
-      &:hover{
-
-      }
-      &:visited{
-        font-family: 'PT Sans', sans-serif;
-      }
-    }
-  }
-
-  .featureVotingCloseButton {
-    font-size: 40px;
-    line-height: 30px;
-    color: grey;
-    font-family: 'PT Sans', sans-serif;
-    position: absolute;
-    z-index: 2000;
-    right: 5px;
-    top: 0px;
-    cursor: pointer;
-  }
   #featureVotingFeaturesModalContent{
     clear: both;
     height: 90%;
@@ -115,35 +58,6 @@
   ol.feature-container {
     padding: 0px 0px 0px 0px;
 
-    @mixin liStructure {
-      h1 {
-        font-family: 'PT Sans', sans-serif;
-        color: #85898b;
-        max-width: 520px;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        white-space: nowrap;
-        overflow: hidden;
-        font-size: 25px;
-        left: 60px;
-        top: 5px;
-        &:hover{
-          text-decoration: underline;
-          cursor: pointer;
-        }
-      }
-
-      .desc {
-        position: absolute;
-        width: 90%;
-        top: 40px;
-        left: 60px;
-        color: grey;
-        font-size: 14px;
-        font-family: 'Droid Serif', serif;
-      }
-    }
     @mixin vote-buttons {
         .vote-buttons {
           position: absolute;
@@ -181,7 +95,6 @@
       }
 
     li.featureView {
-      // Create a special style for this view, not just reuse
       float: left;
       position: relative;
       display: inline-block;
@@ -241,9 +154,35 @@
 
       padding: 10px 10px 10px 0px;
       width: 97%;
-      @include liStructure;
-      @include vote-buttons;
 
+      h1 {
+        font-family: 'PT Sans', sans-serif;
+        color: #85898b;
+        max-width: 520px;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 25px;
+        left: 60px;
+        top: 5px;
+        &:hover{
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      .desc {
+        position: absolute;
+        width: 90%;
+        top: 40px;
+        left: 60px;
+        color: grey;
+        font-size: 14px;
+        font-family: 'Droid Serif', serif;
+      }
+      @include vote-buttons;
     }
   }
 

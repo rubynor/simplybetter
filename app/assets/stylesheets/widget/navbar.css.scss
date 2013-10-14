@@ -1,0 +1,40 @@
+#featureVotingFeaturesModal {
+  #featureVotingNavbar {
+    width: 100%;
+    height: 10%;
+    background-color: #edf0f4;
+    position: relative;
+
+    .featureVotingNavbarContent {
+     position: absolute;
+     bottom: 0px;
+    }
+
+    .link{
+      background-color: #fbfbfc;
+      padding: 5px 10px 5px 10px;
+      box-shadow: 0px -1px 1px #eee;
+      position: relative;
+      display: inline-block;
+      float: left;
+      margin-left: 10px;
+      font-family: 'PT Sans', sans-serif;
+      border-bottom: 2px solid #edf0f4;
+      &.active{
+        background-color: white;
+        border-bottom: 2px solid white;
+      }
+    }
+
+    a {
+      color: #85898b;
+      text-decoration: none;
+      &:hover{
+
+      }
+      &:visited{
+        font-family: 'PT Sans', sans-serif;
+      }
+    }
+  }
+}
