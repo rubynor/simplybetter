@@ -22,12 +22,12 @@
 
 
 #simplybetterIframeWrapper {
-  position: absolute;
+  position: fixed;
   z-index: 2000;
   top: 10%;
   left: 30%;
+  right: 30%;
   height: 70%;
-  width: 600px;
   border: 2px solid #edf0f4;
   box-shadow: 0 1px 1px #eee;
 }
