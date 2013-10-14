@@ -4,7 +4,6 @@
     var name = _smplyBtr.name;
 
     var urlRoot = "<%= ENV['WIDGET_PATH'] %>";
-    console.log(urlRoot);
     var cssId = 'simplyBetterWidgetStyle';
     if (!document.getElementById(cssId)){
       var head  = document.getElementsByTagName('head')[0];
@@ -12,7 +11,7 @@
       link.id   = cssId;
       link.rel  = 'stylesheet';
       link.type = 'text/css';
-      link.href = urlRoot + '/assets/widget-client-include.css';
+      link.href = urlRoot + '/assets/widget/widget-client.css';
       link.media = 'all';
       head.appendChild(link);
     }

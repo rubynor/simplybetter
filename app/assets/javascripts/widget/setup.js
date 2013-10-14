@@ -17,6 +17,7 @@ SimplyBetterApplication.init = (function (){
             app.userEmail = email;
             app.userName = name;
             app.baseUrl = baseUrl;
+            app.templateUrl = baseUrl + '/assets/widget/backbone/templates/'
 
             // URLs
             app.featuresCollectionUrl = function(){

@@ -5,7 +5,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         template: function(){
             var tmp = "";
             $.ajax({
-                url: SimplyBetterApplication.config.baseUrl + '/assets/backbone/templates/navigator.html',
+                url: SimplyBetterApplication.config.templateUrl + 'navigator.html',
                 method: 'GET',
                 async: false,
                 success: function(response){

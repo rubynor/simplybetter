@@ -8,7 +8,7 @@ SimplyBetterApplication.Features = (function(features){
         template: function(){
             var tmp = "";
             $.ajax({
-                url: SimplyBetterApplication.config.baseUrl + '/assets/backbone/templates/new_feature.html',
+                url: SimplyBetterApplication.config.templateUrl + 'new_feature.html',
                 method: 'GET',
                 async: false,
                 success: function(response){

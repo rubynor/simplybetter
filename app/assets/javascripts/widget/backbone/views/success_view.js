@@ -1,10 +1,11 @@
 SimplyBetterApplication.Features = (function(features){
     var module = features;
-    module.showFeature = SimplyBetterApplication.Features.BaseItemView.extend ({
+
+    module.successView = Backbone.View.extend({
         template: function(){
             var tmp = "";
             $.ajax({
-                url: SimplyBetterApplication.config.baseUrl + '/assets/backbone/templates/feature.html',
+                url: SimplyBetterApplication.config.templateUrl + 'success.html',
                 method: 'GET',
                 async: false,
                 success: function(response){
@@ -13,10 +14,13 @@ SimplyBetterApplication.Features = (function(features){
             });
             return tmp;
         },
-        close: function(){
-            this.remove();
+        el: '#featureVotingFeaturesModalContent',
+
+        render: function(){
+            this.$el.html(_.template(this.template(), {message: this.options.successMessage}));
         }
+
     });
 
-    return module;
+    return features;
 }(SimplyBetterApplication.Features || {}));
