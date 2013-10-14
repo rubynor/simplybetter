@@ -14,7 +14,7 @@ SimplyBetterApplication.Features = (function(features){
             var id = this.model.get('id');
             $.ajax({
                 type: 'POST',
-                url: SimplyBetterApplication.config.featuresCastVoteRoot + upOrDown,
+                url: SimplyBetterApplication.config.featuresCastVoteRoot() + upOrDown,
                 data: {
                     token: SimplyBetterApplication.config.appKey,
                     voter_email: SimplyBetterApplication.config.userEmail,
