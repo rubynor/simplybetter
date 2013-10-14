@@ -3,7 +3,7 @@ class CreateFeatures < ActiveRecord::Migration
     create_table :features do |t|
       t.string :title
       t.text :description
-      t.string  :application_id
+      t.integer  :application_id
       t.integer :creator_id
       t.string  :creator_type
       t.integer :votes_count, default: 0
