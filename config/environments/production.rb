@@ -81,7 +81,4 @@ SimplyBetter::Application.configure do
 
   ENV['WIDGET_PATH'] = "http://simplybetter.io"
 
-  config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'ALLOWALL'
-  }
 end

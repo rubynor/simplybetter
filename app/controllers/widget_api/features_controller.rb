@@ -23,7 +23,13 @@ class WidgetApi::FeaturesController < ApplicationController
     @feature = Feature.new(feature_params)
     application = Application.find_by_token(params[:token])
     if params[:user]
-      creator = application.users.find_or_create_by!(email: params[:user][:email], name: params[:user][:name], application_id: application.id)
+      user_params[:application_id] = application.id
+      creator = application.users.find_by(email: user_params[:email])
+      if creator
+        creator.verify_attributes(user_params)
+      else
+        creator = application.users.create(user_params)
+      end
     elsif params[:customer]
       creator = application.customers.find_by(email: params[:customer][:email])
     else
@@ -72,5 +78,9 @@ class WidgetApi::FeaturesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def feature_params
       params.require(:feature).permit(:title, :description)
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :name)
     end
 end
