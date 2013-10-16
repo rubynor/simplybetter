@@ -33,18 +33,17 @@
         border: 1px solid grey;
       }
       input[type="submit"]{
-        border: 0px;
-        border-bottom: 3px solid grey;
+        border: 1px solid #555;
+        background-color: white;
         border-radius: 5px;
         padding: 5px 10px;
         color: grey;
         font-family: 'PT Sans', sans-serif;
         &:hover {
           cursor: pointer;
+          background-color: #eee;
         }
         &:active {
-          border-bottom: 0px;
-          margin-top: 5px;
         }
       }
       textarea{

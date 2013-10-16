@@ -1,5 +1,8 @@
 .col-md-3
   .list-group
+    = link_to application_path(@application.id), class: 'list-group-item' do
+      %i.icon-smile
+      Installation instructions
     = link_to new_application_feature_path(@application.id), class: 'list-group-item' do
       %i.icon-plus-sign
       Create a new feature request
