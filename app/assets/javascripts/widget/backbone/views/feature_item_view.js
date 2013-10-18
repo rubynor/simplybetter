@@ -1,5 +1,5 @@
 SimplyBetterApplication.Features = (function(features){
-    app = features;
+    var app = features;
 
     app.BaseItemView = Backbone.View.extend({
         initialize: function(){
@@ -33,6 +33,8 @@ SimplyBetterApplication.Features = (function(features){
                     console.log(e);
                     console.log(textStatus);
                     console.log(error);
+                    errorMessageView = new SimplyBetterApplication.UiFeedback.ErrorView({errorMessage: "You need to be signed in to vote!"});
+                    errorMessageView.render();
                 }
             });
         },
