@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to feature_path(@comment.feature) }
+      format.html { redirect_to application_feature_path(@comment.feature) }
       format.js { render :json => {
           :feature => @comment.feature.to_json
       }, :callback => params[:callback] || 'feature' }
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to feature_path(@comment.feature.id) }
+      format.html { redirect_to application_feature_path(@comment.feature.id) }
       format.js { render :json => {
           :feature => @comment.feature.to_json
       }, :callback => params[:callback] || 'feature' }

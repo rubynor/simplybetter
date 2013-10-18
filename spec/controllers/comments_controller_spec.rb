@@ -6,7 +6,7 @@ describe CommentsController do
     f = Feature.make!.id
     u = User.make!.email
     post :create, {feature_id: f, comment: {body: 'Oh, hi thar!', user_email: u,feature_id: f}}
-    response.should redirect_to feature_path(f)
+    response.should redirect_to applicataion_feature_path(f)
   end
 
   context 'destroy a comment' do
@@ -21,9 +21,10 @@ describe CommentsController do
     end
 
     it 'redirects to feature' do
+      pending
       comment
       delete :destroy,  id: comment.id
-      response.should redirect_to feature_path(comment.feature.id)
+      response.should redirect_to application_feature_path(comment.feature.id)
     end
   end
 end

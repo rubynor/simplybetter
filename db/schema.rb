@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20130828131451) do
   create_table "features", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer   "application_id"
+    t.integer  "application_id"
     t.integer  "creator_id"
     t.string   "creator_type"
     t.integer  "votes_count",      default: 0
