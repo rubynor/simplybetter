@@ -2,16 +2,16 @@ SimplyBetter::Application.routes.draw do
 
   namespace :widget_api do
     resources :features do
-      resources :comments, only: :create
+        resources :comments, only: [:create, :destroy, :index, :show]
     end
     resources :votes, only: [] do
       get :status, on: :collection
       post :up, on: :collection
       post :down, on: :collection
     end
+
   end
 
-  resources :comments, only: :destroy
   resources :customers, only: [:index, :new, :create] do
     member do
       post :create_application
@@ -29,8 +29,6 @@ SimplyBetter::Application.routes.draw do
   get 'widget' => "widget#widget"
 
 
-  get '/comments/create' => "comments#create"
-  get '/comments/destroy' => "comments#destroy"
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
   root 'sessions#new'
