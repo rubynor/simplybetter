@@ -1,3 +1,4 @@
+require 'socket'
 SimplyBetter::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -29,5 +30,6 @@ SimplyBetter::Application.configure do
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 
-  ENV['WIDGET_PATH'] = "http://localhost:3000"
+  ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
+  ENV['WIDGET_PATH'] = ip ? "http://#{ip.ip_address}:3000" : "http://localhost:3000"
 end
