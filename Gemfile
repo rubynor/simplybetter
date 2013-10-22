@@ -44,6 +44,11 @@ group :test do
   gem 'machinist'
   gem 'database_cleaner'
 end
+
+group :development do
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
+end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
