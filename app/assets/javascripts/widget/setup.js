@@ -39,10 +39,10 @@ SimplyBetterApplication.init = (function (){
                 return app.baseUrl + '/widget_api/features/' + fid + '/comments.json?token=' + key;
             };
             app.commentsNewModelUrl = function(fid){
-                return app.commentsCollecitonUrl(fid);
+                return app.commentsCollectionUrl(fid);
             };
             app.commentsModelUrl = function(fid, id){
-                return commentsModelCollectionUrl(fid) + '/' + id;
+                return app.commentsModelCollectionUrl(fid) + '/' + id;
             };            
             
 
