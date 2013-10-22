@@ -58,6 +58,7 @@ GEM
     font-awesome-rails (3.2.1.1)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
+    gravtastic (3.2.6)
     guard (2.2.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -189,6 +190,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   font-awesome-rails
+  gravtastic
   guard-livereload
   haml-rails
   jquery-rails

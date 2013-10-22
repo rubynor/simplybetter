@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-
+  include Gravtastic
+  gravtastic size: 50
   validates :email, uniqueness: {scope: :application}, presence: true
   belongs_to :application
   has_many :comments, as: :creator, inverse_of: :creator
