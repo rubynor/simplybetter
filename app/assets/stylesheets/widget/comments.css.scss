@@ -22,10 +22,24 @@
             border-radius: 5px;
             margin-right: 10px;
         }
-        .body{
-            float: left;
-            display: inline-block;
-
+        .content{
+            position: absolute;
+            left: 90px;
+            width: 80%;
+            .meta{
+                display: block;
+                font-size: 10px;
+                color: #888;
+                font-family: sans;
+                margin-bottom: 5px;
+            }
+            .comment-body{
+                display: block;
+                color: #555;
+                font-size: 16px;
+                line-height: 24px;
+                font-family: sans-serif;
+            }
         }
     }
 
