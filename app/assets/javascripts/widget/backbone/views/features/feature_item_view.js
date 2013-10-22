@@ -4,6 +4,7 @@ SimplyBetterApplication.Features = (function(features){
     app.BaseItemView = Backbone.View.extend({
         initialize: function(){
             this.listenTo(this.options.navigator, 'close', this.close);
+            this.voteStatus = this.options.voteStatus || new app.VoteStatusModel({feature_id: this.model.get('id'), email: SimplyBetterApplication.config.userEmail, value: 0});
         },
         
         className: 'feature',
@@ -41,10 +42,25 @@ SimplyBetterApplication.Features = (function(features){
             });
         },
         vote_up: function(){
+            //
+            //  Check trello: voteStatus should be controlled
+            //  by backbone.js. Using model.save etc..
+            //  By changing to this pattern we will not have
+            //  to use the .vote() funciton with ajax calls etc..
             this.vote('up');
+            if (this.voteStatus.get('value') < 1){
+                this.voteStatus.set({value: 1});
+            } else {
+                this.voteStatus.set({value: 0});
+            }
         },
         vote_down: function(){
             this.vote('down');
+            if (this.voteStatus.get('value') > -1){
+                this.voteStatus.set({value: -1});
+            } else {
+                this.voteStatus.set({value: 0});
+            }
         },
         voteStatusClass: function(voteStatus){
             var voteStatusValue = voteStatus.get('value');
@@ -75,8 +91,7 @@ SimplyBetterApplication.Features = (function(features){
 
         render: function(){
             self = this;
-            var voteStatus = new app.VoteStatusModel({feature_id: this.model.get('id'), email: SimplyBetterApplication.config.userEmail});
-            voteStatus.fetch({
+            this.voteStatus.fetch({
                 success: function(response){
                     self.$el.html(_.template(self.template(),{feature: self.model.attributes, voteClass: self.voteStatusClass(response), helpers: self}));
                 },
@@ -111,10 +126,10 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         showFeature: function(){
-            //var feature = new SimplyBetterApplication.Features.showFeature({model: this.model, navigator: this.options.navigator});
+            var feature = new SimplyBetterApplication.Features.showFeature({model: this.model, navigator: this.options.navigator, voteStatus: this.voteStatus});
             this.options.navigator.trigger('close');
-            var feature_layout = new SimplyBetterApplication.Features.Layout({feature: this.model, navigator: this.options.navigator});
-            this.options.navigator.$el.find('#featureVotingFeaturesModalContent').html(feature_layout.render().el);
+            //var feature_layout = new SimplyBetterApplication.Features.Layout({feature: this.model, navigator: this.options.navigator});
+            this.options.navigator.$el.find('#featureVotingFeaturesModalContent').html(feature.render().el);
         }
     });
 

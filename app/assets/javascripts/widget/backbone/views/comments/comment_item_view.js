@@ -7,7 +7,6 @@ SimplyBetterApplication.Comments = (function(comments){
         className: 'comment-item',
 
         render: function(){
-            console.log(this.model.attributes);
             this.$el.html(_.template(this.template(), this.model.attributes));
             return this;
         } 

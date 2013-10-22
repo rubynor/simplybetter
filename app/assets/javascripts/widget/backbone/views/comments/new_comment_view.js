@@ -30,7 +30,7 @@ SimplyBetterApplication.Comments = (function(comments){
                     console.log("Re-render comments");  
                 },
                 error: function(model){
-                    errorView = new SimplyBetterApplication.UiFeedback.ErrorView({errorMessage: "An error occured"});
+                    errorView = new SimplyBetterApplication.UiFeedback.ErrorView({errorMessage: "You must be signed in to comment"});
                     errorView.render();
                 }
             });
