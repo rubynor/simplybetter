@@ -15,15 +15,13 @@ class WidgetApi::CommentsController < ApplicationController
     customer_email = params[:comment].delete(:customer_email)
     feature = Feature.find(params[:feature_id])
 
-    if params[:user]
-      creator = User.find_by(email: params[:user][:email])
-    elsif params[:comment][:customer]
-      creator = User.find_by(email: params[:customer][:email])
+    creator = User.find_by(email: params[:user][:email])
+    unless creator
+      creator = Customer.find_by(email: params[:user][:email])
     end
     @comment = Comment.new(comment_attributes)
     @comment.creator = creator
-    if @comment.save!
-    end
+    @comment.save!
 
     respond_to do |format|
       format.html { redirect_to application_feature_path(@comment.feature) }
