@@ -49,14 +49,14 @@ SimplyBetterApplication.init = (function (){
             // Spinner settings
             app.opts = {
                 lines: 11, // The number of lines to draw
-                length: 20, // The length of each line
-                width: 12, // The line thickness
-                radius: 30, // The radius of the inner circle
+                length: 10, // The length of each line
+                width: 5, // The line thickness
+                radius: 20, // The radius of the inner circle
                 corners: 1, // Corner roundness (0..1)
                 rotate: 34, // The rotation offset
                 direction: 1, // 1: clockwise, -1: counterclockwise
-                color: '#000', // #rgb or #rrggbb or array of colors
-                speed: 3, // Rounds per second
+                color: '#555', // #rgb or #rrggbb or array of colors
+                speed: 2, // Rounds per second
                 trail: 54, // Afterglow percentage
                 shadow: false, // Whether to render a shadow
                 hwaccel: false, // Whether to use hardware acceleration
