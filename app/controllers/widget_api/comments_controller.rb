@@ -15,10 +15,10 @@ class WidgetApi::CommentsController < ApplicationController
     customer_email = params[:comment].delete(:customer_email)
     feature = Feature.find(params[:feature_id])
 
-    if user_email
-      creator = User.find_by(email: user_email)
-    elsif customer_email
-      creator = User.find_by(email: customer_email)
+    if params[:user]
+      creator = User.find_by(email: params[:user][:email])
+    elsif params[:comment][:customer]
+      creator = User.find_by(email: params[:customer][:email])
     end
     @comment = Comment.new(comment_attributes)
     @comment.creator = creator
@@ -27,9 +27,7 @@ class WidgetApi::CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to application_feature_path(@comment.feature) }
-      format.js { render :json => {
-          :feature => @comment.feature.to_json
-      }, :callback => params[:callback] || 'feature' }
+      format.json { render json: {success: "Comment successfully added"} }
     end
   end
 
@@ -41,7 +39,7 @@ class WidgetApi::CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to application_feature_path(@comment.feature.id) }
-      format.js { render :json => {
+      format.json { render :json => {
           :feature => @comment.feature.to_json
       }, :callback => params[:callback] || 'feature' }
     end
