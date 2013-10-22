@@ -32,6 +32,13 @@
                 color: #888;
                 font-family: sans;
                 margin-bottom: 5px;
+                
+                span{
+                    color: #666;
+                }
+                span.username{
+                    color: #357EC7;
+                }
             }
             .comment-body{
                 display: block;
