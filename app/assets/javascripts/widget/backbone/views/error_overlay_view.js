@@ -8,7 +8,6 @@ SimplyBetterApplication.UiFeedback = (function(uiFeedback){
 
         template: function(){
             var tmp = "";
-            console.log(this.className);
             $.ajax({
                 url: SimplyBetterApplication.config.templateUrl + this.templateName,
                 method: 'GET',
