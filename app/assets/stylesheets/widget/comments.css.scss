@@ -4,11 +4,38 @@
     display: block;
     width: 90%;
     padding: 0px 20px 0px 20px;
-    .comment{
+
+    ol {
+        list-style-type: none;
+        padding: 0px;
+    }
+    li.comment-item{
+        padding: 5px 5px 15px 0px;
+        clear: both;
+
+        .avatar{
+            float: left;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: gray;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .body{
+            float: left;
+            display: inline-block;
+
+        }
     }
 
     h2 {
         margin: 0px 0px 0px 5px;
+    }
+
+    .clear{
+        display: block;
+        clear: both;
     }
 }
 
