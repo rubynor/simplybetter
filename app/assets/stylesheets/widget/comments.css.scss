@@ -58,6 +58,34 @@
         display: block;
         clear: both;
     }
+
+    // New comment form
+    form {
+        input[type=text]{
+            width: 70%;
+            height: 40px;
+            font-size: 20px;
+            padding-left: 10px;
+            border: 2px solid #999;
+            border-radius: 3px;
+            color: #777;
+        }
+        input[type=submit]{
+            height: 45px;
+            padding: 0px 20px;
+            font-size: 20px;
+            color: #666;
+            border: 2px solid #777;
+            border-radius: 3px;
+            &:hover{
+                color: #333;
+                background-color: #eee;
+                cursor: pointer;
+            }
+       }
+    }
+    
+
 }
 
 
