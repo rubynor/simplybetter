@@ -27,7 +27,7 @@ SimplyBetterApplication.init = (function (){
                 return app.baseUrl + '/widget_api/features/' + id + '.json?token=' + key;
             };
             app.featuresNewModelUrl = function(){
-                return app.featuresColelctionUrl();
+                return app.featuresCollectionUrl();
             };
             app.featuresVoteStatusUrl = function(options){
                 return app.baseUrl + '/widget_api/votes/status.json?email=' + options.email + '&feature_id=' + options.feature_id;
