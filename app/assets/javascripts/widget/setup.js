@@ -29,8 +29,8 @@ SimplyBetterApplication.init = (function (){
             app.featuresNewModelUrl = function(){
                 return app.featuresCollectionUrl();
             };
-            app.featuresVoteStatusUrl = function(options){
-                return app.baseUrl + '/widget_api/votes/status.json?email=' + options.email + '&feature_id=' + options.feature_id;
+            app.votesUrl = function(options){
+                return app.baseUrl + '/widget_api/votes/cast.json?voter_email=' + options.voter_email + '&feature_id=' + options.feature_id + '&token=' + key;
             };
             app.featuresCastVoteRoot = function(){
                 return app.baseUrl + '/widget_api/votes/';

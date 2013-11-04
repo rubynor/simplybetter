@@ -5,9 +5,8 @@ SimplyBetter::Application.routes.draw do
         resources :comments, only: [:create, :destroy, :index, :show]
     end
     resources :votes, only: [] do
-      get :status, on: :collection
-      post :up, on: :collection
-      post :down, on: :collection
+      get :cast, on: :collection
+      post :cast, on: :collection
     end
 
   end

@@ -11,6 +11,8 @@ class Vote < ActiveRecord::Base
       self.value = 0
     elsif self.value == -1 && value == -1
       self.value = 0
+    elsif value == 0
+      return
     else
       self.value = 0
       self.value += value

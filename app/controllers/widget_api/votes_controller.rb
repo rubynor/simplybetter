@@ -1,38 +1,46 @@
 class WidgetApi::VotesController < ApplicationController
+
+  def cast
+    vote = params[:value] || 0
+    if vote > 1
+      up
+    elsif vote < -1
+      down
+    else
+      status
+    end
+  end
+    
+  private
+
   def up
     cast_vote(1)
   end
+
   def down
     cast_vote(-1)
   end
 
   def status
-    vote = Vote.find_by(voter_email: params[:email], vote_receiver_id: params[:feature_id])
-    value = if vote
-      vote.value
-    else
-      0
-    end
-    render json: {value: value}.to_json
+    cast_vote(0)
   end
 
-  private
-
   def cast_vote(value)
-    vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
-    vote.cast(value)
-    respond_to do |format|
-      format.json { render :json => vote }
-    end
+    @vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
+    @vote.cast(value)
+    @vote_receiver.reload
   end
 
   def find_application
-    Application.find_by_token(params[:token])
+    unless @application ||= Application.find_by_token(params[:token])
+      raise "Can't find application"
+    end
+    @application
   end
 
   def vote_receiver
     application = find_application
-    if params[:feature_id]
+    @vote_receiver ||= if params[:feature_id]
       application.features.find(params[:feature_id])
     elsif params[:comment_id]
       application.comments.find(params[:comment_id])
