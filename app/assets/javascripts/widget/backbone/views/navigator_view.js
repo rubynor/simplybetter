@@ -35,11 +35,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
             var col = new SimplyBetterApplication.Features.collection();
             var cv = new SimplyBetterApplication.Features.collectionView({collection: col, navigator: this});
             self = this;
-            col.fetch({
-                success: function(){
-                    self.$el.find('#featureVotingFeaturesModalContent').html(cv.render().el);
-                }
-            });
+            self.$el.find('#featureVotingFeaturesModalContent').html(cv.render().el);
+            col.fetch();
         },
         navigateNewFeature: function(e){
             e.preventDefault();

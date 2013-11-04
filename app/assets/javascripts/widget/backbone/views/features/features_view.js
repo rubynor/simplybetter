@@ -4,29 +4,22 @@ SimplyBetterApplication.Features = (function(features){
     app.collectionView = Backbone.View.extend({
         initialize: function(){
             this.listenTo(this.options.navigator, 'close', this.close);
+            this.collection.on('sync', this.render, this);
         },
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'index.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+
+        tagName: 'ol',
+        className: 'feature-container',
+
         close: function(){
             this.remove();
         },
+
         render: function (){
             var self = this;
-            this.$el.html(_.template(self.template()));
             //Render item views
-            var ol = this.$el.find('ol');
+            var ol = this.$el;
             _.each(self.collection.models, function(model){
-                var feature = new app.itemView({model: model, navigator: self.options.navigator});
+                var feature = new app.ItemLayout({model: model, navigator: self.options.navigator});
                 ol.append(feature.render().el);
             });
             return this;

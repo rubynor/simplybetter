@@ -1,41 +1,17 @@
 SimplyBetterApplication.Features = (function(features){
     var module = features;
     module.showFeature = SimplyBetterApplication.Features.BaseItemView.extend ({
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'feature.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
+        initialize: function(){
+            this.model.on('change',this.render,this);
+            this.voteView = new SimplyBetterApplication.Votes.FeatureView({model: this.options.voteModel});
         },
-        close: function(){
-            this.remove();
-        },
-        renderComments: function(){
-            var self = this;
-            var comments_collection = new SimplyBetterApplication.Comments.Collection(this.model.get('id'));
-            var commentsContainer = this.$el.find('.comments-container');
-            var comments_view = new SimplyBetterApplication.Comments.CollectionView({
-                collection: comments_collection, 
-                navigator: this.options.navigator
-            });
-            comments_collection.fetch({
-                success: function(){
-                    commentsContainer.html(comments_view.render().el); 
-                }, 
-                async: false
-            });
-        },
+        templateName: 'feature.html',
+        className: 'featureView',
+
         render: function(){
-             console.log(this.voteStatus);
-             console.log(this.voteStatusClass(this.voteStatus));
-             this.$el.html(_.template(this.template(),{feature: this.model.attributes, voteClass: this.voteStatusClass(this.voteStatus)}));
-             this.renderComments();
+             this.$el.html(_.template(this.template(),{feature: this.model.attributes}));
+             this.$el.find('#vote').html(this.voteView.render().el);
+             //this.renderComments();  // We're not gonna use this
              return this;
         }
     });

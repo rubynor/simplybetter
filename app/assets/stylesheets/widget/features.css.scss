@@ -12,6 +12,45 @@
   background-color: white;
   box-shadow: 0 1px 1px #eee;
 
+  @mixin vote-buttons {
+    .vote-buttons {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+
+      .votes {
+        display: block;
+        line-height: 30px;
+        text-align: center;
+        font-size: 24px;
+        width: 30px;
+      }
+      .up, .down {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-radius: 3px;
+        &:hover{
+            cursor: pointer;
+        }
+      }
+      .up {
+        border-bottom: 16px solid gray;
+      }
+      .up.active {
+        border-bottom: 16px solid #fe7a15;
+      }
+      .down {
+        border-top: 16px solid gray;
+      }
+      .down.active {
+        border-top: 16px solid #fe7a15;
+      }
+    }
+  }
+
   #featureVotingFeaturesModalContent{
     clear: both;
     height: 90%;
@@ -19,6 +58,8 @@
     overflow-x: hidden;
     overflow-Y: scroll;
     position: relative;
+
+
 
     .newFeature {
       padding: 10px;
@@ -54,63 +95,42 @@
       }
     }
   }
-  ol.feature-container {
+  .feature-container, feature-layout {
     padding: 0px 0px 0px 0px;
     margin: 10px 0px 0px 0px;
 
-    @mixin vote-buttons {
-        .vote-buttons {
-          position: absolute;
-          left: 10px;
-          top: 10px;
 
-          .votes {
-            display: block;
-            line-height: 30px;
-            text-align: center;
-            font-size: 24px;
-            width: 30px;
-          }
-          .up, .down {
-            display: block;
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-radius: 3px;
-            cursor: pointer;
-          }
-          .up {
-            border-bottom: 16px solid gray;
-          }
-          .up.active {
-            border-bottom: 16px solid #fe7a15;
-          }
-          .down {
-            border-top: 16px solid gray;
-          }
-          .down.active {
-            border-top: 16px solid #fe7a15;
-          }
-        }
-      }
-
-    li.featureView {
+    .featureView {
       position: relative;
       display: block;
       text-align: left;
-
+      float: left;
       overflow: visible;
 
       padding: 0px 20px 0px 20px;
       width: 90%;
 
+      #vote{
+          display: inline-block;
+          float: left;
+          clear: both;
+          @include vote-buttons;
+          .vote-buttons{
+            position: relative;
+            left: 0px;
+            float: left;
+            margin: 0px;
+          }
+          width: 40px;
+      }
+
       h1{
         font-family: 'PT Sans', sans-serif;
         color: #666;
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 20px 0px;
+        margin: 0px 0px 20px 0%;
         display: block;
+        float: left;
       }
 
       .desc {
@@ -133,21 +153,12 @@
         font-size: 14px;
         color: #444;
         padding: 5px 0px 20px 0px;
-        border-top: 1px dotted #888
-      }
-      @include vote-buttons;
-
-      .vote-buttons{
-        left: 0px;
-        top: 10px;
-        position: relative;
-        float: left;
-        margin: 0px 10px 10px 0px;
-        width: 7%;
+        border-top: 1px dotted #888;
+        margin-left: -7%;
       }
     }
 
-    li.feature {
+    .feature {
       float: left;
       position: relative;
       display: inline-block;

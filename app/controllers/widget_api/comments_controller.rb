@@ -25,7 +25,7 @@ class WidgetApi::CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to application_feature_path(@comment.feature) }
-      format.json { render json: {success: "Comment successfully added"} }
+      format.json { render 'widget_api/comments/show' }
     end
   end
 
