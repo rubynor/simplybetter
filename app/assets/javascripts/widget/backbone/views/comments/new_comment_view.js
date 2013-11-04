@@ -5,7 +5,7 @@ SimplyBetterApplication.Comments = (function(comments){
         initialize: function(){
             console.log(this.model);
         },
-        templateName: 'new_comment.html',
+        template: 'comments/new_comment.html',
         tagName: 'form',
         events: {
             "click .submit-comment": "submitComment" 
@@ -28,6 +28,8 @@ SimplyBetterApplication.Comments = (function(comments){
             },{
                 success: function(model){
                     console.log("Re-render comments");  
+                    console.log(model);
+                    self.collection.add(model);
                 },
                 error: function(model){
                     errorView = new SimplyBetterApplication.UiFeedback.ErrorView({errorMessage: "You must be signed in to comment"});

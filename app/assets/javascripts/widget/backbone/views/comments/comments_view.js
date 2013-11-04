@@ -3,12 +3,11 @@ SimplyBetterApplication.Comments = (function (comments) {
 
   module.CollectionView = SimplyBetterApplication.Comments.BaseView.extend({
     initialize: function(){
-        var feature_id = this.collection.feature_id;
-        this.comment = new SimplyBetterApplication.Comments.Model(feature_id);
-        this.comment.on('change', this.fetchAndRender, this);
+        //this.collection.on('add', this.render, this);
+        this.collection.on('sync', this.render, this);
     },
     className: 'comments-section',
-    templateName: 'comments.html',
+    template: 'comments/comments.html',
     
     fetchAndRender: function(){
         var self = this;
@@ -18,18 +17,29 @@ SimplyBetterApplication.Comments = (function (comments) {
           }
         });
     },
+
+    renderNewCommentView: function(){
+      var feature_id = this.collection.feature_id;
+      var newComment = new SimplyBetterApplication.Comments.Model(feature_id);
+      var newCommentView = new SimplyBetterApplication.Comments.New({model: newComment, collection: this.collection});
+      this.$el.find('.new-comment').html(newCommentView.render().el);
+    },
     
     render: function(){
       var self = this;
-      var newComment = new SimplyBetterApplication.Comments.New({model: this.comment});
+      var commentsCount = this.collection.models.length - 1;
+      var template = SimplyBetterApplication.Template.get(this.template);
 
-      this.$el.html(_.template(self.template(), {numberOf: this.collection.models.length}));
-      this.$el.find('.new-comment').html(newComment.render().el);
+      this.$el.html(template({numberOf: commentsCount}));
+
+      this.renderNewCommentView();
       var ol = this.$el.find('ol');
-      _.each(self.collection.models, function(model){
-        var comment_item = new SimplyBetterApplication.Comments.ItemView({model: model, navigator: self.options.navigator});
-        ol.append(comment_item.render().el);
-      });
+      if (commentsCount > 1){
+          _.each(self.collection.models, function(model){
+            var comment_item = new SimplyBetterApplication.Comments.ItemView({model: model, navigator: self.options.navigator});
+            ol.append(comment_item.render().el);
+          });
+      }
       return this;
     }
 
