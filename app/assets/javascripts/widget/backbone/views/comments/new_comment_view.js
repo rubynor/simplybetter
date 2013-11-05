@@ -2,6 +2,9 @@ SimplyBetterApplication.Comments = (function(comments){
     var module = comments;
 
     module.New = SimplyBetterApplication.Comments.BaseView.extend({
+        initialize: function(){
+
+        },
         template: 'comments/new_comment.html',
         tagName: 'form',
         events: {
