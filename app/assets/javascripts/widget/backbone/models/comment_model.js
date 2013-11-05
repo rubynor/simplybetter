@@ -14,11 +14,8 @@ SimplyBetterApplication.Comments = (function (comments) {
     });
 
     module.Collection = Backbone.Collection.extend({
-        initialize: function(feature_id){
-            this.feature_id = feature_id;
-        },
         url: function(){
-            return SimplyBetterApplication.config.commentsCollectionUrl(this.feature_id);
+            //return SimplyBetterApplication.config.commentsCollectionUrl(this.options.feature_id);
         },
         model: module.Model
     });

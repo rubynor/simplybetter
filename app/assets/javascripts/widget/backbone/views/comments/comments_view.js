@@ -3,7 +3,6 @@ SimplyBetterApplication.Comments = (function (comments) {
 
   module.CollectionView = SimplyBetterApplication.Comments.BaseView.extend({
     initialize: function(){
-        //this.collection.on('add', this.render, this);
         this.collection.on('add', this.render, this);
     },
     className: 'comments-section',
@@ -27,7 +26,7 @@ SimplyBetterApplication.Comments = (function (comments) {
     
     render: function(){
       var self = this;
-      var commentsCount = this.collection.models.length;
+      var commentsCount = this.collection.length;
       var template = SimplyBetterApplication.Template.get(this.template);
 
       this.$el.html(template({numberOf: commentsCount}));

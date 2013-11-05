@@ -17,7 +17,9 @@ SimplyBetterApplication.Features = (function(features){
             });
         },
         newCommentsCollection: function(){
-            return new SimplyBetterApplication.Comments.Collection(this.options.feature.id);
+            commentsCollection = new SimplyBetterApplication.Comments.Collection();
+            commentsCollection.url = SimplyBetterApplication.config.commentsCollectionUrl(this.options.feature.id)
+            return commentsCollection;
         },
 
         newCommentsCollectionView: function(){
