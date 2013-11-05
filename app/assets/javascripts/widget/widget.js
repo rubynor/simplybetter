@@ -64,7 +64,6 @@ function HowHard(root, appKey, userName, userEmail) {
         this.root.html(html);
         $('body').append('<div id="fatureVotingBackdropLayer" style="display:none"></div>');
         $('.featureVotingCloseButton').on('click', function(){
-            console.log("Button clicked");
             $('#fatureVotingBackdropLayer').hide();
             $('#featureVotingFeaturesModal').hide();
             $(this).hide();

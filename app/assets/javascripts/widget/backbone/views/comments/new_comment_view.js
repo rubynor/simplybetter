@@ -2,9 +2,6 @@ SimplyBetterApplication.Comments = (function(comments){
     var module = comments;
 
     module.New = SimplyBetterApplication.Comments.BaseView.extend({
-        initialize: function(){
-            console.log(this.model);
-        },
         template: 'comments/new_comment.html',
         tagName: 'form',
         events: {
@@ -27,8 +24,6 @@ SimplyBetterApplication.Comments = (function(comments){
                 }
             },{
                 success: function(model){
-                    console.log("Re-render comments");  
-                    console.log(model);
                     self.collection.add(model);
                 },
                 error: function(model){

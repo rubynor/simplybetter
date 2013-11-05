@@ -4,7 +4,7 @@ SimplyBetterApplication.Comments = (function (comments) {
   module.CollectionView = SimplyBetterApplication.Comments.BaseView.extend({
     initialize: function(){
         //this.collection.on('add', this.render, this);
-        this.collection.on('sync', this.render, this);
+        this.collection.on('add', this.render, this);
     },
     className: 'comments-section',
     template: 'comments/comments.html',
@@ -27,12 +27,11 @@ SimplyBetterApplication.Comments = (function (comments) {
     
     render: function(){
       var self = this;
-      var commentsCount = this.collection.models.length - 1;
+      var commentsCount = this.collection.models.length;
       var template = SimplyBetterApplication.Template.get(this.template);
 
       this.$el.html(template({numberOf: commentsCount}));
 
-      this.renderNewCommentView();
       var ol = this.$el.find('ol');
       if (commentsCount > 1){
           _.each(self.collection.models, function(model){
@@ -40,6 +39,7 @@ SimplyBetterApplication.Comments = (function (comments) {
             ol.append(comment_item.render().el);
           });
       }
+      this.renderNewCommentView();
       return this;
     }
 
