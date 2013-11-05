@@ -5,18 +5,7 @@ SimplyBetterApplication.Features = (function(features){
         initialize: function(){
             this.listenTo(this.options.navigator, 'close', this.close);
         },
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'new_feature.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+        template: 'new_feature.html',
         events: {
             "click .submit": "createFeatureRequest"
         },
@@ -44,7 +33,8 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         render: function(){
-            this.$el.html(_.template(this.template()));
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template());
             return this;
         }
 

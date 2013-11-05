@@ -7,18 +7,7 @@ SimplyBetterApplication.Votes = (function(votes){
         },
         className: 'vote-buttons',
 
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'votes/vote_feature.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+        template: 'votes/vote_feature.html',
 
         events: {
             "click .up" : "vote_up",
@@ -50,7 +39,11 @@ SimplyBetterApplication.Votes = (function(votes){
         },
 
         render: function(){
-            this.$el.html(_.template(this.template(), {vote: this.model.attributes, voteClass: this.voteStatusClass()}));
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template({
+                vote: this.model.attributes, 
+                voteClass: this.voteStatusClass()
+            }));
             return this;
         }
     });

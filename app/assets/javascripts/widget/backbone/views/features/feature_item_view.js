@@ -6,21 +6,7 @@ SimplyBetterApplication.Features = (function(features){
             this.listenTo(this.options.navigator, 'close', this.close);
         },
 
-        // Override in child views
-        templateName: '',
-
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + this.templateName,
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+        template: '',
         
         close: function(){
             this.remove();
@@ -35,7 +21,8 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         render: function(){
-            this.$el.html(_.template(this.template(),{feature: this.model.attributes, helpers: this}));
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template({feature: this.model.attributes, helpers: this}));
             return this;
         }
     });
@@ -44,7 +31,7 @@ SimplyBetterApplication.Features = (function(features){
 
 
     app.itemView = app.BaseItemView.extend({
-        templateName: 'feature_item.html',
+        template: 'feature_item.html',
 
         events: {
             "click h1" : "showFeature"

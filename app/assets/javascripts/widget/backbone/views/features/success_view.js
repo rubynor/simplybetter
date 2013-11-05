@@ -2,22 +2,12 @@ SimplyBetterApplication.Features = (function(features){
     var module = features;
 
     module.successView = Backbone.View.extend({
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'success.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+        template: 'success.html',
         el: '#featureVotingFeaturesModalContent',
 
         render: function(){
-            this.$el.html(_.template(this.template(), {message: this.options.successMessage}));
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template({message: this.options.successMessage}));
         }
 
     });

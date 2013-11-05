@@ -2,18 +2,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
     var module = navigator;
 
     module.NavigatorView = Backbone.View.extend({
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'navigator.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+        template: 'navigator.html',
         el: '#featureVotingFeaturesModal',
         events: {
             "click .goToFeatures": "navigateFeatures",
@@ -62,7 +51,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         render: function() {
-            this.$el.html(_.template(this.template()));
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template());
             this.navigateToRootPage();
         }
 

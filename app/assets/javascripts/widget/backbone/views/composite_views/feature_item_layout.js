@@ -12,18 +12,7 @@ SimplyBetterApplication.Features = (function(features){
             this.voteModel.fetch();
             this.voteView = new SimplyBetterApplication.Votes.FeatureView({model: this.voteModel});
         },
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'feature_item_layout.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+        template: 'feature_item_layout.html',
 
         tagName: 'li',
 
@@ -34,7 +23,8 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         render: function(){
-            this.$el.html(_.template(this.template()));
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template());
             var ui = {
                 feature: this.$el.find('.feature-item'),
                 vote: this.$el.find('.vote')

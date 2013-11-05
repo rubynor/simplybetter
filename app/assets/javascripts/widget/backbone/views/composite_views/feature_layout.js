@@ -27,18 +27,7 @@ SimplyBetterApplication.Features = (function(features){
             });
         },
           
-        template: function(){
-            var tmp = "";
-            $.ajax({
-                url: SimplyBetterApplication.config.templateUrl + 'feature_layout.html',
-                method: 'GET',
-                async: false,
-                success: function(response){
-                    tmp = response;
-                }
-            });
-            return tmp;
-        },
+        template: 'feature_layout.html',
 
         close: function(){
             this.remove();
@@ -47,8 +36,8 @@ SimplyBetterApplication.Features = (function(features){
         className: 'feature-layout',
         render: function(){
             var self = this;
-            console.log("rendering");
-            this.$el.html(_.template(this.template()));
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template());
             var ui = {
                 feature: this.$el.find('#feature'),
                 comments: this.$el.find('#comments')
