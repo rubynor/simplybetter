@@ -2,6 +2,9 @@ class WidgetController < ApplicationController
   after_action :allow_iframe
 
   def widget
+    puts "==============================="
+    puts params.inspect
+    puts "==============================="
     @appkey = params[:appkey]
     @email = params[:email]
     @name = params[:name]
@@ -16,9 +19,6 @@ class WidgetController < ApplicationController
   end
 
   def create_user
-    puts "==============================="
-    puts params
-    puts "==============================="
     customer = Customer.find_by(email: params[:email])
     user = User.find_by(email: params[:email])
     application_id = Application.find_by(token: params[:appkey]).id
