@@ -30,6 +30,11 @@ SimplyBetter::Application.configure do
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 
-  ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
-  ENV['WIDGET_PATH'] = ip ? "http://#{ip.ip_address}:3000" : "http://localhost:3000"
+  class WidgetPath
+    def self.path
+      ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
+      ip ? "http://#{ip.ip_address}:3000" : "http://localhost:3000"
+    end
+  end
+
 end

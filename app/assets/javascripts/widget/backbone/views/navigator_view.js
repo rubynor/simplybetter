@@ -6,7 +6,6 @@ SimplyBetterApplication.Navigator = (function(navigator){
         el: '#featureVotingFeaturesModal',
         events: {
             "click .goToFeatures": "navigateFeatures",
-            "click .goToNewFeature": "navigateNewFeature",
             "click .featureVotingCloseButton": "closeModal"
         },
 
@@ -17,15 +16,25 @@ SimplyBetterApplication.Navigator = (function(navigator){
 
         navigateFeatures: function(e){
             e.preventDefault();
-            this.showSpinner();
+            //this.showSpinner();
+            var template = SimplyBetterApplication.Template.get(this.template);
+            this.$el.html(template());            
             this.trigger('close');
             this.$el.find('.active').removeClass('active');
             $(e.target).addClass('active');
             var col = new SimplyBetterApplication.Features.collection();
-            var cv = new SimplyBetterApplication.Features.collectionView({collection: col, navigator: this});
-            self = this;
-            self.$el.find('#featureVotingFeaturesModalContent').html(cv.render().el);
-            col.fetch();
+            var cv = new SimplyBetterApplication.Features.collectionView({
+                collection: col, 
+                navigator: this
+            });
+            this.$el.find('#features').html(cv.render().el);
+            var fm = new SimplyBetterApplication.Features.model();
+            var nfView = new SimplyBetterApplication.Features.newFeatureView({
+                model: fm, 
+                navigator: this
+            });
+            this.$el.find('#newFeature').html(nfView.render().el);
+  col.fetch();
         },
         navigateNewFeature: function(e){
             e.preventDefault();

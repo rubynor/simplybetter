@@ -3,7 +3,7 @@
     var email = _smplyBtr.email;
     var name = _smplyBtr.name;
 
-    var urlRoot = "<%=ENV['WIDGET_PATH']%>";
+    var urlRoot = "<%=WidgetPath.path%>";
     var cssId = 'simplyBetterWidgetStyle';
     if (!document.getElementById(cssId)){
       var head  = document.getElementsByTagName('head')[0];

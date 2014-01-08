@@ -14,7 +14,7 @@
       _smplyBtr.name = "#{current_customer.try(:name)}" ;
 
       (function() {
-      var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = "#{ENV['WIDGET_PATH']}/assets/widget/widget-client.js.erb"; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+      var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = "#{WidgetPath.path}/assets/widget/widget-client.js.erb"; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
       })();
 
     - if current_customer
