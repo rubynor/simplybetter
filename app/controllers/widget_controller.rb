@@ -2,9 +2,6 @@ class WidgetController < ApplicationController
   after_action :allow_iframe
 
   def widget
-    puts "==============================="
-    puts params.inspect
-    puts "==============================="
     @appkey = params[:appkey]
     @email = params[:email]
     @name = params[:name]

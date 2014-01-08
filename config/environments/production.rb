@@ -82,7 +82,7 @@ SimplyBetter::Application.configure do
 
   class WidgetPath
     def self.path
-      "http://simplybetter.io"
+      "http://www.simplybetter.io"
     end
   end
 end
