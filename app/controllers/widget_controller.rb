@@ -5,7 +5,7 @@ class WidgetController < ApplicationController
     @appkey = params[:appkey]
     @email = params[:email]
     @name = params[:name]
-    create_user
+    create_user if @email
     render template: 'layouts/widget', layout: false
   end
 
