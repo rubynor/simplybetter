@@ -22,13 +22,17 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def status
-    cast_vote(0)
+    vote_receiver
   end
 
   def cast_vote(value)
-    @vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
-    @vote.cast(value)
-    @vote_receiver.reload
+    if params[:voter_email].present?
+      @vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
+      @vote.cast(value)
+      @vote_receiver.reload
+    else
+      render json: {error: "You need to be signed in to vote"}, status: 403
+    end
   end
 
   def find_application

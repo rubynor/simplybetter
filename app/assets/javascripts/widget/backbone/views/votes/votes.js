@@ -14,14 +14,26 @@ SimplyBetterApplication.Votes = (function(votes){
             "click .down" : "vote_down"
         },
 
+        saveModelOrError: function(){
+            this.model.save(null,{
+                success: function(){
+                },
+                error: function(model, response){
+                    var jsonError = JSON.parse(response.response)["error"];
+                    errorView = new SimplyBetterApplication.UiFeedback.ErrorView({errorMessage: jsonError});
+                    errorView.render();
+                }
+            });
+        },
+
         vote_up: function(){
             this.model.set({value: 2});
-            this.model.save();
+            this.saveModelOrError();
         },
 
         vote_down: function(){
             this.model.set({value: -2});
-            this.model.save();
+            this.saveModelOrError();
         },
 
         voteStatusClass: function(){
