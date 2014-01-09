@@ -58,57 +58,17 @@
     overflow-x: hidden;
     overflow-Y: scroll;
     position: relative;
-
-
-
-    .newFeature {
-      padding: 10px;
-      font-family: sans-serif;
-
-      input[type="text"]{
-        width: 98%;
-        height: 30px;
-        font-size: 25px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        border: 1px solid grey;
-      }
-      input[type="submit"]{
-        border: 1px solid #555;
-        background-color: white;
-        border-radius: 5px;
-        padding: 5px 10px;
-        color: grey;
-        font-family: 'PT Sans', sans-serif;
-        &:hover {
-          cursor: pointer;
-          background-color: #eee;
-        }
-        &:active {
-        }
-      }
-      textarea{
-        width: 98%;
-        height: 150px;
-        border-radius: 5px;
-        border: 1px solid grey;
-      }
-    }
   }
   .feature-container, feature-layout {
-    padding: 0px 0px 0px 0px;
-    margin: 10px 0px 0px 0px;
-
+    position: relative;
+    padding: 10px 10px 0px 10px;
+    margin: 0px 0px 0px 0px;
+    @include clearfix;
 
     .featureView {
-      position: relative;
-      display: block;
       text-align: left;
-      float: left;
       overflow: visible;
-
-      padding: 0px 20px 0px 20px;
-      width: 90%;
+      width: 100%;
 
       #vote{
           display: inline-block;
@@ -128,8 +88,8 @@
       h1{
         font-family: 'PT Sans', sans-serif;
         color: #666;
-        padding: 0px 0px 0px 0px;
-        margin: 0px 0px 20px 0%;
+        font-size: 30px;
+        margin-bottom: 10px;
         display: block;
         float: left;
       }
@@ -153,8 +113,8 @@
         text-align: right;
         font-size: 14px;
         color: #444;
-        padding: 5px 0px 20px 0px;
         border-top: 1px dotted #888;
+        padding: 5px 0px 0px 0px;
       }
     }
 
@@ -170,8 +130,8 @@
       height: 70px;
       margin-bottom: 10px;
 
-      padding: 10px 10px 10px 0px;
-      width: 97%;
+      padding: 10px 0px 10px 0px;
+      width: 100%;
 
       h1 {
         font-family: 'PT Sans', sans-serif;

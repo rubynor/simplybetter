@@ -10,6 +10,7 @@ gem 'haml-rails'
 gem 'rabl'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'compass-rails'
 gem 'font-awesome-rails'
 
 group :production do

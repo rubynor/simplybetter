@@ -7,9 +7,13 @@ SimplyBetterApplication.Features = (function(features){
         },
         template: 'new_feature.html',
         events: {
+            "focus .title": "showCompleteForm",
             "click .submit": "createFeatureRequest"
         },
 
+        showCompleteForm: function(e){
+            $('.new-feature-form').addClass('focused');
+        },
         createFeatureRequest: function(){
             this.model.save({
                 title: this.$el.find('.title').val(),// form elements
@@ -21,7 +25,7 @@ SimplyBetterApplication.Features = (function(features){
                 }
             },{
                 success: function(model){
-                    var successMessage = "Your feature request has been sent. Thank you :)";
+                    var successMessage = "We really appreciate your help :-)";
                     var successView = new SimplyBetterApplication.Features.successView({successMessage: successMessage});
                     successView.render();
                 }
@@ -33,9 +37,12 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         render: function(){
-            var template = SimplyBetterApplication.Template.get(this.template);
-            this.$el.html(template());
-            return this;
+            if (SimplyBetterApplication.Utils.userSignedIn()){
+                var template = SimplyBetterApplication.Template.get(this.template);
+                this.$el.html(template());
+                return this;
+            }
+            return false;
         }
 
     });
