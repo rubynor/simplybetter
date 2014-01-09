@@ -30,6 +30,8 @@ SimplyBetter::Application.configure do
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 
+  config.middleware.use Rack::LiveReload
+
   class WidgetPath
     def self.path
       ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
