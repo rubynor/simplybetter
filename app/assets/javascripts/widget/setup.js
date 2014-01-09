@@ -8,7 +8,15 @@ SimplyBetterApplication.init = (function (){
     // Add init actions here
 
 
+    // Required since ruby uses <%= tags ..
+    // Fix for underscore <%= %> to {{= }}
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+    };
+
     app.start = function(appKey, email, name, baseUrl){
+        console.log("Starting app!");
         // Set configurations on start of app
         SimplyBetterApplication.config = (function (key, baseUrl){
             var app = {};
@@ -79,11 +87,3 @@ SimplyBetterApplication.init = (function (){
     return app;
 }());
 
-$(document).ready(function(){
-    // Required since ruby uses <%= tags ..
-    // Fix for underscore <%= %> to {{= }}
-    _.templateSettings = {
-        interpolate: /\{\{\=(.+?)\}\}/g,
-        evaluate: /\{\{(.+?)\}\}/g
-    };
-});
