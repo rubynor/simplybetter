@@ -23,11 +23,12 @@ class WidgetApi::VotesController < ApplicationController
 
   def status
     vote_receiver
+    get_vote
   end
 
   def cast_vote(value)
     if params[:voter_email].present?
-      @vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
+      get_vote
       @vote.cast(value)
       @vote_receiver.reload
     else
@@ -51,6 +52,10 @@ class WidgetApi::VotesController < ApplicationController
     else
       raise "No vote receiver"
     end
+  end
+
+  def get_vote
+    @vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
   end
 
   #def cast
