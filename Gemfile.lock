@@ -25,6 +25,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    ansi (1.4.3)
     arel (4.0.0)
     atomic (1.1.10)
     bcrypt-ruby (3.0.1)
@@ -33,6 +34,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
     builder (3.1.4)
     celluloid (0.15.2)
       timers (~> 1.1.0)
@@ -84,6 +87,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    hashr (0.0.22)
     hike (1.2.3)
     http_parser.rb (0.5.3)
     i18n (0.6.4)
@@ -141,6 +145,8 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec-core (2.14.4)
     rspec-expectations (2.14.0)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -160,6 +166,9 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    searchkick (0.3.5)
+      tire
+      tire-contrib
     slop (3.4.5)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -178,6 +187,16 @@ GEM
       atomic
     tilt (1.4.1)
     timers (1.1.0)
+    tire (0.6.1)
+      activemodel (>= 3.0)
+      activesupport
+      ansi
+      hashr (~> 0.0.19)
+      multi_json (~> 1.3)
+      rake
+      rest-client (~> 1.6)
+    tire-contrib (0.1.3)
+      tire
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -195,6 +214,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.0.3.0)
   coffee-rails (~> 4.0.0)
   compass-rails (~> 1.1.2)
   database_cleaner
@@ -214,6 +234,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  searchkick
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)
