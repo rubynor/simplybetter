@@ -39,9 +39,14 @@ SimplyBetterApplication.Features = (function(features){
 
         showFeature: function(){
             //var feature = new SimplyBetterApplication.Features.showFeature({model: this.model, navigator: this.options.navigator, voteStatus: this.voteStatus});
-            this.options.navigator.trigger('close');
+
             var feature_layout = new SimplyBetterApplication.Features.Layout({feature: this.model, navigator: this.options.navigator, voteModel: this.options.voteModel});
-            this.options.navigator.$el.find('#featureVotingFeaturesModalContent').html(feature_layout.render().el);
+            if (this.options.container){
+                this.options.navigator.$el.find(this.options.container).html(feature_layout.render().el);
+            } else {
+                this.options.navigator.trigger('close');
+                this.options.navigator.$el.find('#featureVotingFeaturesModalContent').html(feature_layout.render().el);
+            }
         }
     });
 

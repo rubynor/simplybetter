@@ -31,7 +31,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
             var fm = new SimplyBetterApplication.Features.model();
             var nfView = new SimplyBetterApplication.Features.newFeatureView({
                 model: fm, 
-                navigator: this
+                navigator: this,
+                featuresCollection: col
             });
             this.$el.find('#newFeature').html(nfView.render().el);
   col.fetch();
