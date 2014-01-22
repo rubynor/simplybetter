@@ -1,4 +1,6 @@
 class Feature < ActiveRecord::Base
+  searchkick autocomplete: [:title]
+
   belongs_to :application
   belongs_to :creator, polymorphic: true
   belongs_to :feature_group

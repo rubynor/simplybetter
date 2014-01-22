@@ -2,13 +2,17 @@ SimplyBetter::Application.routes.draw do
 
   namespace :widget_api do
     resources :features do
-        resources :comments, only: [:create, :destroy, :index, :show]
+      resources :comments, only: [:create, :destroy, :index, :show]
     end
     resources :votes, only: [] do
       get :cast, on: :collection
       post :cast, on: :collection
     end
-
+    resources :applications, only: [] do
+      resources :features do
+        get :find_similar, on: :collection
+      end
+    end
   end
 
   resources :customers, only: [:index, :new, :create] do

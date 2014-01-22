@@ -19,6 +19,11 @@ class WidgetApi::FeaturesController < ApplicationController
   def edit
   end
 
+  def find_similar
+    current_application = Application.find_by(token: params[:application_id])
+    render json: current_application.features.search(params[:query], limit: 10, misspellings: {distance: 2}, partial: true)
+  end
+
   def create
     @feature = Feature.new(feature_params)
     application = Application.find_by_token(params[:token])
