@@ -32,7 +32,7 @@ SimplyBetterApplication.Comments = (function (comments) {
       this.$el.html(template({numberOf: commentsCount}));
 
       var ol = this.$el.find('ol');
-      if (commentsCount > 1){
+      if (commentsCount > 0){
           _.each(self.collection.models, function(model){
             var comment_item = new SimplyBetterApplication.Comments.ItemView({model: model, navigator: self.options.navigator});
             ol.append(comment_item.render().el);
