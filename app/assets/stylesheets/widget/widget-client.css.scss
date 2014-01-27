@@ -39,19 +39,3 @@
   width: 100%;
 }
 
-
-#simplybetterActivateButton {
-  position: fixed;
-  right: 20px;
-  bottom: 0px;
-  height: 130px;
-  width: 118px;
-  z-index: 2000;
-  background: url('http://www.simplybetter.io/feedback-postbox.png') no-repeat;
-  background-position: 0px 0px;
-
-  &:hover{
-    cursor: pointer;
-    background-position: -119px 0px;
-  }
-}

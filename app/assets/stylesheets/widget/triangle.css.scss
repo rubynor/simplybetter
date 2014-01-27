@@ -1,0 +1,14 @@
+#simplybetterActivateButton {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  height: 100px;
+  width: 100px;
+  z-index: 2000;
+  background: url('http://www.simplybetter.io/blue.png') no-repeat;
+  background-size: contain;
+
+  &:hover{
+    cursor: pointer;
+  }
+}
