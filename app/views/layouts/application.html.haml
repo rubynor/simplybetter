@@ -12,7 +12,7 @@
       _smplyBtr.appKey = 'BYGKGJYA';
       _smplyBtr.email = "#{current_customer.try(:email)}";
       _smplyBtr.name = "#{current_customer.try(:name)}" ;
-
+      _smplyBtr.icon = "triangle";
       (function() {
       var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = "#{WidgetPath.path}/assets/widget/widget-client.js.erb"; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
       })();
