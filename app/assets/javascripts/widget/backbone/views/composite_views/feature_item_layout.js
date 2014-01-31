@@ -8,9 +8,15 @@ SimplyBetterApplication.Features = (function(features){
                 feature_id: this.model.get('id'), 
                 voter_email: SimplyBetterApplication.config.userEmail
             });            
-            this.featureItem = new SimplyBetterApplication.Features.itemView({model: this.model, navigator: this.options.navigator, voteModel: this.voteModel});
+            this.featureItem = new SimplyBetterApplication.Features.itemView({
+                model: this.model, 
+                navigator: this.options.navigator, 
+                voteModel: this.voteModel
+            });
             this.voteModel.fetch();
-            this.voteView = new SimplyBetterApplication.Votes.FeatureView({model: this.voteModel});
+            this.voteView = new SimplyBetterApplication.Votes.FeatureView({
+                model: this.voteModel
+            });
         },
         template: 'feature_item_layout.html',
 
