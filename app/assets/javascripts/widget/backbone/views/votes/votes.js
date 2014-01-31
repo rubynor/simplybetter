@@ -20,7 +20,7 @@ SimplyBetterApplication.Votes = (function(votes){
                 },
                 error: function(model, response){
                     var jsonError = JSON.parse(response.response)["error"];
-                    errorView = new SimplyBetterApplication.UiFeedback.ErrorView({errorMessage: jsonError});
+                    errorView = new SimplyBetterApplication.Alerts.ErrorView({message: jsonError});
                     errorView.render();
                 }
             });

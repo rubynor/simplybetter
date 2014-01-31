@@ -17,6 +17,7 @@ SimplyBetterApplication.Features = (function(features){
             $('.new-feature-form').addClass('focused');
         },
         createFeatureRequest: function(){
+            var self = this;
             this.model.save({
                 title: this.$el.find('.title').val(),// form elements
                 description: this.$el.find('.description').val(),
@@ -29,7 +30,7 @@ SimplyBetterApplication.Features = (function(features){
                 success: function(model){
                     var successMessage = "We really appreciate your help :-)";
                     var successView = new SimplyBetterApplication.Features.successView({successMessage: successMessage});
-                    successView.render();
+                    self.options.navigator.$el.find('#featureVotingFeaturesModalContent').empty().append(successView.render().el);
                 }
             });
         },

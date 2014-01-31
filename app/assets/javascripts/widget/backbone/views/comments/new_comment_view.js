@@ -30,7 +30,7 @@ SimplyBetterApplication.Comments = (function(comments){
                     self.collection.add(model);
                 },
                 error: function(model){
-                    errorView = new SimplyBetterApplication.UiFeedback.ErrorView({errorMessage: "You must be signed in to comment"});
+                    errorView = new SimplyBetterApplication.Alerts.ErrorView({message: "You must be signed in to comment"});
                     errorView.render();
                 }
             });
