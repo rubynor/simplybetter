@@ -37,22 +37,11 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         showFeature: function(){
-            var feature_layout = new SimplyBetterApplication.Features.Layout({
-                feature: this.model, 
-                navigator: this.options.navigator, 
-                voteModel: this.options.voteModel
-            });
-
-            if (this.options.container){
-                this.options.navigator.$el
-                    .find(this.options.container)
-                    .html(feature_layout.render().el);
-            } else {
-                this.options.navigator.trigger('close');
-                this.options.navigator.$el
-                    .find('#featureVotingFeaturesModalContent')
-                    .html(feature_layout.render().el);
-            }
+            this.options.navigator.showFeature(
+                this.model,
+                this.options.voteModel,
+                this.options.container
+            )
         }
     });
 

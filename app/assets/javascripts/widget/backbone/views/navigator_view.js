@@ -9,14 +9,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
             "click .featureVotingCloseButton": "closeModal"
         },
 
-        showSpinner: function(){
-            var target = document.getElementById('featureVotingFeaturesModalContent');
-            var spinner = new Spinner(SimplyBetterApplication.config.opts).spin(target);
-        },
-
         navigateFeatures: function(e){
             e.preventDefault();
-            //this.showSpinner();
             var template = SimplyBetterApplication.Template.get(this.template);
             this.$el.html(template());            
             this.trigger('close');
@@ -37,16 +31,40 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.$el.find('#newFeature').html(nfView.render().el);
   col.fetch();
         },
-        navigateNewFeature: function(e){
-            e.preventDefault();
-            this.showSpinner();
-            this.trigger('close');
-            this.$el.find('.active').removeClass('active');
-            $(e.target).addClass('active');
-            var fm = new SimplyBetterApplication.Features.model();
-            var nfView = new SimplyBetterApplication.Features.newFeatureView({model: fm, navigator: this});
-            this.$el.find('#featureVotingFeaturesModalContent').html(nfView.render().el);
+
+        showFeature: function(featureModel,voteModel,container){
+            if (!voteModel) {
+                var voteModel = new SimplyBetterApplication.Votes.Model({
+                    feature_id: featureModel.get('id'), 
+                    voter_email: SimplyBetterApplication.config.userEmail
+                });
+                voteModel.fetch();
+            }
+            var feature_layout = new SimplyBetterApplication.Features.Layout({
+                feature: featureModel, 
+                navigator: this, 
+                voteModel: voteModel
+            });
+
+            if (container){
+                this.$el
+                    .find(container)
+                    .html(feature_layout.render().el);
+            } else {
+                this.trigger('close');
+                this.$el
+                    .find('#featureVotingFeaturesModalContent')
+                    .html(feature_layout.render().el);
+            }
         },
+
+        alertSuccess: function(message){
+            var successView = new SimplyBetterApplication.Alerts.SuccessView({
+                message: message
+            });
+            successView.render();
+        },
+
         closeModal: function(){
             this.$el.hide();
             this.$el.prev().hide();

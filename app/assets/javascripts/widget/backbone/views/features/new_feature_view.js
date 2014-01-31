@@ -28,9 +28,9 @@ SimplyBetterApplication.Features = (function(features){
                 }
             },{
                 success: function(model){
-                    var successMessage = "We really appreciate your help :-)";
-                    var successView = new SimplyBetterApplication.Features.successView({successMessage: successMessage});
-                    self.options.navigator.$el.find('#featureVotingFeaturesModalContent').empty().append(successView.render().el);
+                    var successMessage = "Thank you for sharing your ideas!";
+                    self.options.navigator.showFeature(model);
+                    self.options.navigator.alertSuccess(successMessage);
                 }
             });
         },
