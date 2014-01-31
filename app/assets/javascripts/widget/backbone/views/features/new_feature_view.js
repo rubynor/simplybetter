@@ -28,7 +28,7 @@ SimplyBetterApplication.Features = (function(features){
                 }
             },{
                 success: function(model){
-                    var successMessage = "Thank you for sharing your ideas!";
+                    var successMessage = "Thank's for helping us to simply be better!";
                     self.options.navigator.showFeature(model);
                     self.options.navigator.alertSuccess(successMessage);
                 }

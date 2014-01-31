@@ -2,6 +2,14 @@ SimplyBetterApplication.Navigator = (function(navigator){
     var module = navigator;
 
     module.NavigatorView = Backbone.View.extend({
+        initialize: function(){
+            this.features = new SimplyBetterApplication.Features.collection();
+            this.overview = new SimplyBetterApplication.Features.collectionView({
+                collection: this.features, 
+                navigator: this
+            });
+            this.listenTo(this,'close',this.deActivateLink);
+        },
         template: 'navigator.html',
         el: '#featureVotingFeaturesModal',
         events: {
@@ -11,25 +19,12 @@ SimplyBetterApplication.Navigator = (function(navigator){
 
         navigateFeatures: function(e){
             e.preventDefault();
-            var template = SimplyBetterApplication.Template.get(this.template);
-            this.$el.html(template());            
             this.trigger('close');
-            this.$el.find('.active').removeClass('active');
             $(e.target).addClass('active');
-            var col = new SimplyBetterApplication.Features.collection();
-            var cv = new SimplyBetterApplication.Features.collectionView({
-                collection: col, 
-                navigator: this
-            });
-            this.$el.find('#features').html(cv.render().el);
-            var fm = new SimplyBetterApplication.Features.model();
-            var nfView = new SimplyBetterApplication.Features.newFeatureView({
-                model: fm, 
-                navigator: this,
-                featuresCollection: col
-            });
-            this.$el.find('#newFeature').html(nfView.render().el);
-  col.fetch();
+            this.$el
+                .find('#featureVotingFeaturesModalContent')
+                .html(this.overview.render().el);
+            this.features.fetch();
         },
 
         showFeature: function(featureModel,voteModel,container){
@@ -76,6 +71,10 @@ SimplyBetterApplication.Navigator = (function(navigator){
                 root_link.click();
             }
             return false;
+        },
+
+        deActivateLink: function(){
+            this.$el.find('.active').removeClass('active');
         },
 
         render: function() {

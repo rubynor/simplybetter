@@ -1,5 +1,5 @@
 .alert{
-  @mixin alert-overlay($color){
+  @mixin alert-overlay($color,$border-color){
     color: white;
     text-align: center;
     font-family: sans;
@@ -11,13 +11,14 @@
     top: 40%;
     opacity: 0;
     border-radius: 5px;
+    border: 1px solid $border-color
   }
 
   .error-overlay{
-    @include alert-overlay($red);
+    @include alert-overlay($red,$fuchsia);
   }
 
   .success-overlay{
-    @include alert-overlay($olive);
+    @include alert-overlay($olive, $green);
   }
 }

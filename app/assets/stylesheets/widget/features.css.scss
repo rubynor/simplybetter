@@ -24,6 +24,7 @@
         text-align: center;
         font-size: 24px;
         width: 30px;
+        height: 30px;
       }
       .up, .down {
         display: block;
@@ -52,8 +53,7 @@
   }
 
   #featureVotingFeaturesModalContent{
-    clear: both;
-    height: 90%;
+    height: 100%;
     width: 100%;
     overflow-x: hidden;
     overflow-Y: scroll;
