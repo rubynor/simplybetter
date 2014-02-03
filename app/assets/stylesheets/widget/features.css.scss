@@ -128,22 +128,23 @@
       border-radius: 10px;
       box-shadow: 0 1px 1px #eee;
       margin-bottom: 10px;
-      height: 80px;
+      min-height: 80px;
 
       padding: 10px 0px 10px 0px;
       width: 100%;
 
+      .feature-item{
+        padding: 0px 10px 0px 60px;
+      }
+
       h1 {
         font-family: 'PT Sans', sans-serif;
         color: #85898b;
-        margin: 0;
+        margin: 0px 0px 10px 0px;
         padding: 0;
-        position: absolute;
-        white-space: nowrap;
+        //white-space: nowrap;
         overflow: hidden;
-        font-size: 25px;
-        left: 60px;
-        top: 5px;
+        font-size: 20px;
         &:hover{
           text-decoration: underline;
           cursor: pointer;
@@ -151,13 +152,10 @@
       }
 
       .desc {
-        position: absolute;
-        width: 90%;
-        top: 40px;
-        left: 60px;
         color: grey;
         font-size: 14px;
         font-family: 'Droid Serif', serif;
+        line-height: 20px;
       }
       @include vote-buttons;
     }

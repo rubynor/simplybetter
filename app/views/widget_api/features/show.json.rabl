@@ -8,3 +8,4 @@ end
 glue(:creator) do
   attributes :name => :creator_name
 end
+
