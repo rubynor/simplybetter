@@ -40,25 +40,27 @@ SimplyBetterApplication.Features = (function(features){
             var queryString = $(e.target).val();
             var self = this;
             
-            $.get('/widget_api/applications/'+SimplyBetterApplication.config.appKey+'/features/find_similar?query='+queryString, function(response){
-                addToList(response);
-            });
+            if (queryString.length > 10){
+                $.get('/widget_api/applications/'+SimplyBetterApplication.config.appKey+'/features/find_similar?query='+queryString, function(response){
+                    addToList(response);
+                });
 
-            function addToList(response){
-                var ol = $('.similar-ideas ol');
-                ol.empty();
-                if (response.length > 0){
-                    $(ol).parent().show();
-                    return $.each(response,function(){
-                        var model = self.options.featuresCollection.get(this["id"]);
-                        var itemView = new module.ItemLayout({model: model, navigator: self.options.navigator});
-                        itemView.featureItem.options.container = '#features';
-                        $(ol).append(itemView.render().el);
-                    }); 
-                } else {
-                    $(ol).parent().hide();
-                }
-            };
+                function addToList(response){
+                    var ol = $('.similar-ideas ol');
+                    ol.empty();
+                    if (response.length > 0){
+                        $(ol).parent().show();
+                        return $.each(response,function(){
+                            var model = self.options.featuresCollection.get(this["id"]);
+                            var itemView = new module.ItemLayout({model: model, navigator: self.options.navigator});
+                            itemView.featureItem.options.container = '#features';
+                            $(ol).append(itemView.render().el);
+                        }); 
+                    } else {
+                        ol.empty();
+                    }
+                };
+            }
         },
 
         close: function(){
