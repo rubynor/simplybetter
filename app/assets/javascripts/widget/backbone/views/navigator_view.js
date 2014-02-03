@@ -8,6 +8,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
                 collection: this.features, 
                 navigator: this
             });
+            this.application = new SimplyBetterApplication.Application.Model();
             this.listenTo(this,'close',this.deActivateLink);
         },
         template: 'navigator.html',
@@ -77,9 +78,17 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         render: function() {
+            var self = this;
             var template = SimplyBetterApplication.Template.get(this.template);
-            this.$el.html(template());
-            this.navigateToRootPage();
+            this.application.fetch({
+                success: function(model){
+                    console.log(model);
+                    self.$el.html(template({
+                      applicationName: model.get('title')
+                    }));
+                    self.navigateToRootPage();
+                }
+            });
         }
 
     });

@@ -1,5 +1,5 @@
 SimplyBetterApplication.Features = (function (features) {
-    app = features;
+    var app = features;
     app.model = Backbone.Model.extend({
         url: function(){
             if (this.isNew()){

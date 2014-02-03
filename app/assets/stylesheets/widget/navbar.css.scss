@@ -9,15 +9,24 @@
     left: 0px;
     right: 0px;
 
-    h1{
-      font-family: 'PT Sans', sans-serif;
+    a{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      h1{
+        font-size: 20px;
+        display: inline-block;
+        color: white;
+        text-shadow: 1px 1px $gray;
+        padding: 5px;
+      }
+    }
+    h2{
+      color: $strawberry;
+      display: block;
+      text-align: center;
+      margin-bottom: -15px;
       font-size: 20px;
-      position: relative;
-      display: inline-block;
-      float: left;
-      margin: 0px 10px;
-      color: white;
-      text-shadow: 1px 1px $gray;
     }
 
     .simplybetterNavbarContent {
@@ -32,8 +41,8 @@
       box-shadow: 0px -1px 1px #eee;
       position: relative;
       display: inline-block;
-      float: left;
-      margin-left: 10px;
+      float: right;
+      margin: 0px 50px 0px 0px;
       font-family: 'PT Sans', sans-serif;
       border-bottom: 2px solid $banquette;
       &.active{

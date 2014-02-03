@@ -1,5 +1,5 @@
 SimplyBetterApplication.Comments = (function (comments) {
-    module = comments;
+    var module = comments;
     module.Model = Backbone.Model.extend({
         initialize: function(feature_id){
             this.set({feature_id: feature_id});

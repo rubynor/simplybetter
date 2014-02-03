@@ -8,7 +8,7 @@ SimplyBetter::Application.routes.draw do
       get :cast, on: :collection
       post :cast, on: :collection
     end
-    resources :applications, only: [] do
+    resources :applications, only: [:show] do
       resources :features do
         get :find_similar, on: :collection
       end
