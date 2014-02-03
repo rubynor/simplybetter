@@ -11,10 +11,9 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.listenTo(this,'close',this.deActivateLink);
         },
         template: 'navigator.html',
-        el: '#featureVotingFeaturesModal',
+        el: '#simplybetterFeaturesModal',
         events: {
-            "click .goToFeatures": "navigateFeatures",
-            "click .featureVotingCloseButton": "closeModal"
+            "click .goToFeatures": "navigateFeatures"
         },
 
         navigateFeatures: function(e){
@@ -22,7 +21,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.trigger('close');
             $(e.target).addClass('active');
             this.$el
-                .find('#featureVotingFeaturesModalContent')
+                .find('#simplybetterFeaturesModalContent')
                 .html(this.overview.render().el);
             this.features.fetch();
         },
@@ -48,7 +47,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
             } else {
                 this.trigger('close');
                 this.$el
-                    .find('#featureVotingFeaturesModalContent')
+                    .find('#simplybetterFeaturesModalContent')
                     .html(feature_layout.render().el);
             }
         },

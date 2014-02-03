@@ -1,7 +1,7 @@
-#featureVotingFeaturesModal {
+#simplybetterFeaturesModal {
   $navbar-height: 40px;
   padding-top: $navbar-height;
-  #featureVotingNavbar {
+  #simplybetterNavbar {
     height: $navbar-height;
     background-color: $powderpuff;
     position: absolute;
@@ -20,7 +20,7 @@
       text-shadow: 1px 1px $gray;
     }
 
-    .featureVotingNavbarContent {
+    .simplybetterNavbarContent {
       position: absolute;
       width: 100%;
       bottom: 0px;
