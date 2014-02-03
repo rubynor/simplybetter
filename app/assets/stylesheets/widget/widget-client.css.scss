@@ -22,14 +22,22 @@
 
 
 #simplybetterIframeWrapper {
+  $width: 900px;
+  width: $width;
   position: fixed;
   z-index: 2000;
   top: 10%;
-  left: 30%;
-  right: 30%;
+  left: 50%;
+  margin-left: - $width/2;
   height: 70%;
   border: 2px solid #edf0f4;
   box-shadow: 0 1px 1px #eee;
+  @media (max-width: 900px) {
+    width: auto;
+    margin-left: 0px;
+    left: 3%;
+    right: 3%;
+  }
 }
 
 .simplybetterIframe {
