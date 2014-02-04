@@ -4,7 +4,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
     module.NavigatorView = Backbone.View.extend({
         initialize: function(){
             this.features = new SimplyBetterApplication.Features.collection();
-            this.overview = new SimplyBetterApplication.Features.collectionView({
+            this.featuresView = new SimplyBetterApplication.Features.collectionView({
                 collection: this.features, 
                 navigator: this
             });
@@ -14,16 +14,25 @@ SimplyBetterApplication.Navigator = (function(navigator){
         template: 'navigator.html',
         el: '#simplybetterFeaturesModal',
         events: {
-            "click .goToFeatures": "navigateFeatures"
+            "click .goToFeatures": "navigateOverview"
         },
 
-        navigateFeatures: function(e){
+        navigateOverview: function(e){
             e.preventDefault();
             this.trigger('close');
             $(e.target).addClass('active');
+            var newFeatureView = new SimplyBetterApplication.Features.newFeatureView({
+                navigator: this,
+                featuresCollection: this.features
+            });
+            var overviewLayout = new SimplyBetterApplication.Features.OverviewLayout({
+                newFeatureView: newFeatureView,
+                featuresView: this.featuresView,
+                navigator: this
+            })
             this.$el
                 .find('#simplybetterFeaturesModalContent')
-                .html(this.overview.render().el);
+                .html(overviewLayout.render().el);
             this.features.fetch();
         },
 
@@ -51,6 +60,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
                     .find('#simplybetterFeaturesModalContent')
                     .html(feature_layout.render().el);
             }
+            return feature_layout;
         },
 
         alertSuccess: function(message){

@@ -9,6 +9,10 @@ SimplyBetterApplication.Features = (function(features){
             this.comments_collection_view = this.newCommentsCollectionView();
         },
 
+        events: {
+            "click .close-view-button" : "close"
+        },
+
         newFeatureView: function(){
             return new SimplyBetterApplication.Features.showFeature({
                 model: this.options.feature, 
@@ -34,6 +38,7 @@ SimplyBetterApplication.Features = (function(features){
         template: 'feature_layout.html',
 
         close: function(){
+            this.options.navigator.trigger('featureClosed');
             this.remove();
         },
         

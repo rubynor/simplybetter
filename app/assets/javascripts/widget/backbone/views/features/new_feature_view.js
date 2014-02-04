@@ -4,9 +4,10 @@ SimplyBetterApplication.Features = (function(features){
     module.newFeatureView = Backbone.View.extend({
         initialize: function(){
             this.listenTo(this.options.navigator, 'close', this.close);
+            this.model = new SimplyBetterApplication.Features.model();
         },
         template: 'new_feature.html',
-
+        className: 'newFeature',
         events: {
             "focus .title": "showCompleteForm",
             "click .submit": "createFeatureRequest",
@@ -41,7 +42,10 @@ SimplyBetterApplication.Features = (function(features){
             var self = this;
             
             if (queryString.length > 10){
-                $.get('/widget_api/applications/'+SimplyBetterApplication.config.appKey+'/features/find_similar?query='+queryString, function(response){
+                $.get('/widget_api/applications/'+
+                    SimplyBetterApplication.config.appKey+
+                    '/features/find_similar?query='+
+                    queryString, function(response){
                     addToList(response);
                 });
 
@@ -52,7 +56,10 @@ SimplyBetterApplication.Features = (function(features){
                         $(ol).parent().show();
                         return $.each(response,function(){
                             var model = self.options.featuresCollection.get(this["id"]);
-                            var itemView = new module.ItemLayout({model: model, navigator: self.options.navigator});
+                            var itemView = new module.ItemLayout({
+                                model: model, 
+                                navigator: self.options.navigator
+                            });
                             itemView.featureItem.options.container = '#features';
                             $(ol).append(itemView.render().el);
                         }); 

@@ -56,7 +56,53 @@
     overflow-Y: scroll;
     position: relative;
   }
-  .feature-container, feature-layout {
+  
+  .close-view-button{
+    display: none;
+  }
+
+  .overview{
+    .feature-layout{
+      position: relative;
+      $color: $creme;
+      border: 1px solid $color;
+      background-color: $powderpuff;
+      box-shadow: -5px 5px $color, -4px 4px $color, -3px 3px $color, -2px 2px $color, -1px 1px $color;
+      margin: 20px;
+
+      .close-view-button{
+        color: $strawberry;
+        display: block;
+        font-size: 30px;
+        text-align: center;
+        padding-top: 3px;
+        $top: 15px;
+        $right: 15px;
+        width: 40px;
+        height: 40px;
+        background-color: $charlotte;
+        position: absolute;
+        right: $top;
+        top: $top;
+        z-index: 20;
+        $color: $creme;
+        border: 1px solid $color;
+        box-shadow: -3px 3px $color, -2px 2px $color, -1px 1px $color;
+        &:hover{
+          top: $top - 2px;
+          right: $top - 2px;
+          box-shadow: -5px 5px $color, -4px 4px $color, -3px 3px $color, -2px 2px $color, -1px 1px $color;
+          cursor: pointer;
+        }
+        &:active{
+          top: $top + 3px;
+          right: $top + 3px;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+  .feature-container, .overview-layout {
     position: relative;
     padding: 10px 10px 0px 10px;
     margin: 0px 0px 0px 0px;
