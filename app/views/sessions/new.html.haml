@@ -6,11 +6,11 @@
   = form_tag '/sessions/create' do
     .field
       %label
-        %i.icon-envelope
+        %i.fa.fa-envelope
       = text_field_tag :email, params[:email], placeholder: 'email'
     .field
       %label
-        %i.icon-lock
+        %i.fa.fa-lock
       = password_field_tag :password, nil, placeholder: 'password'
     .field
       .actions= submit_tag "Sign in"

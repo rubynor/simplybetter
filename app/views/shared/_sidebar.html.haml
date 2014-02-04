@@ -1,14 +1,14 @@
 .col-md-3
   .list-group
     = link_to application_path(@application.id), class: 'list-group-item' do
-      %i.icon-smile
+      %i.fa.fa-smile-o
       Installation instructions
     = link_to new_application_feature_path(@application.id), class: 'list-group-item' do
-      %i.icon-plus-sign
+      %i.fa.fa-plus
       Create a new feature request
     = link_to administrate_group_application_path(@application.id), class: 'list-group-item' do
-      %i.icon-list-alt
+      %i.fa.fa-list-alt
       Select features for voting
     = link_to applications_path, class: 'list-group-item' do
-      %i.icon-circle-arrow-left
+      %i.fa.fa-arrow-circle-left
       Go back to applications overview

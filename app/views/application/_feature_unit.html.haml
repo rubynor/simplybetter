@@ -3,12 +3,12 @@
   %p.list-group-item-text= truncate(f.description, length: 100)
   .edit-panel
     = link_to edit_application_feature_path(@application.id, f.id) do
-      %i.icon-edit
+      %i.fa.fa-edit
     = link_to application_feature_path(@application.id, f.id), method: :delete, confirm: "Are you sure?" do
-      %i.icon-remove
+      %i.fa.fa-times
     = link_to send(path, @application.id,f),remote: true,method: method do
       - if method == :post
-        %i.icon-mail-forward
+        %i.fa.fa-mail-forward
       - else
-        %i.icon-mail-reply
+        %i.fa.fa-mail-reply
   .clear
