@@ -35,15 +35,19 @@
     }
 
     a.link{
-      background-color: $charlotte;
-      padding: 10px 15px;
-      box-shadow: 0px 1px 1px #eee;
+      color: $blue;
+      //background-color: $charlotte;
+      padding: 10px 5px;
+      //box-shadow: 0px 1px 1px #eee;
       z-index: 20;
       position: absolute;
       display: inline-block;
       font-family: 'PT Sans', sans-serif;
       right: 50px;
-      bottom: -37px;
+      bottom: 0px;
+      &:hover{
+        text-decoration: underline;
+      }
       &.active{
         display: none;
       }
