@@ -3,12 +3,12 @@
     = link_to application_path(@application.id), class: 'list-group-item' do
       %i.fa.fa-smile-o
       Installation instructions
-    = link_to new_application_feature_path(@application.id), class: 'list-group-item' do
+    -#= link_to new_application_feature_path(@application.id), class: 'list-group-item' do
       %i.fa.fa-plus
-      Create a new feature request
+      New idea
     = link_to administrate_group_application_path(@application.id), class: 'list-group-item' do
       %i.fa.fa-list-alt
-      Select features for voting
+      Manage
     = link_to applications_path, class: 'list-group-item' do
       %i.fa.fa-arrow-circle-left
-      Go back to applications overview
+      Applications overview
