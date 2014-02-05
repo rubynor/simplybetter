@@ -19,6 +19,3 @@
 //
 //= require setup_instructions
 
-$(function(){
-    hljs.initHighlightingOnLoad();
-});
