@@ -28,6 +28,12 @@
       font-size: 20px;
       line-height: 30px;
       margin-top: 4px;
+      a.home{
+        color: $strawberry;
+        &:hover{
+          cursor: pointer;
+        }
+      }
     }
 
     .simplybetterNavbarContent {

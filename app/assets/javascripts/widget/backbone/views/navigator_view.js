@@ -14,7 +14,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
         template: 'navigator.html',
         el: '#simplybetterFeaturesModal',
         events: {
-            "click .goToFeatures": "navigateOverview"
+            "click .goToFeatures": "navigateOverview",
+            "click .home": "navigateToRootPage"
         },
 
         navigateOverview: function(e){
@@ -75,7 +76,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.$el.prev().hide();
         },
 
-        navigateToRootPage: function(){
+        navigateToRootPage: function(e){
+            e.preventDefault();
             root_link = $('.goToFeatures');
             if (!root_link.hasClass('active')) {
                 root_link.click();
