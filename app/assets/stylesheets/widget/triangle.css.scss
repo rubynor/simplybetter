@@ -1,12 +1,15 @@
 #simplybetterActivateButton {
   position: fixed;
-  right: 0px;
-  bottom: 0px;
-  height: 100px;
-  width: 100px;
+  right: -75px;
+  bottom: -75px;
+  height: 150px;
+  width: 150px;
   z-index: 2000;
-  background: url('http://www.simplybetter.io/blue.png') no-repeat;
+  background: url('http://www.simplybetter.io/blue-rotate.png') no-repeat;
   background-size: contain;
+  transform:rotate(45deg);
+  -ms-transform:rotate(45deg); /* IE 9 */
+  -webkit-transform:rotate(45deg); /* Safari and Chrome */
 
   &:hover{
     cursor: pointer;
