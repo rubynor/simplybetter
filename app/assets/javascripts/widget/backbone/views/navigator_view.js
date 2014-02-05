@@ -76,8 +76,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.$el.prev().hide();
         },
 
-        navigateToRootPage: function(e){
-            e.preventDefault();
+        navigateToRootPage: function(){
             root_link = $('.goToFeatures');
             if (!root_link.hasClass('active')) {
                 root_link.click();
