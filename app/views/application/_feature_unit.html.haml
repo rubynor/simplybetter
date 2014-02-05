@@ -8,7 +8,7 @@
       %i.fa.fa-times
     = link_to send(path, @application.id,f),remote: true,method: method do
       - if method == :post
-        %i.fa.fa-mail-forward
+        %i.fa.fa-arrow-left
       - else
-        %i.fa.fa-mail-reply
+        %i.fa.fa-arrow-right
   .clear
