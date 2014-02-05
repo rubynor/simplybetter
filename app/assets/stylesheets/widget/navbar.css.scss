@@ -1,13 +1,15 @@
+.simplybetter-table{
+  height: 100%;
+  width: 100%;
+  td.content{
+    height: 100%;
+  }
+}
 #simplybetterFeaturesModal {
   $navbar-height: 40px;
-  padding-top: $navbar-height;
   #simplybetterNavbar {
-    height: $navbar-height;
     background-color: $powderpuff;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
+    position: relative;
 
     a.logo{
       position: absolute;
@@ -34,6 +36,13 @@
           cursor: pointer;
         }
       }
+    }
+
+    p{
+      padding: 10px 10px 30px 10px;
+      color: $banquette;
+      font-size: 14px;
+      line-height: 20px;
     }
 
     .simplybetterNavbarContent {

@@ -1,14 +1,32 @@
-<div id="simplybetterNavbar">
-    <div class="simplybetterNavbarContent">
-        <a class="logo" href="http://simplybetter.io" target="_blank">
-            <h1>simplybetter.io</h1>
-        </a>
+<table class="simplybetter-table">
+  <tr>
+    <td id="simplybetterNavbar">
+        <div class="simplybetterNavbarContent">
+          <a class="logo" href="http://simplybetter.io" target="_blank">
+              <h1>simplybetter.io</h1>
+          </a>
 
-        <h2>
-          <a class="home">{{= applicationName }}</a>
-        </h2>
-        <a href="#" class="goToFeatures link"><i class="fa fa-arrow-left"></i>Back to list</a>
-    </div>
-</div>
-<div id="simplybetterFeaturesModalContent"></div>
+          <h2>
+            <a class="home">
+              {{= applicationName }}
+            </a>
+          </h2>
+
+          <a href="#" class="goToFeatures link">
+            <i class="fa fa-arrow-left"></i>
+            Back to list
+          </a>
+
+          <p>
+            {{= applicationIntro }}
+          </p>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="content">
+      <div id="simplybetterFeaturesModalContent"></div>
+    </td>
+  </tr>
+</table>
 

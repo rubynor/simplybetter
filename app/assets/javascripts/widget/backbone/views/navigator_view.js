@@ -95,7 +95,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
                 success: function(model){
                     console.log(model);
                     self.$el.html(template({
-                      applicationName: model.get('title')
+                      applicationName: model.get('name'),
+                      applicationIntro: model.get('intro')
                     }));
                     self.navigateToRootPage();
                 }
