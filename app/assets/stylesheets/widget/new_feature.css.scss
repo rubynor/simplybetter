@@ -10,17 +10,23 @@
       box-sizing:border-box;
       -moz-box-sizing:border-box; /* Firefox */
       margin-bottom: 10px;
+
       &:focus{
         background-color: #fff;
         border-color: #92BFFD !important;
       }
     }
 
+    label{
+      margin-bottom: 10px;
+      color: $banquette;
+    }
+
     input[type="text"] {
       width: 100%;
       height: 45px;
       font-size: 20px;
-      border: 2px solid grey;
+      border: 2px solid $silver;
       padding: 0px 10px;
       background-color: #fbfbfb;
     }
@@ -41,7 +47,7 @@
     textarea{
       width: 100%;
       height: 80px;
-      border: 2px solid grey;
+      border: 2px solid $silver;
       padding: 10px 10px;
       resize: vertical;
     }
