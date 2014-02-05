@@ -15,15 +15,23 @@
   .mailbox.icon{"data-title" => "mailbox"}
   .triangle.icon{"data-title" => "triangle"}
 
-  %textarea.col-md-12{rows: 10}
-    <script>
-    var _smplyBtr = _smplyBtr || {};
-    _smplyBtr.email = "<INSERT EMAIL HERE>";
-    _smplyBtr.name = "<INSERT NAME HERE>" ;
+  .col-md-12
+    %pre
+      %code
+        = preserve do
+          :escaped
+            <script>
+                var _smplyBtr = _smplyBtr || {};
+                _smplyBtr.email = "<INSERT EMAIL HERE>";
+                _smplyBtr.name = "<INSERT NAME HERE>" ;
 
-    _smplyBtr.icon = "";
-    _smplyBtr.appKey = "#{@application.token}";
-    (function() {
-    var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = 'http://www.simplybetter.io/assets/widget/widget-client.js.erb'; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
-    })();
-    </script>
+                _smplyBtr.icon = "";
+                _smplyBtr.appKey = "#{@application.token}";
+                (function() {
+                    var sb = document.createElement('script'); 
+                    sb.type = 'text/javascript'; 
+                    sb.async = true; 
+                    sb.src = 'http://www.simplybetter.io/assets/widget/widget-client.js.erb'; 
+                    var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+                })();
+            </script>

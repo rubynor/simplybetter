@@ -15,4 +15,10 @@
 //= require bootstrap
 //= require turbolinks
 //= require sb_tools
+//= require highlight
+//
 //= require setup_instructions
+
+$(function(){
+    hljs.initHighlightingOnLoad();
+});
