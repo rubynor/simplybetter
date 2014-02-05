@@ -51,9 +51,9 @@ SimplyBetterApplication.Features = (function(features){
 
                 function addToList(response){
                     var ol = $('.similar-ideas ol');
-                    ol.empty();
                     if (response.length > 0){
-                        $(ol).parent().show();
+                        ol.parent().show();
+                        ol.empty();
                         return $.each(response,function(){
                             var model = self.options.featuresCollection.get(this["id"]);
                             var itemView = new module.ItemLayout({
@@ -63,8 +63,6 @@ SimplyBetterApplication.Features = (function(features){
                             itemView.featureItem.options.container = '#features';
                             $(ol).append(itemView.render().el);
                         }); 
-                    } else {
-                        ol.empty();
                     }
                 };
             }
