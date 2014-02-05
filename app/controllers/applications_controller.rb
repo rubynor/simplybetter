@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:index, :show, :administrate_group]
+  before_action :set_application, only: [:index, :show, :administrate_group, :update]
 
   def index
     @applications = current_customer.applications.includes(:features)
@@ -7,6 +7,11 @@ class ApplicationsController < ApplicationController
   end
 
   def show
+  end
+
+  def update
+    @application.update_attributes!(application_attributes)
+    redirect_to :back, notice: 'Updated!'
   end
 
   def create
@@ -26,6 +31,6 @@ class ApplicationsController < ApplicationController
   end
 
   def application_attributes
-    params.require(:application).permit(:name)
+    params.require(:application).permit(:name, :intro)
   end
 end

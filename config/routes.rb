@@ -21,7 +21,7 @@ SimplyBetter::Application.routes.draw do
     end
   end
 
-  resources :applications, only: [:index, :create, :show] do
+  resources :applications, only: [:index, :create, :show, :update] do
     get :administrate_group, on: :member
     resources :features, except: [:show, :index] do
       post :add_to_group, on: :member
