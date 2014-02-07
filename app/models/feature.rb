@@ -7,7 +7,7 @@ class Feature < ActiveRecord::Base
   has_many :votes, as: :vote_receiver
   has_many :comments, inverse_of: :feature
 
-  validates_presence_of :title, :description
+  validates_presence_of :title, :description, :creator
   validates_uniqueness_of :title, scope: :application
 
   def update_votes_count

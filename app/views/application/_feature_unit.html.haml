@@ -1,14 +1,31 @@
 .list-group-item{id: "feature_#{f.id}"}
-  %h4.list-group-item-heading= f.title
-  %p.list-group-item-text= truncate(f.description, length: 100)
+  .row
+    .col-xs-12
+      %h4.list-group-item-heading= f.title
+      %p.list-group-item-text= truncate(f.description, length: 100)
+  .row
+    .col-xs-12
+      %table
+        %tr
+          %td.meta
+            #{f.votes_count} votes
+          %td.meta
+            #{f.comments.count} comments
+          %td.meta
+            Created by #{f.creator.name}, on #{f.created_at.strftime("%d/%m/%y")}
+  .switch-list
+    = link_to send(path, @application.id,f),
+      remote: true,
+      title: "Move idea",
+      method: method do
+      - if method == :post
+        %i.fa.fa-arrow-left
+      - else
+        %i.fa.fa-arrow-right
   .edit-panel
     = link_to edit_application_feature_path(@application.id, f.id) do
       %i.fa.fa-edit
     = link_to application_feature_path(@application.id, f.id), method: :delete, confirm: "Are you sure?" do
       %i.fa.fa-times
-    = link_to send(path, @application.id,f),remote: true,method: method do
-      - if method == :post
-        %i.fa.fa-arrow-left
-      - else
-        %i.fa.fa-arrow-right
+
   .clear
