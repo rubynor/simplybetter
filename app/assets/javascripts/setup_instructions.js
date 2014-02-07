@@ -6,7 +6,7 @@ $(function(){
         $('.icon').each(function(index){
             $(this).on('click', function(e){
                 setSelected(e.target);
-                $("#application-code").removeClass('hidden');
+                $("#application-code").removeClass('invisible');
             });
         });
 

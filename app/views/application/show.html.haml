@@ -12,7 +12,7 @@
       .mailbox.icon{"data-title" => "mailbox-animated"}
       .triangle.icon{"data-title" => "triangle-call-for-action"}
 
-  #application-code.hidden
+  #application-code.invisible
     .row
       .col-md-12
         %h2 2. Paste code inside the #{"<body>"} tag
@@ -44,3 +44,47 @@
                         var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
                     })();
                 </script>
+
+  .row
+    .col-md-12
+      %h1 Customizing your icon
+      %p
+        It's really easy to use your own custom icon if you want to. 
+        You can override the css so you'll have complete control. Below is the current
+        styling for the triangle-call-for-action icon. You can override any property by adding at the end !important 
+
+      %pre
+        %code
+          = preserve do
+            :escaped
+              #simplybetterActivateButton {
+                position: fixed;
+                right: -75px;
+                bottom: -75px;
+                height: 150px;
+                width: 150px;
+                z-index: 2000;
+                background: url('/blue-rotate.gif') no-repeat;
+                background-size: contain;
+                transform:rotate(45deg);
+                -ms-transform:rotate(45deg); /* IE 9 */
+                -webkit-transform:rotate(45deg); /* Safari and Chrome */
+
+                &:hover{
+                  cursor: pointer;
+                }
+              }
+
+      %h3 Example: Moving the triangle to the left side
+      %pre
+        %code
+          = preserve do
+            :escaped
+              #simplybetterActivateButton{
+                left: -75px !important;
+                transform: rotate(135deg) !important;
+                -ms-transform: rotate(135deg) !important;
+                -webkit-transform: rotate(135deg) !important;
+              }
+
+
