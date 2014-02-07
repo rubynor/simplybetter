@@ -1,20 +1,20 @@
 class Application < ActiveRecord::Base
   belongs_to :customer
-  has_one :feature_group
+  has_one :idea_group
   has_many :users
-  has_many :features, -> { order("votes_count DESC") }
-  has_many :comments, -> { order("comments.votes_count DESC") }, through: :features
+  has_many :ideas, -> { order("votes_count DESC") }
+  has_many :comments, -> { order("comments.votes_count DESC") }, through: :ideas
 
   validates_uniqueness_of :token
 
-  before_create :generate_token, :create_feature_group
+  before_create :generate_token, :create_idea_group
 
-  def feature_group
-    FeatureGroup.find_or_create_by(application_id: self.id)
+  def idea_group
+    IdeaGroup.find_or_create_by(application_id: self.id)
   end
 
-  def features_not_in_group
-    self.features.where("feature_group_id IS NULL or feature_group_id != ?", self.feature_group.id)
+  def ideas_not_in_group
+    self.ideas.where("idea_group_id IS NULL or idea_group_id != ?", self.idea_group.id)
   end
 
   private

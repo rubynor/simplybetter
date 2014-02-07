@@ -2,7 +2,7 @@ class ApplicationsController < ApplicationController
   before_action :set_application, only: [:index, :show, :administrate_group, :update]
 
   def index
-    @applications = current_customer.applications.includes(features: :comments)
+    @applications = current_customer.applications.includes(ideas: :comments)
     @application = Application.new
   end
 
@@ -20,8 +20,8 @@ class ApplicationsController < ApplicationController
   end
 
   def administrate_group
-    @features = @application.features_not_in_group
-    @feature_group = @application.feature_group.features
+    @ideas = @application.ideas_not_in_group
+    @idea_group = @application.idea_group.ideas
   end
 
   private

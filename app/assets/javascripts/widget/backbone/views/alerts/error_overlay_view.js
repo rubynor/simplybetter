@@ -12,7 +12,7 @@ SimplyBetterApplication.Alerts = (function(alerts){
         render: function(){
             var self = this;
             var template = SimplyBetterApplication.Template.get(this.template);
-            $('#simplybetterFeaturesModal').append(this.$el.html(template({message: this.options.message})));
+            $('#simplybetterIdeasModal').append(this.$el.html(template({message: this.options.message})));
 
             var overlay = $('.'+this.classPrefix+'-overlay');
             overlay.animate({

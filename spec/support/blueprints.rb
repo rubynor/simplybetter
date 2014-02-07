@@ -12,9 +12,9 @@ Application.blueprint do
   customer
 end
 
-Feature.blueprint do
+Idea.blueprint do
   application
-  title { "New feature" }
+  title { "New idea" }
   description { "Seriously, how hard can it be to move a todo list" }
 end
 
@@ -27,7 +27,7 @@ end
 
 Comment.blueprint do
   creator { User.make! }
-  feature
+  idea
   body { 'Hello bro' }
 end
 
@@ -37,7 +37,7 @@ User.blueprint do
 end
 
 Vote.blueprint do
-  vote_receiver { Feature.make! }
+  vote_receiver { Idea.make! }
   voter_email { "test@example.com"}
   value { 1 }
 end

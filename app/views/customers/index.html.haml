@@ -10,10 +10,10 @@
   %b= application.name
   Token:#{application.token}
   %br/
-  - if application.features.count > 0
+  - if application.ideas.count > 0
     %ul
-      - application.features.each do |feature|
+      - application.ideas.each do |idea|
         %li
-          = feature.votes_count
-          = feature.title
+          = idea.votes_count
+          = idea.title
 %br/

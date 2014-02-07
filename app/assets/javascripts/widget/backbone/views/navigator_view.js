@@ -3,18 +3,18 @@ SimplyBetterApplication.Navigator = (function(navigator){
 
     module.NavigatorView = Backbone.View.extend({
         initialize: function(){
-            this.features = new SimplyBetterApplication.Features.collection();
-            this.featuresView = new SimplyBetterApplication.Features.collectionView({
-                collection: this.features, 
+            this.ideas = new SimplyBetterApplication.Ideas.collection();
+            this.ideasView = new SimplyBetterApplication.Ideas.collectionView({
+                collection: this.ideas, 
                 navigator: this
             });
             this.application = new SimplyBetterApplication.Application.Model();
             this.listenTo(this,'close',this.deActivateLink);
         },
         template: 'navigator.html',
-        el: '#simplybetterFeaturesModal',
+        el: '#simplybetterIdeasModal',
         events: {
-            "click .goToFeatures": "navigateOverview",
+            "click .goToIdeas": "navigateOverview",
             "click .home": "navigateToRootPage"
         },
 
@@ -22,31 +22,31 @@ SimplyBetterApplication.Navigator = (function(navigator){
             e.preventDefault();
             this.trigger('close');
             $(e.target).addClass('active');
-            var newFeatureView = new SimplyBetterApplication.Features.newFeatureView({
+            var newIdeaView = new SimplyBetterApplication.Ideas.newIdeaView({
                 navigator: this,
-                featuresCollection: this.features
+                ideasCollection: this.ideas
             });
-            var overviewLayout = new SimplyBetterApplication.Features.OverviewLayout({
-                newFeatureView: newFeatureView,
-                featuresView: this.featuresView,
+            var overviewLayout = new SimplyBetterApplication.Ideas.OverviewLayout({
+                newIdeaView: newIdeaView,
+                ideasView: this.ideasView,
                 navigator: this
             })
             this.$el
-                .find('#simplybetterFeaturesModalContent')
+                .find('#simplybetterIdeasModalContent')
                 .html(overviewLayout.render().el);
-            this.features.fetch();
+            this.ideas.fetch();
         },
 
-        showFeature: function(featureModel,voteModel,container){
+        showIdea: function(ideaModel,voteModel,container){
             if (!voteModel) {
                 var voteModel = new SimplyBetterApplication.Votes.Model({
-                    feature_id: featureModel.get('id'), 
+                    idea_id: ideaModel.get('id'), 
                     voter_email: SimplyBetterApplication.config.userEmail
                 });
                 voteModel.fetch();
             }
-            var feature_layout = new SimplyBetterApplication.Features.Layout({
-                feature: featureModel, 
+            var idea_layout = new SimplyBetterApplication.Ideas.Layout({
+                idea: ideaModel, 
                 navigator: this, 
                 voteModel: voteModel
             });
@@ -54,14 +54,14 @@ SimplyBetterApplication.Navigator = (function(navigator){
             if (container){
                 this.$el
                     .find(container)
-                    .html(feature_layout.render().el);
+                    .html(idea_layout.render().el);
             } else {
                 this.trigger('close');
                 this.$el
-                    .find('#simplybetterFeaturesModalContent')
-                    .html(feature_layout.render().el);
+                    .find('#simplybetterIdeasModalContent')
+                    .html(idea_layout.render().el);
             }
-            return feature_layout;
+            return idea_layout;
         },
 
         alertSuccess: function(message){
@@ -77,7 +77,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         navigateToRootPage: function(){
-            root_link = $('.goToFeatures');
+            root_link = $('.goToIdeas');
             if (!root_link.hasClass('active')) {
                 root_link.click();
             }

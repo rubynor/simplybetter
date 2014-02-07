@@ -1,19 +1,19 @@
 class WidgetApi::CommentsController < ApplicationController
-  before_action :set_feature, only: [:index, :show]
+  before_action :set_idea, only: [:index, :show]
 
   def index
-    @comments = @feature.comments
+    @comments = @idea.comments
   end
 
   def show
-    @comment = @feature.comments.find(params[:id])
+    @comment = @idea.comments.find(params[:id])
   end
 
   def create
     #TODO: add support for customer to add comments
     user_email = params[:comment].delete(:user_email)
     customer_email = params[:comment].delete(:customer_email)
-    feature = Feature.find(params[:feature_id])
+    idea = Idea.find(params[:idea_id])
 
     creator = User.find_by(email: params[:user][:email])
     unless creator
@@ -24,7 +24,7 @@ class WidgetApi::CommentsController < ApplicationController
     @comment.save!
 
     respond_to do |format|
-      format.html { redirect_to application_feature_path(@comment.feature) }
+      format.html { redirect_to application_idea_path(@comment.idea) }
       format.json { render 'widget_api/comments/show' }
     end
   end
@@ -36,20 +36,20 @@ class WidgetApi::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to application_feature_path(@comment.feature.id) }
+      format.html { redirect_to application_idea_path(@comment.idea.id) }
       format.json { render :json => {
-          :feature => @comment.feature.to_json
-      }, :callback => params[:callback] || 'feature' }
+          :idea => @comment.idea.to_json
+      }, :callback => params[:callback] || 'idea' }
     end
   end
 
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body, :feature_id, :user_email, :customer_email)
+    params.require(:comment).permit(:body, :idea_id, :user_email, :customer_email)
   end
 
-  def set_feature
-    @feature ||= Feature.find(params[:feature_id])
+  def set_idea
+    @idea ||= Idea.find(params[:idea_id])
   end
 end

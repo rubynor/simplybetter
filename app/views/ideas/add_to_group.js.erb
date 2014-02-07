@@ -1,0 +1,6 @@
+(function(){
+    $("#idea_<%=@idea.id%>").remove();
+    var content = "<%=j render 'idea_unit',f: @idea, path: :remove_from_group_application_idea_path, method: :delete%>";
+    $('#ideasForVoting').append(content);
+})();
+

@@ -1,7 +1,7 @@
 SimplyBetter::Application.routes.draw do
 
   namespace :widget_api do
-    resources :features do
+    resources :ideas do
       resources :comments, only: [:create, :destroy, :index, :show]
     end
     resources :votes, only: [] do
@@ -9,7 +9,7 @@ SimplyBetter::Application.routes.draw do
       post :cast, on: :collection
     end
     resources :applications, only: [:show] do
-      resources :features do
+      resources :ideas do
         get :find_similar, on: :collection
       end
     end
@@ -23,7 +23,7 @@ SimplyBetter::Application.routes.draw do
 
   resources :applications, only: [:index, :create, :show, :update] do
     get :administrate_group, on: :member
-    resources :features, except: [:show, :index] do
+    resources :ideas, except: [:show, :index] do
       post :add_to_group, on: :member
       delete :remove_from_group, on: :member
     end

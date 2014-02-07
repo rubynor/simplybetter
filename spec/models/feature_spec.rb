@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Feature do
+describe Idea do
   it 'should have a title' do
-    f = Feature.new(description: "Hey!")
+    f = Idea.new(description: "Hey!")
     expect{ f.save! }.to raise_error ActiveRecord::RecordInvalid, /title/i
   end
   it 'should have a body' do
-    f = Feature.new(title: "hey")
+    f = Idea.new(title: "hey")
     expect{ f.save! }.to raise_error ActiveRecord::RecordInvalid, /description/i
   end
 
   it 'should respond to comments' do
-    f = Feature.make!
+    f = Idea.make!
     f.should respond_to :comments
   end
 end

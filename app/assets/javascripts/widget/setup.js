@@ -28,23 +28,23 @@ SimplyBetterApplication.init = (function (){
             app.templateUrl = baseUrl + '/assets/widget/backbone/templates/'
 
             // URLs
-            app.featuresCollectionUrl = function(){
-                return app.baseUrl + '/widget_api/features.json?token=' + key;
+            app.ideasCollectionUrl = function(){
+                return app.baseUrl + '/widget_api/ideas.json?token=' + key;
             };
-            app.featuresModelUrl = function(id){
-                return app.baseUrl + '/widget_api/features/' + id + '.json?token=' + key;
+            app.ideasModelUrl = function(id){
+                return app.baseUrl + '/widget_api/ideas/' + id + '.json?token=' + key;
             };
-            app.featuresNewModelUrl = function(){
-                return app.featuresCollectionUrl();
+            app.ideasNewModelUrl = function(){
+                return app.ideasCollectionUrl();
             };
             app.votesUrl = function(options){
-                return app.baseUrl + '/widget_api/votes/cast.json?voter_email=' + options.voter_email + '&feature_id=' + options.feature_id + '&token=' + key;
+                return app.baseUrl + '/widget_api/votes/cast.json?voter_email=' + options.voter_email + '&idea_id=' + options.idea_id + '&token=' + key;
             };
-            app.featuresCastVoteRoot = function(){
+            app.ideasCastVoteRoot = function(){
                 return app.baseUrl + '/widget_api/votes/';
             };
             app.commentsCollectionUrl = function(fid){
-                return app.baseUrl + '/widget_api/features/' + fid + '/comments.json?token=' + key;
+                return app.baseUrl + '/widget_api/ideas/' + fid + '/comments.json?token=' + key;
             };
             app.commentsNewModelUrl = function(fid){
                 return app.commentsCollectionUrl(fid);

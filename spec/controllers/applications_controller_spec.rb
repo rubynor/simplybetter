@@ -35,14 +35,14 @@ describe ApplicationsController do
   end
 
   describe 'administrate_group' do
-    it 'should assign @features, and @feature_group' do
-      f = Feature.make!
-      f.update_attributes!(feature_group_id: @application.feature_group.id)
-      @application.features << Feature.make!(title: 'new feature')
+    it 'should assign @ideas, and @idea_group' do
+      f = Idea.make!
+      f.update_attributes!(idea_group_id: @application.idea_group.id)
+      @application.ideas << Idea.make!(title: 'new idea')
       get :administrate_group, id: @application.id
-      assigns(:features).should be_kind_of(ActiveRecord::Relation)
-      assigns(:features).first.should be_kind_of(Feature)
-      assigns(:feature_group).first.should be_an_instance_of(Feature)
+      assigns(:ideas).should be_kind_of(ActiveRecord::Relation)
+      assigns(:ideas).first.should be_kind_of(Idea)
+      assigns(:idea_group).first.should be_an_instance_of(Idea)
     end
   end
 end

@@ -1,19 +1,19 @@
-SimplyBetterApplication.Features = (function(features){
-    var module = features;
+SimplyBetterApplication.Ideas = (function(ideas){
+    var module = ideas;
     
     module.OverviewLayout = Backbone.View.extend({
         initialize: function(){
-            this.topView = this.options.newFeatureView;
-            this.bottomView = this.options.featuresView;
+            this.topView = this.options.newIdeaView;
+            this.bottomView = this.options.ideasView;
             this.listenTo(this.options.navigator, 'close', this.close);
             this.listenTo(
               this.options.navigator, 
-              'featureClosed', 
+              'ideaClosed', 
               this.renderBottomView
             );
         },
         
-        template: 'features/overview.html',
+        template: 'ideas/overview.html',
         className: 'overview',
 
         close: function(){
@@ -21,8 +21,8 @@ SimplyBetterApplication.Features = (function(features){
         },
 
         ui: {
-            top: '#newFeature',
-            bottom: '#features'
+            top: '#newIdea',
+            bottom: '#ideas'
         },
 
         renderBottomView: function(){
@@ -41,4 +41,4 @@ SimplyBetterApplication.Features = (function(features){
     });
 
     return module;
-}(SimplyBetterApplication.Features || {}));
+}(SimplyBetterApplication.Ideas || {}));

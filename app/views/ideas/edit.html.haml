@@ -1,0 +1,9 @@
+.applications
+  =render 'shared/sidebar'
+  .col-md-8
+    =render 'shared/alert_success', notice: notice
+    .row
+      .panel.panel-default
+        .panel-heading Edit idea!
+        .panel-body
+          = render 'form'

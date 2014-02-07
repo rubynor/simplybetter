@@ -18,8 +18,8 @@ SimplyBetterApplication.Comments = (function (comments) {
     },
 
     renderNewCommentView: function(){
-      var feature_id = this.collection.feature_id;
-      var newComment = new SimplyBetterApplication.Comments.Model(feature_id);
+      var idea_id = this.collection.idea_id;
+      var newComment = new SimplyBetterApplication.Comments.Model(idea_id);
       var newCommentView = new SimplyBetterApplication.Comments.New({model: newComment, collection: this.collection});
       this.$el.find('.new-comment').html(newCommentView.render().el);
     },

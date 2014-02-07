@@ -1,6 +1,0 @@
-(function(){
-    $("#feature_<%=@feature.id%>").remove();
-    var content = "<%=j render 'feature_unit',f: @feature, path: :remove_from_group_application_feature_path, method: :delete%>";
-    $('#featuresForVoting').append(content);
-})();
-

@@ -1,0 +1,22 @@
+= form_for [@application, @idea],html: {class: "form-horizontal", role: "form"} do |f|
+  - if @idea.errors.any?
+    .alert.alert-danger
+      %button.close{type: "button", 'data-dismiss' => "alert", 'aria-hidden' => "true"} &times;
+      %h4
+        = pluralize(@idea.errors.count, "error")
+        prohibited this request from being saved:
+      %ul
+        - @idea.errors.full_messages.each do |msg|
+          %li
+            = msg
+  .form-group{class: "#{set_error_class(@idea,:title)}"}
+    %label.col-md-2.control-label Title
+    .col-md-8
+      = f.text_field :title, class: 'form-control'
+  .form-group{class: "#{set_error_class(@idea,:description)}"}
+    %label.col-md-2.control-label Description
+    .col-md-8
+      = f.text_area :description, class: 'form-control'
+  .form-group
+    .col-md-offset-2.col-md-8
+      = f.button 'Create request', class: 'btn btn-default'

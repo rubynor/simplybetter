@@ -45,8 +45,8 @@ class WidgetApi::VotesController < ApplicationController
 
   def vote_receiver
     application = find_application
-    @vote_receiver ||= if params[:feature_id]
-      application.features.find(params[:feature_id])
+    @vote_receiver ||= if params[:idea_id]
+      application.ideas.find(params[:idea_id])
     elsif params[:comment_id]
       application.comments.find(params[:comment_id])
     else
@@ -60,8 +60,8 @@ class WidgetApi::VotesController < ApplicationController
 
   #def cast
   #  application = Application.find_by_token(params[:token])
-  #  if params[:feature_id]
-  #    vote_receiver = application.features.find(params[:feature_id])
+  #  if params[:idea_id]
+  #    vote_receiver = application.ideas.find(params[:idea_id])
   #  elsif params[:comment_id]
   #    vote_receiver = application.comments.find(params[:comment_id])
   #  else
@@ -74,7 +74,7 @@ class WidgetApi::VotesController < ApplicationController
   #  vote.save!
   #  vote_receiver.reload
   #
-  #  @feature = vote_receiver.instance_of?(Comment)? vote_receiver.feature : vote_receiver
+  #  @idea = vote_receiver.instance_of?(Comment)? vote_receiver.idea : vote_receiver
   #
   #  respond_to do |format|
   #    format.json

@@ -1,13 +1,13 @@
 SimplyBetterApplication.Votes = (function(votes){
     var module = votes;
 
-    module.FeatureView = Backbone.View.extend({
+    module.IdeaView = Backbone.View.extend({
         initialize: function(){
             this.model.on('change', this.render, this);
         },
         className: 'vote-buttons',
 
-        template: 'votes/vote_feature.html',
+        template: 'votes/vote_idea.html',
 
         events: {
             "click .up" : "vote_up",
