@@ -6,10 +6,8 @@ body.applications.show
     float: left
     border-radius: 5px
     margin: 10px
-    background-color: $silver
-    border: 1px solid $gray
     &.mailbox
-      background: #eee url('/feedback-postbox.png') center center
+      background: url('/feedback-postbox.png') center center
       background-repeat: no-repeat
       background-size: contain
       &.selected
@@ -17,9 +15,12 @@ body.applications.show
         background-size: contain
         background-repeat: no-repeat
     &.triangle
-      background: #eee url('/blue.png') center center
+      background: url('/blue.png') center center
       background-repeat: no-repeat
-      background-size: contain
+      background-size: 100px 100px
       &.selected
-        background: $lime url('/blue.png')
-        background-size: contain
+        background: $lime url('/blue.png') center center
+        background-repeat: no-repeat
+        background-size: 100px 100px
+    &:hover
+      cursor: pointer
