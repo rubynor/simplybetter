@@ -1,6 +1,25 @@
 #administrate_group{
   .list-group-item{
     position: relative;
+    overflow: visible;
+    .upvotes{
+      color: $green;
+    }
+    .downvotes{
+      color: $red;
+    }
+
+    @import "widget/comments";
+    #comments{
+      display: none;
+    }
+
+    .comments-toggle{
+      text-decoration: underline;
+      &:hover{
+        cursor: pointer;
+      }
+    }
 
     .edit-panel{
       font-size: 22px;

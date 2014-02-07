@@ -18,4 +18,4 @@
 //= require highlight
 //
 //= require setup_instructions
-
+//= require administrate_application

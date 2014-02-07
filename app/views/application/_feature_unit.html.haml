@@ -7,12 +7,31 @@
     .col-xs-12
       %table
         %tr
-          %td.meta
-            #{f.votes_count} votes
-          %td.meta
+          %td.meta.upvotes
+            #{f.upvotes}
+            %i.fa.fa-thumbs-o-up
+          %td.meta.downvotes
+            #{f.downvotes}
+            %i.fa.fa-thumbs-o-down
+          %td.meta.comments-toggle
             #{f.comments.count} comments
           %td.meta
             Created by #{f.creator.name}, on #{f.created_at.strftime("%d/%m/%y")}
+  .row#comments
+    .col-xs-12
+      .comments-section
+        %ol
+          - f.comments.each do |c|
+            %li.comment-item
+              .avatar
+                = image_tag c.creator.gravatar_url
+              .content
+                %span.username= c.creator.name
+                on
+                %span= c.created_at.strftime("%d/%m/%y")
+                .comment-body
+                  = c.body
+              .clear
   .switch-list
     = link_to send(path, @application.id,f),
       remote: true,

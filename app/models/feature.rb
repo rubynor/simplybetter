@@ -10,6 +10,14 @@ class Feature < ActiveRecord::Base
   validates_presence_of :title, :description, :creator
   validates_uniqueness_of :title, scope: :application
 
+  def upvotes
+    votes.where("value > 0").count
+  end
+
+  def downvotes
+    votes.where("value < 0").count
+  end 
+
   def update_votes_count
     self.update_attribute(:votes_count, votes.sum(:value))
   end

@@ -2,7 +2,7 @@ class ApplicationsController < ApplicationController
   before_action :set_application, only: [:index, :show, :administrate_group, :update]
 
   def index
-    @applications = current_customer.applications.includes(:features)
+    @applications = current_customer.applications.includes(features: :comments)
     @application = Application.new
   end
 
