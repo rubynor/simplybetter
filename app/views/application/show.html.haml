@@ -9,8 +9,8 @@
     .col-md-12
       %h1 How to set up the client application code
       %h2 1. Choose icon
-      .mailbox.icon{"data-title" => "mailbox"}
-      .triangle.icon{"data-title" => "triangle"}
+      .mailbox.icon{"data-title" => "mailbox-animated"}
+      .triangle.icon{"data-title" => "triangle-call-for-action"}
 
   #application-code.hidden
     .row
@@ -28,6 +28,7 @@
           %code
             = preserve do
               :escaped
+                <!-- Paste at the BOTTOM of BODY -->
                 <script>
                     var _smplyBtr = _smplyBtr || {};
                     _smplyBtr.email = "<INSERT EMAIL HERE>";
