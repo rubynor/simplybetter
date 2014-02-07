@@ -15,8 +15,8 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    current_customer.applications.create!(application_attributes)
-    redirect_to applications_path, notice: 'Application successfully created!'
+    application = current_customer.applications.create!(application_attributes)
+    redirect_to application_path(application.id), notice: 'Application successfully created!'
   end
 
   def administrate_group
