@@ -24,6 +24,14 @@
         Create a new application!
     .panel-body
       = form_for @application,html: {class: "form-horizontal", role: "form"} do |f|
+        - if @application.errors.any?
+          .alert.alert-danger
+            %p
+              %strong
+                Unfortunately some errors prevented you from creating the application:
+            %ul
+              - @application.errors.full_messages.each do |msg|
+                %li= msg
         .form-group
           %label.col-md-4.control-label New application name
           .col-md-8

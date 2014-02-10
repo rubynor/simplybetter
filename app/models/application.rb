@@ -7,6 +7,7 @@ class Application < ActiveRecord::Base
   has_many :comments, -> { order("comments.votes_count DESC") }, through: :ideas
 
   validates_uniqueness_of :token
+  validates_presence_of :name
 
   before_create :generate_token, :create_idea_group
 

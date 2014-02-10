@@ -1,8 +1,8 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:index, :show, :administrate_group, :update]
+  before_action :set_application, only: [:show, :administrate_group, :update]
+  before_action :set_applications, only: [:index, :create]
 
   def index
-    @applications = current_customer.applications.includes(ideas: :comments)
     @application = Application.new
   end
 
@@ -15,19 +15,27 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    application = current_customer.applications.create!(application_attributes)
-    redirect_to application_path(application.id), notice: 'Application successfully created!'
+    @application = current_customer.applications.new(application_attributes)
+    if @application.save
+      redirect_to application_path(@application.id), notice: 'Application successfully created!'
+    else
+      render :index
+    end
   end
 
   def administrate_group
-    @ideas = @application.ideas_not_in_group
-    @idea_group = @application.idea_group.ideas
+    @ideas = @application.ideas_not_in_group.includes(:comments)
+    @idea_group = @application.idea_group.ideas.includes(:comments)
   end
 
   private
 
   def set_application
     @application ||= current_customer.applications.find(params[:id]) if params[:id]
+  end
+
+  def set_applications
+    @applications ||= current_customer.applications.delete_if{|a| a.new_record?}
   end
 
   def application_attributes
