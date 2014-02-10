@@ -1,4 +1,5 @@
 class Idea < ActiveRecord::Base
+  has_paper_trail
   searchkick autocomplete: [:title]
 
   belongs_to :application

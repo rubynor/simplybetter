@@ -110,6 +110,9 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.7)
     newrelic_rpm (3.6.8.164)
+    paper_trail (3.0.0)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -225,6 +228,7 @@ DEPENDENCIES
   jquery-rails
   machinist
   newrelic_rpm
+  paper_trail (~> 3.0.0)
   pg
   pry
   rabl

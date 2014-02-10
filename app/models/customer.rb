@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
+  has_paper_trail
   include Gravtastic
   gravtastic size: 50
   has_secure_password

@@ -1,4 +1,5 @@
 class Application < ActiveRecord::Base
+  has_paper_trail
   belongs_to :customer
   has_one :idea_group
   has_many :users

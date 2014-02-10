@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_paper_trail
   include Gravtastic
   gravtastic size: 50
   validates :email, uniqueness: {scope: :application}, presence: true

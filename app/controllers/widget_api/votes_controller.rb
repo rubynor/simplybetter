@@ -1,5 +1,4 @@
 class WidgetApi::VotesController < ApplicationController
-
   def cast
     vote = params[:value] || 0
     if vote > 1
@@ -57,27 +56,4 @@ class WidgetApi::VotesController < ApplicationController
   def get_vote
     @vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
   end
-
-  #def cast
-  #  application = Application.find_by_token(params[:token])
-  #  if params[:idea_id]
-  #    vote_receiver = application.ideas.find(params[:idea_id])
-  #  elsif params[:comment_id]
-  #    vote_receiver = application.comments.find(params[:comment_id])
-  #  else
-  #    raise "No vote receiver"
-  #  end
-  #
-  #  vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
-  #  vote.value ||= 0
-  #  vote.value += params[:value].to_i
-  #  vote.save!
-  #  vote_receiver.reload
-  #
-  #  @idea = vote_receiver.instance_of?(Comment)? vote_receiver.idea : vote_receiver
-  #
-  #  respond_to do |format|
-  #    format.json
-  #  end
-  #end
 end

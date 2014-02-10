@@ -23,6 +23,8 @@ gem 'searchkick'
 # Get gravatar images
 gem 'gravtastic'
 
+gem 'paper_trail', '~> 3.0.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

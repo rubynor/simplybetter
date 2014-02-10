@@ -1,5 +1,5 @@
 class Vote < ActiveRecord::Base
-
+  has_paper_trail
   belongs_to :vote_receiver, polymorphic: true
   after_save :update_parent_votes_count
 

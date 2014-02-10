@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  has_paper_trail
   belongs_to :idea, inverse_of: :comments
   has_many :votes, as: :vote_receiver
 
