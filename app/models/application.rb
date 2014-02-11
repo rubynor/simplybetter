@@ -1,4 +1,5 @@
 class Application < ActiveRecord::Base
+  extend Enumerize
   has_paper_trail
   belongs_to :customer
   has_one :idea_group
@@ -6,10 +7,13 @@ class Application < ActiveRecord::Base
   has_many :ideas, -> { order("votes_count DESC") }
   has_many :comments, -> { order("comments.votes_count DESC") }, through: :ideas
 
+  enumerize :icon, in: [:triangle, :mailbox], default: :triangle
+
   validates_uniqueness_of :token
   validates_presence_of :name
 
   before_create :generate_token, :create_idea_group
+
 
   def idea_group
     IdeaGroup.find_or_create_by(application_id: self.id)

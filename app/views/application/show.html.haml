@@ -6,44 +6,50 @@
     .col-md-12
       =render 'shared/alert_success'
   .row
-    .col-md-12
-      %h1 How to set up the client application code
-      %h2 1. Choose icon
-      .mailbox.icon{"data-title" => "mailbox-animated"}
-      .triangle.icon{"data-title" => "triangle-call-for-action"}
+    .col-md-6
+      %h2 Choose icon
+      = form_for @application do |f|
+        -# TODO: Use variable @icons from controller
+        - @icons.each do |i|
+          = f.label "icon_#{i}".to_sym, 
+            class: selected(@application,i) do
+            %table
+              %tr
+                %td
+                  = f.radio_button :icon, i
+                %td
+                  .icon{class: i}
 
-  #application-code.invisible
-    .row
-      .col-md-12
-        %h2 2. Paste code inside the #{"<body>"} tag
-        %ul
-          %li
-            First you have to copy the snippet below and paste it anywhere inside your &lt;body&gt; tag.
-          %li
-            When this is done, you have to replace "INSERT EMAIL HERE" with the signed in user's email address.
-            In a rails app this would typically be \#{current_user.email}. Do the same with the users name or nickname!
-    .row
-      .col-md-12
-        %pre.copy-code
-          %code
-            = preserve do
-              :escaped
-                <!-- Paste at the BOTTOM of BODY -->
-                <script>
-                    var _smplyBtr = _smplyBtr || {};
-                    _smplyBtr.email = "<INSERT EMAIL HERE>";
-                    _smplyBtr.name = "<INSERT NAME HERE>" ;
+    .col-md-6#application-code
+      %h2 Add this code to your website
+      %ul
+        %li
+          First you have to copy the snippet below and paste it anywhere inside your &lt;body&gt; tag.
+        %li
+          Replace "INSERT EMAIL HERE" with the signed in user's email address.
+          In a rails app this would typically be \#{current_user.email}. Do the same with the users name or nickname!
+      .row
+        .col-md-12
+          %pre.copy-code
+            %code
+              = preserve do
+                :escaped
+                  <!-- Paste at the BOTTOM of BODY -->
+                  <script>
+                      var _smplyBtr = _smplyBtr || {};
+                      _smplyBtr.email = "<INSERT EMAIL HERE>";
+                      _smplyBtr.name = "<INSERT NAME HERE>" ;
 
-                    _smplyBtr.icon = " ";
-                    _smplyBtr.appKey = "#{@application.token}";
-                    (function() {
-                        var sb = document.createElement('script'); 
-                        sb.type = 'text/javascript'; 
-                        sb.async = true; 
-                        sb.src = 'http://www.simplybetter.io/assets/widget/widget-client.js.erb'; 
-                        var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
-                    })();
-                </script>
+                      _smplyBtr.icon = " ";
+                      _smplyBtr.appKey = "#{@application.token}";
+                      (function() {
+                          var sb = document.createElement('script'); 
+                          sb.type = 'text/javascript'; 
+                          sb.async = true; 
+                          sb.src = 'http://www.simplybetter.io/assets/widget/widget-client.js.erb'; 
+                          var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+                      })();
+                  </script>
 
   .row
     .col-md-12

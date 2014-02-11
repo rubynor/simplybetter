@@ -60,6 +60,8 @@ GEM
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.5.3)
+    enumerize (0.6.1)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (1.4.0)
@@ -221,6 +223,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails (~> 1.1.2)
   database_cleaner
+  enumerize
   font-awesome-rails
   gravtastic
   guard-livereload

@@ -7,6 +7,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
+    @icons = Application.icon.values
   end
 
   def update
@@ -39,6 +40,6 @@ class ApplicationsController < ApplicationController
   end
 
   def application_attributes
-    params.require(:application).permit(:name, :intro)
+    params.require(:application).permit(:name, :intro, :icon)
   end
 end

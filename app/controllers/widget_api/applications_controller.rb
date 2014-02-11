@@ -7,4 +7,9 @@ class WidgetApi::ApplicationsController < ApplicationController
       render json: {error: "Can't find your app based on that app-id"}, status: 500
     end
   end
+
+  def client_js
+    app = Application.find_by(token: params[:appkey])
+    @icon = app.icon
+  end
 end

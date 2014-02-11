@@ -9,6 +9,7 @@ SimplyBetter::Application.routes.draw do
       post :cast, on: :collection
     end
     resources :applications, only: [:show] do
+      get :client_js, on: :collection
       resources :ideas do
         get :find_similar, on: :collection
       end
