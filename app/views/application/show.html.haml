@@ -30,26 +30,59 @@
           In a rails app this would typically be \#{current_user.email}. Do the same with the users name or nickname!
       .row
         .col-md-12
-          %pre.copy-code
-            %code
-              = preserve do
-                :escaped
-                  <!-- Paste at the BOTTOM of BODY -->
-                  <script>
-                      var _smplyBtr = _smplyBtr || {};
-                      _smplyBtr.email = "<INSERT EMAIL HERE>";
-                      _smplyBtr.name = "<INSERT NAME HERE>" ;
+          / Nav tabs
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", href: "#other"} Other
+            %li
+              %a{"data-toggle" => "tab", href: "#rails"} Rails + Devise
+          / Tab panes
+          .tab-content
+            #other.fade.tab-pane.active.in
+              %pre.copy-code
+                %code
+                  = preserve do
+                    :escaped
+                      <!-- Paste at the BOTTOM of BODY -->
+                      <script>
+                          var _smplyBtr = _smplyBtr || {};
+                          _smplyBtr.email = "<INSERT EMAIL HERE>";
+                          _smplyBtr.name = "<INSERT NAME HERE>" ;
 
-                      _smplyBtr.icon = " ";
-                      _smplyBtr.appKey = "#{@application.token}";
-                      (function() {
-                          var sb = document.createElement('script'); 
-                          sb.type = 'text/javascript'; 
-                          sb.async = true; 
-                          sb.src = 'http://www.simplybetter.io/assets/widget/widget-client.js.erb'; 
-                          var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
-                      })();
-                  </script>
+                          _smplyBtr.appKey = "#{@application.token}";
+                          (function() {
+                              var sb = document.createElement('script'); 
+                              sb.type = 'text/javascript'; 
+                              sb.async = true; 
+                              sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey; 
+                              var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+                          })();
+                      </script>
+            #rails.fade.tab-pane
+              %pre.copy-code
+                %code
+                  = preserve do
+                    :escaped
+                      <!-- Paste at the BOTTOM of BODY -->
+                      <%= if user_signed_in? && Rails.env.production? %>
+                        <script>
+                            var _smplyBtr = _smplyBtr || {};
+                            _smplyBtr.email = "<%= current_user.email %>";
+                            _smplyBtr.name = "<%= current_user.name %>" ;
+
+                            _smplyBtr.appKey = "#{@application.token}";
+                            (function() {
+                                var sb = document.createElement('script'); 
+                                sb.type = 'text/javascript'; 
+                                sb.async = true; 
+                                sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey; 
+                                var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+                            })();
+                        </script>
+                      <% end %>
+
+
+          
 
   .row
     .col-md-12
