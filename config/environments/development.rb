@@ -32,6 +32,8 @@ SimplyBetter::Application.configure do
 
   config.middleware.use Rack::LiveReload
 
+  config.action_mailer.delivery_method = :letter_opener
+
   class WidgetPath
     def self.path
       ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
