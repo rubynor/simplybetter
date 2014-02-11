@@ -20,11 +20,24 @@ class IdeasController < ApplicationController
   end
 
   def edit
+    @users = []
+    @application.users.map do |u|
+      @users.push(push_string(u,"User"))
+    end
+    @users.push(push_string(@application.customer,"Customer"))
   end
 
   def update
-    @idea.update_attributes!(idea_attributes)
-    redirect_to administrate_group_application_path(@application.id), notice: 'Idea was updated'
+    attributes = idea_attributes
+    creator = attributes.delete(:creator)
+    @idea.assign_attributes(attributes)
+    @idea.creator = Idea.find_creator(creator)
+    if @idea.save
+      redirect_to administrate_group_application_path(@application.id), 
+        notice: 'Idea was updated'
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -45,7 +58,7 @@ class IdeasController < ApplicationController
   private
 
   def idea_attributes
-    params.require(:idea).permit(:application_id, :title, :description, :id)
+    params.require(:idea).permit(:application_id, :title, :description, :id, :creator)
   end
 
   def set_application
@@ -62,5 +75,9 @@ class IdeasController < ApplicationController
         format.js { @idea }
       end
     end
+  end
+
+  def push_string(object,model_name)
+    ["#{object.name} #{object.email}", "#{model_name},#{object.id}"]
   end
 end

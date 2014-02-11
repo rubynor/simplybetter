@@ -23,7 +23,12 @@ class Idea < ActiveRecord::Base
     self.update_attribute(:votes_count, votes.sum(:value))
   end
 
-
+  def self.find_creator(string)
+    string_arry = string.split(",")
+    klass = string_arry.first
+    id = string_arry.last.to_i
+    klass.constantize.find id
+  end
 
   def self.ideas_in_group(token)
     application(token).idea_group.ideas
