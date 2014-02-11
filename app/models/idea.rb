@@ -11,6 +11,8 @@ class Idea < ActiveRecord::Base
   validates_presence_of :title, :description, :creator
   validates_uniqueness_of :title, scope: :application
 
+  after_create :notify_customers
+
   def upvotes
     votes.where("value > 0").count
   end
@@ -32,6 +34,12 @@ class Idea < ActiveRecord::Base
 
   def self.ideas_in_group(token)
     application(token).idea_group.ideas
+  end
+
+  def notify_customers
+    Thread.new do
+      AdminNotifier.new_idea(self.application.customer,self.creator, self).deliver
+    end
   end
 
   private
