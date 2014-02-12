@@ -4,6 +4,7 @@ development:
   pool: 5
   timeout: 5000
   encoding: unicode
+  prepared_statements: true
 
 test:
   adapter: postgresql
@@ -11,3 +12,4 @@ test:
   pool: 5
   timeout: 5000
   encoding: unicode
+  prepared_statements: true

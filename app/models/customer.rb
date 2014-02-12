@@ -5,5 +5,11 @@ class Customer < ActiveRecord::Base
   has_secure_password
   has_many :applications, dependent: :destroy
   has_many :comments, inverse_of: :creator
-  validates :email, uniqueness: true, presence: true
+  has_many :votes, as: :voter
+  validates :email, 
+    format: {
+      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, 
+      on: :create},
+    uniqueness: true,
+    presence: true
 end

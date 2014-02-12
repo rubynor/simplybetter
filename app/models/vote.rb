@@ -1,10 +1,8 @@
 class Vote < ActiveRecord::Base
   has_paper_trail
   belongs_to :vote_receiver, polymorphic: true
+  belongs_to :voter, polymorphic: true
   after_save :update_parent_votes_count
-
-  validates_format_of :voter_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
-  validates_uniqueness_of :voter_email, scope: [:vote_receiver_id, :vote_receiver_type], message: "has already voted"
 
   def cast(value)
     if self.value == 1 && value == 1

@@ -1,15 +1,17 @@
 class WidgetApi::VotesController < ApplicationController
+
   def cast
-    vote = params[:value] || 0
-    if vote > 1
+    vote_val = params[:value] || 0
+    if vote_val > 1
       up
-    elsif vote < -1
+    elsif vote_val < -1
       down
     else
       status
     end
   end
-    
+
+
   private
 
   def up
@@ -22,20 +24,19 @@ class WidgetApi::VotesController < ApplicationController
 
   def status
     vote_receiver
-    get_vote
+    vote
   end
 
   def cast_vote(value)
-    if params[:voter_email].present?
-      get_vote
-      @vote.cast(value)
-      @vote_receiver.reload
+    if voter.present?
+      vote.cast(value)
+      vote_receiver.reload
     else
       render json: {error: "You need to be signed in to vote"}, status: 403
     end
   end
 
-  def find_application
+  def application
     unless @application ||= Application.find_by_token(params[:token])
       raise "Can't find application"
     end
@@ -43,7 +44,6 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def vote_receiver
-    application = find_application
     @vote_receiver ||= if params[:idea_id]
       application.ideas.find(params[:idea_id])
     elsif params[:comment_id]
@@ -53,7 +53,20 @@ class WidgetApi::VotesController < ApplicationController
     end
   end
 
-  def get_vote
-    @vote = vote_receiver.votes.find_or_initialize_by(voter_email: params[:voter_email])
+  def vote
+    @vote ||= voter.votes.find_or_initialize_by(vote_receiver: vote_receiver)
+  end
+
+  def voter
+    @voter ||= get_voter
+  end
+
+  def get_voter
+    voter = false
+    if application.customer.email == params[:voter_email]
+      voter = application.customer
+    else
+      voter = application.users.find_by(email: params[:voter_email])
+    end
   end
 end
