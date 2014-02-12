@@ -24,7 +24,11 @@ class WidgetApi::VotesController < ApplicationController
 
   def status
     vote_receiver
-    vote
+    if voter.present?
+      vote
+    else
+      @vote = Vote.new
+    end
   end
 
   def cast_vote(value)
