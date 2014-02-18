@@ -1,4 +1,5 @@
 class WidgetApi::VotesController < ApplicationController
+  include CreatorFinder
 
   def cast
     vote_val = params[:value] || 0
@@ -24,7 +25,7 @@ class WidgetApi::VotesController < ApplicationController
 
   def status
     vote_receiver
-    if voter.present?
+    if voter
       vote
     else
       @vote = Vote.new
@@ -32,7 +33,7 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def cast_vote(value)
-    if voter.present?
+    if voter
       vote.cast(value)
       vote_receiver.reload
     else
@@ -66,11 +67,10 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def get_voter
-    voter = false
-    if application.customer.email == params[:voter_email]
-      voter = application.customer
-    else
-      voter = application.users.find_by(email: params[:voter_email])
+    begin
+      creator(application,params[:voter_email])
+    rescue Exception => msg
+      false
     end
   end
 end

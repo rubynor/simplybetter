@@ -1,4 +1,5 @@
 class WidgetApi::IdeasController < ApplicationController
+  include CreatorFinder
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -27,23 +28,10 @@ class WidgetApi::IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     application = Application.find_by_token(params[:token])
-    if params[:user]
-      user_params[:application_id] = application.id
-      creator = application.users.find_by(email: user_params[:email])
-      if creator
-        creator.verify_attributes(user_params)
-      else
-        creator = application.users.create(user_params)
-      end
-    elsif params[:customer]
-      creator = application.customers.find_by(email: params[:customer][:email])
-    else
-      raise "No valid creator (user/customer) passed in"
-    end
 
     @idea.application = application
     @idea.idea_group_id = application.idea_group.id
-    @idea.creator = creator
+    @idea.creator = creator(application,params[:user][:email])#From module
 
     respond_to do |format|
       if @idea.save

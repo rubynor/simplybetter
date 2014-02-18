@@ -1,5 +1,6 @@
 class WidgetApi::CommentsController < ApplicationController
-  before_action :set_idea, only: [:index, :show]
+  include CreatorFinder
+  before_action :set_idea, only: [:index, :show, :create]
 
   def index
     @comments = @idea.comments
@@ -10,17 +11,12 @@ class WidgetApi::CommentsController < ApplicationController
   end
 
   def create
-    #TODO: add support for customer to add comments
     user_email = params[:comment].delete(:user_email)
     customer_email = params[:comment].delete(:customer_email)
-    idea = Idea.find(params[:idea_id])
+    app = @idea.application
 
-    creator = User.find_by(email: params[:user][:email])
-    unless creator
-      creator = Customer.find_by(email: params[:user][:email])
-    end
     @comment = Comment.new(comment_attributes)
-    @comment.creator = creator
+    @comment.creator = creator(app,params[:user][:email])#From module
     @comment.save!
 
     respond_to do |format|
