@@ -1,0 +1,9 @@
+%h1
+  = @creator.name
+  just wrote this comment:
+%p
+  = @comment.body
+
+%h1 In reply to this idea:
+%h2= @idea.title
+%p= @idea.description
