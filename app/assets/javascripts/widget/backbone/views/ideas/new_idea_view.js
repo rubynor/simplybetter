@@ -17,11 +17,6 @@ SimplyBetterApplication.Ideas = (function(ideas){
         showCompleteForm: function(e){
             var form = $('.new-idea-form');
             form.addClass('focused');
-            setTimeout(function(){
-              form
-                .removeClass('focused')
-                .addClass('in');
-            }, 1000)
         },
         createIdeaRequest: function(){
             var self = this;

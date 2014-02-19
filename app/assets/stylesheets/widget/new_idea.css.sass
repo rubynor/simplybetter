@@ -19,15 +19,13 @@
 
     .new-idea-form
       padding: 0px
-      height: 0px
+      max-height: 0px
       overflow: hidden
       width: 100%
-      transition: height 0.5s
-      -webkit-transition: height 0.5s
+      transition: max-height 1s
+      -webkit-transition: max-height 1s
       &.focused
-        height: 250px
-      &.in
-        height: auto
+        max-height: 900px
 
     .similar-ideas
       height: 100px
