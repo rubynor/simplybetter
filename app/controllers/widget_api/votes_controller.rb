@@ -63,14 +63,15 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def voter
-    @voter ||= get_voter
+    get_voter
   end
 
   def get_voter
+    return_val = nil
     begin
-      creator(application,params[:voter_email])
+      return_val = creator(application,params[:voter_email])
     rescue Exception => msg
-      false
     end
+    return_val
   end
 end
