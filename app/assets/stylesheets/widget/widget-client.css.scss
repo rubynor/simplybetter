@@ -22,6 +22,7 @@
 
 
 #simplybetterIframeWrapper {
+  background: transparent;
   $width: 900px;
   width: $width;
   position: fixed;
@@ -30,8 +31,7 @@
   left: 50%;
   margin-left: - $width/2;
   height: 70%;
-  border: 2px solid #edf0f4;
-  box-shadow: 0 1px 1px #eee;
+  border: 0px;
   @media (max-width: 900px) {
     width: auto;
     margin-left: 0px;
@@ -45,5 +45,6 @@
   background-color: #edf0f4;
   height: 100%;
   width: 100%;
+  border-radius: 4px;
 }
 
