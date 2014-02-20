@@ -21,7 +21,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         navigateOverview: function(e){
             e.preventDefault();
             this.trigger('close');
-            $(e.target).addClass('active');
+            $(e.target).closest('#simplybetterNavbar').addClass('overview');
             var newIdeaView = new SimplyBetterApplication.Ideas.newIdeaView({
                 navigator: this,
                 ideasCollection: this.ideas
@@ -77,6 +77,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         navigateToRootPage: function(){
+          // Deprecated needs renewal
             root_link = $('.goToIdeas');
             if (!root_link.hasClass('active')) {
                 root_link.click();
@@ -85,7 +86,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
         },
 
         deActivateLink: function(){
-            this.$el.find('.active').removeClass('active');
+            this.$el.find('#simplybetterNavbar.overview').removeClass('overview');
         },
 
         render: function() {
