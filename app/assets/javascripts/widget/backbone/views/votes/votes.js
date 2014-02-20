@@ -40,12 +40,15 @@ SimplyBetterApplication.Votes = (function(votes){
             var vote = this.model.get('value');
             var result = {
                 up: '',
-                down: ''
+                down: '',
+                which: ''
             };
             if (vote === 1){
                 result.up = 'active';
+                result.which = 'upvote';
             } else if (vote === -1){
                 result.down = 'active';
+                result.which = 'downvote';
             }
             return result;
         },
