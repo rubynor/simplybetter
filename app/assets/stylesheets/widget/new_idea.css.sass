@@ -1,58 +1,74 @@
-#newIdea
-  background: $background
-  .newIdea
-    padding: 30px
-    font-family: sans-serif
-    box-sizing: border-box
-    -moz-box-sizing: border-box
+#simplybetterIdeasModal
+  #simplybetterIdeasModalContent
+    #newIdea
+      background: $background
+      .newIdea
+        padding: 30px
+        font-family: sans-serif
+        box-sizing: border-box
+        -moz-box-sizing: border-box
 
-    input[type="text"]
-      width: 100%
-      @include input
-    input[type="submit"]
-      @include button-big
-      float: right
-    textarea
-      @include textarea
-      width: 100%
-      height: 120px
+        input[type="text"]
+          width: 100%
+          @include input
+          &.show-similar-ideas
+            border-bottom-left-radius: 0px
+            border-bottom-right-radius: 0px
+            box-shadow: none
+        input[type="submit"]
+          @include button-big
+          float: right
+        textarea
+          @include textarea
+          width: 100%
+          height: 120px
 
-    .new-idea-form
-      padding: 0px
-      max-height: 0px
-      overflow: hidden
-      width: 100%
-      transition: max-height 1s
-      -webkit-transition: max-height 1s
-      &.focused
-        max-height: 900px
+        .new-idea-form
+          padding: 0px
+          max-height: 0px
+          overflow: hidden
+          width: 100%
+          transition: max-height 1s
+          -webkit-transition: max-height 1s
+          &.focused
+            max-height: 900px
 
-    .similar-ideas
-      height: 100px
-      margin-bottom: 10px
-      overflow-y: scroll
-      display: none
-      li
-        display: block
-        margin: 2px 0px
-        +clearfix
-      $li-padding: 5px 0px
-      .vote
-        float: left
-        display: inline-block
-        width: 5%
-        text-align: center
-        background-color: $silver
-        padding: $li-padding
-      .idea-item
-        float: right
-        width: 95%
-        color: $blue
-        cursor: pointer
-        padding: $li-padding
-        padding-left: 5px
-        &:hover
-          text-decoration: underline
-      .desc
-        display: none
+        .similar-ideas
+          background: $white
+          border: 1px solid $form-border
+          border-top: 0px
+          padding-bottom: 30px
+          border-bottom-left-radius: 30px
+          border-bottom-right-radius: 30px
+          margin-bottom: 10px
+          overflow: hidden
+          max-height: 200px
+          opacity: 1
+          transition: max-height 1s, opacity 1s
+          -webkit-transition: max-height 1s, opacity 1s
+          &.fade-hidden
+            opacity: 0
+            max-height: 0px
+            padding: 0px
+          li.idea
+            box-shadow: none
+            background: $white
+            padding: 10px
+            min-height: 10px
+            display: block
+            margin: 0px 0px
+            border-bottom: 1px solid $form-border
+            border-radius: 0px
+            +clearfix
+          .vote
+            display: none
+          .idea-item
+            width: 100%
+            cursor: pointer
+            min-height: 10px
+            h1
+              font-size: 20px
+              margin: 0px
+          .desc
+            display: none
 

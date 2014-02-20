@@ -11,7 +11,8 @@ SimplyBetterApplication.Ideas = (function(ideas){
         events: {
             "focus .title": "showCompleteForm",
             "click .submit": "createIdeaRequest",
-            "keyup .title": "findSimilarIdeas"
+            "keyup .title": "findSimilarIdeas",
+            "focus textarea.description": "hideSimilarIdeas"
         },
 
         showCompleteForm: function(e){
@@ -53,7 +54,8 @@ SimplyBetterApplication.Ideas = (function(ideas){
                 function addToList(response){
                     var ol = $('.similar-ideas ol');
                     if (response.length > 0){
-                        ol.parent().show();
+                        ol.parent().removeClass('fade-hidden');
+                        $('input#title-input').addClass('show-similar-ideas');
                         ol.empty();
                         return $.each(response,function(){
                             var model = self.options.ideasCollection.get(this["id"]);
@@ -67,6 +69,11 @@ SimplyBetterApplication.Ideas = (function(ideas){
                     }
                 };
             }
+        },
+
+        hideSimilarIdeas: function(){
+            $('input#title-input').removeClass('show-similar-ideas');
+            $('.similar-ideas').addClass('fade-hidden');
         },
 
         close: function(){
