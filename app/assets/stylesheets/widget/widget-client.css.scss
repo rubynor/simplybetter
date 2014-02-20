@@ -1,13 +1,16 @@
 #simplybetterCloseButton {
-  font-size: 40px;
-  line-height: 30px;
-  color: grey;
-  font-family: Arial, Helvetica, sans-serif;
+  background: image-url('widget/icons.png') no-repeat 0 -24px;
+  font-size: 0px;
+  width: 24px;
+  height: 24px;
   position: absolute;
   z-index: 2000;
   right: 5px;
   top: 5px;
   cursor: pointer;
+  &:hover{
+    background-position: -24px -24px;
+  }
 }
 
 #simplybetterBackdropLayer {
