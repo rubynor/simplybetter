@@ -22,7 +22,7 @@ class WidgetApi::IdeasController < ApplicationController
 
   def find_similar
     current_application = Application.find_by(token: params[:application_id])
-    render json: current_application.ideas.search(params[:query], limit: 10, misspellings: {distance: 2}, partial: true)
+    render json: current_application.ideas.search(params[:query], limit: 4, misspellings: {distance: 2}, partial: true)
   end
 
   def create
