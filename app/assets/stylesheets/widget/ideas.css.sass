@@ -18,20 +18,17 @@
       .up, .down, .up.active, .down.active
         margin-left: 5px
         display: block
-        background: image-url('widget/thumbs.png') no-repeat
         width: 25px
         height: 22px
-        &:hover
-          cursor: pointer
-          background-position-x: -25px
+        cursor: pointer
       .up
-        background-position: 0px -44px
+        @include thumb(-44px)
         &.active
-          background-position: 0px 0px
+          @include thumb(0px)
       .down
-        background-position: 0px -66px
+        @include thumb(-66px)
         &.active
-          background-position: 0px -22px
+          @include thumb(-22px)
 
   #simplybetterIdeasModalContent
     width: 100%
@@ -46,16 +43,13 @@
     .overview
       .idea-layout
         .close-view-button
-          background: image-url('widget/icons.png') no-repeat 0px -24px
+          @include icon(-24px)
           height: 24px
           width: 24px
           position: absolute
           display: block
           right: 10px
           top: 10px
-          &:hover
-            background-position-x: -24px
-            cursor: pointer
 
     .idea-container, .overview-layout
       @include clearfix

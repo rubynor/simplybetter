@@ -42,3 +42,14 @@
 @mixin idea-padding
   padding: 0px 15px
 
+@mixin icon($y)
+  background: image-url('widget/icons.png') no-repeat 0 $y
+  &:hover
+    background-position: -24px $y
+    cursor: pointer
+@mixin thumb($y)
+  background: image-url('widget/thumbs.png') no-repeat 0 $y
+  &:hover
+    background-position: -25px $y
+    cursor: pointer
+
