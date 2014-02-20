@@ -20,6 +20,15 @@ p
   font-weight: 400
 
 #simplybetterIdeasModal
+  position: absolute
+  overflow: hidden
+  margin: 0px 0px 0px 0px
+  width: 100%
+  left: 0
+  top: 0
+  z-index: 1000
+  height: 100%
+  background-color: $background
   padding-left: 60px
 
   .logobar
@@ -48,10 +57,16 @@ p
     a:hover
       text-decoration: none
 
-      
-
   .simplybetter-table
     height: 100%
     width: 100%
+    tr.hax
+      height: 100%
+     
     td.content
       height: 100%
+      padding: 0px
+      vertical-align: top
+      border-collapse: collapse
+      overflow-y: scroll
+
