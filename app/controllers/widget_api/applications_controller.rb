@@ -9,6 +9,7 @@ class WidgetApi::ApplicationsController < ApplicationController
   end
 
   def client_js
+    expires_in 20.minutes
     app = Application.find_by(token: params[:appkey])
     @icon = app.icon
   end
