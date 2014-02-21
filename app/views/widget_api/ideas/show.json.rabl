@@ -9,3 +9,7 @@ glue(:creator) do
   attributes :name => :creator_name
 end
 
+node(:comments_count) do |c|
+  c.comments.count
+end
+

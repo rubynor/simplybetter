@@ -96,13 +96,12 @@
       box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2)
       margin-bottom: 10px
       padding: 15px 0px 20px 66px
-      min-height: 120px
+      min-height: 110px
       width: 100%
       @include vote-buttons
 
       .idea-item
         display: block
-        min-height: 100px
         padding: 0px 15px 0px 15px
         h1
           color: $black
@@ -111,8 +110,24 @@
           font-size: 30px
           &:hover
             cursor: pointer
-        p
+        p.desc
           color: $gray
           font-size: 14px
           line-height: 20px
-
+        .meta
+          color: $gray
+          margin-top: 15px
+          font-weight: 500
+          font-size: 12px
+          .comments
+            margin-right: 3px
+            width: 14px
+            height: 13px
+            display: inline-block
+            float: left
+            @include comment-icon(-26px)
+          span
+            &.user
+              color: $button-main
+            &.date
+              color: $black
