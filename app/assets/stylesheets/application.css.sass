@@ -1,6 +1,67 @@
 @import imports
-@import widget/mixins
+@import compass/layout/stretching
+@import mixins
+@import fonts
 @import highlight_github
 @import applications_administrate_group
 @import login_form
 @import installation_instructions
+
+h1,h2,h3,h4,h5,body,label,input,textarea
+  font-family: 'Roboto', sans-serif
+  font-weight: 300
+
+p
+  font-family: 'Roboto', serif
+  font-weight: 400
+
+$logo-width: 70px
+$navigation-width: 270px
+
+#logo
+  width: $logo-width
+  background: image-url('widget/sidebar.png') no-repeat
+  position: fixed
+  background-size: cover
+  left: 0px
+  @include stretch-y(0px,0px)
+  .logo
+    background: image-url('widget/logo.png') no-repeat center center
+    height: 50px
+    width: $logo-width
+    margin-top: 30px
+#navigation
+  left: $logo-width
+  position: fixed
+  width: $navigation-width
+  background: $button-main
+  @include stretch-y(0px,0px)
+  .links
+    h3
+      text-transform: uppercase
+      color: $menu-badge
+      font-weight: 700
+      font-size: 14px
+      padding-left: 15px
+    .row
+      .name
+        padding: 0px 0px 0px 30px
+      .info
+        padding: 8px 30px 0px 0px
+        span.badge
+          background: $menu-badge
+          color: $button-main
+          border-radius: 50px
+          padding: 5px 5px
+          min-height: 25px
+          min-width: 25px
+      &:hover
+        background: $menu-link-hover
+    a
+      color: $menu-link-text
+      font-size: 30px
+
+#content
+  padding-left: $logo-width + $navigation-width
+  width: 100%
+

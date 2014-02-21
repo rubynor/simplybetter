@@ -7,8 +7,13 @@
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
   %body{class: "#{@current_controller} #{@current_action}"}
-
-    - if current_customer
+    #logo
+      .logo
+    #navigation
+      = yield :navigation
+    #content
+      = yield
+    -# if current_customer
       %nav.navbar.navbar-default.navbar-static-top{:role => "navigation"}
         %a.navbar-brand{:href => "#"}
           SIMPLYBETTER.IO
@@ -18,7 +23,6 @@
           = "Logged in as #{current_customer.name}"
           |
           = link_to "Sign out", sign_out_path, class: 'navbar-link', method: :delete
-    = yield
 
     :javascript
       var _smplyBtr = _smplyBtr || {};

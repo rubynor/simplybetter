@@ -1,23 +1,23 @@
+- content_for :navigation do
+  .col-xs-12
+    .links
+      %h3
+        Applications
+      - unless @applications.blank?
+        - @applications.each do |a|
+          =link_to administrate_group_application_path(a.id) do
+            .row
+              .col-xs-10.name
+                =a.name
+              .col-xs-2.info
+                %span.badge.pull-right
+                  =a.ideas.count
+      - else
+        You have not created any applications yet
+
 .col-md-12
   =render 'shared/alert_success', notice: notice
-
-.col-md-4
-  .panel.panel-info
-    .panel-heading
-      %h3.panel-title
-        Choose to administrate one of your applications!
-    - unless @applications.blank?
-      .list-group
-        - @applications.each do |a|
-          =link_to administrate_group_application_path(a.id), class: 'list-group-item' do
-            =a.name
-            %span.badge.pull-right
-              =a.ideas.count
-    - else
-      .panel-body
-        .alert.alert-info
-          You have not created any applications yet
-.col-md-8
+.col-md-12
   .panel.panel-success
     .panel-heading
       %h3.panel-title
@@ -39,6 +39,4 @@
         .form-group
           .col-md-offset-4.col-md-8
             = f.button 'Create application', class: 'btn btn-default'
-
-
 
