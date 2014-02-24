@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_customer
 
+  def applications
+    @applications ||= current_customer.applications.delete_if{|a| a.new_record?} if current_customer
+  end
+  helper_method :applications
+
   def authorize
     redirect_to login_url, alert: "Not authorized" if current_customer.nil?
   end

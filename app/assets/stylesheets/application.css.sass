@@ -2,6 +2,7 @@
 @import compass/layout/stretching
 @import mixins
 @import fonts
+@import navbar
 @import highlight_github
 @import applications_administrate_group
 @import login_form
@@ -15,16 +16,19 @@ p
   font-family: 'Roboto', serif
   font-weight: 400
 
+body
+  background: $background
+
 $logo-width: 70px
 $navigation-width: 270px
 
 #logo
   width: $logo-width
   background: image-url('widget/sidebar.png') no-repeat
+  @include stretch-y(0px,0px)
   position: fixed
   background-size: cover
   left: 0px
-  @include stretch-y(0px,0px)
   .logo
     background: image-url('widget/logo.png') no-repeat center center
     height: 50px
@@ -32,10 +36,10 @@ $navigation-width: 270px
     margin-top: 30px
 #navigation
   left: $logo-width
+  @include stretch-y(0px,0px)
   position: fixed
   width: $navigation-width
   background: $button-main
-  @include stretch-y(0px,0px)
   .links
     h3
       text-transform: uppercase
@@ -55,6 +59,10 @@ $navigation-width: 270px
           padding: 5px 5px
           min-height: 25px
           min-width: 25px
+      &.active
+        span.badge
+          background: $menu-badge-active
+          color: $white
       &:hover
         background: $menu-link-hover
     a
@@ -62,6 +70,8 @@ $navigation-width: 270px
       font-size: 30px
 
 #content
-  padding-left: $logo-width + $navigation-width
+  $content-padding: 30px
+  padding-left: $logo-width + $navigation-width + $content-padding
+  padding-right: $content-padding
   width: 100%
 
