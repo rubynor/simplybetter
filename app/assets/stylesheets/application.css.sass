@@ -34,12 +34,25 @@ $navigation-width: 270px
     height: 50px
     width: $logo-width
     margin-top: 30px
+  .name
+    display: block
+    text-align: center
+    color: $white
+    font-weight: 700
+    padding-top: 4px
+    font-size: 14px
 #navigation
   left: $logo-width
   @include stretch-y(0px,0px)
   position: fixed
   width: $navigation-width
   background: $button-main
+  .new-application
+    text-align: center
+  .button-new
+    @include button-new
+    margin: 0px auto
+    margin-top: 30px
   .links
     h3
       text-transform: uppercase
@@ -47,6 +60,7 @@ $navigation-width: 270px
       font-weight: 700
       font-size: 14px
       padding-left: 15px
+      margin: 30px 0px 5px 0px
     .row
       .name
         padding: 0px 0px 0px 30px

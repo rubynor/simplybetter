@@ -1,7 +1,7 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :administrate_group, :update]
 
-  def index
+  def new
     @application = Application.new
   end
 

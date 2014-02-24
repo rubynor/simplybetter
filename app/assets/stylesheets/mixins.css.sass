@@ -32,6 +32,19 @@
   &:focus
     background-color: $form-focus
 
+@mixin button-new
+  background: $button-new image-url('dashboard/new.png') no-repeat left center
+  display: inline-block
+  height: 40px
+  padding: 10px 25px 0px 75px
+  border-radius: 50px
+  border: 0px
+  text-transform: uppercase
+  color: white
+  font-weight: 700
+  &:hover
+    text-decoration: none
+
 @mixin textarea
   @include input
   resize: vertical
