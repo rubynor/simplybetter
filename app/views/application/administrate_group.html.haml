@@ -5,24 +5,6 @@
       .col-md-12
         =render 'shared/alert_success', notice: notice
     .row
-      .col-md-12
-        .panel.panel-default
-          .panel-heading
-            %h3.panel-title Application
-          .panel-body
-            = form_for @application do |f|
-              .form-group
-                = f.label :name
-                = f.text_field :name, 
-                  class: 'form-control'
-              .form-group
-                = f.label :intro
-                = f.text_area :intro,
-                  class: 'form-control'
-              .form-group
-                = f.submit 'Save',
-                  class: 'btn btn-default'
-    .row
       .col-md-12#administrate_group
         .row
           .col-md-6
