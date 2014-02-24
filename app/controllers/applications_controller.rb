@@ -1,6 +1,13 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :administrate_group,:edit, :update]
 
+  def index
+    if applications.any?
+      redirect_to administrate_group_application_path(applications.first.id)
+    else
+      redirect_to new_application_path
+    end
+  end
   def new
     @application = Application.new
   end
