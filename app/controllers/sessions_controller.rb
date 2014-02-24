@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout "splash_screen"
+
   def new
     if current_customer
       redirect_to applications_path

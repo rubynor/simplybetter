@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authorize, except: [:new, :create]
+  layout "splash_screen"
 
   def index
     @applications = current_customer.applications.includes(:ideas)

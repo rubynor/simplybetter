@@ -7,14 +7,6 @@
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
   %body{class: "#{@current_controller} #{@current_action}"}
-    #logo
-      .logo
-      .name
-        Simply Better
-    #navigation
-      = render 'shared/sidebar'
-    #content
-      = yield
+    = yield
 
     = render 'shared/widget'
-
