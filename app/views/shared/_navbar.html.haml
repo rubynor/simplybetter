@@ -1,0 +1,13 @@
+#navbar
+  .col-xs-12
+    %h1= @application.name
+    .links
+      = link_to application_path(@application.id) do
+        Installation instructions
+      -#= link_to new_application_idea_path(@application.id), class: 'list-group-item' do
+        %i.fa.fa-plus
+        New idea
+      = link_to administrate_group_application_path(@application.id) do
+        Show ideas
+      = link_to applications_path do
+        Applications overview
