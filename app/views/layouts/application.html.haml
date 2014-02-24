@@ -15,17 +15,7 @@
       = render 'shared/sidebar'
     #content
       = yield
-    -# if current_customer
-      %nav.navbar.navbar-default.navbar-static-top{:role => "navigation"}
-        %a.navbar-brand{:href => "#"}
-          SIMPLYBETTER.IO
-          - if @application
-            = " - #{@application.name}"
-        %p.navbar-text.pull-right
-          = "Logged in as #{current_customer.name}"
-          |
-          = link_to "Sign out", sign_out_path, class: 'navbar-link', method: :delete
-
+      
     :javascript
       var _smplyBtr = _smplyBtr || {};
       _smplyBtr.appKey = 'BYGKGJYA';

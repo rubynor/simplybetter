@@ -15,3 +15,9 @@
                 =a.ideas.count
     - else
       You have not created any applications yet
+
+  .user
+    = "#{current_customer.name}"
+    |
+    = link_to "Sign out", sign_out_path, class: 'navbar-link', method: :delete
+
