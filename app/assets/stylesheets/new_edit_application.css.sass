@@ -1,0 +1,23 @@
+body.applications.edit, body.applications.new
+  $form-width: 500px
+
+  h1
+    color: $gray
+    font-size: 30px
+    margin: 30px 0px 30px 0px
+  label
+    font-size: 30px
+    color: $black
+    display: block
+  input[type=text]
+    @include input
+    display: block
+    width: $form-width
+  textarea
+    @include textarea
+    width: $form-width
+  button
+    @include button-big
+    display: block
+    margin-top: 30px
+

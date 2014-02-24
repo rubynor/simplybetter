@@ -1,25 +1,16 @@
 .col-md-12
   =render 'shared/alert_success', notice: notice
 .col-md-12
-  .panel.panel-success
-    .panel-heading
-      %h3.panel-title
-        Create a new application!
-    .panel-body
-      = form_for @application,html: {class: "form-horizontal", role: "form"} do |f|
-        - if @application.errors.any?
-          .alert.alert-danger
-            %p
-              %strong
-                Unfortunately some errors prevented you from creating the application:
-            %ul
-              - @application.errors.full_messages.each do |msg|
-                %li= msg
-        .form-group
-          %label.col-md-4.control-label New application name
-          .col-md-8
-            = f.text_field :name, class: 'form-control'
-        .form-group
-          .col-md-offset-4.col-md-8
-            = f.button 'Create application', class: 'btn btn-default'
+  = form_for @application,html: {role: "form"} do |f|
+    - if @application.errors.any?
+      .alert.alert-danger
+        %p
+          %strong
+            Unfortunately some errors prevented you from creating the application:
+        %ul
+          - @application.errors.full_messages.each do |msg|
+            %li= msg
+    = f.label :name
+    = f.text_field :name, placeholder: 'Application name'
+    = f.button 'Save'
 
