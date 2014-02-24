@@ -12,5 +12,8 @@
             %li= msg
     = f.label :name
     = f.text_field :name, placeholder: 'Application name'
+    - if @current_action == 'edit'
+      = f.label :intro
+      = f.text_area :intro
     = f.button 'Save'
 
