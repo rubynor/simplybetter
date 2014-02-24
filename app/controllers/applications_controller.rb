@@ -1,8 +1,11 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:show, :administrate_group, :update]
+  before_action :set_application, only: [:show, :administrate_group,:edit, :update]
 
   def new
     @application = Application.new
+  end
+
+  def edit
   end
 
   def show
