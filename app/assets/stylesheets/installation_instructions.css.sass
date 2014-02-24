@@ -1,4 +1,7 @@
 body.applications.show
+  .box
+    @include box
+    padding: 15px 0px
   label
     width: 100%
     padding: 0px 20px 0px 20px
@@ -34,6 +37,14 @@ body.applications.show
       -webkit-transition: opacity 1s
       -moz-transition: opacity 1s
       -o-transition: opacity 1s
+
+  ul > li, p
+    color: $gray
+    font-weight: 500
+
+  pre
+    @include box
+    border: 0px
 
 
 
