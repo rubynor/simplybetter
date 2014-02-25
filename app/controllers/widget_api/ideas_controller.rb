@@ -4,11 +4,18 @@ class WidgetApi::IdeasController < ApplicationController
 
   def index
     @ideas = Idea.ideas_in_group(params[:token]).includes(:comments).includes(:votes).order("votes_count DESC")
-    get_current_user(application,params[:user_email])
+    begin
+      get_current_user(application,params[:user_email])
+    rescue Exception => msg
+      #It's ok if the user is not logged in
+    end
   end
 
   def show
-    get_current_user(application,params[:user_email])
+    begin
+      get_current_user(application,params[:user_email])
+    rescue Exception => msg
+    end
   end
 
   def new

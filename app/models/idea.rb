@@ -22,7 +22,7 @@ class Idea < ActiveRecord::Base
   end 
 
   def voter_status(voter)
-    votes.find_by(voter: voter).try(:value)
+    votes.find_by(voter: voter).try(:value) if voter
   end
 
   def update_votes_count
