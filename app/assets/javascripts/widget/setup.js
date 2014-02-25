@@ -29,10 +29,10 @@ SimplyBetterApplication.init = (function (){
 
             // URLs
             app.ideasCollectionUrl = function(){
-                return app.baseUrl + '/widget_api/ideas.json?token=' + key;
+                return app.baseUrl + '/widget_api/ideas.json?token=' + key + '&user_email=' + app.userEmail;
             };
             app.ideasModelUrl = function(id){
-                return app.baseUrl + '/widget_api/ideas/' + id + '.json?token=' + key;
+                return app.baseUrl + '/widget_api/ideas/' + id + '.json?token=' + key + '&user_email=' + app.userEmail;
             };
             app.ideasNewModelUrl = function(){
                 return app.ideasCollectionUrl();

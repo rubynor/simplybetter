@@ -3,14 +3,12 @@ class WidgetApi::IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ideas = Idea.ideas_in_group(params[:token]).includes(:comments).order("votes_count DESC")
-    respond_to do |format|
-      format.html # @ideas
-      format.json
-    end
+    @ideas = Idea.ideas_in_group(params[:token]).includes(:comments).includes(:votes).order("votes_count DESC")
+    get_current_user(application,params[:user_email])
   end
 
   def show
+    get_current_user(application,params[:user_email])
   end
 
   def new
@@ -75,5 +73,9 @@ class WidgetApi::IdeasController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :name)
+    end
+
+    def application
+      @application ||= Application.find_by(token: params[:token]) if params[:token]
     end
 end

@@ -21,6 +21,10 @@ class Idea < ActiveRecord::Base
     votes.where("value < 0").count
   end 
 
+  def voter_status(voter)
+    votes.find_by(voter: voter).try(:value)
+  end
+
   def update_votes_count
     self.update_attribute(:votes_count, votes.sum(:value))
   end

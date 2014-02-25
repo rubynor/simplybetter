@@ -6,14 +6,15 @@ SimplyBetterApplication.Ideas = (function(ideas){
             this.listenTo(this.options.navigator, 'close', this.close);
             this.voteModel = new SimplyBetterApplication.Votes.Model({
                 idea_id: this.model.get('id'), 
-                voter_email: SimplyBetterApplication.config.userEmail
+                voter_email: SimplyBetterApplication.config.userEmail,
+                value: this.model.get('voter_status'),
+                votes_count: this.model.get('votes_count')
             });            
             this.ideaItem = new SimplyBetterApplication.Ideas.itemView({
                 model: this.model, 
                 navigator: this.options.navigator, 
                 voteModel: this.voteModel
             });
-            this.voteModel.fetch();
             this.voteView = new SimplyBetterApplication.Votes.IdeaView({
                 model: this.voteModel
             });

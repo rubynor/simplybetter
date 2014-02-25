@@ -13,3 +13,7 @@ node(:comments_count) do |c|
   c.comments.count
 end
 
+node(:voter_status) do |c|
+  c.voter_status(@current_user)
+end
+
