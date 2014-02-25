@@ -2,8 +2,8 @@
 //= require zepto_animations
 //= require underscore
 //= require backbone
-//= require widget/setup
-//= require_tree ./backbone
+//= require backbone/widget/setup
+//= require_tree ../backbone/widget
 
 $(function(){
   // It is not possible to have a dynamic navbar and a flexible
