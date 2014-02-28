@@ -94,7 +94,6 @@ SimplyBetterApplication.Navigator = (function(navigator){
             var template = SimplyBetterApplication.Template.get(this.template);
             this.application.fetch({
                 success: function(model){
-                    console.log(model);
                     self.$el.html(template({
                       applicationName: model.get('name'),
                       applicationIntro: model.get('intro')
