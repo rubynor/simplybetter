@@ -9,7 +9,8 @@ SimplyBetterIdeas.Models = (function(models){
   module.IdeaCollection = Backbone.Collection.extend({
     url: function(){
       return '/applications/' + SimplyBetterIdeas.Config.appId + '/ideas'
-    }
+    },
+    model: module.Idea
   });
   return module;
 })(SimplyBetterIdeas.Models || {});
