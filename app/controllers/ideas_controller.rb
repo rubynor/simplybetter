@@ -12,6 +12,10 @@ class IdeasController < ApplicationController
     @idea = Idea.new
   end
 
+  def show
+    render template: 'ideas/show'
+  end
+
   def create
     @idea = Idea.new(idea_attributes)
     @idea.application = @application
@@ -37,18 +41,38 @@ class IdeasController < ApplicationController
     attributes = idea_attributes
     creator = attributes.delete(:creator)
     @idea.assign_attributes(attributes)
-    @idea.creator = Idea.find_creator(creator)
+    if creator
+      @idea.creator = Idea.find_creator(creator)
+    end
     if @idea.save
-      redirect_to administrate_group_application_path(@application.id), 
-        notice: 'Idea was updated'
+      respond_to do |format|
+        format.json{ show }
+        format.html{
+          redirect_to administrate_group_application_path(@application.id), 
+            notice: 'Idea was updated'
+        }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html{render :edit}
+        format.json{
+          @idea.reload
+          show
+        }
+      end
     end
   end
 
   def destroy
     @idea.destroy!
-    redirect_to administrate_group_application_path(@application.id), notice: 'Idea was removed'
+    respond_to do |format|
+      format.json {
+        render json: {message: "success"}
+      }
+      format.html {
+        redirect_to administrate_group_application_path(@application.id), notice: 'Idea was removed'
+      }
+    end
   end
 
   def add_to_group
@@ -64,7 +88,7 @@ class IdeasController < ApplicationController
   private
 
   def idea_attributes
-    params.require(:idea).permit(:application_id, :title, :description, :id, :creator)
+    params.require(:idea).permit(:application_id, :title, :description, :id, :creator, :idea_group_id)
   end
 
   def set_application
@@ -72,7 +96,9 @@ class IdeasController < ApplicationController
   end
 
   def set_idea
-    @idea ||= set_application.ideas.find(params[:id])
+    if current_customer
+      @idea ||= set_application.ideas.find(params[:id])
+    end
   end
 
   def respond_to_js
