@@ -8,6 +8,31 @@ SimplyBetterIdeas.Views = (function(views){
         this.forceUpdate();
       }.bind(this));
     },
+
+    destroy: function(){
+      this.props.model.destroy();
+    },
+
+    classForVisibility: function(){
+      if (this.props.model.get('idea_group_id') === 1){
+        return 'visible'
+      } else {
+        return 'not-visible'
+      }
+    },
+
+    changeVisibility: function(){
+      var model = this.props.model;
+      var data = {};
+      if (model.get('idea_group_id') === 1){
+        data = {'idea_group_id': null}
+      } else {
+        data = {'idea_group_id': 1}
+      }
+      model.save(data,{patch: true})
+    },
+
+
     render: function(){
       var model = this.props.model;
       return (
@@ -31,11 +56,14 @@ SimplyBetterIdeas.Views = (function(views){
             by <span className='user'>{model.get('creator_name')} </span>
             on <span className='time'>{model.get('updated_at')} </span>
           </div>
+          <div className={this.classForVisibility()+'-overlay'}></div>
           <div className="options">
-            <div className="icon not-visible"></div>
-            <div className="icon visible"></div>
+            <div 
+              className={'icon ' + this.classForVisibility()}
+              onClick={this.changeVisibility}
+            ></div>
             <div className="icon edit"></div>
-            <div className="icon delete"></div>
+            <div className="icon delete" onClick={this.destroy}></div>
           </div>
         </li>
       );
@@ -44,7 +72,7 @@ SimplyBetterIdeas.Views = (function(views){
 
   module.Ideas = React.createClass({
     componentDidMount: function(){
-      this.props.myCollection.on('add', function() {
+      this.props.myCollection.on('all', function() {
         this.forceUpdate();
       }.bind(this));
     },
