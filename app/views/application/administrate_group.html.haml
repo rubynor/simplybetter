@@ -6,30 +6,4 @@
   $(function(){
   SimplyBetterIdeas.Init.start(#{@application.id});
   });
-.applications
-  .col-md-9
-    .row
-      .col-md-12
-        =render 'shared/alert_success', notice: notice
-    .row
-      .col-md-12#administrate_group
-        .row
-          .col-md-6
-            .panel.panel-default
-              .panel-heading
-                %h3.panel-title Visible ideas
-              .panel-body
-                #ideasForVoting.list-group
-                  - unless @idea_group.blank?
-                    - @idea_group.each do |f|
-                      = render 'idea_unit', f: f, path: :remove_from_group_application_idea_path, method: :delete
-          .col-md-6
-            .panel.panel-default
-              .panel-heading
-                %h3.panel-title Hidden ideas
-              .panel-body
-                #allIdeas.list-group
-                  - unless @ideas.blank?
-                    - @ideas.each do |f|
-                      = render 'idea_unit', f: f, path: :add_to_group_application_idea_path, method: :post
 
