@@ -1,3 +1,66 @@
+#manage-ideas
+  ul
+    @include clearfix
+    padding: 0px
+    li
+      padding: 10px 200px 10px 20px
+      position: relative
+      list-style: none
+      @include box
+      margin: 10px 0px
+      &:hover
+        background: $form-hover
+        .options
+          display: inline-block
+
+      h1
+        margin-top: 0px
+        color: $black
+      p
+        color: $gray
+
+      .meta
+        color: $gray
+        font-size: 12px
+        .icon
+          display: inline-block
+          width: 14px
+          height: 13px
+          &.upvote
+            @include comment-icon(0px)
+          &.downvote
+            @include comment-icon(-13px)
+          &.comment
+            @include comment-icon(-26px)
+        span
+          &.upvotes
+            color: $upvote
+          &.downvotes
+            color: $downvote
+          &.user
+            color: $button-hover
+          &.time
+            color: $black
+
+      .options
+        position: absolute
+        display: none
+        right: 0px
+        top: 45px
+        width: 200px
+        .icon
+          float: left
+          display: inline-block
+          margin: 0px 10px
+          &.delete
+            @include icon(-72px)
+          &.edit
+            @include icon(-48px)
+          &.not-visible
+            @include icon(-120px)
+          &.visible
+            @include icon(-96px)
+
 #administrate_group
   .list-group-item
     position: relative
