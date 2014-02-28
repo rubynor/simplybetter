@@ -13,19 +13,11 @@ SimplyBetterIdeas.Routers = (function(router){
       ideas.fetch({
         success: function(collection){
           React.renderComponent((
-            <div>
-              <view myCollection={collection} />
-            </div>
+            <view myCollection={collection} />
           ), document.getElementById('manage-ideas'));
 
         }
       });
-      console.log(ideas);
-      var swag = new SimplyBetterIdeas.Models.Idea({title: 'Yolo to go'});
-      console.log(swag);
-      setTimeout(function(){
-        ideas.add(swag);
-      },5000);
     }
   });
 
