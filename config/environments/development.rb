@@ -33,6 +33,7 @@ SimplyBetter::Application.configure do
   config.middleware.use Rack::LiveReload
 
   config.action_mailer.delivery_method = :letter_opener
+  config.react.variant = :development
 
   class WidgetPath
     def self.path
