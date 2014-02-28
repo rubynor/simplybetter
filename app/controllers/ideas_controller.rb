@@ -1,6 +1,12 @@
 class IdeasController < ApplicationController
-  before_action :set_application, only: [:add_to_group, :remove_from_group, :update, :destroy, :new, :create]
-  before_action :set_idea, except: [:new, :create]
+  before_action :set_application, only: [:add_to_group, :remove_from_group, :update, :destroy, :new, :create, :index]
+  before_action :set_idea, except: [:new, :create, :index]
+
+  def index
+    if current_customer
+      @ideas = @application.ideas
+    end
+  end
 
   def new
     @idea = Idea.new
