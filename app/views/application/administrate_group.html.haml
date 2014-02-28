@@ -1,4 +1,11 @@
 =render 'shared/navbar'
+.col-xs-12
+  #manage-ideas
+
+:javascript
+  $(function(){
+  SimplyBetterIdeas.Init.start(#{@application.id});
+  });
 .applications
   .col-md-9
     .row
