@@ -17,5 +17,11 @@
 //= require sb_tools
 //= require highlight
 //
+//= require react
+//= require underscore
+//= require backbone
+//= require backbone/dashboard_ideas/setup
+//= require_tree ./backbone/dashboard_ideas
+//
 //= require setup_instructions
 //= require administrate_application
