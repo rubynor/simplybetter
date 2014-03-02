@@ -1,5 +1,5 @@
 object @idea
-attributes :id, :title, :description, :updated_at, :votes_count, :idea_group_id
+attributes :id, :title, :description, :updated_at, :votes_count, :idea_group_id, :completed
 
 node(:updated_at) do |c|
   c.updated_at.strftime('%F')
