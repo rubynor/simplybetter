@@ -23,7 +23,12 @@ SimplyBetterApplication.Ideas = (function(ideas){
 
         tagName: 'li',
 
-        className: 'idea',
+        className: function(){
+          if (this.model.get('completed'))
+            return 'idea completed'
+          else
+            return 'idea'
+        },
 
         close: function(){
             this.remove();
