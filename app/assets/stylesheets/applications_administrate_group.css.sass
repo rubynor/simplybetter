@@ -2,7 +2,7 @@
   ul
     @include clearfix
     padding: 0px
-    li
+    li.idea
       padding: 10px 200px 10px 20px
       position: relative
       list-style: none
@@ -82,53 +82,3 @@
       button
         @include button-big
 
-#administrate_group
-  .list-group-item
-    position: relative
-    overflow: visible
-    .upvotes
-      color: $green
-    .downvotes
-      color: $red
-    @import widget/comments
-    #comments
-      display: none
-    .comments-toggle
-      text-decoration: underline
-      &:hover
-        cursor: pointer
-    .edit-panel
-      font-size: 22px
-      position: absolute
-      right: 10px
-      bottom: 10px
-      display: inline-block
-      opacity: 0
-      border-radius: 4px
-      border: 1px solid #eee
-      padding: 3px 10px
-      transition: opacity 0.5s
-      -webkit-transition: opacity 0.5s
-      a
-        &:hover
-          color: #888
-          text-decoration: none
-    .switch-list
-      position: absolute
-      top: 10px
-      right: 10px
-      opacity: 0
-      font-size: 20px
-      transition: opacity 0.5s
-      -webkit-transition: opacity 0.5s
-    &:hover
-      .edit-panel
-        opacity: 1
-      .switch-list
-        opacity: 1
-  .meta
-    color: $gray
-    font-size: 12px
-    padding: 10px 10px 10px 0px
-  .clear
-    clear: both
