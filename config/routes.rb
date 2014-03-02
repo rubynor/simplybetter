@@ -24,7 +24,7 @@ SimplyBetter::Application.routes.draw do
 
   resources :applications, except: [:destroy] do
     get :administrate_group, on: :member
-    resources :ideas, except: [:show] do
+    resources :ideas do
       post :add_to_group, on: :member
       delete :remove_from_group, on: :member
     end
