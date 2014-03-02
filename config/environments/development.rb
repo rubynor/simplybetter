@@ -28,8 +28,6 @@ SimplyBetter::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_controller.action_on_unpermitted_parameters = :raise
-
   config.middleware.use Rack::LiveReload
 
   config.action_mailer.delivery_method = :letter_opener
