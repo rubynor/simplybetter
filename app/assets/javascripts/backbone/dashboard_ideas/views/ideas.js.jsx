@@ -2,11 +2,43 @@
 SimplyBetterIdeas.Views = (function(views){
   var module = views;
 
+  module.Navbar = React.createClass({
+    componentWillMount: function(){
+      this.callback = (function() {
+        this.forceUpdate();
+      }).bind(this);
+
+      this.props.router.on("route", this.callback);
+      this.props.collection.on("all", this.callback);
+    },
+    componentWillUnmount: function(){
+      this.props.router.off("route", this.callback);
+      this.props.collection.off("all", this.callback);
+    },
+    active: function(name){
+      if (name == this.props.router.current)
+        return 'active';
+    },
+    render: function(){
+      var ideas = SimplyBetterIdeas.Views.Ideas;
+      return (
+        <div>
+          <div className='ideas-navigate'>
+            <a href='#all' className={this.active('all')}>All</a>
+            <a href='#visible' className={this.active('visible')}>Visible</a>
+            <a href='#hidden' className={this.active('hidden')}>Hidden</a>
+          </div>
+          <ideas collection={this.props.collection} router={this.props.router} />
+        </div>
+      );
+    }
+  });
+
   module.Comment = React.createClass({
     render: function(){
       var model = this.props.model.attributes;
       return (
-        <li className='comment'>
+        <li className='comment-item'>
           <div className="avatar">
             <img src={model.gravatar_url} />
           </div>
@@ -22,6 +54,36 @@ SimplyBetterIdeas.Views = (function(views){
   });
 
   module.IdeaShow = React.createClass({
+    getInitialState: function(){
+      return {showComments: false};
+    },
+    toggleComments: function(){
+      var that = this;
+      var commentState = function(state){
+        that.setState({showComments: state});
+      }
+      if (this.state.showComments){
+        commentState(false);
+      } else {
+        commentState(true);
+      }
+    },
+
+    renderComments: function(){
+      if (this.state.showComments){
+        var model = this.props.model;
+        if (model.comments){
+          var commentItem = module.Comment;
+          var commentList = model.comments.map(function(item){
+            return <commentItem key={item.cid} model={item} />;
+          });
+          return <ul>{commentList}</ul>;
+        } else {
+          return <p>No comments</p>;
+        }
+      }
+    },
+
     destroy: function(){
       this.props.model.destroy();
     },
@@ -51,17 +113,7 @@ SimplyBetterIdeas.Views = (function(views){
 
     render: function(){
       var model = this.props.model;
-      var comments = function(){
-        if (model.comments){
-          var commentItem = module.Comment;
-          var commentList = model.comments.map(function(item){
-            return <commentItem key={item.cid} model={item} />;
-          });
-          return <ul>{commentList}</ul>;
-        } else {
-          return <p>No comments</p>;
-        }
-      };
+
       return (
         <li className='idea'>
           <h1>{model.get('title')}</h1>
@@ -71,16 +123,16 @@ SimplyBetterIdeas.Views = (function(views){
             <span className='upvotes'>
               {model.get('upvotes')}
             </span>
-            &nbsp;•&nbsp;
+            <span className='dot'>•</span>
             <div className='icon downvote'></div>
             <span className='downvotes'>
               {model.get('downvotes')} 
             </span>
-            &nbsp;•&nbsp;
+            <span className='dot'>•</span>
             <div className='icon comment'></div>
-            <span onClick={this.toggleComments}>{model.get('comments_count')} comments
+            <span className='comment' onClick={this.toggleComments}>{model.get('comments_count')} comments
             </span>
-            •
+            <span className='dot'>•</span>
             by <span className='user'>{model.get('creator_name')} </span>
             on <span className='time'>{model.get('updated_at')} </span>
           </div>
@@ -94,7 +146,7 @@ SimplyBetterIdeas.Views = (function(views){
             <div className="icon delete" onClick={this.destroy}></div>
           </div>
           <div className='comments'>
-            {comments()}
+            {this.renderComments()}
           </div>
         </li>
       );
@@ -120,7 +172,7 @@ SimplyBetterIdeas.Views = (function(views){
     render: function(){
       var model = this.props.model;
       return (
-        <li>
+        <li className='idea'>
           <input 
             type="text" 
             name='title' 
@@ -140,11 +192,6 @@ SimplyBetterIdeas.Views = (function(views){
   });
 
   module.Idea = React.createClass({
-    componentDidMount: function(){
-      this.props.model.on('change', function() {
-        this.forceUpdate();
-      }.bind(this));
-    },
     getInitialState: function(){
       return {edit: false};
     },
@@ -161,15 +208,24 @@ SimplyBetterIdeas.Views = (function(views){
   });
 
   module.Ideas = React.createClass({
-    componentDidMount: function(){
-      this.props.myCollection.on('all', function() {
-        this.forceUpdate();
-      }.bind(this));
+    filter: function(conditions){
+      return this.props.collection.where(conditions);
+    },
+    collection: function(){
+      var current = this.props.router.current;
+      if (current === 'visible'){
+        return this.filter({idea_group_id: 1})
+      } else if (current === 'hidden'){
+        return this.filter({idea_group_id: null})
+      } else {
+        return this.props.collection.models;
+      }
     },
 
     render: function(){
       var ideaView = module.Idea;
-      var listItems = this.props.myCollection.map(function(item){
+      var collection = this.collection();
+      var listItems = collection.map(function(item){
         return <ideaView key={item.cid} model={item} />;
       });
       return <ul>{listItems}</ul>;

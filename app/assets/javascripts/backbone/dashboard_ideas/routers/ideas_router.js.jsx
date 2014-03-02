@@ -3,6 +3,15 @@ SimplyBetterIdeas.Routers = (function(router){
   var module = router;
 
   module.Ideas = Backbone.Router.extend({
+    initialize: function(){
+      var navigation = SimplyBetterIdeas.Views.Navbar;
+      var collection = new SimplyBetterIdeas.Models.IdeaCollection();
+      collection.fetch();
+      React.renderComponent((
+        <navigation router={this} collection={collection} />
+      ), document.getElementById('manage-ideas'));
+    },
+
     routes: {
       '': 'all',
       'all': 'all',
@@ -10,45 +19,16 @@ SimplyBetterIdeas.Routers = (function(router){
       'visible': 'visible'
     },
 
-    render: function(collection){
-      var view = SimplyBetterIdeas.Views.Ideas;
-      React.renderComponent((
-        <view myCollection={collection} />
-      ), document.getElementById('manage-ideas'));
-    },
-
-    fetchIdeas: function(filter){
-      var that = this;
-      var ideas = new SimplyBetterIdeas.Models.IdeaCollection();     
-      console.log(ideas);
-      ideas.fetch({
-        success: function(collection){
-          if (filter){
-            that.render(filter(collection));
-          } else {
-            that.render(collection);
-          }
-        }
-      });
-    },
-
-    filterWhereCondition: function(condition){
-      var filter = function(collection){
-        return collection.where(condition);
-      };
-      this.fetchIdeas(filter);
-    },
-
     all: function(){
-      this.fetchIdeas();
+      this.current = "all";
     },
     
     visible: function(){
-      this.filterWhereCondition({idea_group_id: 1})
+      this.current = "visible";
     },
 
     hidden: function(){
-      this.filterWhereCondition({idea_group_id: null})
+      this.current = "hidden";
     }
 
   });
