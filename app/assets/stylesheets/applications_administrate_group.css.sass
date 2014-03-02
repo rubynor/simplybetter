@@ -1,4 +1,14 @@
 #manage-ideas
+  a
+    font-size: 30px
+    color: $button-main
+    padding: 10px 50px 0px 0px
+    display: inline-block
+    &:hover
+      text-decoration: none
+    &.active
+      color: $black
+
   ul
     @include clearfix
     padding: 0px
@@ -37,6 +47,7 @@
           display: inline-block
           width: 14px
           height: 13px
+          margin-right: 5px
           &.upvote
             @include comment-icon(0px)
           &.downvote
@@ -52,6 +63,15 @@
             color: $button-hover
           &.time
             color: $black
+          &.comment
+            text-decoration: underline
+            cursor: pointer
+          &.dot
+            font-size: 20px
+            display: inline-block
+            text-align: center
+            width: 20px
+            line-height: 0px
 
       .options
         position: absolute
@@ -82,3 +102,46 @@
       button
         @include button-big
 
+    .comments
+      clear: both
+      display: block
+      width: 100%
+      ul
+        margin-top: 15px
+        list-style-type: none
+        padding: 0px
+      li.comment-item
+        @include idea-padding
+        padding-top: 20px
+        padding-bottom: 20px
+        clear: both
+        &:hover
+          background: $list-hover
+        .avatar
+          float: left
+          display: inline-block
+          width: 50px
+          height: 50px
+          background-color: gray
+          border-radius: 25px
+          overflow: hidden
+        .content
+          position: relative
+          width: 90%
+          padding-left: 60px
+          .meta
+            display: block
+            font-size: 12px
+            font-weight: 500
+            color: $text
+            margin-bottom: 5px
+            span
+              color: $black
+            span.username
+              color: $button-main
+          .comment-body
+            display: block
+            color: $black
+            font-size: 14px
+            line-height: 24px
+            font-weight: 500
