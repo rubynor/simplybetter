@@ -25,3 +25,7 @@ node(:voter_status) do |c|
   c.voter_status(@current_user)
 end
 
+child(:comments) do
+  extends "widget_api/comments/show"
+end
+
