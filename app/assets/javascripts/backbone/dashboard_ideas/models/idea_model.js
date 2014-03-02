@@ -20,7 +20,7 @@ SimplyBetterIdeas.Models = (function(models){
     parse: function(data){
       var that = this;
       if (data.comments.length > 0){
-        this.commentCollection = new module.CommentCollection(data.comments,{idea: that});
+        this.comments = new module.CommentCollection(data.comments,{idea: that});
       }
      delete data['comments'];
      return data;
