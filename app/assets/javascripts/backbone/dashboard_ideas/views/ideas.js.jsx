@@ -85,7 +85,9 @@ SimplyBetterIdeas.Views = (function(views){
     },
 
     destroy: function(){
-      this.props.model.destroy();
+      if (confirm("Are you sure?")){
+        this.props.model.destroy();
+      }
     },
 
     classForVisibility: function(){
