@@ -88,7 +88,7 @@ class IdeasController < ApplicationController
   private
 
   def idea_attributes
-    params.require(:idea).permit(:application_id, :title, :description, :id, :creator, :idea_group_id)
+    params.require(:idea).permit(:application_id, :title, :description, :id, :creator, :idea_group_id, :completed)
   end
 
   def set_application
