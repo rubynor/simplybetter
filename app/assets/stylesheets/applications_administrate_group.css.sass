@@ -18,6 +18,20 @@
       list-style: none
       @include box
       margin: 10px 0px
+      &.completed
+        border: 1px solid $completed-border
+        background: $completed-background
+        &:after
+          position: absolute
+          top: 10px
+          right: 10px
+          background: $completed-border
+          content: '✔ COMPLETED'
+          padding: 2px 5px
+          color: white
+          border-radius: 20px
+          font-weight: 700
+          font-size: 12px
       &:hover
         background: $form-hover
         .options
@@ -83,6 +97,9 @@
           float: left
           display: inline-block
           margin: 0px 10px
+          cursor: pointer
+          line-height: 24px
+          font-size: 26px
           &.delete
             @include icon(-72px)
           &.edit
@@ -91,6 +108,10 @@
             @include icon(-120px)
           &.visible
             @include icon(-96px)
+          &.not-completed
+            color: $gray
+          &.completed
+            color: $green
 
       input[type=text]
         @include input

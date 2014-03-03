@@ -109,6 +109,21 @@ SimplyBetterIdeas.Views = (function(views){
       model.save(data,{patch: true})
     },
 
+    complete: function(){
+      var model = this.props.model;
+      if (model.get('completed'))
+        model.set('completed', false);
+      else
+        model.set('completed', true);
+      model.save({patch: true});
+    },
+
+    classComplete: function(){
+      if (this.props.model.get('completed'))
+        return 'completed';
+      return 'not-completed';
+    },
+
     edit: function(){
       this.props.parent.setState({edit: true});
     },
@@ -117,7 +132,7 @@ SimplyBetterIdeas.Views = (function(views){
       var model = this.props.model;
 
       return (
-        <li className='idea'>
+        <li className={'idea ' + this.classComplete()}>
           <h1>{model.get('title')}</h1>
           <p>{model.get('description')}</p>
           <div className='meta'>
@@ -146,6 +161,7 @@ SimplyBetterIdeas.Views = (function(views){
             ></div>
             <div className="icon edit" onClick={this.edit}></div>
             <div className="icon delete" onClick={this.destroy}></div>
+            <div className={"icon " + this.classComplete()} onClick={this.complete}>✔</div>
           </div>
           <div className='comments'>
             {this.renderComments()}
