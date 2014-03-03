@@ -97,6 +97,21 @@
       width: 100%
       @include box
       @include vote-buttons
+      &.completed
+        border: 1px solid $completed-border
+        background: $completed-background
+        &:after
+          position: absolute
+          z-index: 1
+          bottom: 10px
+          right: 10px
+          background: $completed-border
+          content: '✔ COMPLETED'
+          padding: 3px 5px
+          color: white
+          border-radius: 20px
+          font-weight: 700
+          font-size: 12px
 
       .idea-item
         display: block
