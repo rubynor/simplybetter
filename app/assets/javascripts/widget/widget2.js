@@ -1,5 +1,6 @@
 //= require zepto
 //= require zepto_animations
+//= require react
 //= require underscore
 //= require backbone
 //= require backbone/widget/setup
