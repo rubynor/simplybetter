@@ -14,6 +14,14 @@ class Idea < ActiveRecord::Base
 
   after_create :notify_customers
 
+  def subscribers
+    self.subscriptions.map(&:subscriber).uniq
+  end
+
+  def mine?(user)
+    self.creator == user
+  end
+
   def upvotes
     votes.where("value > 0").count
   end
