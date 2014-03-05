@@ -14,6 +14,7 @@ SimplyBetter::Application.routes.draw do
         get :find_similar, on: :collection
       end
     end
+    resources :notifications, only: [:index,:update]
   end
 
   resources :customers, only: [:index, :new, :create] do
@@ -30,10 +31,7 @@ SimplyBetter::Application.routes.draw do
     end
   end
 
-  resources :notifications, only: [:index,:update]
-
   get 'widget' => "widget#widget"
-
 
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
