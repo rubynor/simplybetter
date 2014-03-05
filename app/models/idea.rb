@@ -7,6 +7,7 @@ class Idea < ActiveRecord::Base
   belongs_to :idea_group
   has_many :votes, as: :vote_receiver, dependent: :destroy
   has_many :comments, inverse_of: :idea
+  has_many :idea_subscriptions, as: :subscriptions
 
   validates_presence_of :title, :description, :creator
   validates_uniqueness_of :title, scope: :application

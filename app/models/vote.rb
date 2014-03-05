@@ -2,6 +2,7 @@ class Vote < ActiveRecord::Base
   has_paper_trail
   belongs_to :vote_receiver, polymorphic: true
   belongs_to :voter, polymorphic: true
+  has_one :idea_subscriptions, as: :subscriber_from, dependent: :destroy
   after_save :update_parent_votes_count
 
   def cast(value)
@@ -16,6 +17,10 @@ class Vote < ActiveRecord::Base
       self.value += value
     end
     self.save!
+  end
+
+  def subscribe
+    IdeaSubscription.create(subscriber_from: self, subscriber: self.voter, idea: self.vote_receiver)
   end
 
   protected
