@@ -41,3 +41,11 @@ Vote.blueprint do
   voter_email { "test@example.com"}
   value { 1 }
 end
+
+IdeaSubscription.blueprint do
+  # Attributes here
+end
+
+Notification.blueprint do
+  # Attributes here
+end

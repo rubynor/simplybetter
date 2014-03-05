@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302231643) do
+ActiveRecord::Schema.define(version: 20140305121100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20140302231643) do
     t.integer "application_id"
   end
 
+  create_table "idea_subscriptions", force: true do |t|
+    t.integer  "idea_id"
+    t.string   "subscriber_type"
+    t.integer  "subscriber_id"
+    t.string   "subscriber_from_type"
+    t.integer  "subscriber_from_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ideas", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -59,6 +69,18 @@ ActiveRecord::Schema.define(version: 20140302231643) do
     t.datetime "updated_at"
     t.integer  "idea_group_id"
     t.boolean  "completed",      default: false
+  end
+
+  create_table "notifications", force: true do |t|
+    t.string   "subject_type"
+    t.integer  "subject_id"
+    t.string   "action_type"
+    t.integer  "action_id"
+    t.string   "recipient_type"
+    t.integer  "recipient_id"
+    t.boolean  "checked"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
