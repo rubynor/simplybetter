@@ -20,10 +20,40 @@ class Vote < ActiveRecord::Base
   end
 
   def subscribe
-    IdeaSubscription.create(subscriber_from: self, subscriber: self.voter, idea: self.vote_receiver)
+    if legit_vote?
+      IdeaSubscription.create(subscriber_from: self, subscriber: self.voter, idea: self.vote_receiver)
+    end
+  end
+
+  def notify
+    if legit_vote?
+      IdeaSubscription.notify(self, self.vote_receiver)
+    end
+  end
+
+  def notification_text(recipient)
+    if vote_receiver.mine?(recipient)
+      "#{creator.name} #{past_tence} on your idea \"#{vote_receiver.title}\""
+    else
+      "#{creator.name} #{past_tence} on \"#{vote_receiver.title}\""
+    end
   end
 
   protected
+
+  def past_tence
+    if self.value > 0
+      "upvoted"
+    elsif self.value < 0
+      "downvoted"
+    else
+      "blank voted"
+    end
+  end
+
+  def legit_vote?
+    self.value > 0 || self.value < 0
+  end
 
   def update_parent_votes_count
     vote_receiver.update_votes_count
