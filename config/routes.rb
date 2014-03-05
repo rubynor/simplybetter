@@ -30,6 +30,8 @@ SimplyBetter::Application.routes.draw do
     end
   end
 
+  resources :notifications, only: [:index,:update]
+
   get 'widget' => "widget#widget"
 
 
