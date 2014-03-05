@@ -35,6 +35,8 @@ class WidgetApi::VotesController < ApplicationController
   def cast_vote(value)
     if voter
       vote.cast(value)
+      vote.subscribe
+      vote.notify
       vote_receiver.reload
     else
       render json: {error: "You need to be signed in to vote"}, status: 403

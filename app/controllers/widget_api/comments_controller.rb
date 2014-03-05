@@ -17,12 +17,11 @@ class WidgetApi::CommentsController < ApplicationController
 
     @comment = Comment.new(comment_attributes)
     @comment.creator = creator(app,params[:user][:email])#From module
-    @comment.save!
-
-    respond_to do |format|
-      format.html { redirect_to application_idea_path(@comment.idea) }
-      format.json { render 'widget_api/comments/show' }
+    if @comment.save
+      @comment.subscribe
+      @comment.notify
     end
+    render 'widget_api/comments/show'
   end
 
   def destroy
