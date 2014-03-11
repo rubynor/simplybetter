@@ -13,3 +13,11 @@ node :time do |n|
   n.time
 end
 
+node :idea_id do |n|
+  n.idea
+end
+
+node :comment_id do |n|
+  n.comment
+end
+
