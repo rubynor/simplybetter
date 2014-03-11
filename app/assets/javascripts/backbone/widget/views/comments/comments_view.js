@@ -34,7 +34,7 @@ SimplyBetterApplication.Comments = (function (comments) {
       var ol = this.$el.find('ol');
       if (commentsCount > 0){
           _.each(self.collection.models, function(model){
-            var comment_item = new SimplyBetterApplication.Comments.ItemView({model: model, navigator: self.options.navigator});
+            var comment_item = new SimplyBetterApplication.Comments.ItemView({model: model, navigator: self.options.navigator, highlight: self.options.highlight});
             ol.append(comment_item.render().el);
           });
       }
