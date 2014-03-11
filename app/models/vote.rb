@@ -27,16 +27,28 @@ class Vote < ActiveRecord::Base
 
   def notify
     if legit_vote?
-      IdeaSubscription.notify(self, self.vote_receiver)
+      Notification.notify(self, self.vote_receiver)
     end
   end
 
   def notification_text(recipient)
     if vote_receiver.mine?(recipient)
-      "#{creator.name} #{past_tence} on your idea \"#{vote_receiver.title}\""
+      [
+        {bold: "#{voter.name} "},
+        {normal: "#{past_tence} on your idea: "},
+        {bold: "“#{vote_receiver.title}”"}
+      ]
     else
-      "#{creator.name} #{past_tence} on \"#{vote_receiver.title}\""
+      [
+        {bold: "#{voter.name} "},
+        {normal: "#{past_tence}: "},
+        {bold: "“#{vote_receiver.title}”"}
+      ]
     end
+  end
+
+  def creator
+    self.voter
   end
 
   protected
