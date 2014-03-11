@@ -36,6 +36,10 @@ SimplyBetterApplication.Comments = (function(comments){
             });
         }, 
 
+        afterRender: function(){
+          return false;
+        }
+
     });
 
     return module;
