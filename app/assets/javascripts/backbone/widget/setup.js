@@ -51,12 +51,19 @@ SimplyBetterApplication.init = (function (){
             };
             app.commentsModelUrl = function(fid, id){
                 return app.commentsModelCollectionUrl(fid) + '/' + id;
-            };            
+            };
 
             app.applicationModelUrl = function(){
                 return app.baseUrl + '/widget_api/applications/' + app.appKey;
             };
-            
+
+            app.NotificationCollectionUrl = function(){
+                return app.baseUrl + '/widget_api/notifications?token=' + app.appKey + '&user_email=' + app.userEmail;
+            };
+
+            app.NotificationModelUrl = function(id){
+                return app.baseUrl + '/widget_api/notifications/' + id + '?token='+ app.appKey + '&user_email=' + app.userEmail;
+            };
 
             return app;
         }(appKey, baseUrl));
