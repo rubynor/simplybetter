@@ -12,8 +12,16 @@
       padding-top: 20px
       padding-bottom: 20px
       clear: both
+      -webkit-transition: all 1s linear
+      -o-transition: all 1s linear 
+      -moz-transition: all 1s linear
+      -ms-transition: all 1s linear
+      -kthtml-transition: all 1s linear
+      transition: all 1s linear
       &:hover
         background: $list-hover
+      &.highlighted
+        background: $yellow
       .avatar
         float: left
         display: inline-block

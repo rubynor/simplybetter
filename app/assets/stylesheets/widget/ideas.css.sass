@@ -95,6 +95,12 @@
       padding: 15px 0px 20px 66px
       min-height: 110px
       width: 100%
+      -webkit-transition: all 1s linear
+      -o-transition: all 1s linear
+      -moz-transition: all 1s linear
+      -ms-transition: all 1s linear
+      -kthtml-transition: all 1s linear
+      transition: all 1s linear
       @include box
       @include vote-buttons
       &.completed
@@ -112,6 +118,17 @@
           border-radius: 20px
           font-weight: 700
           font-size: 12px
+
+      &.highlighted
+        -webkit-box-shadow: inset 0px 0px 10px 0px $notification-background
+        -moz-box-shadow: inset 0px 0px 10px 0px $notification-background
+        box-shadow: inset 0px 0px 10px 0px $notification-background
+        -webkit-transition: all 1s linear
+        -o-transition: all 1s linear
+        -moz-transition: all 1s linear
+        -ms-transition: all 1s linear
+        -kthtml-transition: all 1s linear
+        transition: all 1s linear
 
       .idea-item
         display: block
