@@ -9,6 +9,16 @@ class Notification < ActiveRecord::Base
     end
   end
 
+  def idea
+    subject.id
+  end
+
+  def comment
+    if action.is_a?(Comment)
+      action.id
+    end
+  end
+
   def self.for(recipient)
     all.where(recipient: recipient)
   end
