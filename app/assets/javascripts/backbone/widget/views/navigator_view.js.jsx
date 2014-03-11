@@ -11,6 +11,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
             });
             this.application = new SimplyBetterApplication.Application.Model();
             this.listenTo(this,'close',this.deActivateLink);
+            this.listenTo(this, 'notification', this.notificationGoTo);
         },
         template: 'navigator.html',
         el: '#simplybetterIdeasModal',
@@ -42,7 +43,7 @@ SimplyBetterApplication.Navigator = (function(navigator){
             notifications.fetch();
             if ($('SimplybetterNotifications').length === 0){
               React.renderComponent((
-                <notificationsView collection={notifications} />
+                <notificationsView collection={notifications} navigator={this} />
               ), document.getElementById('simplybetterNotifications'));
             }
         },
@@ -71,6 +72,31 @@ SimplyBetterApplication.Navigator = (function(navigator){
                     .find('#simplybetterIdeasModalContent')
                     .html(idea_layout.render().el);
             }
+            return idea_layout;
+        },
+
+        voteModelFromIdea: function(ideaModel){
+            return new SimplyBetterApplication.Votes.Model({
+                idea_id: ideaModel.get('id'), 
+                voter_email: SimplyBetterApplication.config.userEmail,
+                value: ideaModel.get('voter_status'),
+                votes_count: ideaModel.get('votes_count')
+            });
+        },
+
+        notificationGoTo: function(options){
+            var ideaModel = this.ideas.get(options.id);
+            var voteModel = this.voteModelFromIdea(ideaModel);
+            var idea_layout = new SimplyBetterApplication.Ideas.Layout({
+                idea: ideaModel,
+                navigator: this,
+                voteModel: voteModel,
+                highlight: options.highlight
+            });
+            this.trigger('close');
+            this.$el
+              .find('#simplybetterIdeasModalContent')
+              .html(idea_layout.render().el);
             return idea_layout;
         },
 
