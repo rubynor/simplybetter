@@ -12,6 +12,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.application = new SimplyBetterApplication.Application.Model();
             this.listenTo(this,'close',this.deActivateLink);
             this.listenTo(this, 'notification', this.notificationGoTo);
+
+            this.notifications = new SimplyBetterApplication.Notifications.Collection();
         },
         template: 'navigator.html',
         el: '#simplybetterIdeasModal',
@@ -38,12 +40,11 @@ SimplyBetterApplication.Navigator = (function(navigator){
                 .html(overviewLayout.render().el);
             this.ideas.fetch();
 
-            var notifications = new SimplyBetterApplication.Notifications.Collection();
             var notificationsView = SimplyBetterApplication.Views.Notifications;
-            notifications.fetch();
+            this.notifications.fetch();
             if ($('SimplybetterNotifications').length === 0){
               React.renderComponent((
-                <notificationsView collection={notifications} navigator={this} />
+                <notificationsView collection={this.notifications} navigator={this} />
               ), document.getElementById('simplybetterNotifications'));
             }
         },
