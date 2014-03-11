@@ -126,6 +126,7 @@ SimplyBetterApplication.Views = (function(views){
           }()
         }
       );
+      model.save({checked: true});
       this.props.parent.hide();
     },
     render: function(){
