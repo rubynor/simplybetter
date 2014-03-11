@@ -12,9 +12,14 @@ SimplyBetterApplication.Comments = (function(comments){
             this.remove();
         },
 
+        afterRender: function(){
+          this.highlight();
+        },
+
         render: function(){
             var template = SimplyBetterApplication.Template.get(this.template);
             this.$el.html(template(this.model.attributes));
+            this.afterRender();
             return this;
         }
     });
