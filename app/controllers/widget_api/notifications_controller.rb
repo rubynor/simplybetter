@@ -1,4 +1,4 @@
-class WidgetApi::NotificationsController < ApplicationsController
+class WidgetApi::NotificationsController < ApplicationController
   include CreatorFinder
   before_filter :application
 
