@@ -4,12 +4,7 @@ SimplyBetterApplication.Ideas = (function(ideas){
     module.ItemLayout = Backbone.View.extend({
         initialize: function(){
             this.listenTo(this.options.navigator, 'close', this.close);
-            this.voteModel = new SimplyBetterApplication.Votes.Model({
-                idea_id: this.model.get('id'), 
-                voter_email: SimplyBetterApplication.config.userEmail,
-                value: this.model.get('voter_status'),
-                votes_count: this.model.get('votes_count')
-            });            
+            this.voteModel = this.options.navigator.voteModelFromIdea(this.model);
             this.ideaItem = new SimplyBetterApplication.Ideas.itemView({
                 model: this.model, 
                 navigator: this.options.navigator, 
