@@ -19,6 +19,9 @@ p
   font-family: 'Roboto', serif
   font-weight: 400
 
+strong
+  font-weight: 700
+
 #simplybetterIdeasModal
   position: absolute
   overflow: hidden
@@ -56,6 +59,95 @@ p
       line-height: 18px
     a:hover
       text-decoration: none
+    #simplybetterNotifications
+      height: 31px
+      width: 31px
+      position: absolute
+      left: 15px
+      bottom: 50px
+      cursor: pointer
+      overflow: visible
+
+      .no-notifications
+        background: image-url('widget/notifications-idle.png') no-repeat
+        height: 31px
+        width: 31px
+        &:hover
+          background-position: -31px 0px
+      .new-notifications
+        background: $notification-background
+        height: 31px
+        width: 31px
+        border-radius: 16px
+        padding-top: 7px
+        font-weight: 500
+        text-align: center
+        color: $white
+        &:hover
+          background: $notification-background-hover
+
+      .notifications
+        height: 350px
+        width: 300px
+        position: absolute
+        top: -315px
+        left: 40px
+        background: $white
+        border-radius: 3px
+        border: 1px solid $notification-border
+        z-index: 100
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3)
+
+        .top
+          width: 100%
+          border-bottom: 1px solid $notification-border
+          padding: 8px
+          color: $gray
+          font-size: 12px
+
+        .notification
+          width: 100%
+          border-bottom: 1px solid $notification-border
+          padding: 10px 10px 10px 60px
+          position: relative
+          &.new
+            background: $notification-new-background
+          &:hover
+            background: $notification-hover
+          .profile-image
+            position: absolute
+            top: 10px
+            left: 10px
+            border-radius: 100px
+            border: 0px
+            overflow: hidden
+            height: 40px
+            width: 40px
+            img
+              width: 40px
+              height: auto
+          .notification-message
+            width: 100%
+            font-size: 12px
+            line-height: 16px
+            .meta
+              width: 100%
+              margin-top: 6px
+              background: image-url('widget/clock.png') no-repeat 0px 3px
+              padding-left: 15px
+              abbr
+                border-bottom: 0px
+                cursor: default
+                color: $gray
+        .arrow-left
+          position: absolute
+          bottom: 8px
+          left: -5px
+          width: 0
+          height: 0
+          border-top: 10px solid transparent
+          border-bottom: 10px solid transparent
+          border-right: 10px solid $white
 
   .simplybetter-table
     height: 100%
