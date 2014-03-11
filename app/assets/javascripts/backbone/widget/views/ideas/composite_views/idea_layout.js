@@ -31,7 +31,8 @@ SimplyBetterApplication.Ideas = (function(ideas){
         newCommentsCollectionView: function(){
             return new SimplyBetterApplication.Comments.CollectionView({
                 collection: this.comments_collection, 
-                navigator: this.options.navigator
+                navigator: this.options.navigator,
+                highlight: this.options.highlight
             });
         },
           
@@ -40,6 +41,18 @@ SimplyBetterApplication.Ideas = (function(ideas){
         close: function(){
             this.options.navigator.trigger('ideaClosed');
             this.remove();
+        },
+
+        highlight: function(){
+          var that = this;
+          if (this.options.highlight['idea']){
+            setTimeout(function(){
+              that.$el.addClass('highlighted');
+            },500);
+            setTimeout(function(){
+              that.$el.removeClass('highlighted');
+            },3000);
+          }
         },
         
         className: 'idea-layout',
@@ -51,10 +64,10 @@ SimplyBetterApplication.Ideas = (function(ideas){
                 idea: this.$el.find('#idea'),
                 comments: this.$el.find('#comments')
             };
-
             ui.idea.html(this.idea_view.render().el);
             this.comments_collection.fetch();
             ui.comments.html(self.comments_collection_view.render().el); 
+            this.highlight();
             return this;
         }
     });
