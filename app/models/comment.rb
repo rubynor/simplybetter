@@ -14,14 +14,22 @@ class Comment < ActiveRecord::Base
   end
 
   def notify
-    IdeaSubscription.notify(self, self.idea)
+    Notification.notify(self, self.idea)
   end
 
   def notification_text(recipient)
     if idea.mine?(recipient)
-      "#{creator.name} wrote a comment on your idea \"#{idea.title}\""
+      [
+        {bold: "#{creator.name} "},
+        {normal: "wrote a comment on your idea: "},
+        {bold: "“#{idea.title}”"}
+      ]
     else
-      "#{creator.name} wrote a comment on \"#{idea.title}\""
+      [
+        {bold: "#{creator.name} "},
+        {normal: "wrote a comment on: "},
+        {bold: "“#{idea.title}”"}
+      ]
     end
   end
 
