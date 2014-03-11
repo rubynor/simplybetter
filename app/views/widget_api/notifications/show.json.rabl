@@ -1,15 +1,15 @@
 object @notification
 attributes :id, :checked
 
-node :image_url |n|
+node :image_url do |n|
   n.action_user_image
 end
 
-node :text |n|
+node :text do |n|
   n.text
 end
 
-node :time |n|
+node :time do |n|
   n.time
 end
 
