@@ -5,6 +5,7 @@
 //= require backbone
 //= require backbone/widget/setup
 //= require_tree ../backbone/widget
+//= require zepto.timeago
 
 $(function(){
   // It is not possible to have a dynamic navbar and a flexible
