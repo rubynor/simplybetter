@@ -84,8 +84,9 @@ SimplyBetterApplication.Views = (function(views){
             <div className='top'>
               Notifications
             </div>
-            {this.renderNotifications()}
-
+            <div className='notifications-list'>
+              {this.renderNotifications()}
+            </div>
             <div className='arrow-left' />
           </div>
         </div>
