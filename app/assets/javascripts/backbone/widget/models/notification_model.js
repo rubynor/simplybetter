@@ -11,7 +11,10 @@ SimplyBetterApplication.Notifications = (function (notifications) {
         url: function(){
             return SimplyBetterApplication.config.NotificationCollectionUrl();
         },
-        model: module.model
+        model: module.model,
+        comparator: function(noti){
+          return -noti.get('id');
+        }
     });
 
     return module;
