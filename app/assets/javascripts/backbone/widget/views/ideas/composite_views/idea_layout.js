@@ -45,7 +45,8 @@ SimplyBetterApplication.Ideas = (function(ideas){
 
         highlight: function(){
           var that = this;
-          if (this.options.highlight['idea']){
+          var hlight = this.options.highlight;
+          if (hlight && hlight['idea']){
             setTimeout(function(){
               that.$el.addClass('highlighted');
             },500);
