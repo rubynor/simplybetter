@@ -5,7 +5,9 @@ class Notification < ActiveRecord::Base
 
   def self.notify(action, subject)
     subject.subscribers.each do |s|
-      create(action: action, subject: subject, recipient: s)
+      unless action.creator == s
+        create(action: action, subject: subject, recipient: s)
+      end
     end
   end
 
@@ -20,7 +22,7 @@ class Notification < ActiveRecord::Base
   end
 
   def self.for(recipient)
-    all.where(recipient: recipient)
+    all.where(recipient: recipient).order('notifications.updated_at DESC')
   end
 
   def action_user_image
