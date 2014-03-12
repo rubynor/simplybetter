@@ -41,8 +41,8 @@ SimplyBetterApplication.Navigator = (function(navigator){
             this.ideas.fetch();
 
             var notificationsView = SimplyBetterApplication.Views.Notifications;
-            this.notifications.fetch();
-            if ($('SimplybetterNotifications').length === 0){
+            this.notifications.fetch({success: function(collection){collection.sort()}});
+            if (SimplyBetterApplication.Utils.userSignedIn() && $('SimplybetterNotifications').length === 0){
               React.renderComponent((
                 <notificationsView collection={this.notifications} navigator={this} />
               ), document.getElementById('simplybetterNotifications'));
