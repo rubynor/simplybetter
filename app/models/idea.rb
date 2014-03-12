@@ -12,7 +12,7 @@ class Idea < ActiveRecord::Base
   validates_presence_of :title, :description, :creator
   validates_uniqueness_of :title, scope: :application
 
-  after_create :notify_customers
+  after_create :email_notify_customers
 
   def subscribers
     self.idea_subscriptions.map(&:subscriber).uniq
@@ -50,9 +50,25 @@ class Idea < ActiveRecord::Base
   end
 
   def notify_customers
+    Notification.notify_group([self.application.customer], self, self)
+  end
+
+  def subscribe
+    IdeaSubscription.create(subscriber_from: self, subscriber: self.creator, idea: self)
+  end
+
+  def email_notify_customers
     Thread.new do
       AdminNotifier.new_idea(self.application.customer,self.creator, self).deliver
     end
+  end
+
+  def notification_text(recipient)
+    [
+      {bold: "#{creator.name} "},
+      {normal: "added an idea: "},
+      {bold: "“#{title}”"}
+    ]
   end
 
   private

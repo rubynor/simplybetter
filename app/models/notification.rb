@@ -4,9 +4,13 @@ class Notification < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
 
   def self.notify(action, subject)
-    subject.subscribers.each do |s|
-      unless action.creator == s
-        create(action: action, subject: subject, recipient: s)
+    notify_group(subject.subscribers, action, subject)
+  end
+
+  def self.notify_group(group, action, subject)
+    group.each do |u|
+      unless action.creator == u
+        create(action: action, subject: subject, recipient: u)
       end
     end
   end

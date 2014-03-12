@@ -40,6 +40,8 @@ class WidgetApi::IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
+        @idea.notify_customers
+        @idea.subscribe
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }
