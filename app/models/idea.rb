@@ -6,8 +6,8 @@ class Idea < ActiveRecord::Base
   belongs_to :creator, polymorphic: true
   belongs_to :idea_group
   has_many :votes, as: :vote_receiver, dependent: :destroy
-  has_many :comments, inverse_of: :idea
-  has_many :idea_subscriptions
+  has_many :comments, inverse_of: :idea, dependent: :destroy
+  has_many :idea_subscriptions, dependent: :destroy
 
   validates_presence_of :title, :description, :creator
   validates_uniqueness_of :title, scope: :application
@@ -54,7 +54,7 @@ class Idea < ActiveRecord::Base
   end
 
   def subscribe
-    IdeaSubscription.create(subscriber_from: self, subscriber: self.creator, idea: self)
+    IdeaSubscription.find_or_create_by(subscriber_from: self, subscriber: self.creator, idea: self)
   end
 
   def email_notify_customers

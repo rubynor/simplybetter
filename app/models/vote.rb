@@ -21,7 +21,7 @@ class Vote < ActiveRecord::Base
 
   def subscribe
     if legit_vote?
-      IdeaSubscription.create(subscriber_from: self, subscriber: self.voter, idea: self.vote_receiver)
+      IdeaSubscription.find_or_create_by(subscriber_from: self, subscriber: self.voter, idea: self.vote_receiver)
     end
   end
 
