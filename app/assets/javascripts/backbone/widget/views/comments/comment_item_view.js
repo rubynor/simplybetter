@@ -13,7 +13,7 @@ SimplyBetterApplication.Comments = (function(comments){
           var that = this;
           var type = this.options.highlight;
           window.location.hash = '';
-          if (type['comment']){
+          if (type && type['comment']){
             if (this.model.get('id') === parseInt(type['comment'])){
               setTimeout(function(){
                 that.$el.addClass('highlighted');
