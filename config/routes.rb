@@ -14,7 +14,9 @@ SimplyBetter::Application.routes.draw do
         get :find_similar, on: :collection
       end
     end
-    resources :notifications, only: [:index,:update]
+    resources :notifications, only: [:index,:update] do
+      get :count, on: :collection
+    end
   end
 
   resources :customers, only: [:index, :new, :create] do

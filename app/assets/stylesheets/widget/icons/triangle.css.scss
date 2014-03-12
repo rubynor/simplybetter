@@ -14,4 +14,12 @@
   &:hover{
     cursor: pointer;
   }
+
+  span{
+    top: 40px;
+    left: 20px;
+    transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg); /* IE 9 */
+    -webkit-transform:rotate(-45deg); /* Safari and Chrome */
+  }
 }

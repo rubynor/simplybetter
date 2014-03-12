@@ -1,3 +1,5 @@
+@import 'colors';
+
 #simplybetterCloseButton {
   background: image-url('widget/icons.png') no-repeat 0 -24px;
   width: 24px;
@@ -22,6 +24,19 @@
   background-color: rgba(20, 20, 20, 0.20)
 }
 
+#simplybetterActivateButton {
+  span{
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 0px 5px 0px 5px;
+    background-color: $notification-background;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 0px;
+  }
+}
 
 #simplybetterIframeWrapper {
   background: transparent;

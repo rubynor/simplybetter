@@ -14,6 +14,10 @@ class WidgetApi::NotificationsController < ApplicationController
     render 'widget_api/notifications/show'
   end
 
+  def count
+    render json: {count: index.where(checked: nil).count}
+  end
+
   private
 
     def notification_attributes
