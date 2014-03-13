@@ -54,7 +54,7 @@ class Idea < ActiveRecord::Base
   end
 
   def subscribe
-    IdeaSubscription.find_or_create_by(subscriber_from: self, subscriber: self.creator, idea: self)
+    IdeaSubscription.add(self, self.creator, self)
   end
 
   def email_notify_customers

@@ -10,7 +10,7 @@ class Comment < ActiveRecord::Base
   after_create :notify_involved
 
   def subscribe
-    IdeaSubscription.find_or_create_by(subscriber_from: self, subscriber: self.creator, idea: self.idea)
+    IdeaSubscription.add(self, self.creator, self.idea)
   end
 
   def notify
