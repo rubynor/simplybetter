@@ -22,7 +22,7 @@ class Vote < ActiveRecord::Base
   end
 
   def subscribe
-    if legit_vote?
+    if legit_vote? && vote_receiver.is_a?(Idea)
       IdeaSubscription.add(self, self.voter, self.vote_receiver)
     end
   end
