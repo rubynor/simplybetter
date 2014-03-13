@@ -42,4 +42,46 @@ namespace :sb do
       end
     end
   end
+
+  desc "Add idea-subscribers from previous interactions"
+  task add_subscriptions: :environment do 
+    def subscribe_me(item)
+      subscription = item.subscribe
+      if subscription == "created"
+        puts "Subscribed "
+        puts item
+      elsif subscription == "exists"
+        puts "This subscription exists"
+        puts item
+      else
+        puts "This subscription does not exist, nor was it created"
+        puts item.inspect
+      end
+    end
+
+    def clean_up_comments
+      Comment.all.each do |c|
+        tmp = Idea.find_by(id: c.idea_id)
+        if tmp.blank?
+          if c.destroy
+            puts "Destroyed comment with missing relation to idea"
+          end
+        end
+      end
+    end
+
+    clean_up_comments()
+
+    Vote.all.each do |v|
+      subscribe_me(v)
+    end
+
+    Comment.all.each do |c|
+      subscribe_me(c)
+    end
+
+    Idea.all.each do |i|
+      subscribe_me(i)
+    end
+  end
 end
