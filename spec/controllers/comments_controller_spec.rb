@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CommentsController do
+describe WidgetApi::CommentsController do
   example 'adding a comment' do
     pending
     f = Idea.make!.id

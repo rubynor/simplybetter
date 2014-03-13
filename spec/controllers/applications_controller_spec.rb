@@ -10,8 +10,7 @@ describe ApplicationsController do
   describe 'index' do
     it 'should assign variables @applications and @application' do
       get :index
-      assigns(:applications).should be_kind_of(ActiveRecord::Relation)
-      assigns(:application).should be_an_instance_of(Application)
+      assigns(:applications).first.should be_kind_of(Application)
     end
   end
 
@@ -30,7 +29,7 @@ describe ApplicationsController do
     end
     it 'should redirect to applications_path' do
       post :create, application: {name: 'The bestest application'}
-      response.should redirect_to(applications_path)
+      response.should redirect_to(application_path(Application.last.id))
     end
   end
 
