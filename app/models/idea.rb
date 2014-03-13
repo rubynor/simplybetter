@@ -14,6 +14,8 @@ class Idea < ActiveRecord::Base
 
   after_create :email_notify_customers
 
+  include IdeaNotificationHelpers
+
   def subscribers
     self.idea_subscriptions.map(&:subscriber).uniq
   end
@@ -49,26 +51,14 @@ class Idea < ActiveRecord::Base
     application(token).idea_group.ideas
   end
 
-  def notify_customers
-    Notification.notify_group([self.application.customer], self, self)
-  end
-
-  def subscribe
-    IdeaSubscription.add(self, self.creator, self)
-  end
-
   def email_notify_customers
     Thread.new do
       AdminNotifier.new_idea(self.application.customer,self.creator, self).deliver
     end
   end
 
-  def notification_text(recipient)
-    [
-      {bold: "#{creator.name} "},
-      {normal: "added an idea: "},
-      {bold: "“#{title}”"}
-    ]
+  def has_been_completed?
+    self.completed_changed? && self.completed == true
   end
 
   private
@@ -76,5 +66,4 @@ class Idea < ActiveRecord::Base
   def self.application(token)
     Application.find_by(token: token)
   end
-
 end
