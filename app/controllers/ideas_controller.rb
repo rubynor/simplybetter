@@ -44,7 +44,9 @@ class IdeasController < ApplicationController
     if creator
       @idea.creator = Idea.find_creator(creator)
     end
+    completed = @idea.has_been_completed?
     if @idea.save
+      @idea.notify(:completed, current_customer) if completed
       respond_to do |format|
         format.json{ show }
         format.html{
