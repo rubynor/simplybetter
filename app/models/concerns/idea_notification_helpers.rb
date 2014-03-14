@@ -7,10 +7,6 @@ module IdeaNotificationHelpers
     Notification.notify(self, self, action_attribute, action_attribute_changed_by)
   end
 
-  def subscribe
-    IdeaSubscription.add(self, self.creator, self)
-  end
-
   def notification_text(recipient, action_attribute = nil, action_attribute_changed_by = nil)
     if (action_attribute.present? && action_attribute_changed_by.present?)
       notification_text_from_changed_attribute(

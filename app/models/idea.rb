@@ -20,6 +20,10 @@ class Idea < ActiveRecord::Base
     self.idea_subscriptions.map(&:subscriber).uniq
   end
 
+  def subscribe
+    IdeaSubscription.add(self, self.creator, self)
+  end
+
   def mine?(user)
     self.creator == user
   end
