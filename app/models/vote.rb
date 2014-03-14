@@ -2,7 +2,7 @@ class Vote < ActiveRecord::Base
   has_paper_trail
   belongs_to :vote_receiver, polymorphic: true
   belongs_to :voter, polymorphic: true
-  has_one :idea_subscriptions, as: :subscriber_from, dependent: :destroy
+  has_one :idea_subscription, as: :subscriber_from, dependent: :destroy
   after_save :update_parent_votes_count
 
   include VoteNotificationHelpers
