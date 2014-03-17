@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe IdeasController do
   before do
-      @application = Application.make!
+      @application = Application.make!(customers: [Customer.make!])
       session[:customer_id] = Customer.first.id
   end
   describe 'create' do

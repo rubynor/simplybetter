@@ -29,14 +29,6 @@ class IdeasController < ApplicationController
     end
   end
 
-  def edit
-    @users = []
-    @application.users.map do |u|
-      @users.push(push_string(u,"User"))
-    end
-    @users.push(push_string(@application.customer,"Customer"))
-  end
-
   def update
     attributes = idea_attributes
     creator = attributes.delete(:creator)

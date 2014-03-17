@@ -1,6 +1,6 @@
 module IdeaNotificationHelpers
   def notify_customers
-    Notification.notify_group([self.application.customer], self, self)
+    Notification.notify_group(self.application.customers, self, self)
   end
 
   def notify(action_attribute = nil, action_attribute_changed_by = nil)

@@ -3,8 +3,9 @@ require 'spec_helper'
 describe ApplicationsController do
 
   before do
-    @application = Application.make!
-    session[:customer_id] = @application.customer.id
+    @customer = Customer.make!
+    @application = Application.make!(customers: [@customer])
+    session[:customer_id] = @application.customers.first.id
   end
 
   describe 'index' do

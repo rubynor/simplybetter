@@ -56,9 +56,9 @@ class Idea < ActiveRecord::Base
   end
 
   def email_notify_customers
-    Thread.new do
-      AdminNotifier.new_idea(self.application.customer,self.creator, self).deliver
-    end
+    #Thread.new do
+    #  AdminNotifier.new_idea(self.application.customer,self.creator, self).deliver
+    #end
   end
 
   def has_been_completed?
