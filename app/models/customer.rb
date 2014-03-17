@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   include Gravtastic
   gravtastic size: 50
   has_secure_password
-  has_many :applications, dependent: :destroy
+  has_and_belongs_to_many :applications
   has_many :comments, inverse_of: :creator
   has_many :votes, as: :voter
   validates :email, 
