@@ -8,12 +8,9 @@ module CreatorFinder
   end
 
   def creator(application, creator_email)
-    customer = application.customer
     a_customer = Customer.find_by(email: creator_email)
     user = User.find_by(email: creator_email)
-    if customer.email == creator_email
-      return customer
-    elsif a_customer
+    if a_customer
       return a_customer
     elsif user
       return user
