@@ -10,7 +10,6 @@ require 'machinist/active_record'
 
 Application.blueprint do
   name { "Test application" }
-  customer
 end
 
 Idea.blueprint do
