@@ -84,4 +84,14 @@ namespace :sb do
       subscribe_me(i)
     end
   end
+
+
+  desc "Migrate all customers applications over to the new join table"
+  task migrate_customers: :environment do
+    Application.all.each do |a|
+      customer = Customer.find(a.customer_id)
+      a.customers << customer
+      a.save!
+    end
+  end
 end
