@@ -13,7 +13,8 @@ gem 'font-awesome-rails'
 gem 'react-rails'
 
 group :production do
-    gem 'newrelic_rpm'
+  gem 'newrelic_rpm'
+  gem 'unicorn'
 end
 
 gem 'searchkick'
@@ -46,9 +47,6 @@ group :development do
   gem 'letter_opener'
 end
 gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
