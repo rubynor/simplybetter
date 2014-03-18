@@ -28,4 +28,8 @@ class ApplicationController < ActionController::Base
     @current_action     = action_name
   end
 
+  def set_application
+    @application ||= current_customer.applications.find(params[:id]) if params[:id]
+  end
+
 end
