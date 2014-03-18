@@ -41,6 +41,10 @@ class ApplicationsController < ApplicationController
 
   private
 
+  def set_application
+    @application ||= current_customer.applications.find(params[:id]) if params[:id]
+  end
+
   def application_attributes
     params.require(:application).permit(:name, :intro, :icon)
   end

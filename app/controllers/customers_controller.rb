@@ -64,4 +64,12 @@ class CustomersController < ApplicationController
     redirect_to login_path unless current_customer
   end
 
+  def set_application
+    if params[:application_id]
+      @application ||= current_customer.applications.find(params[:application_id])
+    else
+      @application ||= Application.new
+    end
+  end
+
 end
