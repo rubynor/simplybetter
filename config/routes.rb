@@ -19,7 +19,12 @@ SimplyBetter::Application.routes.draw do
     end
   end
 
-  resources :customers, only: [:index, :new, :create] do
+  resources :customers, only: [:index, :new, :create, :edit, :update] do
+    member do
+      get :edit_unsafe
+      put :update_unsafe
+      patch :update_unsafe
+    end
   end
 
   resources :applications, except: [:destroy] do
