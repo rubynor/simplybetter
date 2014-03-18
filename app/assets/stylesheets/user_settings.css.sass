@@ -1,4 +1,4 @@
-body.customers.edit, body.customers.edit_unsafe
+body.customers.edit, body.customers.update, body.customers.update_unsafe, body.customers.edit_unsafe
   .form
     input[type=password],input[type=text]
       @include input
@@ -13,7 +13,7 @@ body.customers.edit, body.customers.edit_unsafe
       margin-top: 10px
       clear: both
 
-body.customers.edit
+body.customers.edit, body.customers.update
   .avatar
     margin-top: 50px
     @include clearfix
@@ -33,7 +33,7 @@ body.customers.edit
     margin-top: 30px
 
 
-body.customers.edit_unsafe
+body.customers.edit_unsafe, body.customers.update_unsafe
   .form
     margin-top: 30px
   .gap
