@@ -1,8 +1,7 @@
 = render 'shared/navbar_account_settings'
-= render 'shared/alerts', model: current_customer
-
 .row
   .col-lg-8.col-md-12.col-xs-12.avatar
+    = render 'shared/alerts', model: current_customer
     = image_tag current_customer.gravatar_url(size: 100)
     .avatar_description
       %h2 Change your avatar?
@@ -18,5 +17,5 @@
     = form_for current_customer do |f|
       = f.label :name
       = f.text_field :name
-      = f.button :save
+      = f.button :save, class: 'big'
 

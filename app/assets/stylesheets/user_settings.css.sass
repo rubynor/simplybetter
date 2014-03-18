@@ -1,16 +1,17 @@
 body.customers.edit, body.customers.edit_unsafe
-  input[type=password],input[type=text]
-    @include input
-    display: block
-    width: 100%
-  button
-    @include button-big
-    display: block
-    margin-top: 20px
-  label
-    @include label
-    margin-top: 10px
-    clear: both
+  .form
+    input[type=password],input[type=text]
+      @include input
+      display: block
+      width: 100%
+    button.big
+      @include button-big
+      display: block
+      margin-top: 20px
+    label
+      @include label
+      margin-top: 10px
+      clear: both
 
 body.customers.edit
   .avatar
