@@ -1,0 +1,10 @@
+#navbar
+  .col-xs-12
+    %h1 My Account
+    .links
+      = link_to edit_customer_path do
+        Personal information
+      = link_to edit_unsafe_customer_path do
+        Change password
+      = link_to sign_out_path, method: :delete do
+        Sign out
