@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140317100924) do
     t.string   "icon"
   end
 
-  create_table "applications_customers", force: true do |t|
+  create_table "applications_customers", id: false, force: true do |t|
     t.integer "customer_id"
     t.integer "application_id"
   end

@@ -25,7 +25,8 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = current_customer.applications.new(application_attributes)
+    @application = Application.new(application_attributes)
+    @application.customers << current_customer
     if @application.save
       redirect_to application_path(@application.id), notice: 'Application successfully created!'
     else
