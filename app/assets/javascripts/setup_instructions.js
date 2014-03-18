@@ -1,6 +1,6 @@
 $(function(){
 
-    if (SBTools.isPresent('.applications.show')){
+    if (SBTools.isPresent($('.applications.show'))){
         hljs.initHighlightingOnLoad();
 
         $('label').on('click', function(e){

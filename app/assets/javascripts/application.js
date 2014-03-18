@@ -24,4 +24,3 @@
 //= require_tree ./backbone/dashboard_ideas
 //
 //= require setup_instructions
-//= require administrate_application
