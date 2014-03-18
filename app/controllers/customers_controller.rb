@@ -32,7 +32,7 @@ class CustomersController < ApplicationController
     attributes = unsafe_attributes
     if current_customer.authenticate(attributes.delete(:current_password))
       if current_customer.update_attributes(attributes)
-        redirect_to edit_unsafe_customer_path, notice: 'Profile updated!'
+        redirect_to edit_unsafe_customer_path(current_customer.id), notice: 'Profile updated!'
       else
         render :edit_unsafe
       end
