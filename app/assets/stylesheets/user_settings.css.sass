@@ -1,0 +1,39 @@
+body.customers.edit, body.customers.edit_unsafe
+  input[type=password],input[type=text]
+    @include input
+    display: block
+    width: 100%
+  button
+    @include button-big
+    display: block
+    margin-top: 20px
+  label
+    @include label
+    margin-top: 10px
+    clear: both
+
+body.customers.edit
+  .avatar
+    margin-top: 50px
+    @include clearfix
+    img
+      float: left
+      padding-right: 30px
+    .avatar_description
+      width: 70%
+      float: left
+      h2
+        font-size: 14px
+        font-weight: 700
+        margin: 5px 0px 5px 0px
+      p
+        color: $gray
+  .form
+    margin-top: 30px
+
+
+body.customers.edit_unsafe
+  .form
+    margin-top: 30px
+  .gap
+    margin-top: 70px
