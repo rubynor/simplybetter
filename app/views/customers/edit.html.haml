@@ -1,1 +1,22 @@
-= render 'form'
+= render 'shared/navbar_account_settings'
+= render 'shared/alerts', model: current_customer
+
+.row
+  .col-lg-8.col-md-12.col-xs-12.avatar
+    = image_tag current_customer.gravatar_url(size: 100)
+    .avatar_description
+      %h2 Change your avatar?
+      %p
+        At the moment we are using gravatar as
+        our avatar provider. We plan to support
+        uploading and hosting of avatars in the
+        future. Visit 
+        = link_to 'Gravatar', 'http://gravatar.com', target: '_blank'
+        to change you avatar.
+.row
+  .col-lg-6.col-md-10.col-xs-12.form
+    = form_for current_customer do |f|
+      = f.label :name
+      = f.text_field :name
+      = f.button :save
+
