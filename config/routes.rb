@@ -20,9 +20,6 @@ SimplyBetter::Application.routes.draw do
   end
 
   resources :customers, only: [:index, :new, :create] do
-    member do
-      post :create_application
-    end
   end
 
   resources :applications, except: [:destroy] do

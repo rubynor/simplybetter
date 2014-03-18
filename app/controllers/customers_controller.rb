@@ -20,11 +20,6 @@ class CustomersController < ApplicationController
     end
   end
 
-  def create_application
-    current_customer.applications.create!(application_attributes)
-    redirect_to action: :index
-  end
-
   private
 
   def application_attributes
