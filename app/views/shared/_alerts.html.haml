@@ -1,0 +1,19 @@
+- if flash[:notice]
+  .alert.alert-success.alert-dissmissable
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+    %strong Success!
+    = flash[:notice]
+- if flash[:error]
+  .alert.alert-danger.alert-dismissable
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+    %strong Oh snap!
+    = flash[:error]
+- if model.errors.any?
+  .alert.alert-danger.alert-dismissable
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+    %strong Oh snap!
+    - model.errors.full_messages.each do |msg|
+      %p
+        \-
+        = msg
+
