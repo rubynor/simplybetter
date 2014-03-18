@@ -12,7 +12,8 @@
       .name
         Simply Better
       .customer
-        = image_tag current_customer.gravatar_url
+        = link_to edit_customer_path do
+          = image_tag current_customer.gravatar_url
     #navigation
       = render 'shared/sidebar'
     #content
