@@ -14,7 +14,6 @@ gem 'react-rails'
 
 group :production do
   gem 'newrelic_rpm'
-  gem 'unicorn'
 end
 
 gem 'searchkick'
@@ -57,3 +56,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 group :development, :test do
   gem 'pry'
 end
+
+gem 'unicorn'
+
