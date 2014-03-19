@@ -1,1 +1,1 @@
-ack::Timeout.timeout = 10
+Rack::Timeout.timeout = 10
