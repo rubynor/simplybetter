@@ -14,6 +14,7 @@ gem 'react-rails'
 
 group :production do
   gem 'newrelic_rpm'
+  gem "sentry-raven"
 end
 
 gem 'searchkick'
