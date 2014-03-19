@@ -1,9 +1,4 @@
 =render 'shared/navbar'
 .col-xs-12
-  #manage-ideas
-
-:javascript
-  $(function(){
-  SimplyBetterIdeas.Init.start(#{@application.id});
-  });
+  #manage-ideas{"data-id" => @application.id}
 
