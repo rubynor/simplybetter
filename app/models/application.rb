@@ -2,7 +2,6 @@ class Application < ActiveRecord::Base
   extend Enumerize
   has_paper_trail
   has_and_belongs_to_many :customers
-  has_one :idea_group
   has_many :users
   has_many :ideas, -> { order("votes_count DESC") }
   has_many :comments, -> { order("comments.votes_count DESC") }, through: :ideas
@@ -12,16 +11,7 @@ class Application < ActiveRecord::Base
   validates_uniqueness_of :token
   validates_presence_of :name
 
-  before_create :generate_token, :create_idea_group
-
-
-  def idea_group
-    IdeaGroup.find_or_create_by(application_id: self.id)
-  end
-
-  def ideas_not_in_group
-    self.ideas.where("idea_group_id IS NULL or idea_group_id != ?", self.idea_group.id)
-  end
+  before_create :generate_token
 
   private
 

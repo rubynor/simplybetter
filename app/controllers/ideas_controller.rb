@@ -69,20 +69,10 @@ class IdeasController < ApplicationController
     end
   end
 
-  def add_to_group
-    @idea.idea_group = @application.idea_group
-    respond_to_js
-  end
-
-  def remove_from_group
-    @idea.idea_group_id = nil
-    respond_to_js
-  end
-
   private
 
   def idea_attributes
-    params.require(:idea).permit(:application_id, :title, :description, :id, :creator, :idea_group_id, :completed)
+    params.require(:idea).permit(:application_id, :title, :description, :id, :creator, :idea_group_id, :completed, :visible)
   end
 
   def set_application
@@ -92,14 +82,6 @@ class IdeasController < ApplicationController
   def set_idea
     if current_customer
       @idea ||= set_application.ideas.find(params[:id])
-    end
-  end
-
-  def respond_to_js
-    respond_to do |format|
-      if @idea.save!
-        format.js { @idea }
-      end
     end
   end
 

@@ -3,7 +3,8 @@ class WidgetApi::IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ideas = Idea.ideas_in_group(params[:token]).includes(:comments).includes(:votes).order("votes_count DESC")
+    app = Application.find_by(token: params[:token])
+    @ideas = app.ideas.visible.includes(:comments).includes(:votes).order("votes_count DESC")
     begin
       get_current_user(application,params[:user_email])
     rescue Exception => msg
@@ -27,7 +28,8 @@ class WidgetApi::IdeasController < ApplicationController
 
   def find_similar
     current_application = Application.find_by(token: params[:application_id])
-    render json: current_application.ideas.search(params[:query], limit: 4, misspellings: {distance: 2}, partial: true)
+    conditions = {application_id: current_application.id, visible: true}
+    render json: Idea.search(params[:query],where: conditions, limit: 4, misspellings: {distance: 2}, partial: true)
   end
 
   def create
@@ -35,13 +37,13 @@ class WidgetApi::IdeasController < ApplicationController
     application = Application.find_by_token(params[:token])
 
     @idea.application = application
-    @idea.idea_group_id = application.idea_group.id
     @idea.creator = creator(application,params[:user][:email])#From module
 
     respond_to do |format|
       if @idea.save
         @idea.notify_customers
         @idea.subscribe
+        AdminNotifier.send_to_group(application.customers, @idea.creator, @idea)
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }

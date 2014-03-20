@@ -94,4 +94,16 @@ namespace :sb do
       a.save!
     end
   end
+
+  desc "Get all group_id's over to booleans visible/hidden"
+  task visible_ideas: :environment do
+    Idea.all.each do |i|
+      if i.idea_group_id.present?
+        i.visible = true
+      else
+        i.visible = false
+      end
+      i.save!
+    end
+  end
 end

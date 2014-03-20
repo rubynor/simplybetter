@@ -4,7 +4,6 @@ class Idea < ActiveRecord::Base
 
   belongs_to :application
   belongs_to :creator, polymorphic: true
-  belongs_to :idea_group
   has_many :votes, as: :vote_receiver, dependent: :destroy
   has_many :comments, inverse_of: :idea, dependent: :destroy
   has_many :idea_subscriptions, dependent: :destroy
@@ -13,9 +12,9 @@ class Idea < ActiveRecord::Base
   validates_presence_of :title, :description, :creator
   validates_uniqueness_of :title, scope: :application
 
-  after_create :email_notify_customers
-
   include IdeaNotificationHelpers
+
+  scope :visible, -> { where(visible: true) }
 
   def subscribers
     self.idea_subscriptions.map(&:subscriber).uniq
@@ -50,16 +49,6 @@ class Idea < ActiveRecord::Base
     klass = string_arry.first
     id = string_arry.last.to_i
     klass.constantize.find id
-  end
-
-  def self.ideas_in_group(token)
-    application(token).idea_group.ideas
-  end
-
-  def email_notify_customers
-    #Thread.new do
-    #  AdminNotifier.new_idea(self.application.customer,self.creator, self).deliver
-    #end
   end
 
   def has_been_completed?

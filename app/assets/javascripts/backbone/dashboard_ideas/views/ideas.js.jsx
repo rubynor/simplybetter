@@ -90,8 +90,13 @@ SimplyBetterIdeas.Views = (function(views){
       }
     },
 
+    visible: function(){
+      var model = this.props.model;
+      return model.get('visible');
+    },
+
     classForVisibility: function(){
-      if (this.props.model.get('idea_group_id') === 1){
+      if (this.visible()){
         return 'visible'
       } else {
         return 'not-visible'
@@ -101,10 +106,10 @@ SimplyBetterIdeas.Views = (function(views){
     changeVisibility: function(){
       var model = this.props.model;
       var data = {};
-      if (model.get('idea_group_id') === 1){
-        data = {'idea_group_id': null}
+      if (this.visible()){
+        data = {'visible': false}
       } else {
-        data = {'idea_group_id': 1}
+        data = {'visible': true}
       }
       model.save(data,{patch: true})
     },
@@ -232,9 +237,9 @@ SimplyBetterIdeas.Views = (function(views){
     collection: function(){
       var current = this.props.router.current;
       if (current === 'visible'){
-        return this.filter({idea_group_id: 1})
+        return this.filter({visible: true})
       } else if (current === 'hidden'){
-        return this.filter({idea_group_id: null})
+        return this.filter({visible: false})
       } else {
         return this.props.collection.models;
       }

@@ -35,8 +35,6 @@ class ApplicationsController < ApplicationController
   end
 
   def administrate_group
-    @ideas = @application.ideas_not_in_group.includes(:comments)
-    @idea_group = @application.idea_group.ideas.includes(:comments)
   end
 
   private

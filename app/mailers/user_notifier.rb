@@ -1,6 +1,14 @@
 class UserNotifier < ActionMailer::Base
   default from: "noreply@simplybetter.io"
 
+  def self.notify_group(group)
+    group.each do |u|
+      unless u.email == self.creator.email
+        new_comment(u,self.creator,self).deliver
+      end
+    end
+  end
+
   def new_comment(receiver, creator, comment)
     @creator = creator
     @comment = comment

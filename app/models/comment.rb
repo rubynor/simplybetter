@@ -7,8 +7,6 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body, :idea, :creator
   belongs_to :creator, polymorphic: true, inverse_of: :comments
 
-  after_create :notify_involved
-
   include CommentNotificationHelpers
 
   def subscribe
@@ -23,26 +21,8 @@ class Comment < ActiveRecord::Base
     self.update_attribute(:votes_count, votes.sum(:value))
   end
 
-  def notify_involved
-    involved_users.each do |i|
-      unless i.email == self.creator.email
-        UserNotifier.new_comment(i,self.creator,self).deliver
-      end
-    end
-  end
-
-  def involved_users
-    (voters + commenters + idea_creator).uniq(&:email)
-  end
-
-  def voters
-    voters = self.idea.votes.includes(:voter)
-    voters.map(&:voter)
-  end
-
-  def commenters
-    commenters = self.idea.comments.includes(:creator)
-    commenters.map(&:creator)
+  def customers
+    idea.customers
   end
 
   def idea_creator
