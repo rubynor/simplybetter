@@ -29,7 +29,7 @@ GEM
     ansi (1.4.3)
     arel (4.0.2)
     atomic (1.1.16)
-    bcrypt-ruby (3.0.1)
+    bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -246,7 +246,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt-ruby (~> 3.0.0)
+  bcrypt (~> 3.1.0)
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.0.3.0)

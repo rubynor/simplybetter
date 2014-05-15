@@ -45,7 +45,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
 end
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt', '~> 3.1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
