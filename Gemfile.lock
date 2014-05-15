@@ -28,7 +28,6 @@ GEM
     addressable (2.3.5)
     ansi (1.4.3)
     arel (4.0.2)
-    atomic (1.1.16)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -215,8 +214,7 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.18.1)
-    thread_safe (0.3.0)
-      atomic (>= 1.1.7, < 2)
+    thread_safe (0.3.3)
     tilt (1.4.1)
     timers (1.1.0)
     tire (0.6.2)
@@ -269,7 +267,7 @@ DEPENDENCIES
   rack-cors
   rack-livereload
   rack-timeout
-  rails (~> 4.0.4)
+  rails
   react-rails
   rspec-rails
   sass-rails (~> 4.0.0)
