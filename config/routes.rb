@@ -32,7 +32,7 @@ SimplyBetter::Application.routes.draw do
     resources :ideas
   end
 
-  resources :password_resets
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'widget' => "widget#widget"
 
