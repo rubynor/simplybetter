@@ -24,8 +24,12 @@ class CustomersController < ApplicationController
   end
 
   def update
-    current_customer.update_attributes!(safe_attributes)
-    redirect_to :back, notice: 'Profile updated!'
+    if current_customer.update_attributes(safe_attributes)
+      redirect_to :back, notice: 'Profile updated!'
+    else
+      flash[:error] = 'Invalid name'
+      redirect_to :back
+    end
   end
 
   def update_unsafe

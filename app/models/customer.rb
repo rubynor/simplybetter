@@ -6,6 +6,7 @@ class Customer < ActiveRecord::Base
   has_and_belongs_to_many :applications
   has_many :comments, inverse_of: :creator
   has_many :votes, as: :voter
+  validates_presence_of :name
   validates :email, 
     format: {
       with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, 
