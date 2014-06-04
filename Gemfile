@@ -36,6 +36,7 @@ group :test do
   gem 'rspec-rails'
   gem 'machinist'
   gem 'database_cleaner'
+  gem 'valid_attribute'
 end
 
 group :development do
