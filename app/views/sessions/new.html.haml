@@ -3,6 +3,9 @@
   -if flash.alert
     .notice
       = flash.alert
+  -if flash.notice
+    .notice.green
+      = flash.notice
   = form_tag '/sessions/create' do
     .field
       %label
@@ -13,6 +16,9 @@
         %i.fa.fa-lock
       = password_field_tag :password, nil, placeholder: 'password'
     .field
+
       .actions= submit_tag "Sign in"
   %br
   = link_to('Register', new_customer_path)
+  |
+  = link_to 'Forgotten password?', new_password_reset_path

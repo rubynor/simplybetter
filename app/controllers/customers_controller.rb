@@ -57,7 +57,7 @@ class CustomersController < ApplicationController
   end
 
   def safe_attributes
-    params.require(:customer).permit(:name)
+    params.require(:customer).permit(:name, :password_reset_token)
   end
 
   def unsafe_attributes

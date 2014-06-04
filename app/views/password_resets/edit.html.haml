@@ -1,0 +1,14 @@
+.center-box{class: "#{'error' if flash.alert}"}
+  %h1 Reset password
+
+  = form_for @customer, url: password_reset_path(params[:id]) do |f|
+    .field
+      %label
+        %i.fa.fa-lock
+      = f.password_field :password, placeholder: 'password'
+    .field
+      %label
+        %i.fa.fa-lock
+      = f.password_field :password_confirmation, placeholder: 'confirm password'
+    .field
+      .actions= f.submit 'Update password'

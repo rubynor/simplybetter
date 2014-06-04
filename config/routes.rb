@@ -32,6 +32,8 @@ SimplyBetter::Application.routes.draw do
     resources :ideas
   end
 
+  resources :password_resets
+
   get 'widget' => "widget#widget"
 
   get '/login' => "sessions#new"
