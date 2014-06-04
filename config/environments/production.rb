@@ -67,6 +67,11 @@ SimplyBetter::Application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.delivery_method = :ses
+  ActionMailer::Base.add_delivery_method :ses, AWS::SES::Base,
+                                         :access_key_id     => ENV['AWS_KEY'],
+                                         :secret_access_key => ENV['AWS_SECRET']
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true

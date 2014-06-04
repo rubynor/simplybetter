@@ -15,6 +15,7 @@ gem 'react-rails'
 group :production do
   gem 'newrelic_rpm'
   gem "sentry-raven"
+  gem 'aws-ses', require: 'aws/ses'
 end
 
 gem 'searchkick'
