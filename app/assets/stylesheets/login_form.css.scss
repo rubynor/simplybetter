@@ -1,4 +1,4 @@
-.sessions.new, .sessions.create, .customers.new, .customers.create {
+.sessions.new, .sessions.create, .customers.new, .customers.create, .password_resets {
 
   background: image-url('background-img.jpg') no-repeat center;
   width: 100%;
@@ -22,7 +22,7 @@
     border-radius: 10px;
 
     a {
-      color: blue;
+      color: $menu-badge;
     }
     h1 {
       color: #555;
@@ -110,6 +110,11 @@
       width: 300px;
       margin: 0px auto;
       margin-bottom: 10px;
+      &.green {
+        background-color: green;
+        border: darken(green, 60%);
+        color: lighten(green, 60%)
+      }
     }
   }
 

@@ -83,6 +83,8 @@ SimplyBetter::Application.configure do
 
   config.react.variant = :production
 
+  config.action_mailer.default_url_options = { host: 'www.simplybetter.io' }
+
   class WidgetPath
     def self.path
       "http://www.simplybetter.io"
