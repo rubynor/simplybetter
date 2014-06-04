@@ -1,9 +1,8 @@
-== README 
+# Simplybetter
 
-# Getting started!
+Getting ideas from your registered users/customers should be simple!
 
-1. clone repo
-2. bundle
-3. rake db:setup
+Simple install
+Simple usage, no second registration
+Your app, your user, your ideas, your control
 
-You're good to go!
