@@ -8,6 +8,8 @@ class AdminNotifier < ActionMailer::Base
       end
     end
   end
+
+  private
   
   def new_idea(receiver,creator,idea)
     @creator = creator
