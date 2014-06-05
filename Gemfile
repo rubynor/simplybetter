@@ -38,6 +38,7 @@ group :test do
   gem 'machinist'
   gem 'database_cleaner'
   gem 'valid_attribute'
+  gem 'timecop'
 end
 
 group :development do

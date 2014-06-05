@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe PasswordResetsController do
 
-  describe "GET 'new'" do
-    it "returns http success" do
+  describe 'GET "new"' do
+    it 'returns http success' do
       get 'new'
       response.should be_success
     end
@@ -31,10 +31,15 @@ describe PasswordResetsController do
       @customer = Customer.make!
       @customer.send_password_reset
     end
-    it 'should create new password' do
+    it 'should change password' do
       @customer.reload
       patch :update, id: @customer.password_reset_token, customer: { password: 'test', password_confirmation: 'test' }
       Customer.last.password_digest.should_not eq(@customer.password_digest)
+    end
+    it 'should not change password if time limit is out' do
+      Timecop.freeze(Time.zone.now + 2.hours)
+      patch :update, id: @customer.password_reset_token, customer: { password: 'test', password_confirmation: 'test' }
+      Customer.last.password_digest.should eq(@customer.password_digest)
     end
   end
 end
