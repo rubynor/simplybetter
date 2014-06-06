@@ -8,7 +8,7 @@ module IdeaNotificationHelpers
   end
 
   def notification_text(recipient, action_attribute = nil, action_attribute_changed_by = nil)
-    if (action_attribute.present? && action_attribute_changed_by.present?)
+    if action_attribute.present? && action_attribute_changed_by.present?
       notification_text_from_changed_attribute(
         recipient, 
         action_attribute, 

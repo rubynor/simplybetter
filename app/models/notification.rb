@@ -58,7 +58,11 @@ class Notification < ActiveRecord::Base
   end
 
   def action_user_image
-    self.action.creator.gravatar_url
+    if action_attribute_changed_by
+      Customer.find(action_attribute_changed_by).gravatar_url
+    else
+      self.action.creator.gravatar_url
+    end
   end
 
   def text
