@@ -9,8 +9,6 @@ class Notification < ActiveRecord::Base
   validate :action_id, presence: true
   validate :recipient_id, presence: true
 
-  scope :for,  -> (recipient, application_id) { where(recipient: recipient, application_id: application.id).order('updated_at DESC') }
-
   def self.create_with(action, subject, recipient, app_id, action_attribute = nil, action_attribute_changed_by = nil)
     notification_attributes = {
       action: action,
