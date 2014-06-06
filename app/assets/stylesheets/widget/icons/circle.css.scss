@@ -2,15 +2,14 @@
   position: fixed;
   right: 20px;
   bottom: 0px;
-  height: 130px;
-  width: 118px;
+  height: 92px;
+  width: 90px;
   z-index: 2000;
   background: url('http://192.168.1.109:3000/lightbulb_circle.gif') no-repeat;
   background-position: 0px 0px;
 
   &:hover{
     cursor: pointer;
-    background-position: -119px 0px;
   }
 }
 
