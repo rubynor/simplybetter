@@ -16,30 +16,21 @@ module IdeaNotificationHelpers
       )
     else
       [
-        {bold: "#{creator.name} "},
-        {normal: "added an idea: "},
-        {bold: "“#{title}”"}
+        { bold: "#{creator.name} " },
+        { normal: 'added an idea: ' },
+        { bold: "“#{title}”" }
       ]
     end
   end
 
   def notification_text_from_changed_attribute(recipient, attribute, changer_user)
-    if mine?(recipient)
+      txt = mine?(recipient) ? 'changed the status of your idea: ' : 'changed the status of: '
       [
-        {bold: "#{changer_user.name} "},
-        {normal: "changed the status of your idea: "},
-        {bold: "“#{title}” "},
-        {normal: "to "},
-        {bold: attribute}
+        { bold: "#{changer_user.name} " },
+        { normal: txt },
+        { bold: "“#{title}” " },
+        { normal: "to " },
+        { bold: attribute }
       ]
-    else
-      [
-        {bold: "#{changer_user.name} "},
-        {normal: "changed the status of: "},
-        {bold: "“#{title}” "},
-        {normal: "to "},
-        {bold: attribute}
-      ]
-    end
   end
 end
