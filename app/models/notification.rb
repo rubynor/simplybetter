@@ -3,16 +3,20 @@ class Notification < ActiveRecord::Base
   belongs_to :action, polymorphic: true
   belongs_to :recipient, polymorphic: true
   belongs_to :action_attribute_changed_by, polymorphic: true
+  belongs_to :application
 
   validate :subject_id, presence: true
   validate :action_id, presence: true
   validate :recipient_id, presence: true
 
-  def self.create_with(action,subject,recipient,action_attribute = nil,action_attribute_changed_by = nil)
+  scope :for,  -> (recipient, application_id) { where(recipient: recipient, application_id: application.id).order('updated_at DESC') }
+
+  def self.create_with(action, subject, recipient, app_id, action_attribute = nil, action_attribute_changed_by = nil)
     notification_attributes = {
       action: action,
       subject: subject,
       recipient: recipient,
+      application_id: app_id,
       action_attribute: action_attribute,
       action_attribute_changed_by: action_attribute_changed_by
     }.delete_if { |k,v| v.blank? && k.to_s =~ /^action_attribute/ }
@@ -21,19 +25,21 @@ class Notification < ActiveRecord::Base
     end
   end
 
-  def self.notify(action, subject, action_attribute = nil, action_attribute_changed_by = nil)
+  def self.notify(action, subject, app_id, action_attribute = nil, action_attribute_changed_by = nil)
     NotificationCreator.new(
       action,
       subject,
+      app_id,
       action_attribute,
       action_attribute_changed_by
     ).notify_group(subject.subscribers)
   end
 
-  def self.notify_group(group,action,subject,action_attribute = nil,action_attribute_changed_by = nil)
+  def self.notify_group(group, action, subject, app_id, action_attribute = nil, action_attribute_changed_by = nil)
     NotificationCreator.new(
       action,
       subject,
+      app_id,
       action_attribute,
       action_attribute_changed_by
     ).notify_group(group)
@@ -49,8 +55,8 @@ class Notification < ActiveRecord::Base
     end
   end
 
-  def self.for(recipient)
-    all.where(recipient: recipient).order('notifications.updated_at DESC')
+  def self.for(recipient, application_id)
+    where(recipient: recipient, application_id: application_id).order('updated_at DESC')
   end
 
   def action_user_image

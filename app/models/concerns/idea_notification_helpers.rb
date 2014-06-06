@@ -4,7 +4,7 @@ module IdeaNotificationHelpers
   end
 
   def notify(action_attribute = nil, action_attribute_changed_by = nil)
-    Notification.notify(self, self, action_attribute, action_attribute_changed_by)
+    Notification.notify(self, self, self.application.id, action_attribute, action_attribute_changed_by)
   end
 
   def notification_text(recipient, action_attribute = nil, action_attribute_changed_by = nil)

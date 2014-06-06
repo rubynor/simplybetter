@@ -1,6 +1,6 @@
 module CommentNotificationHelpers
   def notify
-    Notification.notify(self, self.idea)
+    Notification.notify(self, self.idea, self.idea.application.id)
   end
 
   def notification_text(recipient, action_attribute = nil, action_attribute_changed_by = nil)

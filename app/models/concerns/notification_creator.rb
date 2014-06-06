@@ -1,16 +1,18 @@
 class NotificationCreator
   attr_accessor(
     :action, 
-    :subject, 
+    :subject,
+    :app_id,
     :action_attribute, 
     :action_attribute_changer
   )
 
-  def initialize(action,subject,action_attribute = nil,action_attribute_changer = nil)
+  def initialize(action, subject, app_id, action_attr = nil, action_attr_changer = nil)
     self.action = action
     self.subject = subject
-    self.action_attribute = action_attribute
-    self.action_attribute_changer = action_attribute_changer
+    self.app_id = app_id
+    self.action_attribute = action_attr
+    self.action_attribute_changer = action_attr_changer
   end
 
   def notify_group(user_collection)
@@ -31,7 +33,7 @@ class NotificationCreator
 
   def create_normal_notification(recipient)
     unless action.creator == recipient
-      Notification.create_with(action,subject,recipient)
+      Notification.create_with(action, subject, recipient, app_id)
     end
   end
 
@@ -41,6 +43,7 @@ class NotificationCreator
         action,
         subject,
         recipient,
+        app_id,
         action_attribute,
         action_attribute_changer
       )
