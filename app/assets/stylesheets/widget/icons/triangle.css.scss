@@ -1,3 +1,9 @@
+@mixin rotate_widget($deg) {
+  transform: rotate($deg);
+  -ms-transform: rotate($deg); /* IE 9 */
+  -webkit-transform: rotate($deg); /* Safari and Chrome */
+}
+
 #simplybetterActivateButton {
   position: fixed;
   right: -75px;
@@ -5,11 +11,9 @@
   height: 150px;
   width: 150px;
   z-index: 2000;
-  background: url('/blue-rotate.gif') no-repeat;
+  background: url('/lightbulb_triangle.gif') no-repeat;
   background-size: contain;
-  transform:rotate(45deg);
-  -ms-transform:rotate(45deg); /* IE 9 */
-  -webkit-transform:rotate(45deg); /* Safari and Chrome */
+  @include rotate_widget(45deg);
 
   &:hover{
     cursor: pointer;
@@ -18,8 +22,6 @@
   span{
     top: 40px;
     left: 20px;
-    transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg); /* IE 9 */
-    -webkit-transform:rotate(-45deg); /* Safari and Chrome */
+    @include rotate_widget(45deg);
   }
 }
