@@ -9,6 +9,8 @@ class Notification < ActiveRecord::Base
   validate :action_id, presence: true
   validate :recipient_id, presence: true
 
+  scope :for, -> (recipient, application_id) { where(recipient: recipient, application_id: application_id).order('updated_at DESC') }
+
   def self.create_with(action, subject, recipient, app_id, action_attribute = nil, action_attribute_changed_by = nil)
     notification_attributes = {
       action: action,
@@ -53,23 +55,25 @@ class Notification < ActiveRecord::Base
     end
   end
 
-  def self.for(recipient, application_id)
-    where(recipient: recipient, application_id: application_id).order('updated_at DESC')
-  end
-
   def action_user_image
-    if action_attribute_changed_by
-      Customer.find(action_attribute_changed_by).gravatar_url
-    else
-      self.action.creator.gravatar_url
-    end
+    action_attribute_changed_by ? changed_by_avatar : creator_avatar
   end
 
   def text
-    self.action.notification_text(recipient, action_attribute, action_attribute_changed_by)
+    action.notification_text(recipient, action_attribute, action_attribute_changed_by)
   end
 
   def time
     self.created_at
+  end
+
+  private
+
+  def creator_avatar
+    action.creator.gravatar_url
+  end
+
+  def changed_by_avatar
+    Customer.find(action_attribute_changed_by).gravatar_url
   end
 end
