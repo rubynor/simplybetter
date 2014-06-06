@@ -6,7 +6,7 @@ class Application < ActiveRecord::Base
   has_many :ideas, -> { order("votes_count DESC") }
   has_many :comments, -> { order("comments.votes_count DESC") }, through: :ideas
 
-  enumerize :icon, in: [:triangle, :mailbox], default: :triangle
+  enumerize :icon, in: [:triangle, :circle], default: :triangle
 
   validates_uniqueness_of :token
   validates_presence_of :name
