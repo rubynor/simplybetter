@@ -1,7 +1,7 @@
 module VoteNotificationHelpers
-  def notify
+  def notify(app_id)
     if legit_vote?
-      Notification.notify_group([self.vote_receiver.creator],self, self.vote_receiver)
+      Notification.notify_group([self.vote_receiver.creator], self, self.vote_receiver, app_id)
     end
   end
 
