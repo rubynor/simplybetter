@@ -11,31 +11,31 @@ class Notification < ActiveRecord::Base
 
   scope :for, -> (recipient, application_id) { where(recipient: recipient, application_id: application_id).order('updated_at DESC') }
 
-  def self.create_with(action, subject, recipient, app_id, action_attribute = nil, action_attribute_changed_by = nil)
+  def self.create_with(action: ,subject:, recipient:, app_id:, **args)
     notification_attributes = {
       action: action,
       subject: subject,
       recipient: recipient,
       application_id: app_id,
-      action_attribute: action_attribute,
-      action_attribute_changed_by: action_attribute_changed_by
+      action_attribute: args[:action_attr],
+      action_attribute_changed_by: args[:action_attr_changer]
     }.delete_if { |k,v| v.blank? && k.to_s =~ /^action_attribute/ }
     unless where(notification_attributes).first
       new(notification_attributes).save!
     end
   end
 
-  def self.notify(action, subject, app_id, action_attribute = nil, action_attribute_changed_by = nil)
-    self.notify_group(subject.subscribers, action, app_id, action_attribute, action_attribute_changed_by)
+  def self.notify(action:, subject:, app_id:, **args)
+    self.notify_group(group: subject.subscribers, action: action, app_id: app_id, action_attr: args[:action_attr], action_attr_changer: args[:action_attr_changer])
   end
 
-  def self.notify_group(group, action, subject, app_id, action_attribute = nil, action_attribute_changed_by = nil)
+  def self.notify_group(group:, action:, subject:, app_id:, **args)
     NotificationCreator.new(
-      action,
-      subject,
-      app_id,
-      action_attribute,
-      action_attribute_changed_by
+      action: action,
+      subject: subject,
+      app_id: app_id,
+      action_attr: args[:action_attr],
+      action_attr_changer: args[:action_attr_changer]
     ).notify_group(group)
   end
 
@@ -54,7 +54,7 @@ class Notification < ActiveRecord::Base
   end
 
   def text
-    action.notification_text(recipient, action_attribute, action_attribute_changed_by)
+    action.notification_text(recipient, action_attr: action_attribute, action_attr_changer: action_attribute_changed_by)
   end
 
   def time

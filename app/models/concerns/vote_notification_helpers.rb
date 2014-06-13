@@ -1,24 +1,19 @@
 module VoteNotificationHelpers
   def notify(app_id)
     if legit_vote?
-      Notification.notify_group([self.vote_receiver.creator], self, self.vote_receiver, app_id)
+      Notification.notify_group(group: [self.vote_receiver.creator], action: self, subject: self.vote_receiver, app_id: app_id)
     end
   end
 
-  def notification_text(recipient, action_attribute = nil, action_attribute_changed_by = nil)
-    if vote_receiver.mine?(recipient)
-      [
-        {bold: "#{voter.name} "},
-        {normal: "#{past_tence} your idea: "},
-        {bold: "“#{vote_receiver.title}”"}
-      ]
-    else
-      [
-        {bold: "#{voter.name} "},
-        {normal: "#{past_tence}: "},
-        {bold: "“#{vote_receiver.title}”"}
-      ]
-    end
+  def notification_text(recipient)
+    txt = if vote_receiver.mine?(recipient)
+            "#{past_tence} your idea: "
+          else
+            "#{past_tence}: "
+          end
+    [ { bold: "#{voter.name} " },
+      { normal: txt },
+      { bold: "“#{vote_receiver.title}”" } ]
   end
 
   def creator
@@ -26,12 +21,7 @@ module VoteNotificationHelpers
   end
 
   def past_tence
-    if self.value > 0
-      "upvoted"
-    elsif self.value < 0
-      "downvoted"
-    else
-      "blank voted"
-    end
+    return 'blank voted' if self.value == 0
+    self.value > 0 ? 'upvoted' : 'downvoted'
   end
 end
