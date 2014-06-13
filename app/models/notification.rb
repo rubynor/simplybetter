@@ -26,13 +26,7 @@ class Notification < ActiveRecord::Base
   end
 
   def self.notify(action, subject, app_id, action_attribute = nil, action_attribute_changed_by = nil)
-    NotificationCreator.new(
-      action,
-      subject,
-      app_id,
-      action_attribute,
-      action_attribute_changed_by
-    ).notify_group(subject.subscribers)
+    self.notify_group(subject.subscribers, action, app_id, action_attribute, action_attribute_changed_by)
   end
 
   def self.notify_group(group, action, subject, app_id, action_attribute = nil, action_attribute_changed_by = nil)
