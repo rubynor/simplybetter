@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe ApplicationsController do
+  include SessionHelper
 
   before do
     @customer = Customer.make!
     @application = Application.make!(customers: [@customer])
-    session[:customer_id] = @application.customers.first.id
+    sign_in_customer(@application.customers.first)
   end
 
   describe 'index' do

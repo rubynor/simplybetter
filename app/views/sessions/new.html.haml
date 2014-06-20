@@ -16,6 +16,9 @@
         %i.fa.fa-lock
       = password_field_tag :password, nil, placeholder: 'password'
     .field
+      Remember me?
+      = check_box_tag :remember_me, 1, params[:remember_me]
+    .field
 
       .actions= submit_tag "Sign in"
   %br
