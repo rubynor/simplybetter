@@ -15,11 +15,11 @@
       %label
         %i.fa.fa-lock
       = password_field_tag :password, nil, placeholder: 'password'
-    .field
-      Remember me?
-      = check_box_tag :remember_me, 1, params[:remember_me]
-    .field
 
+    .field
+      .pull-left
+        = check_box_tag :remember_me, 1, params[:remember_me]
+        Remember me?
       .actions= submit_tag "Sign in"
   %br
   = link_to('Register', new_customer_path)
