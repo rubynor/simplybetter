@@ -106,4 +106,14 @@ namespace :sb do
       i.save!
     end
   end
+
+  desc 'Generate auth_tokens on customers'
+  task generate_auth_tokens: :environment do
+    Customer.all.each do |c|
+      unless c.auth_token
+        c.generate_token(:auth_token)
+        c.save!
+      end
+    end
+  end
 end
