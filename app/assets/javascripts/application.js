@@ -20,6 +20,8 @@
 //= require underscore
 //= require backbone
 //= require backbone/dashboard_ideas/setup
+//= require angular-1.2.18/angular
+//= require app/app
 //= require_tree ./backbone/dashboard_ideas
 //
 //= require setup_instructions
