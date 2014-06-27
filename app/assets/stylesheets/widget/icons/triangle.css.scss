@@ -22,6 +22,6 @@
   span{
     top: 40px;
     left: 20px;
-    @include rotate_widget(45deg);
+    @include rotate_widget(-45deg);
   }
 }
