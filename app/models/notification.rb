@@ -26,7 +26,7 @@ class Notification < ActiveRecord::Base
   end
 
   def self.notify(action:, subject:, app_id:, **args)
-    self.notify_group(group: subject.subscribers, action: action, app_id: app_id, action_attr: args[:action_attr], action_attr_changer: args[:action_attr_changer])
+    self.notify_group(group: subject.subscribers, action: action, subject: subject, app_id: app_id, action_attr: args[:action_attr], action_attr_changer: args[:action_attr_changer])
   end
 
   def self.notify_group(group:, action:, subject:, app_id:, **args)
