@@ -3,7 +3,7 @@ module CommentNotificationHelpers
     Notification.notify(action: self, subject: self.idea, app_id: self.idea.application.id)
   end
 
-  def notification_text(recipient)
+  def notification_text(recipient, **args)
     txt = if idea.mine?(recipient)
             'wrote a comment on your idea: '
           else
