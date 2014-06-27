@@ -3,39 +3,39 @@ class Notification < ActiveRecord::Base
   belongs_to :action, polymorphic: true
   belongs_to :recipient, polymorphic: true
   belongs_to :action_attribute_changed_by, polymorphic: true
+  belongs_to :application
 
   validate :subject_id, presence: true
   validate :action_id, presence: true
   validate :recipient_id, presence: true
 
-  def self.create_with(action,subject,recipient,action_attribute = nil,action_attribute_changed_by = nil)
+  scope :for, -> (recipient, application_id) { where(recipient: recipient, application_id: application_id).order('updated_at DESC') }
+
+  def self.create_with(action: ,subject:, recipient:, app_id:, **args)
     notification_attributes = {
       action: action,
       subject: subject,
       recipient: recipient,
-      action_attribute: action_attribute,
-      action_attribute_changed_by: action_attribute_changed_by
+      application_id: app_id,
+      action_attribute: args[:action_attr],
+      action_attribute_changed_by: args[:action_attr_changer]
     }.delete_if { |k,v| v.blank? && k.to_s =~ /^action_attribute/ }
     unless where(notification_attributes).first
       new(notification_attributes).save!
     end
   end
 
-  def self.notify(action, subject, action_attribute = nil, action_attribute_changed_by = nil)
-    NotificationCreator.new(
-      action,
-      subject,
-      action_attribute,
-      action_attribute_changed_by
-    ).notify_group(subject.subscribers)
+  def self.notify(action:, subject:, app_id:, **args)
+    self.notify_group(group: subject.subscribers, action: action, subject: subject, app_id: app_id, action_attr: args[:action_attr], action_attr_changer: args[:action_attr_changer])
   end
 
-  def self.notify_group(group,action,subject,action_attribute = nil,action_attribute_changed_by = nil)
+  def self.notify_group(group:, action:, subject:, app_id:, **args)
     NotificationCreator.new(
-      action,
-      subject,
-      action_attribute,
-      action_attribute_changed_by
+      action: action,
+      subject: subject,
+      app_id: app_id,
+      action_attr: args[:action_attr],
+      action_attr_changer: args[:action_attr_changer]
     ).notify_group(group)
   end
 
@@ -49,19 +49,25 @@ class Notification < ActiveRecord::Base
     end
   end
 
-  def self.for(recipient)
-    all.where(recipient: recipient).order('notifications.updated_at DESC')
-  end
-
   def action_user_image
-    self.action.creator.gravatar_url
+    action_attribute_changed_by ? changed_by_avatar : creator_avatar
   end
 
   def text
-    self.action.notification_text(recipient, action_attribute, action_attribute_changed_by)
+    action.notification_text(recipient, action_attr: action_attribute, action_attr_changer: action_attribute_changed_by)
   end
 
   def time
     self.created_at
+  end
+
+  private
+
+  def creator_avatar
+    action.creator.gravatar_url
+  end
+
+  def changed_by_avatar
+    Customer.find(action_attribute_changed_by).gravatar_url
   end
 end

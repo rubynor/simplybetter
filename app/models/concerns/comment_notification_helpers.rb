@@ -1,21 +1,18 @@
 module CommentNotificationHelpers
   def notify
-    Notification.notify(self, self.idea)
+    Notification.notify(action: self, subject: self.idea, app_id: self.idea.application.id)
   end
 
-  def notification_text(recipient, action_attribute = nil, action_attribute_changed_by = nil)
-    if idea.mine?(recipient)
-      [
-        {bold: "#{creator.name} "},
-        {normal: "wrote a comment on your idea: "},
-        {bold: "“#{idea.title}”"}
-      ]
-    else
-      [
-        {bold: "#{creator.name} "},
-        {normal: "wrote a comment on: "},
-        {bold: "“#{idea.title}”"}
-      ]
-    end
+  def notification_text(recipient, **args)
+    txt = if idea.mine?(recipient)
+            'wrote a comment on your idea: '
+          else
+            'wrote a comment on: '
+          end
+    [
+      { bold: "#{creator.name} " },
+      { normal: txt },
+      { bold: "“#{idea.title}”" }
+    ]
   end
 end

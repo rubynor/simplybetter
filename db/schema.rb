@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.string   "action_attribute"
     t.string   "action_attribute_changed_by_type"
     t.integer  "action_attribute_changed_by_id"
+    t.integer  "application_id"
   end
 
   create_table "users", force: true do |t|

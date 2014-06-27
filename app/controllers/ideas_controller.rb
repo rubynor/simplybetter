@@ -38,7 +38,7 @@ class IdeasController < ApplicationController
     end
     completed = @idea.has_been_completed?
     if @idea.save
-      @idea.notify(:completed, current_customer) if completed
+      @idea.notify(action_attr: :completed, action_attr_changer: current_customer) if completed
       respond_to do |format|
         format.json{ show }
         format.html{
