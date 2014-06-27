@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe CustomersController do
 
+  include SessionHelper
+
   let(:valid_attributes) do
     {
         name: 'My Name',
@@ -35,7 +37,7 @@ describe CustomersController do
   describe 'update' do
     before do
       @customer = Customer.make! email: 'myemail@test.com', password: 'secret', name: 'my name'
-      session[:customer_id] = @customer.id
+      sign_in_customer(@customer)
     end
     describe 'PATCH update_unsafe' do
       describe 'change email' do

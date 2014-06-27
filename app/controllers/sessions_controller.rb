@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
   def create
     customer = Customer.find_by_email(params[:email])
     if customer && customer.authenticate(params[:password])
-      session[:customer_id] = customer.id
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = customer.auth_token
+      else
+        cookies[:auth_token] = customer.auth_token
+      end
       redirect_to root_url, notice: "Logged in!"
     else
       flash.now.alert = "Email or password is invalid"
@@ -19,7 +23,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:customer_id] = nil
+    cookies.delete(:auth_token)
     redirect_to root_url, notice: "Logged out!"
   end
 end
