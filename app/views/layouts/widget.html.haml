@@ -3,13 +3,49 @@
   %head
     %title SimplyBetter
     = stylesheet_link_tag    "widget/widget", media: "all"
-    = javascript_include_tag "widget/widget2"
+    -#= javascript_include_tag "widget/widget2"
+    = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    - @app = Application.find_by_token(@appkey)
 
-    #simplybetterIdeasModal
-
-    :javascript
-        $(document).ready(function(){
-        SimplyBetterApplication.init.start("#{@appkey}", "#{@email}", "#{@name}", "#{root_url.chop}");
-        });
+    #simplybetterIdeasModal(ng-app='Simplybetter' ng-controller='WidgetCtrl' ng-init="init('#{@appkey}', '#{@email}')")
+      -#{{ ideas }}
+      .logobar
+        %a{href: 'http://simplybetter.io', target: '_blank'}
+          .logo
+          .logo-text Simply Better
+        #simplybetterNotifications
+          %div{'data-reactid'=>'.0'}
+          .no-notifications{'data-reactid'=>'.0.0'}
+      #simplybetterNavbar.overview
+        %a.home
+          %h2= @app.name
+        %a.goToIdeas.link{href: '#'}
+          .back-arrow
+          Back
+        %p= @app.intro
+      #simplybetterIdeasModalContent
+        .overview
+          #newIdea
+            .newIdea
+              %input#title-input.title{placeholder: 'Share your idea with us', type: 'text', 'ng-click' => 'write = true'}
+              .new-idea-form.focused(ng-show='write')
+                %textarea.description{placeholder: 'Description'}
+                %input.submit{type: 'submit', value: 'send'}
+          #ideas
+            %ol.overview.layout
+              %li.idea(ng-repeat='idea in ideas')
+                .vote
+                  .vote-buttons
+                    %a.up{href: '#', 'ng-class' => '{active: idea.voter_status == 1}'}
+                    .votes {{ idea.votes_count }}
+                    %a.down{href: '#', 'ng-class' => '{active: idea.voter_status == -1}'}
+                .idea-item
+                  %h1 {{ idea.title }}
+                  %p.desc {{ idea.description | truncate:120 }}
+                  .meta
+                    .comments
+                    {{ idea.comments_count }} comments • by
+                    %span.user {{ idea.creator_name }} on
+                    %span.date {{ idea.updated_at }}

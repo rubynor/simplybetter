@@ -3,6 +3,8 @@ class WidgetApi::IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   def index
+    puts 'params following....'
+    puts params
     app = Application.find_by(token: params[:token])
     @ideas = app.ideas.visible.includes(:comments).includes(:votes).order("votes_count DESC")
     begin
