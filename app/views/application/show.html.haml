@@ -34,7 +34,9 @@
         %li.active
           %a{"data-toggle" => "tab", href: "#other"} Other
         %li
-          %a{"data-toggle" => "tab", href: "#rails"} Rails + Devise
+          %a{"data-toggle" => "tab", href: "#rails"} Rails + Devise (erb)
+        %li
+          %a{"data-toggle" => "tab", href: "#rails_haml"} Rails + Devise (haml)
       / Tab panes
       .tab-content
         #other.fade.tab-pane.active.in
@@ -81,6 +83,27 @@
                         })();
                     </script>
                   <% end %>
+        #rails_haml.fade.tab-pane
+          %pre.copy-code
+            %code
+              = preserve do
+                :escaped
+                  / Paste at the BOTTOM of BODY
+                  - if user_signed_in? && Rails.env.production?
+                    :javascript
+                      var _smplyBtr = _smplyBtr || {};
+                      _smplyBtr.email = "\#{current_user.email}";
+                      _smplyBtr.name = "\#{current_user.name}";
+
+                      _smplyBtr.appKey = "#{@application.token}";
+                      (function() {
+                          var sb = document.createElement('script');
+                          sb.type = 'text/javascript';
+                          sb.async = true;
+                          sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey;
+                          var s = document.getElementsByTagName('body')[0];
+                          s.appendChild(sb);
+                      })();
 
 
   .row

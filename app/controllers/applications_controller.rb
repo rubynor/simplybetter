@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:show, :administrate_group,:edit, :update]
+  before_action :set_application, only: [:show, :administrate_group, :edit, :update]
 
   def index
     if applications.any?
