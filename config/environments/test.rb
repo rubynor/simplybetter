@@ -36,4 +36,10 @@ SimplyBetter::Application.configure do
 
   config.action_controller.action_on_unpermitted_parameters = :raise
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  class WidgetPath
+    def self.path
+      "http://127.0.0.1:1234/"
+    end
+  end
 end
