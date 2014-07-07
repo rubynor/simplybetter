@@ -8,12 +8,13 @@ describe SessionsController, js: true do
   end
 
   describe 'something' do
-    example 'sign in' do
+    before do
       visit root_path
-      sign_in_customer(@application.customers.first)
-      # fill_in 'email', with: 'lol@lol.com'
-      # fill_in 'password', with: 'dev'
-      # click_button 'Sign in'
+      fill_in 'email', with: 'lol@lol.com'
+      fill_in 'password', with: 'dev'
+      click_button 'Sign in'
+    end
+    example 'sign in' do
       visit root_path
       page.find('#simplybetterActivateButton').click
       page.within_frame 'simplybetterIframe' do
