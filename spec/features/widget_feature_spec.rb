@@ -31,6 +31,7 @@ describe SessionsController, js: true do
           fill_in 'title-input', with: 'Idea'
           fill_in 'Description', with: 'My idea description'
           click_button 'send'
+          page.should have_css('.comment-body')
         end
       end.to change(Application.last.ideas, :count).by(1)
     end
