@@ -9,8 +9,11 @@
   %body
     - @app = Application.find_by_token(@appkey)
 
+    / ANGULAR HELP
+    / Controllers are found in angular/controllers folder
+    / Directives are found in angular/widget.js.coffe
+    / Templates are found in angular/templates folder
     #simplybetterIdeasModal(ng-app='Simplybetter' ng-controller='WidgetCtrl' ng-init="init('#{@appkey}', '#{@email}')")
-      -#{{ ideas }}
       .logobar
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
@@ -26,17 +29,9 @@
           Back
         %p= @app.intro
       #simplybetterIdeasModalContent
-        .overview
-          #newIdea
-            .newIdea
-              %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='newIdea.title')
-              .new-idea-form.focused(ng-show='write')
-                %textarea.description(placeholder='Description' ng-model='newIdea.description')
-                %input.submit(type='submit' value='send' ng-click='save_idea(newIdea)')
-          #ideas
-            %ol.overview.layout
-              %li.idea(ng-repeat='idea in ideas')
-                / Directives are found in angular/widget.js.coffe
-                / Templates are found in angular/templates folder
-                %vote
-                %idea-item
+        %idea-new
+        #ideas
+          %ol.overview.layout
+            %li.idea(ng-repeat='idea in ideas')
+              %vote
+              %idea-item
