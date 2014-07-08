@@ -1,3 +1,8 @@
+widget.factory 'Idea', ['$resource', ($resource) ->
+  $resource '/widget_api/ideas.json'
+]
+
+
 #widget.factory 'Idea', ['$resource', ($resource) ->
 #  $resource '/widget_api/ideas.json', { token: _smplyBtr.appKey, user_email: _smplyBtr.email }
 #]
