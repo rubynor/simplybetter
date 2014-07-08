@@ -29,8 +29,8 @@ RSpec.configure do |config|
   # Don't run tests with tag js => true by default
   # To run js tests run command
   # rspec --tag js spec
-  config.filter_run focus: true
-  # config.filter_run_excluding :js => true
+  # config.filter_run focus: true
+  config.filter_run_excluding :js => true
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -58,6 +58,7 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
+    Timecop.return
     DatabaseCleaner.clean
   end
 end

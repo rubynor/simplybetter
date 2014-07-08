@@ -16,8 +16,8 @@
           .logo
           .logo-text Simply Better
         #simplybetterNotifications
-          %div{'data-reactid'=>'.0'}
-          .no-notifications{'data-reactid'=>'.0.0'}
+          %div(data-reactid='.0')
+          .no-notifications(data-reactid='.0.0')
       #simplybetterNavbar.overview
         %a.home
           %h2= @app.name
@@ -38,14 +38,19 @@
               %li.idea(ng-repeat='idea in ideas')
                 .vote
                   .vote-buttons
-                    %a.up{href: '#', 'ng-class' => '{active: idea.voter_status == 1}'}
-                    .votes {{ idea.votes_count }}
-                    %a.down{href: '#', 'ng-class' => '{active: idea.voter_status == -1}'}
+                    %a.up(href='#' ng-class='{active: idea.voter_status == 1}')
+                    .votes
+                      {{ idea.votes_count }}
+                    %a.down(href='#' ng-class='{active: idea.voter_status == -1}')
                 .idea-item
-                  %h1 {{ idea.title }}
-                  %p.desc {{ idea.description | truncate:120 }}
+                  %h1
+                    {{ idea.title }}
+                  %p.desc
+                    {{ idea.description | truncate:120 }}
                   .meta
                     .comments
                     {{ idea.comments_count }} comments • by
-                    %span.user {{ idea.creator_name }} on
-                    %span.date {{ idea.updated_at }}
+                    %span.user
+                      {{ idea.creator_name }} on
+                    %span.date
+                      {{ idea.updated_at }}
