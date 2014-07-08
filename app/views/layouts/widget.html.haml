@@ -36,21 +36,4 @@
           #ideas
             %ol.overview.layout
               %li.idea(ng-repeat='idea in ideas')
-                .vote
-                  .vote-buttons
-                    %a.up(href='#' ng-class='{active: idea.voter_status == 1}')
-                    .votes
-                      {{ idea.votes_count }}
-                    %a.down(href='#' ng-class='{active: idea.voter_status == -1}')
-                .idea-item
-                  %h1
-                    {{ idea.title }}
-                  %p.desc
-                    {{ idea.description | truncate:120 }}
-                  .meta
-                    .comments
-                    {{ idea.comments_count }} comments • by
-                    %span.user
-                      {{ idea.creator_name }} on
-                    %span.date
-                      {{ idea.updated_at }}
+                %idea
