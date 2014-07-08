@@ -29,7 +29,7 @@
         .overview
           #newIdea
             .newIdea
-              %input#title-input.title{placeholder: 'Share your idea with us', type: 'text', 'ng-click' => 'write = true'}
+              %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true')
               .new-idea-form.focused(ng-show='write')
                 %textarea.description{placeholder: 'Description'}
                 %input.submit{type: 'submit', value: 'send'}
