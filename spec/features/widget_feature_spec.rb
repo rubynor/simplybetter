@@ -25,7 +25,7 @@ describe SessionsController, js: true do
         end
       end.to change( Application.last.ideas.first.comments, :count).by(1)
     end
-    example 'new idea' do
+    example 'new idea', focus: true do
       expect do
         page.within_frame 'simplybetterIframe' do
           fill_in 'title-input', with: 'Idea'

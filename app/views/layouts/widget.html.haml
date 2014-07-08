@@ -29,10 +29,10 @@
         .overview
           #newIdea
             .newIdea
-              %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true')
+              %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='newIdea.title')
               .new-idea-form.focused(ng-show='write')
-                %textarea.description{placeholder: 'Description'}
-                %input.submit{type: 'submit', value: 'send'}
+                %textarea.description(placeholder='Description' ng-model='newIdea.description')
+                %input.submit(type='submit' value='send' ng-click='save_idea(newIdea)')
           #ideas
             %ol.overview.layout
               %li.idea(ng-repeat='idea in ideas')
