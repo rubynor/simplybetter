@@ -1,9 +1,3 @@
-.vote
-  .vote-buttons
-    %a.up(href='#' ng-class='{active: idea.voter_status == 1}')
-    .votes
-      {{ idea.votes_count }}
-    %a.down(href='#' ng-class='{active: idea.voter_status == -1}')
 .idea-item
   %h1
     {{ idea.title }}

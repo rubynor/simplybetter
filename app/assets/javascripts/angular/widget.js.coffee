@@ -10,6 +10,11 @@ angular.module("filters", []).filter "truncate", ->
 
 @widget = angular.module('Simplybetter', ['ngResource', 'filters'])
 
-widget.directive 'idea', ->
+widget.directive 'ideaItem', ->
   restrict: 'E'
-  template: JST["angular/templates/idea"]
+  template: JST["angular/templates/idea_item"]
+
+widget.directive 'vote', ->
+  restrict: 'E'
+  template: JST['angular/templates/vote']
+  
