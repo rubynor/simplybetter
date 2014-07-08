@@ -36,6 +36,8 @@ group :doc do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'machinist'
   gem 'database_cleaner'
