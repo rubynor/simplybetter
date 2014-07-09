@@ -1,0 +1,15 @@
+#comments
+  .comments-section
+    %ol
+      %li.comment-item(ng-repeat='comment in comments')
+        .avatar
+          %img(ng-src='{{ comment.gravatar_url }}')
+        .content
+          .meta
+            %span.username
+              {{ comment.creator_name }}
+            on
+            %span
+              {{ comment.updated_at }}
+          .comment-body
+            {{ comment.body }}

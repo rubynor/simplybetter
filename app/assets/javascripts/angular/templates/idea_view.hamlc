@@ -1,3 +1,4 @@
 .idea-layout
   %vote
   %idea-item
+  %comments

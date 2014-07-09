@@ -28,3 +28,7 @@ widget.directive 'ideaItem', ->
 widget.directive 'vote', ->
   restrict: 'E'
   template: JST['angular/templates/vote']
+
+widget.directive 'comments', ->
+  restrict: 'E'
+  template: JST['angular/templates/comments']
