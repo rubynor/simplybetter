@@ -1,6 +1,6 @@
-.vote
+.vote(ng-controller='VoteCtrl')
   .vote-buttons
-    %a.up(href='#' ng-class='{active: idea.voter_status == 1}')
+    %a.up(ng-click='vote(idea, 2)' ng-class='{active: idea.voter_status == 1}')
     .votes
       {{ idea.votes_count }}
-    %a.down(href='#' ng-class='{active: idea.voter_status == -1}')
+    %a.down(ng-click='vote(idea, -2)' ng-class='{active: idea.voter_status == -1}')

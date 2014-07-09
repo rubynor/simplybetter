@@ -45,7 +45,7 @@ describe SessionsController, js: true do
       page.within_frame 'simplybetterIframe' do
         first('.down').click
       end
-      sleep 1
+      sleep 2
       expect(Application.last.ideas.first.votes_count).to eq(-1)
     end
     example 'open notifications' do
