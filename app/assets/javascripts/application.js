@@ -23,6 +23,7 @@
 //= require backbone/dashboard_ideas/setup
 //= require angular-1.2.18/angular
 //= require angular-1.2.18/angular-resource
+//= require angular-1.2.18/angular-route
 //= require angular/widget
 //= require angular/services/idea
 //= require angular/controllers/widget_ctrl

@@ -1,0 +1,6 @@
+%idea-new
+#ideas
+  %ol.overview.layout
+    %li.idea(ng-repeat='idea in ideas')
+      %vote
+      %idea-item

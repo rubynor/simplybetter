@@ -1,6 +1,7 @@
 .idea-item
-  %h1
-    {{ idea.title }}
+  %a(href='#/widget/{{ idea.id }}')
+    %h1
+      {{ idea.title }}
   %p.desc
     {{ idea.description | truncate:120 }}
   .meta

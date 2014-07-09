@@ -11,7 +11,7 @@
 
     / ANGULAR HELP
     / Controllers are found in angular/controllers folder
-    / Directives are found in angular/widget.js.coffe
+    / Directives are found in angular/widget.js.coffee
     / Templates are found in angular/templates folder
     #simplybetterIdeasModal(ng-app='Simplybetter' ng-controller='WidgetCtrl' ng-init="init('#{@appkey}', '#{@email}')")
       .logobar
@@ -22,16 +22,6 @@
           %div(data-reactid='.0')
           .no-notifications(data-reactid='.0.0')
       #simplybetterNavbar.overview
-        %a.home
-          %h2= @app.name
-        %a.goToIdeas.link{href: '#'}
-          .back-arrow
-          Back
+        %h2= @app.name
         %p= @app.intro
-      #simplybetterIdeasModalContent
-        %idea-new
-        #ideas
-          %ol.overview.layout
-            %li.idea(ng-repeat='idea in ideas')
-              %vote
-              %idea-item
+      #simplybetterIdeasModalContent(ng-view='')
