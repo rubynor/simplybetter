@@ -22,8 +22,9 @@ describe SessionsController, js: true do
           first('h1', text: 'Test').click
           fill_in 'Leave a comment...', with: 'My comment'
           click_button 'OK'
+          page.should have_content('My comment')
         end
-      end.to change( Application.last.ideas.first.comments, :count).by(1)
+      end.to change(Application.last.ideas.first.comments, :count).by(1)
     end
     example 'new idea' do
       expect do

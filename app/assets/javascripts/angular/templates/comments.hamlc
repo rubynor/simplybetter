@@ -1,9 +1,13 @@
 #comments
   .comments-section
     .new-comment
-      %form(ng-submit='save_comment(newComment)')
-        %input.comment-body(type='text' placeholder='Leave a comment...' ng-model='newComment')
-        %input.submit-comment(type='submit' value='OK')
+      %form(name='commentForm' ng-submit='commentForm.$valid && save_comment(newComment)' novalidate)
+        .error(ng-if='error_message')
+          {{ error_message }}
+        .success(ng-if='success_message')
+          {{ success_message }}
+        %input.comment-body(type='text' placeholder='Leave a comment...' ng-model='newComment' ng-focus='write = true' ng-class='{dirty: write}' required)
+        %button.btn.submit-comment(type='submit' ng-class='{ disabled: !commentForm.$valid}') OK
     %ol
       %li.comment-item(ng-repeat='comment in comments')
         .avatar
