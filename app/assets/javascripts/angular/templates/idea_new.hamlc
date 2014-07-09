@@ -1,6 +1,9 @@
 #newIdea
   .newIdea
-    %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='newIdea.title')
-    .new-idea-form.focused(ng-show='write')
-      %textarea.description(placeholder='Description' ng-model='newIdea.description')
-      %input.submit(type='submit' value='send' ng-click='save_idea(newIdea)')
+    %form(name='newIdeaForm' novalidate)
+      .error(ng-if='error_message')
+        {{ error_message }}
+      %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='newIdea.title' ng-class='{dirty: write}' required )
+      .new-idea-form.focused(ng-show='write')
+        %textarea.description(placeholder='Description' ng-model='newIdea.description' required)
+        %button.btn.submit(type='submit' ng-click='save_idea(newIdea)' ng-class='{disabled: !newIdeaForm.$valid}') send
