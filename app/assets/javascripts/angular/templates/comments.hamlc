@@ -1,5 +1,9 @@
 #comments
   .comments-section
+    .new-comment
+      %form(ng-submit='save_comment(newComment)')
+        %input.comment-body(type='text' placeholder='Leave a comment...' ng-model='newComment')
+        %input.submit-comment(type='submit' value='OK')
     %ol
       %li.comment-item(ng-repeat='comment in comments')
         .avatar
