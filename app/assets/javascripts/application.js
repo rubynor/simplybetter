@@ -25,8 +25,6 @@
 //= require angular-1.2.18/angular-resource
 //= require angular-1.2.18/angular-route
 //= require angular/widget
-//= require angular/services/idea
-//= require angular/controllers/widget_ctrl
 //= require_tree ./angular
 //= require_tree ./backbone/dashboard_ideas
 //

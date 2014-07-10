@@ -1,0 +1,17 @@
+#simplybetterNotifications
+  .notifications(ng-controller='NotificationCtrl')
+    .top
+      Notifications
+    .notifications-list
+      .notification(ng-repeat='notification in notifications' ng-class='{ new: notification.checked }')
+        .profile-image
+          %img(ng-src='notification.image_url')
+        .notification-message
+          %strong
+            {{ notification.creator }}
+          wrote a message on:
+          %strong
+            {{ notification.idea.title }}
+          .meta
+            %abbr.timeago
+              {{ notification.time }}

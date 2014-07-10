@@ -1,6 +1,6 @@
 %idea-new
 #ideas
   %ol.overview.layout
-    %li.idea(ng-repeat='idea in ideas')
+    %li.idea(ng-repeat='idea in ideas' ng-class='{ completed: idea.completed }')
       %vote
       %idea-item

@@ -32,3 +32,7 @@ widget.directive 'vote', ->
 widget.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/templates/comments']
+
+widget.directive 'notifications', ->
+  restrict: 'E'
+  template: JST['angular/templates/notifications']
