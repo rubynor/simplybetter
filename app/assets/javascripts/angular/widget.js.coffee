@@ -27,7 +27,8 @@ widget.directive 'ideaItem', ->
 
 widget.directive 'vote', ->
   restrict: 'E'
-  template: JST['angular/templates/vote']
+  template: "<div class='vote'><div class='vote-buttons'><a class='up' ng-click='vote(idea, 2)' ng-class='{active: idea.voter_status == 1}'></a><div class='votes'>{{ idea.votes_count }}</div><a class='down' ng-click='vote(idea, -2)' ng-class='{active: idea.voter_status == -1}'></a></div></div>"
+  controller: 'VoteCtrl'
 
 widget.directive 'comments', ->
   restrict: 'E'
