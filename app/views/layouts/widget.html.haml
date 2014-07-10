@@ -18,10 +18,10 @@
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
           .logo-text Simply Better
-        %notifications
+        %notifications(ng-if='notificationactive')
         #simplybetterNotifications
-          %div(data-reactid='.0')
-          .no-notifications(data-reactid='.0.0')
+          %div
+          .no-notifications(ng-click='notificationactive=!notificationactive')
       #simplybetterNavbar.overview
         %h2= @app.name
         %p= @app.intro

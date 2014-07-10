@@ -1,5 +1,6 @@
 widget.controller 'WidgetCtrl', ['$scope', 'Idea', ($scope, Idea) ->
   $scope.newIdea = new Idea({})
+  $scope.notificationactive = false
 
   $scope.init = (token, email) ->
     $scope.email = email
