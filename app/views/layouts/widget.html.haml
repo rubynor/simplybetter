@@ -22,8 +22,8 @@
         %notifications(ng-if='notificationactive')
         #simplybetterNotifications
           %div(ng-click='notificationactive=!notificationactive')
-            .no-notifications(ng-if='new_notifications == 0')
-            .new-notifications(ng-if='new_notifications != 0')
+            .no-notifications(ng-if='new_notifications.count == 0')
+            .new-notifications(ng-if='new_notifications.count != 0')
               {{ new_notifications.count }}
       #simplybetterNavbar(ng-class='{ overview: !path }')
         %span(ng-if='path')
