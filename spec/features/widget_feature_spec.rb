@@ -36,16 +36,16 @@ describe WidgetController, js: true do
         end
       end.to change(Application.last.ideas, :count).by(1)
     end
-    example 'up and down vote' do
+    example 'up vote' do
       page.within_frame 'simplybetterIframe' do
         first('.up').click
       end
-      sleep 0.5
       expect(Application.last.ideas.first.votes_count).to eq(1)
+    end
+    example 'down vote' do
       page.within_frame 'simplybetterIframe' do
         first('.down').click
       end
-      sleep 2
       expect(Application.last.ideas.first.votes_count).to eq(-1)
     end
     example 'open notifications' do
