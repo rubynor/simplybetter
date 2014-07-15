@@ -1,4 +1,4 @@
-widget.controller 'WidgetCtrl', ['$scope', 'Idea', ($scope, Idea) ->
+widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'NotificationsCount', ($scope, Idea, NotificationsCount) ->
   $scope.newIdea = new Idea({})
   $scope.notificationactive = false
 
@@ -12,6 +12,7 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', ($scope, Idea) ->
     console.log 'Inside init'
     console.log "Token = #{token} og email = #{email}"
     $scope.ideas = Idea.query({token: token, user_email: email})
+    $scope.new_notifications = NotificationsCount.get({token: token, user_email: email})
 
   $scope.save_idea = (newIdea) ->
     $scope.success_message = undefined

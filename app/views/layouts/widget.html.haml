@@ -21,8 +21,10 @@
           .logo-text Simply Better
         %notifications(ng-if='notificationactive')
         #simplybetterNotifications
-          %div
-          .no-notifications(ng-click='notificationactive=!notificationactive')
+          %div(ng-click='notificationactive=!notificationactive')
+            .no-notifications(ng-if='new_notifications == 0')
+            .new-notifications(ng-if='new_notifications != 0')
+              {{ new_notifications.count }}
       #simplybetterNavbar(ng-class='{ overview: !path }')
         %span(ng-if='path')
           %a.link(href='#' ng-click="reset_path('#{@appkey}', '#{@email}')")
