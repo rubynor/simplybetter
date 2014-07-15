@@ -2,6 +2,10 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', ($scope, Idea) ->
   $scope.newIdea = new Idea({})
   $scope.notificationactive = false
 
+  $scope.reset_path = (token, email) ->
+    $scope.path = undefined
+    $scope.ideas = Idea.query({token: token, user_email: email})
+
   $scope.init = (token, email) ->
     $scope.email = email
     $scope.token = token

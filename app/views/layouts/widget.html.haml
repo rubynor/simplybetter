@@ -22,7 +22,11 @@
         #simplybetterNotifications
           %div
           .no-notifications(ng-click='notificationactive=!notificationactive')
-      #simplybetterNavbar.overview
+      #simplybetterNavbar(ng-class='{ overview: !path }')
+        %span(ng-if='path')
+          %a.link(href='#' ng-click="reset_path('#{@appkey}', '#{@email}')")
+            .back-arrow
+            BACK
         %h2= @app.name
         %p= @app.intro
       #simplybetterIdeasModalContent(ng-view='')

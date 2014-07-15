@@ -1,6 +1,7 @@
-widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', ($scope, Idea, $routeParams, Comment) ->
+widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', '$location', ($scope, Idea, $routeParams, Comment, $location) ->
   $scope.idea = Idea.get({id: $routeParams.id})
   $scope.comments = Comment.query({idea_id: $routeParams.id})
+  $scope.$parent.path = $location.path()
 
   $scope.save_comment = (newComment) ->
     $scope.error_message = undefined
@@ -10,6 +11,7 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', ($sc
     comment.$save(
       (data) ->
         $scope.comments.push(data)
+        $scope.idea.comments_count += 1
         $scope.newComment = undefined
         $scope.success_message = 'Thank you for your comment'
     , (err) ->

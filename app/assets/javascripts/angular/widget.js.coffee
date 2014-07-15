@@ -13,7 +13,7 @@ angular.module("filters", []).filter "truncate", ->
 
 widget.config ($routeProvider) ->
   $routeProvider
-  .when('/widget', {controller: 'WidgetCtrl', template: JST['angular/templates/overview']})
+  .when('/widget', {template: JST['angular/templates/overview']})
   .when('/widget/:id', {controller: 'IdeaCtrl', template: JST['angular/templates/idea_view']})
   .otherwise(redirectTo: '/widget')
 
