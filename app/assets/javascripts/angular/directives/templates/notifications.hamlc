@@ -3,15 +3,11 @@
     .top
       Notifications
     .notifications-list
-      .notification(ng-repeat='notification in notifications' ng-class='{ new: notification.checked }')
+      .notification(ng-repeat='notification in notifications' ng-class='{ new: !notification.checked }' ng-click='goToIdea(notification.idea_id)')
         .profile-image
           %img(ng-src='{{ notification.image_url }}')
         .notification-message
-          %strong
-            {{ notification.creator }}
-          wrote a message on:
-          %strong
-            {{ notification.idea.title }}
+          {{ notification.text }}
           .meta
             %abbr.timeago
               {{ notification.time }}

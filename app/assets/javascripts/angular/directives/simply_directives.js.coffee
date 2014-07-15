@@ -33,8 +33,9 @@ simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/directives/templates/notifications'],
   controller: ['$scope', 'Notification', ($scope, Notification) ->
-    # $scope.notififications = Notification.query({ token: $scope.token, user_email: $scope.email })
-    # Mocking up data... resource gives me nothing.
-    $scope.notifications = [{ checked: true, image_url: 'https://secure.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452.png?r=PG&s=50', message: 'Hello', creator: 'Arne', idea: { title: '"arne"'}, time: '2 minutes ago' }, { checked: false, image_url: 'https://secure.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452.png?r=PG&s=50', message: 'Weee', creator: 'Hans', idea: { title: '"arne"'}, time: '1 minutes ago' }]
-    console.log 'in notifications ctrl'
+    $scope.notifications = Notification.query({token: $scope.token, user_email: $scope.email})
+    $scope.goToIdea = (id) ->
+      # TODO: Update checked on click..
+      $scope.$parent.notificationactive = !$scope.$parent.notificationactive
+      window.location = "#/widget/#{id}"
   ]
