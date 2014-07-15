@@ -14,6 +14,6 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', ($sc
         $scope.success_message = 'Thank you for your comment'
     , (err) ->
       console.log JSON.stringify(err)
-      $scope.error_message = "'Comment can't be blank'"
+      $scope.error_message = err.data
     )
 ]
