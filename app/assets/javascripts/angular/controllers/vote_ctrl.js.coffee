@@ -9,6 +9,6 @@ widget.controller 'VoteCtrl', ['$scope', 'Vote', ($scope, Vote) ->
         $scope.idea.votes_count = data.votes_count
         console.log JSON.stringify(data)
     , (err) ->
-      console.log 'Somenthing went wrong..'
+      console.log 'Something went wrong..'
     )
 ]

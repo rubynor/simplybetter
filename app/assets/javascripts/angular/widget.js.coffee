@@ -8,32 +8,10 @@ angular.module("filters", []).filter "truncate", ->
     else
       String(text).substring(0, length - end.length) + end
 
-
-@widget = angular.module('Simplybetter', ['ngResource', 'filters', 'ngRoute'])
+@widget = angular.module('Simplybetter', ['ngResource', 'filters', 'ngRoute', 'simplyDirectives'])
 
 widget.config ($routeProvider) ->
   $routeProvider
   .when('/widget', {template: JST['angular/templates/overview']})
   .when('/widget/:id', {controller: 'IdeaCtrl', template: JST['angular/templates/idea_view']})
   .otherwise(redirectTo: '/widget')
-
-widget.directive 'ideaNew', ->
-  restrict: 'E'
-  template: JST['angular/templates/idea_new']
-
-widget.directive 'ideaItem', ->
-  restrict: 'E'
-  template: JST["angular/templates/idea_item"]
-
-widget.directive 'vote', ->
-  restrict: 'E'
-  template: "<div class='vote'><div class='vote-buttons'><a class='up' ng-click='vote(idea, 2)' ng-class='{active: idea.voter_status == 1}'></a><div class='votes'>{{ idea.votes_count }}</div><a class='down' ng-click='vote(idea, -2)' ng-class='{active: idea.voter_status == -1}'></a></div></div>"
-  controller: 'VoteCtrl'
-
-widget.directive 'comments', ->
-  restrict: 'E'
-  template: JST['angular/templates/comments']
-
-widget.directive 'notifications', ->
-  restrict: 'E'
-  template: JST['angular/templates/notifications']
