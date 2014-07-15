@@ -10,7 +10,7 @@ simplyDirectives.directive 'ideaItem', ->
 
 simplyDirectives.directive 'vote', ->
   restrict: 'E'
-  template: "<div class='vote'><div class='vote-buttons'><a class='up' ng-click='vote(idea, 2)' ng-class='{active: idea.voter_status == 1}'></a><div class='votes'>{{ idea.votes_count }}</div><a class='down' ng-click='vote(idea, -2)' ng-class='{active: idea.voter_status == -1}'></a></div></div>"
+  template: JST["angular/directives/templates/vote"]
   controller: 'VoteCtrl'
 
 simplyDirectives.directive 'comments', ->
