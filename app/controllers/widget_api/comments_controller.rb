@@ -13,7 +13,7 @@ class WidgetApi::CommentsController < ApplicationController
   def create
     # Early exit if no user..
     if params[:user][:email].blank?
-      render json: 'You must be signed in to comment', status: :unprocessable_entity and return
+      render json: 'You must be signed in to comment', status: :unauthorized and return
     end
 
     user_email = params[:comment].delete(:user_email)
