@@ -12,5 +12,5 @@ ActiveRecord::Base.transaction do
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'
   Idea.create! title: 'Test', description: 'En liten beskrivelse', application_id: app.id, creator: customer
-  puts 'Creeated an idea'
+  puts 'Created an idea'
 end
