@@ -1,5 +1,5 @@
 #simplybetterNotifications
-  .notifications(ng-controller='NotificationCtrl')
+  .notifications
     .top
       Notifications
     .notifications-list
