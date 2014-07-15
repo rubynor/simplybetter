@@ -5,7 +5,7 @@
     .notifications-list
       .notification(ng-repeat='notification in notifications' ng-class='{ new: notification.checked }')
         .profile-image
-          %img(ng-src='notification.image_url')
+          %img(ng-src='{{ notification.image_url }}')
         .notification-message
           %strong
             {{ notification.creator }}
