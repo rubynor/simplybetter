@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SessionsController, js: true do
+describe WidgetController, js: true do
 
   before :all do
     Rails.application.load_seed
