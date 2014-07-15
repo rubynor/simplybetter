@@ -12,7 +12,8 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'NotificationsCount', ($scope
     console.log 'Inside init'
     console.log "Token = #{token} og email = #{email}"
     $scope.ideas = Idea.query({token: token, user_email: email})
-    $scope.new_notifications = NotificationsCount.get({token: token, user_email: email})
+    if email
+      $scope.new_notifications = NotificationsCount.get({token: token, user_email: email})
 
   $scope.save_idea = (newIdea) ->
     $scope.success_message = undefined
