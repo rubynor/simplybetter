@@ -11,6 +11,11 @@ ActiveRecord::Base.transaction do
   app = customer.applications.create!(name: 'Development Application', intro: 'A small description here')
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'
-  Idea.create! title: 'Test', description: 'En liten beskrivelse', application_id: app.id, creator: customer
+  idea = Idea.create! title: 'Test', description: 'En liten beskrivelse', application_id: app.id, creator: customer
   puts 'Created an idea'
+  user = User.create!(email: 'test@test.com', name: 'Arne', application_id: app.id)
+  comment = Comment.create!(body: 'My comment', idea_id: idea.id, creator_id: user.id, creator_type: 'User')
+  puts 'Created comment'
+  Notification.create_with(action: comment, subject: idea, recipient: customer, app_id: app.id)
+  puts 'Created notification'
 end
