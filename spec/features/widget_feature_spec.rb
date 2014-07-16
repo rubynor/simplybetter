@@ -5,6 +5,7 @@ describe WidgetController, js: true do
   before :all do
     Rails.application.load_seed
     puts Application.count
+    puts Notification.count
   end
 
   describe 'widget' do
@@ -51,9 +52,18 @@ describe WidgetController, js: true do
     example 'open notifications' do
       page.within_frame 'simplybetterIframe' do
         page.should_not have_content 'Notifications'
-        first('.no-notifications').click
+        first('.new-notifications').click
         page.should have_content 'Notifications'
       end
+    end
+    example 'mark notification as read' do
+      Notification.last.checked.should eq(nil)
+      page.within_frame 'simplybetterIframe' do
+        page.should_not have_content 'Notifications'
+        first('.new-notifications').click
+        first('.new').click
+      end
+      Notification.last.checked.should eq(true)
     end
     example 'navigation' do
       page.within_frame 'simplybetterIframe' do

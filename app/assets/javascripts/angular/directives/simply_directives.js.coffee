@@ -22,6 +22,7 @@ simplyDirectives.directive 'vote', ->
           console.log JSON.stringify(data)
       , (err) ->
         console.log 'Something went wrong..'
+        console.log err
       )
   ]
 
@@ -34,8 +35,16 @@ simplyDirectives.directive 'notifications', ->
   template: JST['angular/directives/templates/notifications'],
   controller: ['$scope', 'Notification', ($scope, Notification) ->
     $scope.notifications = Notification.query({token: $scope.token, user_email: $scope.email})
-    $scope.goToIdea = (id) ->
+    $scope.goToIdea = (notification) ->
       # TODO: Update checked on click..
       $scope.$parent.notificationactive = !$scope.$parent.notificationactive
-      window.location = "#/widget/#{id}"
+      notification.checked = true
+      updated = new Notification(notification)
+      updated.$update(
+        (data) ->
+          console.log JSON.stringify(data)
+          window.location = "#/widget/#{notification.idea_id}"
+      , (err) ->
+        console.log(JSON.stringify(err))
+      )
   ]

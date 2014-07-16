@@ -29,4 +29,8 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'NotificationsCount', ($scope
       $scope.error_message += "Title #{err.data.title}, " if err.data.title
       $scope.error_message += "Description #{err.data.description}" if err.data.description
     )
+
+  $scope.updateCount = ->
+    $scope.new_notifications = NotificationsCount.get({token: $scope.token, user_email: $scope.email})
+    console.log 'update count'
 ]

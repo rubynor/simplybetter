@@ -3,8 +3,6 @@ class WidgetApi::NotificationsController < ApplicationController
   before_filter :application
 
   def index
-    puts 'params following..'
-    puts params
     user_email = params[:user_email]
     recipient = get_current_user(@application, user_email)
     @notifications = Notification.for(recipient, @application.id)
