@@ -4,8 +4,6 @@ describe WidgetController, js: true do
 
   before :all do
     Rails.application.load_seed
-    puts Application.count
-    puts Notification.count
   end
 
   describe 'widget' do
