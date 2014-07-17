@@ -7,7 +7,12 @@
         .profile-image
           %img(ng-src='{{ notification.image_url }}')
         .notification-message
-          {{ notification.text }}
+          %span(ng-repeat='n in notification.text')
+            / TODO: need refactoring..
+            %span(ng-if='n.bold' style='font-weight: bold')
+              {{ n.bold }}
+            %span(ng-if='n.normal')
+              {{ n.normal }}
           .meta
             %abbr.timeago
               {{ notification.time }}
