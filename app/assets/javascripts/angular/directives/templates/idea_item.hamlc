@@ -2,7 +2,9 @@
   %a(href='#/widget/{{ idea.id }}')
     %h1
       {{ idea.title }}
-  %p.desc
+  %p.desc.ideaView(ng-if='path')
+    {{ idea.description }}
+  %p.desc(ng-if='!path')
     {{ idea.description | truncate:120 }}
   .meta
     .comments
