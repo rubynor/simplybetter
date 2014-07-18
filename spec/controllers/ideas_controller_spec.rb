@@ -33,5 +33,11 @@ describe IdeasController do
         end.to change(Notification, :count).by(1)
       end
     end
+    it 'should not notify if completed changed to false' do
+      @idea.update_attributes! completed: true
+      expect do
+        put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: false}, format: :json
+      end.to change(Notification, :count).by(0)
+    end
   end
 end

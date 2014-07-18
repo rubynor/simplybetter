@@ -30,29 +30,18 @@ class IdeasController < ApplicationController
   end
 
   def update
-    attributes = idea_attributes
-    creator = attributes.delete(:creator)
-    @idea.assign_attributes(attributes)
-    if creator
-      @idea.creator = Idea.find_creator(creator)
-    end
-    completed = @idea.has_been_completed?
-    if @idea.save
-      @idea.notify(action_attr: :completed, action_attr_changer: current_customer) if completed
+    if @idea.save_and_notify(idea_attributes, current_customer)
       respond_to do |format|
         format.json{ show }
         format.html{
-          redirect_to administrate_group_application_path(@application.id), 
+          redirect_to administrate_group_application_path(@application.id),
             notice: 'Idea was updated'
         }
       end
     else
       respond_to do |format|
-        format.html{render :edit}
-        format.json{
-          @idea.reload
-          show
-        }
+        format.html { render :edit }
+        format.json { show }
       end
     end
   end
@@ -60,11 +49,10 @@ class IdeasController < ApplicationController
   def destroy
     @idea.destroy!
     respond_to do |format|
-      format.json {
-        render json: {message: "success"}
-      }
+      format.json { render json: { message: 'success' } }
       format.html {
-        redirect_to administrate_group_application_path(@application.id), notice: 'Idea was removed'
+        redirect_to administrate_group_application_path(@application.id),
+                    notice: 'Idea was removed'
       }
     end
   end
