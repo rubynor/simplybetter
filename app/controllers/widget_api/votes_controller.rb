@@ -1,6 +1,7 @@
 class WidgetApi::VotesController < ApplicationController
   include CreatorFinder
 
+  # POST / GET
   def cast
     vote_val = params[:value] || 0
     if vote_val == 0
