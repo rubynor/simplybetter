@@ -17,7 +17,10 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Notificat
 
   $scope.find_similar = (txt) ->
     return unless txt.length > 10
-    $scope.similar_ideas = FindSimilarIdea.query({ token: $scope.token, query: txt })
+    FindSimilarIdea.query({ token: $scope.token, query: txt },
+      (response) ->
+        $scope.similar_ideas = response
+    )
 
   $scope.show_similar = ->
     $scope.similar_ideas && $scope.similar_ideas.length > 0
