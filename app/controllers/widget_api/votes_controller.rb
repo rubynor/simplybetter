@@ -39,7 +39,7 @@ class WidgetApi::VotesController < ApplicationController
       vote.notify(@application.id)
       vote_receiver.reload
     else
-      render json: {error: "You need to be signed in to vote"}, status: 403
+      render json: { error: 'You need to be signed in to vote' }, status: 403
     end
   end
 
@@ -56,7 +56,7 @@ class WidgetApi::VotesController < ApplicationController
     elsif params[:comment_id]
       application.comments.find(params[:comment_id])
     else
-      raise "No vote receiver"
+      raise 'No vote receiver'
     end
   end
 
@@ -65,15 +65,10 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def voter
-    get_voter
-  end
-
-  def get_voter
-    return_val = nil
     begin
-      return_val = creator(application,params[:voter_email])
+      creator(application, params[:voter_email])
     rescue Exception => msg
+      # It's ok if user, not signed in
     end
-    return_val
   end
 end
