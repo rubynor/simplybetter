@@ -3,25 +3,16 @@ class WidgetApi::VotesController < ApplicationController
 
   def cast
     vote_val = params[:value] || 0
-    if vote_val > 1
-      up
-    elsif vote_val < -1
-      down
-    else
+    if vote_val == 0
       status
+    elsif voter
+      cast_vote(vote_val)
+    else
+      render json: { error: 'You need to be signed in to vote' }, status: 403
     end
   end
 
-
   private
-
-  def up
-    cast_vote(1)
-  end
-
-  def down
-    cast_vote(-1)
-  end
 
   def status
     vote_receiver
@@ -33,14 +24,8 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def cast_vote(value)
-    if voter
-      vote.cast(value)
-      vote.subscribe
-      vote.notify(@application.id)
-      vote_receiver.reload
-    else
-      render json: { error: 'You need to be signed in to vote' }, status: 403
-    end
+    vote.cast_vote(value, @application.id)
+    vote_receiver.reload
   end
 
   def application
