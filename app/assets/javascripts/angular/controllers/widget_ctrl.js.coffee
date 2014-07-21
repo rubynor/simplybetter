@@ -22,6 +22,9 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Notificat
   $scope.show_similar = ->
     $scope.similar_ideas && $scope.similar_ideas.length > 0
 
+  $scope.hide_similar = ->
+    $scope.similar_ideas = undefined
+
   $scope.save_idea = (newIdea) ->
     $scope.success_message = undefined
     $scope.error_message = undefined
