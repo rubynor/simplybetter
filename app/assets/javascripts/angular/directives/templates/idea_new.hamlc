@@ -3,11 +3,11 @@
     %form(name='newIdeaForm' novalidate)
       .error(ng-if='error_message')
         {{ error_message }}
-      %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='newIdea.title' ng-class="{ dirty: write, 'show-similar-ideas': show_similar()}" ng-keyup='find_similar(newIdea.title)' required )
+      %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='newIdea.title' ng-class="{ dirty: write, 'show-similar-ideas': show_similar() }" ng-keyup='find_similar(newIdea.title)' required )
       .similar-ideas(ng-class="{ 'fade-hidden': !show_similar() }")
         %ol
           %li.idea(ng-repeat='idea in similar_ideas')
             %idea-item
-      .new-idea-form.focused(ng-show='write')
+      .new-idea-form(ng-class='{ focused: write }')
         %textarea.description(placeholder='Description' ng-model='newIdea.description' ng-focus='hide_similar()' required)
         %button.btn.submit(type='submit' ng-click='save_idea(newIdea)' ng-class='{disabled: !newIdeaForm.$valid}') send
