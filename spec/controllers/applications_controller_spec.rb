@@ -34,17 +34,4 @@ describe ApplicationsController do
       response.should redirect_to(application_path(Application.last.id))
     end
   end
-
-  describe 'administrate_group' do
-    # TODO: Pål.. fix or remove
-    pending 'should assign @ideas, and @idea_group' do
-      f = Idea.make!
-      f.update_attributes!(idea_group_id: @application.idea_group.id)
-      @application.ideas << Idea.make!(title: 'new idea')
-      get :administrate_group, id: @application.id
-      assigns(:ideas).should be_kind_of(ActiveRecord::Relation)
-      assigns(:ideas).first.should be_kind_of(Idea)
-      assigns(:idea_group).first.should be_an_instance_of(Idea)
-    end
-  end
 end
