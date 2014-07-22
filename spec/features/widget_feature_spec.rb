@@ -21,7 +21,7 @@ describe WidgetController, js: true do
         fill_in 'Leave a comment...', with: 'My new comment'
         click_button 'OK'
         page.should have_content('My new comment')
-        sleep 1
+        sleep 2
       end.to change(Application.last.ideas.first.comments, :count).by(1)
     end
     example 'new idea' do
@@ -42,7 +42,7 @@ describe WidgetController, js: true do
       page.should have_css '.down'
       first('.down').click
       page.should have_css '.active'
-      sleep 1
+      sleep 2
       expect(Application.last.ideas.first.votes_count).to eq(-1)
     end
     example 'mark notification as read' do
