@@ -4,3 +4,4 @@
     %li.idea(ng-repeat='idea in ideas' ng-class='{ completed: idea.completed }')
       %vote
       %idea-item
+      %comments(comments='idea.comments')(ng-if='ideas.length == 1 && idea.comments')

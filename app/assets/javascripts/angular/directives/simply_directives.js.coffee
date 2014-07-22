@@ -29,6 +29,8 @@ simplyDirectives.directive 'vote', ->
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/directives/templates/comments']
+  scope:
+    comments: '='
 
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'

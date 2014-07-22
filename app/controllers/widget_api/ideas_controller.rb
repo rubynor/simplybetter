@@ -30,7 +30,8 @@ class WidgetApi::IdeasController < ApplicationController
   def find_similar
     current_application = Application.find_by(token: params[:token])
     conditions = { application_id: current_application.id, visible: true }
-    render json: Idea.search(params[:query],where: conditions, limit: 4, misspellings: { distance: 2 }, partial: true)
+    @ideas = Idea.search(params[:query], where: conditions, limit: 4, misspellings: { distance: 2 }, partial: true)
+    render template: 'ideas/index'
   end
 
   def create

@@ -1,4 +1,4 @@
 .idea-layout
   %vote
   %idea-item
-  %comments
+  %comments(comments='comments')
