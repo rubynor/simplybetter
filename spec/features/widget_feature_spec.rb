@@ -47,7 +47,7 @@ describe WidgetController, js: true do
     end
     example 'open notifications' do
       page.should_not have_content 'Notifications'
-      page.should have_css '.new-notifications'
+      sleep 1
       first('.new-notifications').click
       page.should have_content 'Notifications'
     end
