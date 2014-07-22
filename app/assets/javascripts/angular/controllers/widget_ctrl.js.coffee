@@ -22,6 +22,9 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Notificat
         $scope.similar_ideas = response
     )
 
+  $scope.show_this_idea = (idea) ->
+    $scope.ideas = [idea]
+
   $scope.show_similar = ->
     $scope.similar_ideas && $scope.similar_ideas.length > 0
 
