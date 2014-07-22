@@ -39,8 +39,8 @@ simplyDirectives.directive 'comments', ->
     $scope.highlight = ->
       if $scope.comment_id != 'null'
         $scope.highlight.comment = true
-        $timeout($scope.unhighlight, 5000)
-    $timeout($scope.highlight, 0)
+        $timeout($scope.unhighlight, 3000)
+    $timeout($scope.highlight, 500)
   ]
 
 simplyDirectives.directive 'notifications', ->

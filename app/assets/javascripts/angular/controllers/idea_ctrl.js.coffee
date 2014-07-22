@@ -23,10 +23,10 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', '$lo
   $scope.highlight = ->
     if $location.search().comment_id == 'null'
       $scope.highlight.idea = true
-      $timeout($scope.unhighlight, 5000)
+      $timeout($scope.unhighlight, 3000)
 
   $scope.unhighlight = ->
     $scope.highlight.idea = undefined
 
-  $timeout($scope.highlight, 0)
+  $timeout($scope.highlight, 500)
 ]
