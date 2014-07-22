@@ -1,5 +1,5 @@
 widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', '$location', ($scope, Idea, $routeParams, Comment, $location) ->
-  $scope.idea = Idea.get({id: $routeParams.id})
+  $scope.idea = Idea.get({id: $routeParams.id, token: $scope.token, user_email: $scope.email})
   $scope.comments = Comment.query({idea_id: $routeParams.id})
   $scope.$parent.path = $location.path()
 
