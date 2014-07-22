@@ -7,17 +7,17 @@ class Vote < ActiveRecord::Base
 
   include VoteNotificationHelpers
 
+  def cast_vote(value, app_id)
+    return if value == 0
+    vote_val = value > 1 ? 1 : -1
+    cast(vote_val)
+    subscribe
+    notify(app_id)
+  end
+
   def cast(value)
-    if self.value == 1 && value == 1
-      self.value = 0
-    elsif self.value == -1 && value == -1
-      self.value = 0
-    elsif value == 0
-      return
-    else
-      self.value = 0
-      self.value += value
-    end
+    return if value == 0
+    self.value = self.value == value ? 0 : value
     self.save!
   end
 
