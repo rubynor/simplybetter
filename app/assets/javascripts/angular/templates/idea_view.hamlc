@@ -1,4 +1,4 @@
-.idea-layout(ng-class='{ highlighted: highlighted }')
+.idea-layout(ng-class='{ highlighted: highlight.idea }')
   %vote
   %idea-item
   %comments(comments='comments')
