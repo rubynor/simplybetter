@@ -23,7 +23,7 @@ class NotificationCreator
 
   private
 
-  def create_notification(recipient)      
+  def create_notification(recipient)
     if type == :attribute
       create_attribute_notification(recipient)
     else
@@ -40,12 +40,12 @@ class NotificationCreator
   def create_attribute_notification(recipient)
     unless action_attribute_changer == recipient
       Notification.create_with(
-        action,
-        subject,
-        recipient,
-        app_id,
-        action_attribute,
-        action_attribute_changer
+        action: action,
+        subject: subject,
+        recipient: recipient,
+        app_id: app_id,
+        action_attr: action_attribute,
+        action_attr_changer: action_attribute_changer
       )
     end
   end

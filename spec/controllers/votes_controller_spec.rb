@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe WidgetApi::VotesController do
-  describe "voting on a idea" do
+  describe 'voting on a idea' do
     example 'casting an up-vote' do
       user = User.make!
       idea = Idea.make!
@@ -21,7 +21,7 @@ describe WidgetApi::VotesController do
     end
   end
 
-  describe "voting on a comment" do
+  describe 'voting on a comment' do
     example 'casting a vote' do
       comment = Comment.make!
       voter = User.make!

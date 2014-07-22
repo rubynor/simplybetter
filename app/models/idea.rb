@@ -16,6 +16,19 @@ class Idea < ActiveRecord::Base
 
   scope :visible, -> { where(visible: true) }
 
+  def save_and_notify(params, current_customer)
+    creator = params.delete(:creator)
+    assign_attributes(params)
+    self.creator = find_creator(params[:creator]) if creator
+    completed = has_been_completed?
+    if save
+      notify(action_attr: :completed, action_attr_changer: current_customer) if completed
+    else
+      self.reload
+      false
+    end
+  end
+
   def subscribers
     self.idea_subscriptions.map(&:subscriber).uniq
   end
@@ -44,7 +57,7 @@ class Idea < ActiveRecord::Base
     self.update_attribute(:votes_count, votes.sum(:value))
   end
 
-  def self.find_creator(string)
+  def find_creator(string)
     string_arry = string.split(",")
     klass = string_arry.first
     id = string_arry.last.to_i
@@ -52,7 +65,7 @@ class Idea < ActiveRecord::Base
   end
 
   def has_been_completed?
-    self.completed_changed? && self.completed == true
+    completed_changed? && completed?
   end
 
   private
