@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_customer
 
   def applications
-    @applications ||= current_customer.applications.delete_if{|a| a.new_record?} if current_customer
+    @applications ||= current_customer.applications.to_a.delete_if{|a| a.new_record?} if current_customer
   end
   helper_method :applications
 

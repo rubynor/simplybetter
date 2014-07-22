@@ -17,7 +17,6 @@ describe Customer do
     it { should_not have_valid(:email).when(nil) }
     it { should_not have_valid(:email).when('jh') }
     it { should_not have_valid(:password_digest).when(nil) }
-    it { should_not have_valid(:password_confirmation).when(nil) }
   end
 
   describe 'send_password_reset' do

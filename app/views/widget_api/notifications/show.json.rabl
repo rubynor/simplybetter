@@ -10,7 +10,7 @@ node :text do |n|
 end
 
 node :time do |n|
-  n.time
+  n.time.utc.iso8601
 end
 
 node :idea_id do |n|

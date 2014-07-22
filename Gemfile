@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.1.2'
 
-gem 'rails'
+gem 'rails', '4.1.0'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'pg'
