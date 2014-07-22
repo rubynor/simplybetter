@@ -2,6 +2,7 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', '$lo
   $scope.idea = Idea.get({id: $routeParams.id, token: $scope.token, user_email: $scope.email})
   $scope.comments = Comment.query({idea_id: $routeParams.id})
   $scope.$parent.path = $location.path()
+  $scope.highlighted = true if $location.search().comment_id == 'null'
 
   $scope.save_comment = (newComment) ->
     $scope.error_message = undefined

@@ -31,6 +31,9 @@ simplyDirectives.directive 'comments', ->
   template: JST['angular/directives/templates/comments']
   scope:
     comments: '='
+  controller: ['$scope', '$location', ($scope, $location) ->
+    $scope.comment_id = $location.search().comment_id
+  ]
 
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
@@ -38,14 +41,13 @@ simplyDirectives.directive 'notifications', ->
   controller: ['$scope', 'Notification', ($scope, Notification) ->
     $scope.notifications = Notification.query({token: $scope.token, user_email: $scope.email})
     $scope.goToIdea = (notification) ->
-      # TODO: Update checked on click..
       $scope.$parent.notificationactive = !$scope.$parent.notificationactive
       notification.checked = true
       updated = new Notification(notification)
       updated.$update(
         (data) ->
           console.log JSON.stringify(data)
-          window.location = "#/widget/#{notification.idea_id}"
+          window.location = "#/widget/#{notification.idea_id}?comment_id=#{notification.comment_id}"
       , (err) ->
         console.log(JSON.stringify(err))
       )
