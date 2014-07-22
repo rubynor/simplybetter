@@ -29,7 +29,7 @@ SimplyBetter::Application.routes.draw do
 
   resources :applications, except: [:destroy] do
     get :administrate_group, on: :member
-    resources :ideas
+    resources :ideas, only: [:index, :update, :destroy]
   end
 
   resources :password_resets, only: [:new, :create, :edit, :update]

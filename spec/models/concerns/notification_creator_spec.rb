@@ -31,8 +31,8 @@ describe NotificationCreator do
 
       it 'should create notifications, even if receiver equals action.creator' do
         allow(action).to receive(:creator) { user }
-        expect(Notification).not_to receive(:create_with).with(action, subject, user)
-        expect(Notification).to receive(:create_with).with(action, subject, user, app, action_attribute, action_attribute_changer).once
+        expect(Notification).not_to receive(:create_with).with(action: action, subject: subject, recipient: user)
+        expect(Notification).to receive(:create_with).with(action: action, subject: subject, recipient: user, app_id: app, action_attr: action_attribute, action_attr_changer: action_attribute_changer).once
         n = NotificationCreator.new(action: action, subject: subject, app_id: app, action_attr: action_attribute, action_attr_changer: action_attribute_changer)
         n.notify_group([user])
       end

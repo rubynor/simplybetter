@@ -4,7 +4,7 @@ module IdeaNotificationHelpers
   end
 
   def notify(**args)
-    Notification.notify(action: self, subject: self, app_id: self.application.id, action_attr: args[:action_attr], action_attr_changer: [:action_attr_changer])
+    Notification.notify(action: self, subject: self, app_id: self.application.id, action_attr: args[:action_attr], action_attr_changer: args[:action_attr_changer])
   end
 
   def notification_text(recipient, **args)
