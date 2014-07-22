@@ -5,6 +5,11 @@
 
     var urlRoot = "<%=WidgetPath.path%>";
     var cssId = 'simplyBetterWidgetStyle';
+
+    var iframeWrapper;
+    var backdrop;
+    var activateButton;
+
     var createStyleLink = function(name){
       var head  = document.getElementsByTagName('head')[0];
       var link  = document.createElement('link');
@@ -15,18 +20,52 @@
       link.media = 'all';
       head.appendChild(link);
     };
+
     if (!document.getElementById(cssId)){
       createStyleLink('widget-client');
       createStyleLink('icons/<%=@icon%>');
     }
-    var e = document.createElement('div');
-    e.innerHTML = '<div id="simplybetterBackdropLayer" style="display: none;"></div><div id="simplybetterIframeWrapper" style="display: none;"><div id="simplybetterCloseButton"></div><iframe class="simplybetterIframe" src="' + urlRoot + '/widget?appkey='+appKey+'&email='+email+'&name='+name+'" frameborder="0", scrolling="no"></iframe></div><div id="simplybetterActivateButton"></div>';
-    document.getElementsByTagName('body')[0].appendChild(e);
 
-    var iframeWrapper = document.getElementById('simplybetterIframeWrapper');
-    var backdrop = document.getElementById('simplybetterBackdropLayer');
-    var activateButton = document.getElementById('simplybetterActivateButton');
+    var appendToBody = function(html){
+        document.getElementsByTagName('body')[0].appendChild(html);
+    }
+
+    var appendActivateButton = function(){
+        var buttonWrapperDiv = document.createElement('div');
+        buttonWrapperDiv.innerHTML = '<div id="simplybetterActivateButton"></div>';
+        appendToBody(buttonWrapperDiv);
+    }
+
+    var appendSimplyBetterWidget = function(){
+        var html = document.createElement('div');
+        html.innerHTML = '<div id="simplybetterBackdropLayer" style="display: none;"></div><div id="simplybetterIframeWrapper" style="display: none;"><div id="simplybetterCloseButton"></div><iframe class="simplybetterIframe" src="' + urlRoot + '/widget?appkey='+appKey+'&email='+email+'&name='+name+'" frameborder="0", scrolling="no"></iframe></div>';
+        appendToBody(html);
+    }
+
+    var closeModal = function() {
+        iframeWrapper.setAttribute('style','display: none;');
+        backdrop.setAttribute('style', 'display: none;');
+    };
+
+    var bindCloseButtons = function(){
+        document.getElementById('simplybetterCloseButton').onclick = function() {
+          closeModal();
+        };
+        backdrop.onclick = function(){
+          closeModal();
+        };
+    };
+
+    // Append the Activate button
+    appendActivateButton();
+    activateButton = document.getElementById('simplybetterActivateButton');
+
     activateButton.onclick = function() {
+        appendSimplyBetterWidget();
+        iframeWrapper = document.getElementById('simplybetterIframeWrapper');
+        backdrop = document.getElementById('simplybetterBackdropLayer');
+        bindCloseButtons();
+
         iframeWrapper.removeAttribute('style');
         backdrop.removeAttribute('style');
     };
@@ -54,15 +93,4 @@
       requestNotificationCount();
     }
     // End Notification count
-
-    var closeModal = function() {
-        iframeWrapper.setAttribute('style','display: none;');
-        backdrop.setAttribute('style', 'display: none;');
-    };
-    document.getElementById('simplybetterCloseButton').onclick = function() {
-      closeModal();
-    };
-    backdrop.onclick = function(){
-      closeModal();
-    };
 })();
