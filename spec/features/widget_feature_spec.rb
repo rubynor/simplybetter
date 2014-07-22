@@ -45,12 +45,6 @@ describe WidgetController, js: true do
       sleep 1
       expect(Application.last.ideas.first.votes_count).to eq(-1)
     end
-    example 'open notifications' do
-      page.should_not have_content 'Notifications'
-      sleep 1
-      first('.new-notifications').click
-      page.should have_content 'Notifications'
-    end
     example 'mark notification as read' do
       Notification.last.checked.should eq(nil)
       page.should_not have_content 'Notifications'
