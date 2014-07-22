@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.1.2'
 
-gem 'rails'
+gem 'rails', '4.1.0'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'pg'
@@ -13,7 +13,7 @@ gem 'compass-rails', "~> 1.1.2"
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'font-awesome-rails'
 gem 'react-rails'
-gem 'haml_coffee_assets'
+gem 'haml_coffee_assets', git: "https://github.com/netzpirat/haml_coffee_assets"
 
 group :production do
   gem 'newrelic_rpm'
