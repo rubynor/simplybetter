@@ -31,8 +31,16 @@ simplyDirectives.directive 'comments', ->
   template: JST['angular/directives/templates/comments']
   scope:
     comments: '='
-  controller: ['$scope', '$location', ($scope, $location) ->
+  controller: ['$scope', '$location', '$timeout', ($scope, $location, $timeout) ->
     $scope.comment_id = $location.search().comment_id
+    $scope.highlight = {comment: false}
+    $scope.unhighlight = ->
+      $scope.highlight.comment = false
+    $scope.highlight = ->
+      if $scope.comment_id != 'null'
+        $scope.highlight.comment = true
+        $timeout($scope.unhighlight, 5000)
+    $timeout($scope.highlight, 0)
   ]
 
 simplyDirectives.directive 'notifications', ->
