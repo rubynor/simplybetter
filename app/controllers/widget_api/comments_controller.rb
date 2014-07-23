@@ -32,8 +32,6 @@ class WidgetApi::CommentsController < ApplicationController
   end
 
   def destroy
-    # security issue
-    # must exchange an expiring usertoken or something to fix
     # TODO: add check for current_user and delete only if params[:user_id] is current_user
     @comment = Comment.find(params[:id])
 
