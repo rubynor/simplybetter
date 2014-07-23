@@ -1,4 +1,4 @@
-#newIdea
+#newIdea(ng-if='email')
   .newIdea
     %form(name='newIdeaForm' novalidate)
       .error(ng-if='error_message')
