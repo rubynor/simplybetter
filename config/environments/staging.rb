@@ -97,7 +97,7 @@ SimplyBetter::Application.configure do
 
   class WidgetPath
     def self.path
-      "simplybetter-staging.herokuapp.com"
+      "http://simplybetter-staging.herokuapp.com"
     end
   end
 end
