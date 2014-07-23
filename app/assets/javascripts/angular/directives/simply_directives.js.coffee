@@ -31,16 +31,35 @@ simplyDirectives.directive 'comments', ->
   template: JST['angular/directives/templates/comments']
   scope:
     comments: '='
-  controller: ['$scope', '$location', '$timeout', ($scope, $location, $timeout) ->
+  controller: ['$scope', '$location', '$timeout', 'Comment', ($scope, $location, $timeout, Comment) ->
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = {comment: false}
+
     $scope.unhighlight = ->
       $scope.highlight.comment = false
+
     $scope.highlight = ->
       if $scope.comment_id != 'null'
         $scope.highlight.comment = true
         $timeout($scope.unhighlight, 3000)
+
     $timeout($scope.highlight, 500)
+
+    $scope.save_comment = (newComment) ->
+      $scope.error_message = undefined
+      $scope.success_message = undefined
+      hash = { body: newComment, idea_id: $scope.$parent.idea.id, user: { email: $scope.$parent.email } }
+      comment = new Comment(hash)
+      comment.$save(
+        (data) ->
+          $scope.comments.push(data)
+          $scope.$parent.idea.comments_count += 1
+          $scope.newComment = undefined
+          $scope.success_message = 'Thank you for your comment'
+      , (err) ->
+        console.log JSON.stringify(err)
+        $scope.error_message = err.data
+      )
   ]
 
 simplyDirectives.directive 'notifications', ->
