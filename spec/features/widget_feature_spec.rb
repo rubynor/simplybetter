@@ -15,35 +15,28 @@ describe WidgetController, js: true do
       click_link 'Go to app'
     end
     example 'comment an idea' do
-      expect do
-        page.should have_content 'Test'
-        first('h1', text: 'Test').click
-        fill_in 'Leave a comment...', with: 'My new comment'
-        click_button 'OK'
-        page.should have_content('My new comment')
-        sleep 2
-      end.to change(Application.last.ideas.first.comments, :count).by(1)
+      page.should have_content 'Test'
+      first('h1', text: 'Test').click
+      fill_in 'Leave a comment...', with: 'My new comment'
+      click_button 'OK'
+      page.should have_content('My new comment')
+      find_field('Leave a comment...').value.should_not eq('My new comment')
     end
     example 'new idea' do
-      expect do
-        fill_in 'title-input', with: 'Idea'
-        fill_in 'Description', with: 'My idea description'
-        click_button 'send'
-        page.should have_css('.comment-body')
-      end.to change(Application.last.ideas, :count).by(1)
+      fill_in 'title-input', with: 'Idea'
+      fill_in 'Description', with: 'My idea description'
+      click_button 'send'
+      page.should have_css('.comment-body')
     end
     example 'up vote' do
       page.should have_css '.up'
       first('.up').click
       page.should have_css '.active'
-      expect(Application.last.ideas.first.votes_count).to eq(1)
     end
     example 'down vote' do
       page.should have_css '.down'
       first('.down').click
       page.should have_css '.active'
-      sleep 2
-      expect(Application.last.ideas.first.votes_count).to eq(-1)
     end
     example 'mark notification as read' do
       Notification.last.checked.should eq(nil)
