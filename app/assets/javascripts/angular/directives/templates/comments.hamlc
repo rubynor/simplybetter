@@ -1,6 +1,6 @@
 #comments
   .comments-section
-    .new-comment
+    .new-comment(ng-if='$parent.email')
       %form(name='commentForm' ng-submit='commentForm.$valid && save_comment(newComment)' novalidate)
         .error(ng-if='error_message')
           {{ error_message }}
