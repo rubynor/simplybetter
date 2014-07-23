@@ -10,8 +10,9 @@ angular.module("filters", []).filter "truncate", ->
 
 @widget = angular.module('Simplybetter', ['ngResource', 'filters', 'ngRoute', 'simplyDirectives'])
 
-widget.config ($routeProvider) ->
+widget.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
   .when('/widget', {template: JST['angular/templates/overview']})
   .when('/widget/:id', {controller: 'IdeaCtrl', template: JST['angular/templates/idea_view']})
   .otherwise(redirectTo: '/widget')
+]
