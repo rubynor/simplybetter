@@ -13,6 +13,7 @@ gem 'compass-rails', "~> 1.1.2"
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'font-awesome-rails'
 gem 'react-rails'
+gem 'haml_coffee_assets', git: "https://github.com/netzpirat/haml_coffee_assets"
 
 group :production do
   gem 'newrelic_rpm'
@@ -36,6 +37,8 @@ group :doc do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'machinist'
   gem 'database_cleaner'

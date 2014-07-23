@@ -3,6 +3,7 @@ SimplyBetter::Application.routes.draw do
   namespace :widget_api do
     resources :ideas do
       resources :comments, only: [:create, :destroy, :index, :show]
+      get :find_similar, on: :collection
     end
     resources :votes, only: [] do
       get :cast, on: :collection
@@ -10,9 +11,6 @@ SimplyBetter::Application.routes.draw do
     end
     resources :applications, only: [:show] do
       get :client_js, on: :collection
-      resources :ideas do
-        get :find_similar, on: :collection
-      end
     end
     resources :notifications, only: [:index,:update] do
       get :count, on: :collection

@@ -3,13 +3,34 @@
   %head
     %title SimplyBetter
     = stylesheet_link_tag    "widget/widget", media: "all"
-    = javascript_include_tag "widget/widget2"
+    -#= javascript_include_tag "widget/widget2"
+    = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    - @app = Application.find_by_token(@appkey)
 
-    #simplybetterIdeasModal
-
-    :javascript
-        $(document).ready(function(){
-        SimplyBetterApplication.init.start("#{@appkey}", "#{@email}", "#{@name}", "#{root_url.chop}");
-        });
+    / ANGULAR HELP
+    / Controllers are found in angular/controllers folder
+    / Directives are found in angular/widget.js.coffee
+    / Templates are found in angular/templates folder
+    / Using directives wich are all found in angular/directives with the templates
+    #simplybetterIdeasModal(ng-app='Simplybetter' ng-controller='WidgetCtrl' ng-init="init('#{@appkey}', '#{@email}')")
+      .logobar
+        %a{href: 'http://simplybetter.io', target: '_blank'}
+          .logo
+          .logo-text Simply Better
+        %div(ng-if='new_notifications')
+          %notifications(ng-if='notificationactive')
+          #simplybetterNotifications
+            %div(ng-click='notificationactive=!notificationactive')
+              .no-notifications(ng-if='new_notifications.count == 0')
+              .new-notifications(ng-if='new_notifications.count != 0')
+                {{ new_notifications.count }}
+      #simplybetterNavbar(ng-class='{ overview: !path }')
+        %span(ng-if='path')
+          %a.link(href='#' ng-click="reset_path('#{@appkey}', '#{@email}')")
+            .back-arrow
+            BACK
+        %h2= @app.name
+        %p= @app.intro
+      #simplybetterIdeasModalContent(ng-view='')

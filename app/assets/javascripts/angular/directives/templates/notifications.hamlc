@@ -1,0 +1,18 @@
+#simplybetterNotifications
+  .notifications
+    .top
+      Notifications
+    .notifications-list
+      .notification(ng-repeat='notification in notifications' ng-class='{ new: !notification.checked }' ng-click='goToIdea(notification); $parent.updateCount()')
+        .profile-image
+          %img(ng-src='{{ notification.image_url }}')
+        .notification-message
+          %span(ng-repeat='n in notification.text')
+            / TODO: need refactoring..
+            %span(ng-if='n.bold' style='font-weight: bold')
+              {{ n.bold }}
+            %span(ng-if='n.normal')
+              {{ n.normal }}
+          .meta
+            %abbr.timeago
+              {{ notification.time }}

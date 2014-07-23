@@ -1,0 +1,5 @@
+%idea-new(ng-if='newIdea.title.length')
+.idea-layout(ng-class='{ highlighted: highlight.idea }')
+  %vote
+  %idea-item
+  %comments(comments='comments')

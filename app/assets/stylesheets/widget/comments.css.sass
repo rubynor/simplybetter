@@ -62,5 +62,20 @@
       input[type=text]
         @include input
         width: 70%
-      input[type=submit]
+        margin-top: 20px
+      button[type=submit]
         @include button-big
+        margin-top: -10px
+
+    form
+      input.dirty
+        &.ng-invalid
+          border-color: #FA787E !important
+
+    .error
+      color: #FF565E
+      margin-top: 10px
+
+    .success
+      color: rgb(6, 136, 6)
+      margin-top: 10px

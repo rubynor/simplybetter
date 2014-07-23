@@ -4,7 +4,7 @@ class WidgetApi::NotificationsController < ApplicationController
 
   def index
     user_email = params[:user_email]
-    recipient = get_current_user(@application,user_email)
+    recipient = get_current_user(@application, user_email)
     @notifications = Notification.for(recipient, @application.id)
   end
 
