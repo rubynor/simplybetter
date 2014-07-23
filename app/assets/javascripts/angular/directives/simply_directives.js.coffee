@@ -31,7 +31,7 @@ simplyDirectives.directive 'comments', ->
   template: JST['angular/directives/templates/comments']
   scope:
     comments: '='
-  controller: ['$scope', '$location', '$timeout', 'Comment', ($scope, $location, $timeout, Comment) ->
+  controller: ['$scope', '$location', '$timeout', 'Comment', '$anchorScroll', ($scope, $location, $timeout, Comment, $anchorScroll) ->
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = {comment: false}
 
@@ -40,10 +40,12 @@ simplyDirectives.directive 'comments', ->
 
     $scope.highlight = ->
       if $scope.comment_id != 'null'
+        $location.hash($scope.comment_id)
+        $anchorScroll()
         $scope.highlight.comment = true
         $timeout($scope.unhighlight, 3000)
 
-    $timeout($scope.highlight, 500)
+    $timeout($scope.highlight, 100)
 
     $scope.save_comment = (newComment) ->
       $scope.error_message = undefined
