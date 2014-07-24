@@ -17,17 +17,11 @@
 //= require sb_tools
 //= require highlight
 //
-//= require react
 //= require underscore
-//= require backbone
-//= require backbone/dashboard_ideas/setup
 //= require angular-1.2.18/angular
 //= require angular-1.2.18/angular-resource
 //= require angular-1.2.18/angular-route
-//= require angular/directives/simply_directives
-//= require angular/widget
-//= require_tree ./angular
-//= require_tree ./backbone/dashboard_ideas
+//= require angular/backoffice
+//= require_tree ./angular/backoffice
 //
 //= require setup_instructions
-//= require administrate_application

@@ -1,4 +1,7 @@
 =render 'shared/navbar'
 .col-xs-12
-  #manage-ideas{"data-id" => @application.id}
-
+  #manage-ideas(ng-controller='backofficeCtrl' ng-init="init('#{@application.id}')")
+    %ul
+      %li.idea(ng-repeat='idea in ideas' ng-class='{ "completed": idea.completed}')
+        %h1 {{ idea.title }}
+        {{ idea }}

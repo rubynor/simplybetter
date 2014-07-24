@@ -4,7 +4,7 @@
     %title SimplyBetter
     = stylesheet_link_tag    "widget/widget", media: "all"
     -#= javascript_include_tag "widget/widget2"
-    = javascript_include_tag "application"
+    = javascript_include_tag "widget"
     = csrf_meta_tags
   %body
     - @app = Application.find_by_token(@appkey)
