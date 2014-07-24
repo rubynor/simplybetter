@@ -38,6 +38,7 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Notificat
     idea = new Idea(hash)
     idea.$save(
       (data) ->
+        $scope.newIdea = undefined
         window.location = "#/widget/#{data.id}"
     , (err) ->
       $scope.error_message = ''
