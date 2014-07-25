@@ -44,4 +44,8 @@ backoffice.controller 'backofficeCtrl', ['$scope', 'Idea', '$routeParams', ($sco
       console.log JSON.stringify(err)
     )
 
+  $scope.delete = (idea, idx) ->
+    if confirm 'Are you sure?'
+      idea.$delete({application_id: $scope.app_id})
+      $scope.ideas.splice(idx, 1)
 ]

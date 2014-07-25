@@ -37,7 +37,7 @@
         .options
           .icon(ng-class='{ visible: idea.visible, "not-visible": !idea.visible }' ng-click='toggleVisible(idea)')
           .icon.edit
-          .icon.delete
+          .icon.delete(ng-click='delete(idea, $index)')
           .icon(ng-class='{ completed: idea.completed, "not-completed": !idea.completed }' ng-click='toggleCompleted(idea)') ✔
         .comments
           %ul
