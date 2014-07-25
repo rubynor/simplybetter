@@ -1,1 +1,1 @@
-@backoffice = angular.module('Backoffice', ['ngResource', 'ngRoute', 'ng-rails-csrf'])
+@backoffice = angular.module('Backoffice', ['ngResource', 'ng-rails-csrf'])
