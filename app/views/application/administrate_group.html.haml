@@ -34,7 +34,7 @@
               {{ idea.downvotes }}
             %span.dot •
             .icon.comment
-            %span.comment
+            %span.comment(ng-click='idea.$show_comments = !idea.$show_comments')
               {{ idea.comments_count }} comments
             %span.dot •
             by
@@ -50,7 +50,7 @@
             .icon.edit(ng-click='edit(idea)')
             .icon.delete(ng-click='delete(idea, $index)')
             .icon(ng-class='{ completed: idea.completed, "not-completed": !idea.completed }' ng-click='toggleCompleted(idea)') ✔
-          .comments
+          .comments(ng-if='idea.$show_comments')
             %ul
               %li.comment-item(ng-repeat='comment in idea.comments')
                 .avatar

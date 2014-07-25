@@ -26,6 +26,7 @@ backoffice.controller 'backofficeCtrl', ['$scope', 'Idea', '$routeParams', ($sco
 
   $scope.toggleVisible = (idea) ->
     updated_idea = new Idea( { id: idea.id, visible: !idea.visible } )
+    idea.$show_comments = false
     updated_idea.$patch({ application_id: $scope.app_id }
       (data) ->
         console.log JSON.stringify(data)
