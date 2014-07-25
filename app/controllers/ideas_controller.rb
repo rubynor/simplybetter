@@ -9,8 +9,11 @@ class IdeasController < ApplicationController
   end
 
   def update
-   @idea.save_and_notify(idea_attributes, current_customer)
-   render template: 'ideas/show'
+    if @idea.save_and_notify(idea_attributes, current_customer)
+      render template: 'ideas/show'
+    else
+      render json: @idea.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

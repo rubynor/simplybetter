@@ -48,4 +48,23 @@ backoffice.controller 'backofficeCtrl', ['$scope', 'Idea', '$routeParams', ($sco
     if confirm 'Are you sure?'
       idea.$delete({application_id: $scope.app_id})
       $scope.ideas.splice(idx, 1)
+
+  $scope.save = (idea, idx) ->
+    $scope.error_message = undefined
+    idea.$patch({application_id: $scope.app_id},
+      (data) ->
+        $scope.ideas[idx] = data
+    , (err) ->
+      console.log JSON.stringify(err)
+      $scope.error_message = err.data
+    )
+
+  $scope.edit = (idea) ->
+    $scope.copy = angular.copy(idea)
+    idea.$edit = true
+
+  $scope.cancel = (idx) ->
+    $scope.copy.$edit = false
+    $scope.ideas[idx] = $scope.copy
+
 ]
