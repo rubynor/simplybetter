@@ -3,7 +3,6 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', '$location', '$
   $scope.$parent.path = $location.path()
   $scope.highlight = { idea: false }
 
-
   $scope.highlight = ->
     if $location.search().comment_id == 'null'
       $scope.highlight.idea = true

@@ -46,7 +46,7 @@ simplyDirectives.directive 'comments', ->
       $scope.hasHighlighted = true
 
     $scope.highlight = ->
-      if $scope.comment_id
+      if $scope.comment_id != 'null'
         $elm = $("##{$scope.comment_id}")
         $('#simplybetterIdeasModalContent').animate({scrollTop: $elm.offset().top},'slow')
         $scope.highlight.comment = true
