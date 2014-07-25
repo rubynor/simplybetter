@@ -1,7 +1,13 @@
 =render 'shared/navbar'
 .col-xs-12
   #manage-ideas(ng-controller='backofficeCtrl' ng-init="init('#{@application.id}')")
+    %div.ideas-navigate
+      %a(href='#' ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
+      %a(href='#' ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
+      %a(href='#' ng-click='hideCompleted()' ng-class='{ active: activeClass == "hide_completed" }') Not completed
+      %a(href='#' ng-click='showVisible()' ng-class='{ active: activeClass == "visible" }') Visible
+      %a(href='#' ng-click='hideVisible()' ng-class='{ active: activeClass == "hide_visible" }') Hidden
     %ul
-      %li.idea(ng-repeat='idea in ideas' ng-class='{ "completed": idea.completed}')
+      %li.idea(ng-repeat='idea in ideas | filter:selectedFilter' ng-class='{ "completed": idea.completed}')
         %h1 {{ idea.title }}
         {{ idea }}
