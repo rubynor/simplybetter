@@ -1,6 +1,6 @@
 =render 'shared/navbar'
 .col-xs-12
-  #manage-ideas(ng-controller='backofficeCtrl' ng-init="init('#{@application.id}')")
+  #manage-ideas(ng-controller='ideaCtrl' ng-init="init('#{@application.id}')")
     %div.ideas-navigate
       %a(href='#' ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
       %a(href='#' ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed

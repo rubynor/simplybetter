@@ -1,4 +1,4 @@
-backoffice.controller 'backofficeCtrl', ['$scope', 'Idea', ($scope, Idea) ->
+backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
   $scope.init = (app_id) ->
     $scope.app_id = app_id
     $scope.ideas = Idea.query(application_id: app_id)
