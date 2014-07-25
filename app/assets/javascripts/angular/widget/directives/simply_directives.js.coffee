@@ -2,15 +2,15 @@
 
 simplyDirectives.directive 'ideaNew', ->
   restrict: 'E'
-  template: JST['angular/directives/templates/idea_new']
+  template: JST['angular/widget/directives/templates/idea_new']
 
 simplyDirectives.directive 'ideaItem', ->
   restrict: 'E'
-  template: JST["angular/directives/templates/idea_item"]
+  template: JST["angular/widget/directives/templates/idea_item"]
 
 simplyDirectives.directive 'vote', ->
   restrict: 'E'
-  template: JST["angular/directives/templates/vote"]
+  template: JST["angular/widget/directives/templates/vote"]
   controller: ['$scope', 'Vote', ($scope, Vote) ->
     $scope.vote = (idea, val) ->
       hash = {idea_id: idea.id, voter_email: $scope.email, value: val, votes_count: idea.votes_count, token: $scope.token, vote: {value: val}}
@@ -28,7 +28,7 @@ simplyDirectives.directive 'vote', ->
 
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
-  template: JST['angular/directives/templates/comments']
+  template: JST['angular/widget/directives/templates/comments']
   scope:
     comments: '='
   controller: ['$scope', '$location', '$timeout', 'Comment', '$anchorScroll', ($scope, $location, $timeout, Comment, $anchorScroll) ->
@@ -66,7 +66,7 @@ simplyDirectives.directive 'comments', ->
 
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
-  template: JST['angular/directives/templates/notifications'],
+  template: JST['angular/widget/directives/templates/notifications'],
   controller: ['$scope', 'Notification', ($scope, Notification) ->
     $scope.notifications = Notification.query({token: $scope.token, user_email: $scope.email})
     $scope.goToIdea = (notification) ->
