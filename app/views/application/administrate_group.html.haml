@@ -33,6 +33,12 @@
           on
           %span.time
             {{ idea.updated_at }}
+        .not-visible-overlay(ng-if='!idea.visible')
+        .options
+          .icon(ng-class='{ visible: idea.visible, "not-visible": !idea.visible }' ng-click='toggleVisible(idea)')
+          .icon.edit
+          .icon.delete
+          .icon.edit
         .comments
           %ul
             %li.comment-item(ng-repeat='comment in idea.comments')
