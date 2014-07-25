@@ -38,7 +38,7 @@
           .icon(ng-class='{ visible: idea.visible, "not-visible": !idea.visible }' ng-click='toggleVisible(idea)')
           .icon.edit
           .icon.delete
-          .icon.edit
+          .icon.edit(ng-click='toggleCompleted(idea)')
         .comments
           %ul
             %li.comment-item(ng-repeat='comment in idea.comments')

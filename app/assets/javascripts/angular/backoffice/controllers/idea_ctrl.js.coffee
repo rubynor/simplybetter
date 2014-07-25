@@ -34,4 +34,14 @@ backoffice.controller 'backofficeCtrl', ['$scope', 'Idea', '$routeParams', ($sco
       console.log JSON.stringify(err)
     )
 
+  $scope.toggleCompleted = (idea) ->
+    updated_idea = new Idea( { id: idea.id, completed: !idea.completed } )
+    updated_idea.$patch({ application_id: $scope.app_id }
+      (data) ->
+        console.log JSON.stringify(data)
+        idea.completed = data.completed
+    , (err) ->
+      console.log JSON.stringify(err)
+    )
+
 ]
