@@ -1,6 +1,5 @@
-widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'NotificationsCount', ($scope, Idea, FindSimilarIdea, NotificationsCount) ->
+widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', ($scope, Idea, FindSimilarIdea) ->
   $scope.newIdea = new Idea({})
-  $scope.notificationactive = false
 
   $scope.reset_path = (token, email) ->
     $scope.path = undefined
@@ -9,11 +8,7 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Notificat
   $scope.init = (token, email) ->
     $scope.email = email
     $scope.token = token
-    console.log 'Inside init'
-    console.log "Token = #{token} og email = #{email}"
     $scope.ideas = Idea.query({token: token, user_email: email})
-    if email
-      $scope.new_notifications = NotificationsCount.get({ token: token, user_email: email })
 
   $scope.find_similar = (txt) ->
     return unless txt.length > 10
@@ -46,7 +41,5 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Notificat
       $scope.error_message += "Description #{err.data.description}" if err.data.description
     )
 
-  $scope.updateCount = ->
-    $scope.new_notifications = NotificationsCount.get({ token: $scope.token, user_email: $scope.email })
-    console.log 'update count'
+
 ]
