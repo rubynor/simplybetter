@@ -25,10 +25,11 @@ backoffice.controller 'backofficeCtrl', ['$scope', 'Idea', '$routeParams', ($sco
     $scope.selectedFilter = { visible: false }
 
   $scope.toggleVisible = (idea) ->
-    idea.$update({ application_id: $scope.app_id, visible: !idea.visible }
+    updated_idea = new Idea( { id: idea.id, visible: !idea.visible } )
+    updated_idea.$patch({ application_id: $scope.app_id }
       (data) ->
-        idea.visible = data.visible
         console.log JSON.stringify(data)
+        idea.visible = data.visible
     , (err) ->
       console.log JSON.stringify(err)
     )
