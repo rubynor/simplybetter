@@ -29,20 +29,14 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
     idea.$show_comments = false
     updated_idea.$patch({ application_id: $scope.app_id }
       (data) ->
-        console.log JSON.stringify(data)
         idea.visible = data.visible
-    , (err) ->
-      console.log JSON.stringify(err)
     )
 
   $scope.toggleCompleted = (idea) ->
     updated_idea = new Idea( { id: idea.id, completed: !idea.completed } )
     updated_idea.$patch({ application_id: $scope.app_id }
       (data) ->
-        console.log JSON.stringify(data)
         idea.completed = data.completed
-    , (err) ->
-      console.log JSON.stringify(err)
     )
 
   $scope.delete = (idea, idx) ->
@@ -57,7 +51,6 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
       (data) ->
         $scope.ideas[idx] = data
     , (err) ->
-      console.log JSON.stringify(err)
       $scope.error_message = err.data
     )
 
@@ -68,5 +61,4 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
   $scope.cancel = (idx) ->
     $scope.copy.$edit = false
     $scope.ideas[idx] = $scope.copy
-
 ]
