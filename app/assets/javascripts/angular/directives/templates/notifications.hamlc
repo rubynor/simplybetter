@@ -1,9 +1,14 @@
 #simplybetterNotifications
-  .notifications
+  %div(ng-click='toggleNotifications()')
+    .no-notifications(ng-if='new_notifications.count == 0')
+    .new-notifications(ng-if='new_notifications.count != 0')
+      {{ new_notifications.count }}
+  .notifications(ng-show='notificationsActive')
     .top
       Notifications
+    .arrow-left
     .notifications-list
-      .notification(ng-repeat='notification in notifications' ng-class='{ new: !notification.checked }' ng-click='goToIdea(notification); $parent.updateCount()')
+      .notification(ng-repeat='notification in notifications' ng-class='{ new: !notification.checked }' ng-click='goToIdeaAndUpdateNotiCount(notification)')
         .profile-image
           %img(ng-src='{{ notification.image_url }}')
         .notification-message
