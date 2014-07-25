@@ -1,5 +1,12 @@
 @simplyDirectives = angular.module('simplyDirectives', []);
 
+simplyDirectives.directive 'onFinishRender', ($timeout) ->
+  restrict: 'A'
+  link: (scope, element, attr) ->
+    if scope.$last == true
+      $timeout ->
+        scope.$emit('ngRepeatFinished')
+
 simplyDirectives.directive 'ideaNew', ->
   restrict: 'E'
   template: JST['angular/directives/templates/idea_new']
@@ -29,35 +36,37 @@ simplyDirectives.directive 'vote', ->
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/directives/templates/comments']
-  scope:
-    comments: '='
-  controller: ['$scope', '$location', '$timeout', 'Comment', '$anchorScroll', ($scope, $location, $timeout, Comment, $anchorScroll) ->
+  controller: ['$scope', '$location', '$timeout', 'Comment', '$routeParams', ($scope, $location, $timeout, Comment, $routeParams) ->
+    $scope.comments = Comment.query {idea_id: $routeParams.id}
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = {comment: false}
 
     $scope.unhighlight = ->
       $scope.highlight.comment = false
+      $scope.hasHighlighted = true
 
     $scope.highlight = ->
       if $scope.comment_id != 'null'
-        $location.hash($scope.comment_id)
-        $anchorScroll()
+        $elm = $("##{$scope.comment_id}")
+        $('#simplybetterIdeasModalContent').animate({scrollTop: $elm.offset().top},'slow')
         $scope.highlight.comment = true
         $timeout($scope.unhighlight, 3000)
 
-    $timeout($scope.highlight, 100)
+    $scope.$on 'ngRepeatFinished', (ngRepeatFinishedEvent)  ->
+      $scope.highlight()
 
     $scope.save_comment = (newComment) ->
       $scope.error_message = undefined
       $scope.success_message = undefined
-      hash = { body: newComment, idea_id: $scope.$parent.idea.id, user: { email: $scope.$parent.email } }
+      hash = { body: newComment, idea_id: $scope.idea.id, user: { email: $scope.email } }
       comment = new Comment(hash)
       comment.$save(
         (data) ->
           $scope.comments.push(data)
-          $scope.$parent.idea.comments_count += 1
+          $scope.idea.comments_count += 1
           $scope.newComment = undefined
           $scope.success_message = 'Thank you for your comment'
+          $scope.comment_id = data.id
       , (err) ->
         console.log JSON.stringify(err)
         $scope.error_message = err.data
@@ -67,16 +76,30 @@ simplyDirectives.directive 'comments', ->
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/directives/templates/notifications'],
-  controller: ['$scope', 'Notification', ($scope, Notification) ->
+  controller: ['$scope', 'Notification', 'NotificationsCount', ($scope, Notification, NotificationsCount) ->
     $scope.notifications = Notification.query({token: $scope.token, user_email: $scope.email})
-    $scope.goToIdea = (notification) ->
-      $scope.$parent.notificationactive = !$scope.$parent.notificationactive
+
+    $scope.notificationsActive = false
+    $scope.new_notifications = {}
+
+    $scope.updateNotiCount = ->
+      $scope.new_notifications = NotificationsCount.get({ token: $scope.token, user_email: $scope.email })
+
+    if $scope.email
+      $scope.updateNotiCount()
+
+    $scope.toggleNotifications = ->
+      $scope.notificationsActive = !$scope.notificationsActive
+
+    $scope.goToIdeaAndUpdateNotiCount = (notification) ->
+      $scope.toggleNotifications()
       notification.checked = true
       updated = new Notification(notification)
+
       updated.$update(
         (data) ->
-          console.log JSON.stringify(data)
           window.location = "#/widget/#{notification.idea_id}?comment_id=#{notification.comment_id}"
+          $scope.updateNotiCount();
       , (err) ->
         console.log(JSON.stringify(err))
       )

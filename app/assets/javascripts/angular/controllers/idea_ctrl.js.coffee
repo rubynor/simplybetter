@@ -1,6 +1,5 @@
-widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', 'Comment', '$location', '$timeout', ($scope, Idea, $routeParams, Comment, $location, $timeout) ->
+widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', '$location', '$timeout', ($scope, Idea, $routeParams, $location, $timeout) ->
   $scope.idea = Idea.get({id: $routeParams.id, token: $scope.token, user_email: $scope.email})
-  $scope.comments = Comment.query({idea_id: $routeParams.id})
   $scope.$parent.path = $location.path()
   $scope.highlight = { idea: false }
 

@@ -19,13 +19,8 @@
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
           .logo-text Simply Better
-        %div(ng-if='new_notifications')
-          %notifications(ng-if='notificationactive')
-          #simplybetterNotifications
-            %div(ng-click='notificationactive=!notificationactive')
-              .no-notifications(ng-if='new_notifications.count == 0')
-              .new-notifications(ng-if='new_notifications.count != 0')
-                {{ new_notifications.count }}
+        %notifications
+
       #simplybetterNavbar(ng-class='{ overview: !path }')
         %span(ng-if='path')
           %a.link(href='#' ng-click="reset_path('#{@appkey}', '#{@email}')")
