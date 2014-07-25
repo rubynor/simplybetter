@@ -150,6 +150,7 @@ GEM
     multi_json (1.10.1)
     multipart-post (1.2.0)
     newrelic_rpm (3.7.3.204)
+    ng-rails-csrf (0.1.0)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -305,6 +306,7 @@ DEPENDENCIES
   letter_opener
   machinist
   newrelic_rpm
+  ng-rails-csrf
   paper_trail (~> 3.0.0)
   pg
   pry

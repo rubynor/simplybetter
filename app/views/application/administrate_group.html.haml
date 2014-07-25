@@ -43,7 +43,7 @@
           %ul
             %li.comment-item(ng-repeat='comment in idea.comments')
               .avatar
-                %img(src='{{comment.gravatar_url}}')
+                %img(ng-src='{{comment.gravatar_url}}')
               .content
                 .meta
                   %span.username

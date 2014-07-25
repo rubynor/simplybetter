@@ -21,6 +21,7 @@
 //= require angular-1.2.18/angular
 //= require angular-1.2.18/angular-resource
 //= require angular-1.2.18/angular-route
+//= require ng-rails-csrf
 //= require angular/backoffice
 //= require_tree ./angular/backoffice
 //
