@@ -51,7 +51,8 @@ backoffice.controller 'backofficeCtrl', ['$scope', 'Idea', '$routeParams', ($sco
 
   $scope.save = (idea, idx) ->
     $scope.error_message = undefined
-    idea.$patch({application_id: $scope.app_id},
+    updated_idea = new Idea({ id: idea.id, title: idea.title, description: idea.description})
+    updated_idea.$patch({application_id: $scope.app_id},
       (data) ->
         $scope.ideas[idx] = data
     , (err) ->
