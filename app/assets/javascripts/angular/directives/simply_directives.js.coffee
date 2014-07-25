@@ -43,9 +43,10 @@ simplyDirectives.directive 'comments', ->
 
     $scope.unhighlight = ->
       $scope.highlight.comment = false
+      $scope.hasHighlighted = true
 
     $scope.highlight = ->
-      if $scope.comment_id != 'null'
+      if $scope.comment_id
         $elm = $("##{$scope.comment_id}")
         $('#simplybetterIdeasModalContent').animate({scrollTop: $elm.offset().top},'slow')
         $scope.highlight.comment = true
@@ -57,14 +58,15 @@ simplyDirectives.directive 'comments', ->
     $scope.save_comment = (newComment) ->
       $scope.error_message = undefined
       $scope.success_message = undefined
-      hash = { body: newComment, idea_id: $scope.$parent.idea.id, user: { email: $scope.$parent.email } }
+      hash = { body: newComment, idea_id: $scope.idea.id, user: { email: $scope.email } }
       comment = new Comment(hash)
       comment.$save(
         (data) ->
           $scope.comments.push(data)
-          $scope.$parent.idea.comments_count += 1
+          $scope.idea.comments_count += 1
           $scope.newComment = undefined
           $scope.success_message = 'Thank you for your comment'
+          $scope.comment_id = data.id
       , (err) ->
         console.log JSON.stringify(err)
         $scope.error_message = err.data
