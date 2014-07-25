@@ -46,11 +46,14 @@ simplyDirectives.directive 'comments', ->
       $scope.hasHighlighted = true
 
     $scope.highlight = ->
-      if $scope.comment_id != 'null'
+      if $scope.shouldHighlight()
         $elm = $("##{$scope.comment_id}")
-        $('#simplybetterIdeasModalContent').animate({scrollTop: $elm.offset().top},'slow')
+        $('#simplybetterIdeasModalContent').animate({scrollTop: ($elm.offset().top - 150)},'slow')
         $scope.highlight.comment = true
         $timeout($scope.unhighlight, 3000)
+
+    $scope.shouldHighlight = ->
+      $scope.comment_id && $scope.comment_id != 'null'
 
     $scope.$on 'ngRepeatFinished', (ngRepeatFinishedEvent)  ->
       $scope.highlight()
