@@ -9,5 +9,41 @@
       %a(href='#' ng-click='hideVisible()' ng-class='{ active: activeClass == "hide_visible" }') Hidden
     %ul
       %li.idea(ng-repeat='idea in ideas | filter:selectedFilter' ng-class='{ "completed": idea.completed}')
-        %h1 {{ idea.title }}
-        {{ idea }}
+        %h1
+          {{ idea.title }}
+        %p
+          {{ idea.description }}
+        .meta
+          .icon.upvote
+          %span.upvotes
+            {{ idea.upvotes }}
+          %span.dot •
+          .icon.downvote
+          %span.downvotes
+            {{ idea.downvotes }}
+          %span.dot •
+          .icon.comment
+          %span.comment
+            {{ idea.comments_count }} comments
+          %span.dot •
+          by
+          %span.user
+            %span
+              {{ idea.creator_name }}
+          on
+          %span.time
+            {{ idea.updated_at }}
+        .comments
+          %ul
+            %li.comment-item(ng-repeat='comment in idea.comments')
+              .avatar
+                %img(src='{{comment.gravatar_url}}')
+              .content
+                .meta
+                  %span.username
+                    {{ comment.creator_name }}
+                  %span on
+                  %span
+                    {{ comment.updated_at }}
+                .comment-body
+                  {{ comment.body }}
