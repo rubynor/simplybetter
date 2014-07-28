@@ -1,7 +1,12 @@
 %idea-new
 #ideas
   %ol.overview.layout
-    %li.idea(ng-repeat='idea in ideas | filter: { completed: false }' ng-class='{ completed: idea.completed }')
+    %li(ng-init='selectedFilter = { completed: false }')
+      %span(ng-click='selectedFilter = undefined') All
+      %span(ng-click='selectedFilter = { completed: true } ') Completed
+      %span(ng-click='selectedFilter = { completed: false} ') Not completed
+      %span(ng-click='selectedFilter = { creator_email: email } ') Mine
+    %li.idea(ng-repeat='idea in ideas | filter: selectedFilter' ng-class='{ completed: idea.completed }')
       %vote
       %idea-item
       %comments(comments='idea.comments')(ng-if='ideas.length == 1 && idea.comments')
