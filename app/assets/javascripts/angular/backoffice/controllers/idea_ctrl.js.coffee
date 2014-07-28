@@ -1,4 +1,4 @@
-backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
+backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, Comment) ->
   $scope.init = (app_id) ->
     $scope.app_id = app_id
     $scope.ideas = Idea.query(application_id: app_id)
@@ -61,4 +61,14 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
   $scope.cancel = (idx) ->
     $scope.copy.$edit = false
     $scope.ideas[idx] = $scope.copy
+
+  $scope.remove_comment = (idea, comment, idx) ->
+    if confirm 'Are you sure?'
+      deleted_comment = new Comment(comment)
+      deleted_comment.$remove(
+        (success) ->
+          idea.comments.splice(idx, 1)
+      , (error) ->
+        console.log JSON.stringify(error)
+      )
 ]

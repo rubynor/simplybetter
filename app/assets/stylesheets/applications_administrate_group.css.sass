@@ -166,5 +166,23 @@
             font-size: 14px
             line-height: 24px
             font-weight: 500
+        .options
+          position: absolute
+          right: -100px
+          top: 5px
+          width: 100px
+          .icon
+            float: left
+            display: inline-block
+            margin: 0px 10px
+            cursor: pointer
+            line-height: 24px
+            font-size: 26px
+            &.delete
+              @include icon(-72px)
+            &.not-visible
+              @include icon(-120px)
+            &.visible
+              @include icon(-96px)
   .error
     color: red
