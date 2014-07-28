@@ -71,4 +71,11 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, C
       , (error) ->
         console.log JSON.stringify(error)
       )
+
+  $scope.toggleVisibleComment = (comment) ->
+    updated_comment = new Comment( { id: comment.id, visible: !comment.visible } )
+    updated_comment.$patch(
+      (data) ->
+        comment.visible = data.visible
+    )
 ]

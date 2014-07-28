@@ -10,7 +10,7 @@ glue(:creator) do
 end
 
 node(:comments_count) do |c|
-  c.comments.count
+  c.comments.visible.count
 end
 
 node(:voter_status) do |c|
