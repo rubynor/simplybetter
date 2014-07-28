@@ -49,9 +49,13 @@ simplyDirectives.directive 'comments', ->
     $scope.highlight = ->
       if $scope.shouldHighlight()
         $elm = $("##{$scope.comment_id}")
-        $('#simplybetterIdeasModalContent').animate({scrollTop: ($elm.offset().top - 150)},'slow')
-        $scope.highlight.comment = true
-        $timeout($scope.unhighlight, 3000)
+        if $elm.length == 0
+          $scope.error_message = 'This comment is not available'
+        else
+          $scope.error_message = undefined
+          $('#simplybetterIdeasModalContent').animate({scrollTop: ($elm.offset().top - 150)},'slow')
+          $scope.highlight.comment = true
+          $timeout($scope.unhighlight, 3000)
 
     $scope.shouldHighlight = ->
       $scope.comment_id && $scope.comment_id != 'null'
