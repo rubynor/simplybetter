@@ -3,11 +3,11 @@ class WidgetApi::CommentsController < ApplicationController
   before_action :set_idea, only: [:index, :show, :create]
 
   def index
-    @comments = @idea.comments
+    @comments = @idea.comments.visible
   end
 
   def show
-    @comment = @idea.comments.find(params[:id])
+    @comment = @idea.comments.visible.find(params[:id])
   end
 
   def create
