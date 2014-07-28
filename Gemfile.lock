@@ -126,6 +126,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-rails-cdn (1.0.3)
+      jquery-rails
     json (1.8.1)
     kgio (2.9.2)
     launchy (2.4.2)
@@ -303,6 +305,7 @@ DEPENDENCIES
   haml-rails
   haml_coffee_assets!
   jquery-rails
+  jquery-rails-cdn
   letter_opener
   machinist
   newrelic_rpm
