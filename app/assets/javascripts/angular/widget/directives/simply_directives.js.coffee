@@ -91,6 +91,9 @@ simplyDirectives.directive 'notifications', ->
     $scope.toggleNotifications = ->
       $scope.notificationsActive = !$scope.notificationsActive
 
+    $scope.timeago = (time) ->
+      $.timeago(time)
+
     $scope.goToIdeaAndUpdateNotiCount = (notification) ->
       $scope.toggleNotifications()
       notification.checked = true
