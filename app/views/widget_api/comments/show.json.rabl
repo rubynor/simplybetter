@@ -1,5 +1,5 @@
 object @comment
-attributes :id, :body, :creator_name
+attributes :id, :body, :creator_name, :visible
 
 node(:updated_at) do |c|
   c.updated_at.strftime('%F')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728103422) do
+ActiveRecord::Schema.define(version: 20140728103748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140728103422) do
     t.integer  "votes_count",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "visible",      default: true
   end
 
   add_index "comments", ["creator_id", "creator_type"], name: "index_comments_on_creator_id_and_creator_type", using: :btree

@@ -30,6 +30,8 @@ SimplyBetter::Application.routes.draw do
     resources :ideas, only: [:index, :update, :destroy]
   end
 
+  resources :comments, only: [:update]
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'widget' => "widget#widget"
