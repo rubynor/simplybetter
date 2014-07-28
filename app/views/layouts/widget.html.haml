@@ -7,6 +7,10 @@
     = javascript_include_tag "widget"
     = csrf_meta_tags
   %body
+    %script
+      token = "#{@appkey}";
+      email = "#{@email}";
+
     - @app = Application.find_by_token(@appkey)
 
     / ANGULAR HELP
@@ -23,7 +27,7 @@
 
       #simplybetterNavbar(ng-class='{ overview: !path }')
         %span(ng-if='path')
-          %a.link(href='#' ng-click="reset_path('#{@appkey}', '#{@email}')")
+          %a.link(href='#' ng-click="reset_path()")
             .back-arrow
             BACK
         %h2= @app.name
