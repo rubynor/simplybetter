@@ -67,4 +67,3 @@
                   .not-visible-overlay(ng-if='!comment.visible')
                   .options
                     .icon(ng-class='{ visible: comment.visible, "not-visible": !comment.visible }' ng-click='toggleVisibleComment(comment)')
-                    .icon.delete(ng-click='remove_comment(idea, comment, $index)')

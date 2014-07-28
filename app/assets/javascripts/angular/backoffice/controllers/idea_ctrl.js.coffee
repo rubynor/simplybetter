@@ -62,16 +62,6 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, C
     $scope.copy.$edit = false
     $scope.ideas[idx] = $scope.copy
 
-  $scope.remove_comment = (idea, comment, idx) ->
-    if confirm 'Are you sure?'
-      deleted_comment = new Comment(comment)
-      deleted_comment.$remove(
-        (success) ->
-          idea.comments.splice(idx, 1)
-      , (error) ->
-        console.log JSON.stringify(error)
-      )
-
   $scope.toggleVisibleComment = (comment) ->
     updated_comment = new Comment( { id: comment.id, visible: !comment.visible } )
     updated_comment.$patch(
