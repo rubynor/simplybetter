@@ -86,10 +86,14 @@ simplyDirectives.directive 'notifications', ->
     $scope.notificationsActive = false
     $scope.new_notifications = {}
 
-    $scope.new_notifications = NotificationsCount.get()
+    $scope.updateNotiCount = ->
+      $scope.new_notifications = NotificationsCount.get()
 
     $scope.toggleNotifications = ->
       $scope.notificationsActive = !$scope.notificationsActive
+
+    if $scope.email
+      $scope.updateNotiCount()
 
     $scope.timeago = (time) ->
       $.timeago(time)
