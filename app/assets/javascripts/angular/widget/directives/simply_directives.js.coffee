@@ -1,11 +1,12 @@
 @simplyDirectives = angular.module('simplyDirectives', []);
 
-simplyDirectives.directive 'onFinishRender', ($timeout) ->
+simplyDirectives.directive 'onFinishRender', ['$timeout', ($timeout) ->
   restrict: 'A'
   link: (scope, element, attr) ->
     if scope.$last == true
       $timeout ->
         scope.$emit('ngRepeatFinished')
+  ]
 
 simplyDirectives.directive 'ideaNew', ->
   restrict: 'E'
