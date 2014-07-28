@@ -20,4 +20,4 @@
               {{ n.normal }}
           .meta
             %abbr.timeago
-              {{ notification.time }}
+              {{ timeago(notification.time) }}

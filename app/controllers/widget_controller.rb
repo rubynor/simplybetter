@@ -22,6 +22,6 @@ class WidgetController < ApplicationController
 
     unless customer || user
       User.create(email: params[:email], name: params[:name], application_id: application_id)
-    end 
+    end
   end
 end

@@ -81,19 +81,22 @@ simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/notifications'],
   controller: ['$scope', 'Notification', 'NotificationsCount', ($scope, Notification, NotificationsCount) ->
-    $scope.notifications = Notification.query({token: $scope.token, user_email: $scope.email})
+    $scope.notifications = Notification.query()
 
     $scope.notificationsActive = false
     $scope.new_notifications = {}
 
     $scope.updateNotiCount = ->
-      $scope.new_notifications = NotificationsCount.get({ token: $scope.token, user_email: $scope.email })
+      $scope.new_notifications = NotificationsCount.get()
+
+    $scope.toggleNotifications = ->
+      $scope.notificationsActive = !$scope.notificationsActive
 
     if $scope.email
       $scope.updateNotiCount()
 
-    $scope.toggleNotifications = ->
-      $scope.notificationsActive = !$scope.notificationsActive
+    $scope.timeago = (time) ->
+      $.timeago(time)
 
     $scope.goToIdeaAndUpdateNotiCount = (notification) ->
       $scope.toggleNotifications()
