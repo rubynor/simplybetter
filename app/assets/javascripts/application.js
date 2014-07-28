@@ -11,13 +11,11 @@
 // about supported directives.
 //
 //= require hamlcoffee
-//= require jquery
 //= require jquery_ujs
 //= require bootstrap
 //= require sb_tools
 //= require highlight
 //
-//= require underscore
 //= require angular-1.2.18/angular
 //= require angular-1.2.18/angular-resource
 //= require angular-1.2.18/angular-route

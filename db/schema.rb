@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620072102) do
+ActiveRecord::Schema.define(version: 20140728103422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.integer "application_id"
   end
 
+  add_index "applications_customers", ["application_id", "customer_id"], name: "index_applications_customers_on_application_id_and_customer_id", using: :btree
+  add_index "applications_customers", ["customer_id"], name: "index_applications_customers_on_customer_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "body"
     t.integer  "idea_id"
@@ -40,6 +43,9 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["creator_id", "creator_type"], name: "index_comments_on_creator_id_and_creator_type", using: :btree
+  add_index "comments", ["idea_id"], name: "comments_idea_id_ix", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "name"
@@ -66,6 +72,10 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.datetime "updated_at"
   end
 
+  add_index "idea_subscriptions", ["idea_id"], name: "idea_subscriptions_idea_id_ix", using: :btree
+  add_index "idea_subscriptions", ["subscriber_from_id", "subscriber_from_type"], name: "idea_subscriptions_from_poly_ix", using: :btree
+  add_index "idea_subscriptions", ["subscriber_id", "subscriber_type"], name: "index_idea_subscriptions_on_subscriber_id_and_subscriber_type", using: :btree
+
   create_table "ideas", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -79,6 +89,9 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.boolean  "completed",      default: false
     t.boolean  "visible",        default: true
   end
+
+  add_index "ideas", ["application_id"], name: "ideas_application_id_ix", using: :btree
+  add_index "ideas", ["creator_id", "creator_type"], name: "index_ideas_on_creator_id_and_creator_type", using: :btree
 
   create_table "notifications", force: true do |t|
     t.string   "subject_type"
@@ -96,6 +109,12 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.integer  "application_id"
   end
 
+  add_index "notifications", ["action_attribute_changed_by_id", "action_attribute_changed_by_type"], name: "notifications_action_attribute_poly_ix", using: :btree
+  add_index "notifications", ["action_id", "action_type"], name: "index_notifications_on_action_id_and_action_type", using: :btree
+  add_index "notifications", ["application_id"], name: "notification_application_id_ix", using: :btree
+  add_index "notifications", ["recipient_id", "recipient_type"], name: "index_notifications_on_recipient_id_and_recipient_type", using: :btree
+  add_index "notifications", ["subject_id", "subject_type"], name: "index_notifications_on_subject_id_and_subject_type", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "name"
@@ -103,6 +122,8 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["application_id"], name: "user_application_id_ix", using: :btree
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false
@@ -124,5 +145,8 @@ ActiveRecord::Schema.define(version: 20140620072102) do
     t.string   "voter_type"
     t.integer  "voter_id"
   end
+
+  add_index "votes", ["vote_receiver_id", "vote_receiver_type"], name: "index_votes_on_vote_receiver_id_and_vote_receiver_type", using: :btree
+  add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
 end

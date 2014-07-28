@@ -26,5 +26,7 @@ module SimplyBetter
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+
+    config.assets.precompile += ['jquery.js']
   end
 end
