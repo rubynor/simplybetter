@@ -23,6 +23,7 @@ class Idea < ActiveRecord::Base
     completed = has_been_completed?
     if save
       notify(action_attr: :completed, action_attr_changer: current_customer) if completed
+      true
     else
       self.reload
       false
