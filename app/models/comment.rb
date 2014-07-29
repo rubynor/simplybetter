@@ -9,6 +9,8 @@ class Comment < ActiveRecord::Base
 
   include CommentNotificationHelpers
 
+  scope :visible, -> { where(visible: true) }
+
   def subscribe
     IdeaSubscription.add(self, self.creator, self.idea)
   end

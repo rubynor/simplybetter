@@ -1,14 +1,15 @@
 widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', ($scope, Idea, FindSimilarIdea) ->
   $scope.newIdea = new Idea({})
 
-  $scope.reset_path = (token, email) ->
-    $scope.path = undefined
-    $scope.ideas = Idea.query({ token: token, user_email: email })
-
   $scope.init = (token, email) ->
     $scope.email = email
     $scope.token = token
-    $scope.ideas = Idea.query({token: token, user_email: email})
+
+  $scope.reset_path = () ->
+    $scope.path = undefined
+    $scope.ideas = Idea.query()
+
+  $scope.ideas = Idea.query()
 
   $scope.find_similar = (txt) ->
     return unless txt.length > 10
@@ -40,6 +41,4 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', ($scope, I
       $scope.error_message += "Title #{err.data.title}, " if err.data.title
       $scope.error_message += "Description #{err.data.description}" if err.data.description
     )
-
-
 ]

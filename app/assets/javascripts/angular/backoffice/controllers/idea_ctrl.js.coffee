@@ -1,4 +1,4 @@
-backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
+backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, Comment) ->
   $scope.init = (app_id) ->
     $scope.app_id = app_id
     $scope.ideas = Idea.query(application_id: app_id)
@@ -61,4 +61,11 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', ($scope, Idea) ->
   $scope.cancel = (idx) ->
     $scope.copy.$edit = false
     $scope.ideas[idx] = $scope.copy
+
+  $scope.toggleVisibleComment = (comment) ->
+    updated_comment = new Comment( { id: comment.id, visible: !comment.visible } )
+    updated_comment.$patch(
+      (data) ->
+        comment.visible = data.visible
+    )
 ]
