@@ -3,8 +3,8 @@
   #manage-ideas(ng-controller='IdeaFilterCtrl')
     %div.ideas-navigate
       %a(href='#' ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
-      %a(href='#' ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
       %a(href='#' ng-click='hideCompleted()' ng-class='{ active: activeClass == "hide_completed" }') Not completed
+      %a(href='#' ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
       %a(href='#' ng-click='showVisible()' ng-class='{ active: activeClass == "visible" }') Visible
       %a(href='#' ng-click='hideVisible()' ng-class='{ active: activeClass == "hide_visible" }') Hidden
     %ul(ng-controller='ideaCtrl' ng-init="init('#{@application.id}')")
