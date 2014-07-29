@@ -1,9 +1,12 @@
+class NoUserException < StandardError
+end
+
 module CreatorFinder
   def get_current_user(application, user_email)
     if application && user_email
       @current_user ||= creator(application, user_email)
     else
-      fail ArgumentError "Missing one of the arguments application: #{application}, or user_email: #{user_email}"
+      fail ArgumentError, "Missing one of the arguments application: #{application}, or user_email: #{user_email}"
     end
   end
 
@@ -12,6 +15,6 @@ module CreatorFinder
     return a_customer if a_customer
     user = User.find_by(email: creator_email)
     return user if user
-    fail 'This user does not exist'
+    raise NoUserException, 'This user does not exist'
   end
 end
