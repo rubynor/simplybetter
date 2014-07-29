@@ -88,7 +88,7 @@ simplyDirectives.directive 'notifications', ->
     $scope.notifications = Notification.query()
 
     $scope.notificationsActive = false
-    $scope.new_notifications = {}
+    $scope.new_notifications = undefined
 
     $scope.updateNotiCount = ->
       $scope.new_notifications = NotificationsCount.get()
