@@ -1,11 +1,11 @@
 %idea-new
 #ideas
-  %ol.overview.layout
-    %li(ng-init='selectedFilter = { completed: false }')
-      %span(ng-click='selectedFilter = undefined') All
-      %span(ng-click='selectedFilter = { completed: true } ') Completed
-      %span(ng-click='selectedFilter = { completed: false} ') Not completed
-      %span(ng-click='selectedFilter = { creator_email: email } ') Mine
+  %ol.overview.layout(ng-controller='IdeaFilterCtrl' ng-init='hideCompleted()')
+    %div.ideas-navigate
+      %span(ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
+      %span(ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
+      %span(ng-click='hideCompleted()' ng-class='{ active: activeClass == "hide_completed" }') Not completed
+      %span(ng-click='showMine()' ng-class='{ active: activeClass == "mine" }') Mine
     %li.idea(ng-repeat='idea in ideas | filter: selectedFilter' ng-class='{ completed: idea.completed }')
       %vote
       %idea-item
