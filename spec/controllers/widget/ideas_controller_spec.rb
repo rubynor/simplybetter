@@ -38,6 +38,12 @@ describe WidgetApi::IdeasController do
         put :update, token: @application.token, id: @idea.to_param, idea: { description: 'Edited description' }, format: :json
       end.to change { Idea.last.description }.from(@idea.description).to('Edited description')
     end
+    it 'should return 422' do
+      expect do
+        put :update, token: @application.token, id: @idea.to_param, idea: { description: '' }, format: :json
+      end.to_not change { Idea.last.description }
+      response.status.should eq(422) # :unprocessable_entity
+    end
   end
 
   describe 'POST create' do
@@ -45,6 +51,30 @@ describe WidgetApi::IdeasController do
       expect do
         post :create, token: @application.token, user: { email: @user.email }, idea: { title: 'My awesome idea', description: 'My awesome description' }, format: :json
       end.to change( Idea, :count).by(1)
+    end
+    it 'should return 422' do
+      expect do
+        post :create, token: @application.token, user: { email: @user.email }, idea: { description: '' }, format: :json
+      end.to_not change(Idea, :count)
+      response.status.should eq(422) # :unprocessable_entity
+    end
+  end
+
+  describe 'DELETE destroy' do
+    it 'should destroy the idea' do
+      idea = Idea.make!
+      expect do
+        delete :destroy, id: idea.to_param, format: :json
+      end.to change(Idea, :count).by -1
+    end
+  end
+
+  describe 'GET find_similar' do
+    it 'assigns @ideas with search results' do
+      idea = Idea.make! application: @application
+      Idea.reindex
+      get :find_similar, token: @application.token, query: idea.title, format: :json
+      expect(assigns(:ideas).results).to eq([idea])
     end
   end
 end
