@@ -1,6 +1,6 @@
 class WidgetApi::IdeasController < ApplicationController
   include CreatorFinder
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:show, :update, :destroy]
 
   def index
     app = Application.find_by(token: params[:token])
@@ -14,13 +14,6 @@ class WidgetApi::IdeasController < ApplicationController
     get_current_user(application, params[:user_email])
   rescue NoUserException
     #It's ok if the user is not logged in
-  end
-
-  def new
-    @idea = Idea.new
-  end
-
-  def edit
   end
 
   def find_similar
