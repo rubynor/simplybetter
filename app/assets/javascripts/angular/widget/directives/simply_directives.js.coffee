@@ -105,7 +105,7 @@ simplyDirectives.directive 'notifications', ->
 
       updated.$update(
         (data) ->
-          window.location = "#/widget/#{notification.idea_id}?comment_id=#{notification.comment_id}"
+          window.location = "#/widget/ideas/#{notification.idea_id}?comment_id=#{notification.comment_id}"
           $scope.updateNotiCount();
       , (err) ->
         console.log(JSON.stringify(err))
