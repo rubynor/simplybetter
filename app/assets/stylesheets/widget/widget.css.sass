@@ -10,6 +10,7 @@
 @import widget/comments
 @import widget/new_idea
 @import widget/success
+@import widget/settings
 
 h1,h2,h3,h4,h5,body,label,input,textarea
   font-family: 'Roboto', sans-serif
@@ -59,12 +60,24 @@ strong
       line-height: 18px
     a:hover
       text-decoration: none
+
+    .settings-button
+      position: absolute
+      bottom: 80px
+      height: 31px
+      width: 60px
+      color: rgba(255, 255, 255, 0.5)
+      font-size: 32px
+      text-align: center
+      &:hover
+        color: rgba(255, 255, 255, 0.8)
+
     #simplybetterNotifications
       height: 31px
       width: 31px
       position: absolute
       left: 15px
-      bottom: 50px
+      bottom: 30px
       cursor: pointer
       overflow: visible
 
