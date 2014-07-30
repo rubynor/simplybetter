@@ -31,10 +31,7 @@ class WidgetApi::IdeasController < ApplicationController
     @idea.creator = creator(app, params[:user][:email]) # From module
 
     respond_to do |format|
-      if @idea.save
-        @idea.notify_customers
-        @idea.subscribe
-        AdminNotifier.send_to_group(app.customers, @idea.creator, @idea)
+      if @idea.widget_save_and_notify(app.customers)
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }
