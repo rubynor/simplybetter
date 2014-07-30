@@ -43,6 +43,7 @@ class WidgetApi::IdeasController < ApplicationController
   end
 
   def update
+    # TODO: require user email, and check if user is owner
     respond_to do |format|
       if @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
