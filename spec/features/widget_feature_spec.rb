@@ -15,8 +15,9 @@ describe WidgetController, js: true do
       click_link 'Go to app'
     end
     example 'comment an idea' do
-      page.should have_content 'Test'
-      first('h1', text: 'Test').click
+      title = Idea.first.title
+      page.should have_content title
+      first('h1', text: title).click
       fill_in 'Leave a comment...', with: 'My new comment'
       click_button 'OK'
       page.should have_content('My new comment')
@@ -29,7 +30,7 @@ describe WidgetController, js: true do
       page.should have_css('.comment-body')
     end
     example 'edit idea' do
-      find('a', text: '[edit idea]').click
+      first('a', text: '[edit idea]').click
       page.should_not have_css('.comment-body')
       fill_in 'title-input', with: 'New text for title'
       click_button 'send'
@@ -56,8 +57,9 @@ describe WidgetController, js: true do
       Notification.last.checked.should eq(true)
     end
     example 'navigation' do
-      page.should have_content 'Test'
-      first('h1', text: 'Test').click
+      title = Idea.first.title
+      page.should have_content title
+      first('h1', text: title).click
       page.should have_content 'BACK'
       first('.back-arrow').click
       page.should_not have_content 'BACK'
