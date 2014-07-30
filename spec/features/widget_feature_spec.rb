@@ -30,6 +30,7 @@ describe WidgetController, js: true do
       page.should have_css('.comment-body')
     end
     example 'edit idea' do
+      page.should have_content '[edit idea]'
       first('a', text: '[edit idea]').click
       page.should_not have_css('.comment-body')
       fill_in 'title-input', with: 'New text for title'
