@@ -12,4 +12,13 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', '$location', '$
     $scope.highlight.idea = undefined
 
   $timeout($scope.highlight, 500)
+
+  $scope.update_idea = (idea) ->
+    id = idea.id
+    idea.$patch({token: $scope.token, user_email: $scope.email}
+      (data) ->
+        window.location = "#/widget/#{id}"
+    , (err) ->
+      $scope.error_message = err.data
+    )
 ]

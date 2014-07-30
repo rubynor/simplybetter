@@ -38,10 +38,12 @@ class WidgetApi::IdeasController < ApplicationController
   def update
     app = application
     user = get_current_user(app, params[:user_email])
-    return render json: 'Not owner of idea', status: :unprocessable_entity unless user.application == app
+    if (user.instance_of?(User) && user.application == app) || (user.instance_of?(Customer) && !user.applications.include?(app))
+      return render json: 'Not owner of idea', status: :unprocessable_entity
+    end
     respond_to do |format|
       if @idea.update(idea_params)
-        format.json { head :no_content }
+        format.json { render json: :no_content, status: :ok }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
