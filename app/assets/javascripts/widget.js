@@ -5,4 +5,5 @@
 //= require angular/widget/directives/simply_directives
 //= require angular/widget
 //= require_tree ./angular/widget
+//= require angular/backoffice/controllers/idea_filter_ctrl
 //= require jquery.timeago

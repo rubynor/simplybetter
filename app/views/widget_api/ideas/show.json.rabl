@@ -7,6 +7,7 @@ end
 
 glue(:creator) do
   attributes :name => :creator_name
+  attributes :email => :creator_email
 end
 
 node(:comments_count) do |c|
