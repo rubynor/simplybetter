@@ -23,26 +23,29 @@ describe WidgetApi::IdeasController do
     end
   end
 
-  describe 'PUT update' do
-    # TODO: It should not be possible to update idea without a user... And user should be owner..
+  describe 'PATCH update' do
     before do
       @idea = Idea.make!(application: @application)
     end
     it 'updates the idea title' do
       expect do
-        put :update, token: @application.token, id: @idea.to_param, idea: { title: 'Edited title' }, format: :json
+        patch :update, token: @application.token, id: @idea.to_param, user_email: @user.email, idea: { title: 'Edited title' }, format: :json
       end.to change { Idea.last.title }.from(@idea.title).to('Edited title')
     end
     it 'updates the idea description' do
       expect do
-        put :update, token: @application.token, id: @idea.to_param, idea: { description: 'Edited description' }, format: :json
+        patch :update, token: @application.token, id: @idea.to_param, user_email: @user.email, idea: { description: 'Edited description' }, format: :json
       end.to change { Idea.last.description }.from(@idea.description).to('Edited description')
     end
     it 'should return 422' do
       expect do
-        put :update, token: @application.token, id: @idea.to_param, idea: { description: '' }, format: :json
+        patch :update, token: @application.token, id: @idea.to_param, user_email: @user.email, idea: { description: '' }, format: :json
       end.to_not change { Idea.last.description }
       response.status.should eq(422) # :unprocessable_entity
+    end
+    it 'should return unprocessable_entity unless owner of idea' do
+      patch :update, token: @application.token, id: @idea.to_param, user_email: User.make!.email, format: :json
+      expect(response.status).to eq(422)
     end
   end
 
