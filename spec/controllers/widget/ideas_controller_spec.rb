@@ -25,7 +25,7 @@ describe WidgetApi::IdeasController do
 
   describe 'PATCH update' do
     before do
-      @idea = Idea.make!(application: @application)
+      @idea = Idea.make!(application: @application, creator: @user)
     end
     it 'updates the idea title' do
       expect do
@@ -44,7 +44,7 @@ describe WidgetApi::IdeasController do
       response.status.should eq(422) # :unprocessable_entity
     end
     it 'should return unprocessable_entity unless owner of idea' do
-      patch :update, token: @application.token, id: @idea.to_param, user_email: User.make!.email, format: :json
+      patch :update, token: @application.token, id: @idea.to_param, user_email: User.make!.email, idea: { description: 'Edited description'}, format: :json
       expect(response.status).to eq(422)
     end
   end

@@ -28,6 +28,14 @@ describe WidgetController, js: true do
       click_button 'send'
       page.should have_css('.comment-body')
     end
+    example 'edit idea' do
+      find('a', text: '[edit idea]').click
+      page.should_not have_css('.comment-body')
+      fill_in 'title-input', with: 'New text for title'
+      click_button 'send'
+      page.should have_css('.comment-body')
+      page.should have_content('New text for title')
+    end
     example 'up vote' do
       page.should have_css '.up'
       first('.up').click

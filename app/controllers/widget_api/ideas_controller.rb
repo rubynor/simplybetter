@@ -36,9 +36,8 @@ class WidgetApi::IdeasController < ApplicationController
   end
 
   def update
-    app = application
-    user = get_current_user(app, params[:user_email])
-    if (user.instance_of?(User) && user.application == app) || (user.instance_of?(Customer) && !user.applications.include?(app))
+    user = get_current_user(application, params[:user_email])
+    if @idea.creator != user
       return render json: 'Not owner of idea', status: :unprocessable_entity
     end
     respond_to do |format|
