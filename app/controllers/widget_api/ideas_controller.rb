@@ -25,13 +25,9 @@ class WidgetApi::IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(idea_params)
-    app = application
-
-    @idea.application = app
-    @idea.creator = creator(app, params[:user][:email]) # From module
 
     respond_to do |format|
-      if @idea.widget_save_and_notify(app.customers)
+      if @idea.widget_save_and_notify(application, creator(application, params[:user][:email]))
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }

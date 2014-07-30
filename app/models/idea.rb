@@ -30,11 +30,13 @@ class Idea < ActiveRecord::Base
     end
   end
 
-  def widget_save_and_notify(app_customers)
+  def widget_save_and_notify(app, creator)
+    self.application = app
+    self.creator = creator # From module
     if self.save
       notify_customers
       subscribe
-      AdminNotifier.send_to_group(app_customers, self.creator, self)
+      AdminNotifier.send_to_group(app.customers, self.creator, self)
       true
     else
       false
