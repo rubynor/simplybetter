@@ -1,0 +1,6 @@
+#settings
+  .box
+    %h1
+      %i.fa.fa-cog
+      Account settings
+    {{ user }}
