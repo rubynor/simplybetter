@@ -8,3 +8,4 @@
 //= require angular/widget
 //= require_tree ./angular/widget
 //= require jquery.timeago
+//= require spin
