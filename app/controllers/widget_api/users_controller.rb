@@ -13,6 +13,7 @@ class WidgetApi::UsersController < ApplicationController
   private
 
   def set_user
-    @user = get_current_user(params[:token], params[:email])
+    app = Application.find_by(token: params[:token])
+    @user = get_current_user(app, params[:email])
   end
 end

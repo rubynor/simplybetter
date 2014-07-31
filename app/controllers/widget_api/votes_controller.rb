@@ -51,10 +51,8 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def voter
-    begin
-      creator(application, params[:voter_email])
-    rescue Exception => msg
-      # It's ok if user, not signed in
-    end
+    creator(application, params[:voter_email])
+  rescue NoUserException
+    # It's ok if user, not signed in
   end
 end
