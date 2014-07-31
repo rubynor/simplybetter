@@ -12,15 +12,11 @@ class WidgetApi::UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :name)
-  end
-
-  def application_params
-    params.require(:application).permit(:token)
-  end
-
   def set_user
-    @user = get_current_user(application_params[:token], user_params[:email])
+    @user = get_current_user(params[:token], params[:email])
+  end
+
+  def user_params
+    params.require(:user).permit(:name)
   end
 end
