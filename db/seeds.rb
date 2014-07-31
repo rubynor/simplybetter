@@ -31,6 +31,11 @@ ActiveRecord::Base.transaction do
     end
     Idea.last.update_attributes! completed: true
     Idea.find(3).update_attributes! visible: false
+    customer = Customer.create!(email: Faker::Internet.email, name: Faker::Name.name, password: 'dev', password_confirmation: 'dev')
+    app = customer.applications.create!(name: Faker::Lorem.sentence, intro: Faker::Lorem.sentence)
+    user = User.create!(email: Faker::Internet.email, name: Faker::Name.name, application_id: app.id)
+    i = Idea.create! title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, application_id: app.id, creator: user
+    c = i.comments.create! body: Faker::Lorem.sentence, creator_id: user.id, creator_type: 'User'
   end
 
   Idea.reindex

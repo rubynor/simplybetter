@@ -13,3 +13,5 @@
       {{ idea.creator_name }} on
     %span.date
       {{ idea.updated_at }}
+    %a(ng-if='idea.creator_email == email' href='#/widget/{{ idea.id }}/edit') )
+      [edit idea]

@@ -1,34 +1,23 @@
 class WidgetApi::IdeasController < ApplicationController
   include CreatorFinder
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:show, :update, :destroy]
 
   def index
-    app = Application.find_by(token: params[:token])
-    @ideas = app.ideas.visible.includes(:comments).includes(:votes).order("votes_count DESC")
-    begin
-      get_current_user(application, params[:user_email])
-    rescue Exception => msg
-      #It's ok if the user is not logged in
-    end
+    app = application
+    @ideas = app.ideas.visible.includes(:comments).includes(:votes).order('votes_count DESC')
+    get_current_user(application, params[:user_email])
+  rescue NoUserException
+    # It's ok if the user is not logged in
   end
 
   def show
-    begin
-      get_current_user(application, params[:user_email])
-    rescue Exception => msg
-      #It's ok if the user is not logged in
-    end
-  end
-
-  def new
-    @idea = Idea.new
-  end
-
-  def edit
+    get_current_user(application, params[:user_email])
+  rescue NoUserException
+    # It's ok if the user is not logged in
   end
 
   def find_similar
-    current_application = Application.find_by(token: params[:token])
+    current_application = application
     conditions = { application_id: current_application.id, visible: true }
     @ideas = Idea.search(params[:query], where: conditions, limit: 4, misspellings: { distance: 2 }, partial: true)
     render template: 'ideas/index'
@@ -36,16 +25,9 @@ class WidgetApi::IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(idea_params)
-    application = Application.find_by_token(params[:token])
-
-    @idea.application = application
-    @idea.creator = creator(application,params[:user][:email])#From module
 
     respond_to do |format|
-      if @idea.save
-        @idea.notify_customers
-        @idea.subscribe
-        AdminNotifier.send_to_group(application.customers, @idea.creator, @idea)
+      if @idea.widget_save_and_notify(application, creator(application, params[:user][:email]))
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }
@@ -54,12 +36,14 @@ class WidgetApi::IdeasController < ApplicationController
   end
 
   def update
+    user = get_current_user(application, params[:user_email])
+    if @idea.creator != user
+      return render json: 'Not owner of idea', status: :unprocessable_entity
+    end
     respond_to do |format|
       if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: :no_content, status: :ok }
       else
-        format.html { render action: 'edit' }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
     end
@@ -68,27 +52,23 @@ class WidgetApi::IdeasController < ApplicationController
   def destroy
     @idea.destroy
     respond_to do |format|
-      format.html { redirect_to ideas_url }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_idea
-      @idea = Idea.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def idea_params
-      params.require(:idea).permit(:title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_idea
+    @idea = Idea.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:email, :name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def idea_params
+    params.require(:idea).permit(:title, :description)
+  end
 
-    def application
-      @application ||= Application.find_by(token: params[:token]) if params[:token]
-    end
+  def application
+    @application ||= Application.find_by(token: params[:token]) if params[:token]
+  end
 end

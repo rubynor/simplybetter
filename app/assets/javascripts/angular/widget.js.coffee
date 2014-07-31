@@ -14,5 +14,6 @@ widget.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
   .when('/widget', {template: JST['angular/widget/templates/overview']})
   .when('/widget/:id', {controller: 'IdeaCtrl', template: JST['angular/widget/templates/idea_view']})
+  .when('/widget/:id/edit', { controller: 'IdeaCtrl', template: JST['angular/widget/templates/idea_edit'] })
   .otherwise(redirectTo: '/widget')
 ]
