@@ -35,7 +35,7 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', ($scope, I
     idea.$save(
       (data) ->
         $scope.newIdea = undefined
-        window.location = "#/widget/#{data.id}"
+        window.location = "#/widget/ideas/#{data.id}"
     , (err) ->
       $scope.error_message = ''
       $scope.error_message += "Title #{err.data.title}, " if err.data.title

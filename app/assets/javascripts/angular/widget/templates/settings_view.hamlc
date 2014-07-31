@@ -1,0 +1,30 @@
+#settings
+  .box
+    %h1
+      %i.fa.fa-cog
+      Account settings - {{ setting.user.name }}
+
+    .avatar
+      %img(ng-src='{{ setting.user.gravatar_url }}')
+      .img-explain
+        %h2
+          Change your avatar?
+        %p
+          At the moment we are using
+          %a(href='http://gravatar.com' target='_blank') Gravatar
+          as our avatar provider. We plan to support uploading and hosting of avatars in the future. Visit
+          %a(href='http://gravatar.com' target='_blank') Gravatar
+          to change your avatar.
+
+    %form(ng-submit='setting.submitForm()')
+      %label Your name
+      .inputs(ng-hide='setting.spinnerVisible')
+        .error(ng-show='setting.errorVisible')
+          Unfortunately something bad happened, and we
+          could not update your user :-(
+        .success(ng-show='setting.successVisible')
+          Saved!
+        %input(ng-model='setting.user.name' type='text' name='user_name')
+        %input(type='submit' value='Save' ng-click='setting.showSpinner()' ng-hide='setting.spin')
+    .spinner(ng-show='setting.spinnerVisible')
+

@@ -198,11 +198,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
-    react-rails (0.9.0.0)
-      execjs
-      rails (>= 3.1)
-      react-source (= 0.9.0)
-    react-source (0.9.0)
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -321,7 +316,6 @@ DEPENDENCIES
   rack-livereload
   rack-timeout
   rails (= 4.1.0)
-  react-rails
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc

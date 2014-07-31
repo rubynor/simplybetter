@@ -65,6 +65,15 @@ describe WidgetController, js: true do
       first('.back-arrow').click
       page.should_not have_content 'BACK'
     end
+
+    context 'settings page' do
+      example 'update name' do
+        first('.settings-button').click
+        fill_in 'user_name', with: 'Cool Person'
+        click_button 'Save'
+        page.should have_css('.success')
+      end
+    end
   end
 
 end

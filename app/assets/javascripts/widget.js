@@ -2,8 +2,11 @@
 //= require angular-1.2.18/angular
 //= require angular-1.2.18/angular-resource
 //= require angular-1.2.18/angular-route
+//= require angular-1.2.18/ui-bootstrap-custom-0.10.0
+//= require angular-1.2.18/ui-bootstrap-custom-tpls-0.10.0
 //= require angular/widget/directives/simply_directives
 //= require angular/widget
 //= require_tree ./angular/widget
 //= require angular/backoffice/controllers/idea_filter_ctrl
 //= require jquery.timeago
+//= require spin

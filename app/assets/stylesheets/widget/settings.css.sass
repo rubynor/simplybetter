@@ -1,0 +1,48 @@
+#settings
+  .box
+    @include box
+    padding: 15px
+    margin-top: 10px
+
+    h1
+      font-size: 28px
+      margin-bottom: 20px
+      margin-top: 0px
+
+    form
+      height: 150px
+
+    input[type='text']
+      @include input
+
+    input[type='submit']
+      @include button-big
+
+    label
+      @include label
+
+    .error
+      color: $red
+    .success
+      color: $green
+
+    .avatar
+      display: block
+      padding-top: 10px
+      position: relative
+      height: 100px
+
+      img
+        position: absolute
+        top: 10px
+      .img-explain
+        padding-left: 70px
+        display: block
+        width: 100%
+        h2
+          font-weight: 700
+          font-size: 14px
+          margin: 0px 0px 5px 0px
+        p
+          font-weight: 400
+          color: $text

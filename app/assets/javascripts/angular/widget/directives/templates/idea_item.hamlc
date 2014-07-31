@@ -1,5 +1,5 @@
 .idea-item
-  %a(href='#/widget/{{ idea.id }}')
+  %a(href='#/widget/ideas/{{ idea.id }}')
     %h1
       {{ idea.title }}
   %p.desc.ideaView(ng-if='path')

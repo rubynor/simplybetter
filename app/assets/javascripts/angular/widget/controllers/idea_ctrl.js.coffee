@@ -17,7 +17,7 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', '$location', '$
     id = idea.id
     idea.$patch({token: $scope.token, user_email: $scope.email}
       (data) ->
-        window.location = "#/widget/#{id}"
+        window.location = "#/widget/ideas/#{id}"
     , (err) ->
       $scope.error_message = err.data
     )
