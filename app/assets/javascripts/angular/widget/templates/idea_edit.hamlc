@@ -1,0 +1,9 @@
+#newIdea
+  .newIdea
+    %form(name='IdeaForm' novalidate)
+      .error(ng-if='error_message')
+        {{ error_message }}
+      %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='idea.title' ng-class="{ dirty: write, 'show-similar-ideas': show_similar() }" ng-keyup='find_similar(idea.title)' required )
+      .new-idea-form.focused
+        %textarea.description(placeholder='Description' ng-model='idea.description' ng-focus='hide_similar()' required)
+        %button.btn.submit(type='submit' ng-click='update_idea(idea)' ng-class='{disabled: !IdeaForm.$valid}') send

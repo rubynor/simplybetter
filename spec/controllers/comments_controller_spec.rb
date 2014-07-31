@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe WidgetApi::CommentsController do
-  let(:idea) { Idea.make! }
-
-  example 'adding a comment' do
-    u = User.make!.email
-    post :create, { idea_id: idea.id, comment: { body: 'Oh, hi thar!',idea_id: idea.id }, user: { email: u }, format: :json }
-    response.should render_template(:show)
+describe CommentsController do
+  example 'toggle visible' do
+    idea = Idea.make!
+    comment = Comment.make! idea: idea
+    expect do
+      patch :update, { id: comment.id, comment: { visible: false } }
+    end.to change { Comment.last.visible }.from(true).to(false)
   end
 end

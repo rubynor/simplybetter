@@ -1,5 +1,5 @@
 #simplybetterNotifications
-  %div(ng-click='toggleNotifications()')
+  %div(ng-if='new_notifications' ng-click='toggleNotifications()')
     .no-notifications(ng-if='new_notifications.count == 0')
     .new-notifications(ng-if='new_notifications.count != 0')
       {{ new_notifications.count }}

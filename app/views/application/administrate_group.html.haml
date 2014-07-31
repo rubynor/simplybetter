@@ -1,13 +1,13 @@
 =render 'shared/navbar'
 .col-xs-12
-  #manage-ideas(ng-controller='ideaCtrl' ng-init="init('#{@application.id}')")
+  #manage-ideas(ng-controller='IdeaFilterCtrl')
     %div.ideas-navigate
       %a(href='#' ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
-      %a(href='#' ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
       %a(href='#' ng-click='hideCompleted()' ng-class='{ active: activeClass == "hide_completed" }') Not completed
+      %a(href='#' ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
       %a(href='#' ng-click='showVisible()' ng-class='{ active: activeClass == "visible" }') Visible
       %a(href='#' ng-click='hideVisible()' ng-class='{ active: activeClass == "hide_visible" }') Hidden
-    %ul
+    %ul(ng-controller='ideaCtrl' ng-init="init('#{@application.id}')")
       %li.idea(ng-repeat='idea in ideas | filter:selectedFilter' ng-class='{ "completed": idea.completed}')
         %div(ng-if='idea.$edit')
           .error(ng-if='error_message')
@@ -64,3 +64,6 @@
                       {{ comment.updated_at }}
                   .comment-body
                     {{ comment.body }}
+                  .not-visible-overlay(ng-if='!comment.visible')
+                  .options
+                    .icon(ng-class='{ visible: comment.visible, "not-visible": !comment.visible }' ng-click='toggleVisibleComment(comment)')

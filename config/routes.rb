@@ -1,7 +1,7 @@
 SimplyBetter::Application.routes.draw do
 
   namespace :widget_api do
-    resources :ideas do
+    resources :ideas, except: [:new, :edit] do
       resources :comments, only: [:create, :destroy, :index, :show]
       get :find_similar, on: :collection
     end
@@ -30,6 +30,8 @@ SimplyBetter::Application.routes.draw do
     get :administrate_group, on: :member
     resources :ideas, only: [:index, :update, :destroy]
   end
+
+  resources :comments, only: [:update]
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 

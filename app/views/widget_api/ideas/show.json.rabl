@@ -7,10 +7,11 @@ end
 
 glue(:creator) do
   attributes :name => :creator_name
+  attributes :email => :creator_email
 end
 
 node(:comments_count) do |c|
-  c.comments.count
+  c.comments.visible.count
 end
 
 node(:voter_status) do |c|
