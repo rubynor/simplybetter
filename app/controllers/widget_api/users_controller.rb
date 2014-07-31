@@ -6,7 +6,7 @@ class WidgetApi::UsersController < ApplicationController
   end
 
   def update
-    @user.name = user_params[:name]
+    @user.name = params[:name]
     @user.save!
   end
 
@@ -14,9 +14,5 @@ class WidgetApi::UsersController < ApplicationController
 
   def set_user
     @user = get_current_user(params[:token], params[:email])
-  end
-
-  def user_params
-    params.require(:user).permit(:name)
   end
 end
