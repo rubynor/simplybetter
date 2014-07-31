@@ -1,4 +1,4 @@
-widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', '$location', '$timeout', ($scope, Idea, $routeParams, $location, $timeout) ->
+widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
   $scope.idea = Idea.get({id: $routeParams.id, token: $scope.token, user_email: $scope.email})
   $scope.$parent.path = $location.path()
   $scope.highlight = { idea: false }
@@ -17,7 +17,7 @@ widget.controller 'IdeaCtrl', ['$scope', 'Idea', '$routeParams', '$location', '$
     id = idea.id
     idea.$patch({token: $scope.token, user_email: $scope.email}
       (data) ->
-        window.location = "#/widget/ideas/#{id}"
+        Redirect('idea', { id: id })
     , (err) ->
       $scope.error_message = err.data
     )
