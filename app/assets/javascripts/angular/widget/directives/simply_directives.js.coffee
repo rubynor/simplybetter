@@ -85,7 +85,7 @@ simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/notifications'],
   controller: ['$scope', 'Notification', 'NotificationsCount', ($scope, Notification, NotificationsCount) ->
-    $scope.notifications = Notification.query()
+    $scope.notifications = Notification.query() if $scope.email
 
     $scope.notificationsActive = false
     $scope.new_notifications = undefined
