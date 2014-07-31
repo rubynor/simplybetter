@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728103748) do
+ActiveRecord::Schema.define(version: 20140731124816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 20140728103748) do
 
   add_index "applications_customers", ["application_id", "customer_id"], name: "index_applications_customers_on_application_id_and_customer_id", using: :btree
   add_index "applications_customers", ["customer_id"], name: "index_applications_customers_on_customer_id", using: :btree
+
+  create_table "applications_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "application_id"
+  end
+
+  add_index "applications_users", ["application_id", "user_id"], name: "index_applications_users_on_application_id_and_user_id", using: :btree
+  add_index "applications_users", ["user_id"], name: "index_applications_users_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -119,12 +127,9 @@ ActiveRecord::Schema.define(version: 20140728103748) do
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "name"
-    t.integer  "application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "users", ["application_id"], name: "user_application_id_ix", using: :btree
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false
