@@ -23,8 +23,7 @@
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
           .logo-text Simply Better
-        %a.settings-button(ng-href='#/widget/settings')
-          = fa_icon "cog", 'tooltip-placement' => 'right', 'tooltip' => 'Account settings', 'tooltip-trigger' => 'mouseenter'
+        %account-settings-button
         %notifications
 
       #simplybetterNavbar(ng-class='{ overview: !path }')

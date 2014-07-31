@@ -115,3 +115,13 @@ simplyDirectives.directive 'notifications', ->
         console.log(JSON.stringify(err))
       )
   ]
+
+simplyDirectives.directive 'accountSettingsButton', ->
+  restrict: 'E'
+  template: JST['angular/widget/directives/templates/account_settings_button']
+  controller: ['$scope', ($scope) ->
+    @hidden = true
+    if $scope.email
+      @hidden = false
+  ]
+  controllerAs: 'button'
