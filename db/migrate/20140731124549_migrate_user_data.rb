@@ -1,8 +1,10 @@
 class MigrateUserData < ActiveRecord::Migration
   def up
     User.all.each do |user|
-      app = Application.find(user.application_id)
-      user.applications << app
+      if user.application_id
+        app = Application.find(user.application_id)
+        user.applications << app
+      end
     end
   end
 
