@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Idea do
 
-  before :all do
+  before :each do
     @idea = Idea.make!
     @application = @idea.application
     @customer = Customer.make!
@@ -59,7 +59,7 @@ describe Idea do
   end
 
   describe '#save_and_notify' do
-    before :all do
+    before :each do
       @idea.subscribe
     end
 
@@ -69,9 +69,9 @@ describe Idea do
       end.to change(Notification, :count).by 1
     end
 
-    pending 'sends email to idea owner when completed' do
+    it 'sends email to idea owner when completed' do
       expect do
-        @idea.save_and_notify({completed: true}, @customer)
+        @idea.save_and_notify({completed: true }, @customer)
       end.to change(ActionMailer::Base.deliveries, :count).by 1
     end
   end

@@ -21,4 +21,19 @@ class UserNotifier < ActionMailer::Base
 
     mail to: receiver.email, subject: subject
   end
+
+  def self.notify_group_completed(group, creator, idea)
+    group.each do |u|
+      unless u.email == creator.email
+        idea_completed(u, creator, idea).deliver
+      end
+    end
+  end
+
+  def idea_completed(receiver, creator, idea)
+    @creator = creator
+    @idea = idea
+
+    mail to: receiver.email, subject: 'SimplyBetter: Your idea has been implemented'
+  end
 end
