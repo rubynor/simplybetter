@@ -8,13 +8,36 @@ angular.module("filters", []).filter "truncate", ->
     else
       String(text).substring(0, length - end.length) + end
 
-@widget = angular.module('Simplybetter', ['ngResource', 'filters', 'ngRoute', 'simplyDirectives', 'ui.bootstrap'])
-
-widget.config ['$routeProvider', ($routeProvider) ->
-  $routeProvider
-  .when('/widget', {template: JST['angular/widget/templates/overview']})
-  .when('/widget/ideas/:id', {controller: 'IdeaCtrl', template: JST['angular/widget/templates/idea_view']})
-  .when('/widget/settings', {controller: 'SettingsCtrl as setting', template: JST['angular/widget/templates/settings_view']})
-  .when('/widget/:id/edit', { controller: 'IdeaCtrl', template: JST['angular/widget/templates/idea_edit'] })
-  .otherwise(redirectTo: '/widget')
+@widget = angular.module 'Simplybetter', [
+  'ngResource'
+  'filters'
+  'ngRoute'
+  'simplyDirectives'
+  'ui.bootstrap'
+  'zj.namedRoutes'
 ]
+
+@widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+    # use hashbang fallback mode
+    $locationProvider
+      .hashPrefix("")
+      .html5Mode(false);
+
+    $routeProvider
+      .when '/widget',
+        template: JST['angular/widget/templates/overview']
+        name: 'overview'
+      .when '/widget/ideas/:id',
+        controller: 'IdeaCtrl'
+        template: JST['angular/widget/templates/idea_view']
+        name: 'idea'
+      .when '/widget/settings',
+        controller: 'SettingsCtrl as setting'
+        template: JST['angular/widget/templates/settings_view']
+        name: 'settings'
+      .when '/widget/ideas/:id/edit',
+        controller: 'IdeaCtrl'
+        template: JST['angular/widget/templates/idea_edit']
+        name: 'idea_edit'
+      .otherwise(redirectTo: '/widget')
+  ]

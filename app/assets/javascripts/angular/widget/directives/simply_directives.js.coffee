@@ -84,7 +84,7 @@ simplyDirectives.directive 'comments', ->
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/notifications'],
-  controller: ['$scope', 'Notification', 'NotificationsCount', ($scope, Notification, NotificationsCount) ->
+  controller: ['$scope', 'Notification', 'NotificationsCount', 'Redirect', ($scope, Notification, NotificationsCount, Redirect) ->
     $scope.notifications = Notification.query() if $scope.email
 
     $scope.notificationsActive = false
@@ -109,7 +109,7 @@ simplyDirectives.directive 'notifications', ->
 
       updated.$update(
         (data) ->
-          window.location = "#/widget/ideas/#{notification.idea_id}?comment_id=#{notification.comment_id}"
+          Redirect('idea', { id: notification.idea_id }, "?comment_id=#{notification.comment_id}")
           $scope.updateNotiCount();
       , (err) ->
         console.log(JSON.stringify(err))

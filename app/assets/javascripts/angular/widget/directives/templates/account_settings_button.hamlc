@@ -1,2 +1,2 @@
-%a.settings-button(ng-href='#/widget/settings' ng-hide='button.hidden')
+%a.settings-button(data-named-route='settings' ng-hide='button.hidden')
   %i.fa.fa-cog(tooltip-placement='right' tooltip='Account settings' tooltip-trigger='mouseenter')
