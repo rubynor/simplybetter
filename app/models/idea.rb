@@ -9,7 +9,7 @@ class Idea < ActiveRecord::Base
   has_many :idea_subscriptions, dependent: :destroy
   has_many :notifications, as: :subject, dependent: :destroy
 
-  validates_presence_of :title, :description, :creator
+  validates_presence_of :title, :description, :creator, :application
   validates_uniqueness_of :title, scope: :application
 
   include IdeaNotificationHelpers
