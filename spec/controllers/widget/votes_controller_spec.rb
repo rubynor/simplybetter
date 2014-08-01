@@ -5,7 +5,7 @@ describe WidgetApi::VotesController do
   before do
     @idea = Idea.make!
     @user = User.make!
-    @user.applications << @idea.application
+    @user.widgets << @idea.application
   end
 
   describe 'voting on a idea' do

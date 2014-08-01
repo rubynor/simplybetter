@@ -5,7 +5,7 @@ describe WidgetApi::CommentsController do
 
   example 'adding a comment' do
     u = User.make!
-    u.applications << idea.application
+    u.widgets << idea.application
     post :create, { idea_id: idea.id, comment: { body: 'Oh, hi thar!',idea_id: idea.id }, user: { email: u.email }, format: :json }
     response.should render_template(:show)
   end
