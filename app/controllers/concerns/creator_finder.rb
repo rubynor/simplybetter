@@ -15,13 +15,13 @@ module CreatorFinder
     # TODO: and not having to do to many db lookups
     a_customer = Customer.find_by(email: creator_email)
     if a_customer
-      return a_customer if a_customer.applications.include?(application)
+      return a_customer if a_customer.widgets.include?(application)
       raise 'The customer does not have access to this application'
     end
 
     user = User.find_by(email: creator_email)
     if user
-      return user if user.applications.include? application
+      return user if user.widgets.include? application
       raise 'The user does not have access to this application'
     end
 
