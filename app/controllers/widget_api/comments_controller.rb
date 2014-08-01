@@ -25,6 +25,7 @@ class WidgetApi::CommentsController < ApplicationController
     if @comment.save
       @comment.subscribe
       @comment.notify
+      UserNotifier.notify_group_comment(@idea.subscribers, @comment)
       render 'widget_api/comments/show'
     else
       render json: @comment.errors, status: :unprocessable_entity
