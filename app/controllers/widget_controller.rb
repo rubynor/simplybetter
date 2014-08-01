@@ -5,7 +5,7 @@ class WidgetController < ApplicationController
     @appkey = params[:appkey]
     @email = params[:email]
     @name = params[:name]
-    create_user if @email
+    create_user unless @email.blank?
     render template: 'layouts/widget', layout: false
   end
 
@@ -17,11 +17,11 @@ class WidgetController < ApplicationController
 
   def create_user
     customer = Customer.find_by(email: params[:email])
+    return if customer # No need to do more lookups if customer found
     user = User.find_by(email: params[:email])
-    application_id = Application.find_by(token: params[:appkey]).id
+    return if user # No need to do more lookups if user found
 
-    unless customer || user
-      User.create(email: params[:email], name: params[:name], application_id: application_id)
-    end
+    app = Application.find_by(token: params[:appkey])
+    app.users.create(email: params[:email], name: params[:name])
   end
 end

@@ -2,7 +2,7 @@ class Application < ActiveRecord::Base
   extend Enumerize
   has_paper_trail
   has_and_belongs_to_many :customers
-  has_many :users
+  has_and_belongs_to_many :users
   has_many :ideas, -> { order("votes_count DESC") }
   has_many :comments, -> { order("comments.votes_count DESC") }, through: :ideas
   has_many :notifications
