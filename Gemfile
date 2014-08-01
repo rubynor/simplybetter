@@ -71,3 +71,6 @@ end
 gem 'rack-timeout'
 gem 'unicorn'
 
+group :staging,:production do
+  gem 'rails_12factor'
+end
