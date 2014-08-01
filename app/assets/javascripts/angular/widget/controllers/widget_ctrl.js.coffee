@@ -1,4 +1,4 @@
-widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', ($scope, Idea, FindSimilarIdea) ->
+widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect', ($scope, Idea, FindSimilarIdea, Redirect) ->
   $scope.newIdea = new Idea({})
 
   $scope.init = (token, email) ->
@@ -35,10 +35,11 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', ($scope, I
     idea.$save(
       (data) ->
         $scope.newIdea = undefined
-        window.location = "#/widget/ideas/#{data.id}"
+        Redirect('idea', {id: data.id})
     , (err) ->
       $scope.error_message = ''
       $scope.error_message += "Title #{err.data.title}, " if err.data.title
       $scope.error_message += "Description #{err.data.description}" if err.data.description
     )
+
 ]

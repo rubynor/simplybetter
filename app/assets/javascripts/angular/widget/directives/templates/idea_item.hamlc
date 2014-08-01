@@ -1,5 +1,5 @@
 .idea-item
-  %a(href='#/widget/ideas/{{ idea.id }}')
+  %a(named-route='idea' kwarg-id='{{ idea.id }}')
     %h1
       {{ idea.title }}
   %p.desc.ideaView(ng-if='path')
@@ -13,5 +13,5 @@
       {{ idea.creator_name }} on
     %span.date
       {{ idea.updated_at }}
-    %a(ng-if='idea.creator_email == email' href='#/widget/{{ idea.id }}/edit') )
+    %a(ng-if='idea.creator_email == email' named-route='idea_edit' kwarg-id='{{ idea.id }}')
       [edit idea]
