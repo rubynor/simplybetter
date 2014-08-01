@@ -17,14 +17,14 @@ describe CreatorFinder do
   it 'returns a user' do
     @user = User.make!
     @app = Application.make!
-    @user.applications << @app
+    @user.widgets << @app
     object.get_current_user(@app, @user.email).should eq(@user)
   end
 
   it 'returns a customer' do
     @user = Customer.make!
     @app = Application.make!
-    @user.applications << @app
+    @user.widgets << @app
     object.get_current_user(@app, @user.email).should eq(@user)
   end
 

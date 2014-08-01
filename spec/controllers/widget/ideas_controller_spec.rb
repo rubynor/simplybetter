@@ -45,7 +45,7 @@ describe WidgetApi::IdeasController do
     end
     it 'should return unprocessable_entity unless owner of idea' do
       user = User.make!
-      user.applications << @application
+      user.widgets << @application
       patch :update, token: @application.token, id: @idea.to_param, user_email: user.email, idea: { description: 'Edited description'}, format: :json
       expect(response.status).to eq(422)
     end
