@@ -1,12 +1,37 @@
 widget.factory 'User', ['$resource', ($resource) ->
-  $resource '/widget_api/user.json',
-    email: '@email'
-    token: '@token'
-  ,
-    update:
-      method: 'PUT'
-      params:
-        email: '@email'
-        name: '@name'
-        token: '@token'
+  @user = {}
+  @authParams = {}
+
+  @get = (email, token) ->
+    @setAuthParams(email, token)
+    if @user.length > 0
+      @user
+    else
+      @fetchFromBackend()
+
+  @fetchFromBackend = ->
+    @user =
+      @resource.get
+        email: @authParams.email
+        token: @authParams.token
+
+  @update = (success, error) ->
+    @user.$update(
+      token: @authParams.token
+    ,(data) =>
+      success(data)
+    , =>
+      error()
+    )
+
+  @setAuthParams = (email, token) ->
+    @authParams = { email: email, token: token }
+
+  @resource = (->
+    $resource '/widget_api/user.json', null,
+      update:
+        method: 'PUT'
+  )()
+
+  return @
 ]
