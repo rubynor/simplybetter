@@ -11,10 +11,9 @@ class Vote < ActiveRecord::Base
     return if value == 0
     vote_val = value > 1 ? 1 : -1
     cast(vote_val)
+    subscribe
     Thread.abort_on_exception = true
     t = Thread.new do
-      subscribe
-      notify(app_id)
       ActiveRecord::Base.connection.close
     end
     at_exit { t.join }
