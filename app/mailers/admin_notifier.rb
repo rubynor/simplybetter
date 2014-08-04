@@ -1,5 +1,5 @@
 class AdminNotifier < ActionMailer::Base
-  default from: "noreply@simplybetter.io"
+  default from: 'noreply@simplybetter.io'
 
   def send_to_group(group, creator, idea)
     group.each do |u|
@@ -10,7 +10,7 @@ class AdminNotifier < ActionMailer::Base
   end
 
   private
-  
+
   def new_idea(receiver,creator,idea)
     @creator = creator
     @idea = idea
