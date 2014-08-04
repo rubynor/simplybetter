@@ -13,12 +13,14 @@ class Comment < ActiveRecord::Base
 
   def save_and_notify(idea)
     if save
-      Thread.new do
+      Thread.abort_on_exception = true
+      t = Thread.new do
         subscribe
         notify
         UserNotifier.notify_group_comment(idea.subscribers, self)
         ActiveRecord::Base.connection.close
       end
+      at_exit { t.join }
       true
     else
       false

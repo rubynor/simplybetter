@@ -23,6 +23,7 @@ class Idea < ActiveRecord::Base
     completed = has_been_completed?
     if save
       if completed
+        Thread.abort_on_exception = true
         Thread.new do
           notify(action_attr: :completed, action_attr_changer: current_customer)
           UserNotifier.notify_group_completed(self.subscribers, current_customer, self)
@@ -40,12 +41,14 @@ class Idea < ActiveRecord::Base
     self.application = app
     self.creator = creator # From module
     if self.save
-      Thread.new do
+      Thread.abort_on_exception = true
+      t = Thread.new do
         notify_customers
         subscribe
         AdminNotifier.send_to_group(app.customers, self.creator, self)
         ActiveRecord::Base.connection.close
       end
+      at_exit { t.join }
       true
     else
       false
