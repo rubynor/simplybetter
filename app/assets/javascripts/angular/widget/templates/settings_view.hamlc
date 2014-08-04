@@ -28,3 +28,5 @@
         %input(type='submit' value='Save' ng-click='setting.showSpinner()' ng-hide='setting.spin')
     .spinner(ng-show='setting.spinnerVisible')
 
+    %email-settings
+
