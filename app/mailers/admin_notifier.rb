@@ -4,7 +4,7 @@ class AdminNotifier < ActionMailer::Base
   def send_to_group(group, creator, idea)
     group.each do |u|
       unless u == creator
-        new_idea(u,creator, idea)
+        new_idea(u,creator, idea).deliver
       end
     end
   end
