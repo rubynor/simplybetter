@@ -1,9 +1,18 @@
-%h1
+= render '/shared/email_header'
+
+%h3
   = @creator.name
   just wrote this comment:
 %p
   = @comment.body
 
-%h1 In reply to this idea:
-%h2= @idea.title
-%p= @idea.description
+%h3 In reply to this idea:
+.idea-layout
+  .idea-item
+    %hr
+    %a(href="#{WidgetPath.path}/widget?appkey=#{@idea.application.token}&email=#{@receiver.email}&name='#{@idea.creator.name}'#/widget/ideas/#{@idea.id}")
+      %h1
+        = @idea.title
+    %p.desc.ideaView
+      = @idea.description
+    %hr
