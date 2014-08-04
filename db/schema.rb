@@ -34,14 +34,6 @@ ActiveRecord::Schema.define(version: 20140801090144) do
   add_index "applications_customers", ["application_id", "customer_id"], name: "index_applications_customers_on_application_id_and_customer_id", using: :btree
   add_index "applications_customers", ["customer_id"], name: "index_applications_customers_on_customer_id", using: :btree
 
-  create_table "applications_users", id: false, force: true do |t|
-    t.integer "user_id"
-    t.integer "application_id"
-  end
-
-  add_index "applications_users", ["application_id", "user_id"], name: "index_applications_users_on_application_id_and_user_id", using: :btree
-  add_index "applications_users", ["user_id"], name: "index_applications_users_on_user_id", using: :btree
-
   create_table "comments", force: true do |t|
     t.text     "body"
     t.integer  "idea_id"
@@ -164,5 +156,21 @@ ActiveRecord::Schema.define(version: 20140801090144) do
 
   add_index "votes", ["vote_receiver_id", "vote_receiver_type"], name: "index_votes_on_vote_receiver_id_and_vote_receiver_type", using: :btree
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
+
+  create_table "widget_customers", id: false, force: true do |t|
+    t.integer "customer_id"
+    t.integer "application_id"
+  end
+
+  add_index "widget_customers", ["application_id", "customer_id"], name: "index_widget_customers_on_application_id_and_customer_id", using: :btree
+  add_index "widget_customers", ["customer_id"], name: "index_widget_customers_on_customer_id", using: :btree
+
+  create_table "widget_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "application_id"
+  end
+
+  add_index "widget_users", ["application_id", "user_id"], name: "index_widget_users_on_application_id_and_user_id", using: :btree
+  add_index "widget_users", ["user_id"], name: "index_widget_users_on_user_id", using: :btree
 
 end

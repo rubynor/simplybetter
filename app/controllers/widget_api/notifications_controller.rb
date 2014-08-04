@@ -6,6 +6,8 @@ class WidgetApi::NotificationsController < ApplicationController
     user_email = params[:user_email]
     recipient = get_current_user(@application, user_email)
     @notifications = Notification.for(recipient, @application.id)
+  rescue NoAccessException
+    # No problem if no user
   end
 
   def update
@@ -16,6 +18,8 @@ class WidgetApi::NotificationsController < ApplicationController
 
   def count
     render json: {count: index.where(checked: nil).count}
+  rescue NoMethodError
+    render json: :no_content
   end
 
   private
