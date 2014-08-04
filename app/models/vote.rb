@@ -11,8 +11,11 @@ class Vote < ActiveRecord::Base
     return if value == 0
     vote_val = value > 1 ? 1 : -1
     cast(vote_val)
-    subscribe
-    notify(app_id)
+    Thread.new do
+      subscribe
+      notify(app_id)
+      ActiveRecord::Base.connection.close
+    end
   end
 
   def cast(value)

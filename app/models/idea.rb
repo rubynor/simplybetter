@@ -23,8 +23,11 @@ class Idea < ActiveRecord::Base
     completed = has_been_completed?
     if save
       if completed
-        notify(action_attr: :completed, action_attr_changer: current_customer)
-        UserNotifier.notify_group_completed(self.subscribers, current_customer, self)
+        Thread.new do
+          notify(action_attr: :completed, action_attr_changer: current_customer)
+          UserNotifier.notify_group_completed(self.subscribers, current_customer, self)
+          ActiveRecord::Base.connection.close
+        end
       end
       true
     else
@@ -37,9 +40,12 @@ class Idea < ActiveRecord::Base
     self.application = app
     self.creator = creator # From module
     if self.save
-      notify_customers
-      subscribe
-      AdminNotifier.send_to_group(app.customers, self.creator, self)
+      Thread.new do
+        notify_customers
+        subscribe
+        AdminNotifier.send_to_group(app.customers, self.creator, self)
+        ActiveRecord::Base.connection.close
+      end
       true
     else
       false
