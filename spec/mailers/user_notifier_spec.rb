@@ -8,7 +8,7 @@ describe UserNotifier do
   describe 'notify for new comment' do
     let(:mail) { UserNotifier.new_comment(customer, comment.creator, comment) }
 
-    it 'sends email to application owners' do
+    it 'sends email to application subscribers' do
       expect do
         UserNotifier.notify_group_comment(group, comment)
       end.to change { ActionMailer::Base.deliveries.count }.by(2)
