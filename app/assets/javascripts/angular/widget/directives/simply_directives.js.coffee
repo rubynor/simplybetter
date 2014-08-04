@@ -143,10 +143,10 @@ simplyDirectives.directive 'emailSettings', ->
     @submit = ->
       EmailSettings.update( =>
         if @settings.unsubscribed
-          @justSubscribed = true
+          @justUnsubscribed = true
           @hideAlert()
         else
-          @justUnsubscribed = true
+          @justSubscribed = true
           @hideAlert()
         @hideError()
       , (error) =>
