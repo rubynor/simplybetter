@@ -4,4 +4,8 @@ class EmailSetting < ActiveRecord::Base
   def self.find_or_create(mailable)
     where(mailable: mailable).first_or_create
   end
+
+  def self.unsubscribed?(mailable)
+    find_or_create(mailable).unsubscribed
+  end
 end
