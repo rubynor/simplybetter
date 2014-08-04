@@ -1,8 +1,15 @@
-%strong
-  = @creator.name
-  just submittet an idea!
-%h2
-  = @idea.title
-%p
-  = @idea.description
+= render '/shared/email_header'
 
+.idea-layout
+  .idea-item
+    %p
+      = "'#{@creator.name}'"
+      just submittet an idea on your SimplyBetter application
+      %strong= "'#{@idea.application.name}'"
+    %hr
+    %a(href="#{WidgetPath.path}/widget?appkey=#{@idea.application.token}&email=#{@receiver.email}&name='#{@idea.creator.name}'#/widget/ideas/#{@idea.id}")
+      %h1
+        = @idea.title
+    %p.desc.ideaView
+      = @idea.description
+    %hr

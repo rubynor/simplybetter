@@ -2,11 +2,8 @@
 
 %h3
   = @creator.name
-  just wrote this comment:
-%p
-  = @comment.body
+  changed the status of the idea below to completed
 
-%h3 In reply to this idea:
 .idea-layout
   .idea-item
     %hr
@@ -16,3 +13,4 @@
     %p.desc.ideaView
       = @idea.description
     %hr
+

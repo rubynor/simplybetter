@@ -1,0 +1,59 @@
+@import colors
+@import fonts
+@import font-awesome
+@import 'compass/utilities/general/clearfix'
+@import mixins
+
+h1
+  font-family: 'Roboto', sans-serif
+  font-weight: 300
+  margin-top: 20px
+  margin-bottom: 10px
+
+p
+  font-family: 'Roboto', serif
+  font-weight: 400
+  margin-top: 10px
+
+
+.idea-layout
+  position: relative
+  display: block
+  text-align: left
+  margin-bottom: 10px
+  padding: 15px 0px 20px
+  min-height: 110px
+  width: 100%
+  max-width: 800px
+
+  .idea-item
+    display: block
+    padding: 0px 15px 0px 15px
+    a
+      text-decoration: none
+    h1
+      color: $black
+      margin: 0px 0px 10px 0px
+      padding: 0
+      font-size: 30px
+      &:hover
+        cursor: pointer
+    p.desc
+      color: $gray
+      font-size: 14px
+      line-height: 20px
+      &.ideaView
+        color: #777
+        font-size: 22px
+        line-height: 34px
+        font-weight: 100
+    .meta
+      color: $gray
+      margin-top: 15px
+      font-weight: 500
+      font-size: 12px
+      span
+        &.user
+          color: $button-main
+        &.date
+          color: $black

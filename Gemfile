@@ -70,6 +70,8 @@ end
 
 gem 'rack-timeout'
 gem 'unicorn'
+gem 'premailer-rails'
+gem 'nokogiri'
 
 group :staging,:production do
   gem 'rails_12factor'

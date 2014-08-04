@@ -9,7 +9,7 @@ class Idea < ActiveRecord::Base
   has_many :idea_subscriptions, dependent: :destroy
   has_many :notifications, as: :subject, dependent: :destroy
 
-  validates_presence_of :title, :description, :creator
+  validates_presence_of :title, :description, :creator, :application
   validates_uniqueness_of :title, scope: :application
 
   include IdeaNotificationHelpers
@@ -22,7 +22,10 @@ class Idea < ActiveRecord::Base
     self.creator = find_creator(params[:creator]) if creator
     completed = has_been_completed?
     if save
-      notify(action_attr: :completed, action_attr_changer: current_customer) if completed
+      if completed
+        notify(action_attr: :completed, action_attr_changer: current_customer)
+        UserNotifier.notify_group_completed(self.subscribers, current_customer, self)
+      end
       true
     else
       self.reload
