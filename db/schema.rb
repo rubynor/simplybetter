@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731124816) do
+ActiveRecord::Schema.define(version: 20140801090144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20140731124816) do
     t.datetime "password_reset_sent_at"
     t.string   "auth_token"
   end
+
+  create_table "email_settings", force: true do |t|
+    t.integer  "mailable_id"
+    t.string   "mailable_type"
+    t.boolean  "unsubscribed",  default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "email_settings", ["mailable_id", "mailable_type"], name: "index_email_settings_on_mailable_id_and_mailable_type", using: :btree
 
   create_table "idea_groups", force: true do |t|
     t.integer "application_id"
