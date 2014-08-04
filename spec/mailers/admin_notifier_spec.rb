@@ -5,12 +5,11 @@ describe AdminNotifier do
     let(:customer) { Customer.make! }
     let(:group) { [customer, Customer.make!] }
     let(:idea) { Idea.make! }
-    let(:creator) { idea.creator }
-    let(:mail) { AdminNotifier.send_to_group(group, creator, idea) }
+    let(:mail) { AdminNotifier.send_to_group(group, idea) }
 
     it 'sends email' do
       expect do
-        AdminNotifier.send_to_group(group, creator, idea)
+        AdminNotifier.send_to_group(group, idea)
       end.to change { ActionMailer::Base.deliveries.count }.by(2)
     end
 

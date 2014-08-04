@@ -46,7 +46,7 @@ class Idea < ActiveRecord::Base
       notify_customers
       Thread.abort_on_exception = true
       t = Thread.new do
-        AdminNotifier.send_to_group(app.customers, self.creator, self)
+        AdminNotifier.send_to_group(app.customers, self)
         ActiveRecord::Base.connection.close
       end
       at_exit { t.join }

@@ -1,10 +1,11 @@
 class AdminNotifier < ActionMailer::Base
   default from: 'noreply@simplybetter.io'
 
-  def send_to_group(group, creator, idea)
+  def send_to_group(group, idea)
+    creator = idea.creator
     group.each do |u|
       unless u == creator
-        new_idea(u,creator, idea).deliver
+        new_idea(u, creator, idea).deliver
       end
     end
   end
