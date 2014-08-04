@@ -1,5 +1,5 @@
 class UserNotifier < ActionMailer::Base
-  include MailerHelpers
+  extend MailerHelpers
   default from: 'noreply@simplybetter.io'
 
   def self.notify_group_comment(group, comment)
@@ -26,7 +26,7 @@ class UserNotifier < ActionMailer::Base
 
   def self.notify_group_completed(group, creator, idea)
     group.each do |u|
-      if should_send_email?(u, creator)
+      if should_send_mail?(u, creator)
         idea_completed(u, creator, idea).deliver
       end
     end
