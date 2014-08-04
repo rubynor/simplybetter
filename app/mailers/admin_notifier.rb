@@ -4,7 +4,7 @@ class AdminNotifier < ActionMailer::Base
   def send_to_group(group, creator, idea)
     group.each do |u|
       unless u == creator
-        new_idea(u,creator, idea).deliver
+        new_idea(u,creator, idea)
       end
     end
   end
@@ -12,9 +12,10 @@ class AdminNotifier < ActionMailer::Base
   private
 
   def new_idea(receiver,creator,idea)
+    @receiver = receiver
     @creator = creator
     @idea = idea
 
-    mail to: receiver.email, subject: 'SimplyBetter: A new idea has been submitted!'
+    mail to: @receiver.email, subject: 'SimplyBetter: A new idea has been submitted!'
   end
 end
