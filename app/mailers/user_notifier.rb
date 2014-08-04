@@ -1,5 +1,5 @@
 class UserNotifier < ActionMailer::Base
-  default from: "noreply@simplybetter.io"
+  default from: 'noreply@simplybetter.io'
 
   def self.notify_group_comment(group, comment)
     group.each do |u|
@@ -13,11 +13,10 @@ class UserNotifier < ActionMailer::Base
     @creator = creator
     @comment = comment
     @idea = @comment.idea
-    
-    subject = 'SimplyBetter: A user made a comment on an idea you commented on'
-    if @creator == receiver
-      subject = 'SimplyBetter: A user commented on your idea'
-    end
+
+    subject = @creator == receiver ?
+        'SimplyBetter: A user commented on your idea' :
+        'SimplyBetter: A user made a comment on an idea you commented on'
 
     mail to: receiver.email, subject: subject
   end
@@ -34,6 +33,10 @@ class UserNotifier < ActionMailer::Base
     @creator = creator
     @idea = idea
 
-    mail to: receiver.email, subject: 'SimplyBetter: Your idea has been implemented'
+    subject = @creator == receiver ?
+        'SimplyBetter: Your idea has been implemented' :
+        'SimplyBetter: An idea you commented has been implemented'
+
+    mail to: receiver.email, subject: subject
   end
 end

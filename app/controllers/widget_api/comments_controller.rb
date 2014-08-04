@@ -22,6 +22,7 @@ class WidgetApi::CommentsController < ApplicationController
 
     @comment = Comment.new(comment_attributes)
     @comment.creator = creator(app, params[:user][:email])#From module
+    # TODO: Refactor down to comment modell
     if @comment.save
       @comment.subscribe
       @comment.notify
