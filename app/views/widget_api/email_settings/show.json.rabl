@@ -1,0 +1,2 @@
+object @settings
+attributes :unsubscribed

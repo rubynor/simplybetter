@@ -8,10 +8,11 @@ class Customer < ActiveRecord::Base
 
   has_many :comments, inverse_of: :creator
   has_many :votes, as: :voter
+  has_one :email_setting, as: :mailable, dependent: :destroy
   validates_presence_of :name, :password_digest
   validates :email,
     format: {
-      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, 
+      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
       on: :create},
     uniqueness: true,
     presence: true
