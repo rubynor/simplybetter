@@ -11,10 +11,19 @@ simplyDirectives.directive 'onFinishRender', ['$timeout', ($timeout) ->
 simplyDirectives.directive 'ideaNew', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/idea_new']
+  controller: ['$scope', '$cookieStore', ($scope, $cookieStore) ->
+    $scope.user = $cookieStore.get('email')
+  ]
 
 simplyDirectives.directive 'ideaItem', ->
   restrict: 'E'
   template: JST["angular/widget/directives/templates/idea_item"]
+  controller: ['$scope', '$cookieStore', ($scope, $cookieStore) ->
+    email = $cookieStore.get('email')
+
+    $scope.owner = (idea) ->
+      idea.creator_email == email
+  ]
 
 simplyDirectives.directive 'vote', ->
   restrict: 'E'
