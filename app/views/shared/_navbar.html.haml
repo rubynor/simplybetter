@@ -11,5 +11,5 @@
         Show ideas
       = link_to edit_application_path(@application.id) do
         Settings
-      %a{href: "/widget?appkey=#{@application.token}&email=#{current_customer.email}&name='#{current_customer.name}'"}
-        Go to app
+      = link_to preview_application_path(@application.id) do
+        My widget
