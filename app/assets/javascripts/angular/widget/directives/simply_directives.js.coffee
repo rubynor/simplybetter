@@ -6,7 +6,7 @@ simplyDirectives.directive 'onFinishRender', ['$timeout', ($timeout) ->
     if scope.$last == true
       $timeout ->
         scope.$emit('ngRepeatFinished')
-  ]
+]
 
 simplyDirectives.directive 'ideaNew', ->
   restrict: 'E'
@@ -21,7 +21,7 @@ simplyDirectives.directive 'vote', ->
   template: JST["angular/widget/directives/templates/vote"]
   controller: ['$scope', 'Vote', ($scope, Vote) ->
     $scope.vote = (idea, val) ->
-      hash = {idea_id: idea.id, voter_email: $scope.email, value: val, votes_count: idea.votes_count, token: $scope.token, vote: {value: val}}
+      hash = {idea_id: idea.id, value: val, votes_count: idea.votes_count, vote: {value: val}}
       vote = new Vote(hash)
       vote.$save(
         (data) ->
