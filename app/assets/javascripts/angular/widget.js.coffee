@@ -18,11 +18,10 @@ angular.module("filters", []).filter "truncate", ->
   'ngCookies'
 ]
 
-@widget.run ['$cookieStore', ($cookieStore) ->
-  $cookieStore.put('token', token)
-  $cookieStore.put('email', email)
+@widget.run ['$cookieStore', '$cookies', ($cookieStore, $cookies) ->
+  $cookieStore.put('token', $cookies.token)
+  $cookieStore.put('email', $cookies.email)
 ]
-
 
 @widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
     # use hashbang fallback mode

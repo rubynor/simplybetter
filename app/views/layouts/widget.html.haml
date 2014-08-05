@@ -8,10 +8,6 @@
     = csrf_meta_tags
   %body
     %script
-      token = "#{@appkey}";
-      email = "#{@email}";
-
-    - @app = Application.find_by_token(@appkey)
 
     / ANGULAR HELP
     / Controllers are found in angular/controllers folder

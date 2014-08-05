@@ -18,11 +18,10 @@ simplyDirectives.directive 'ideaNew', ->
 simplyDirectives.directive 'ideaItem', ->
   restrict: 'E'
   template: JST["angular/widget/directives/templates/idea_item"]
-  controller: ['$scope', '$cookieStore', ($scope, $cookieStore) ->
-    email = $cookieStore.get('email')
+  controller: ['$scope', '$cookieStore', 'Session', ($scope, $cookieStore, Session) ->
 
     $scope.owner = (idea) ->
-      idea.creator_email == email
+      Session.owner(idea.creator_email)
   ]
 
 simplyDirectives.directive 'vote', ->
