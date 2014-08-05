@@ -12,11 +12,6 @@ class Vote < ActiveRecord::Base
     vote_val = value > 1 ? 1 : -1
     cast(vote_val)
     subscribe
-    Thread.abort_on_exception = true
-    t = Thread.new do
-      ActiveRecord::Base.connection.close
-    end
-    at_exit { t.join }
   end
 
   def cast(value)
