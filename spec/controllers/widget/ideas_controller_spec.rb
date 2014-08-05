@@ -54,12 +54,12 @@ describe WidgetApi::IdeasController do
   describe 'POST create' do
     it 'creates a new idea' do
       expect do
-        post :create, token: @application.token, user: { email: @user.email }, idea: { title: 'My awesome idea', description: 'My awesome description' }, format: :json
+        post :create, token: @application.token, user_email: @user.email, idea: { title: 'My awesome idea', description: 'My awesome description' }, format: :json
       end.to change( Idea, :count).by(1)
     end
     it 'should return 422' do
       expect do
-        post :create, token: @application.token, user: { email: @user.email }, idea: { description: '' }, format: :json
+        post :create, token: @application.token, user_email: @user.email, idea: { description: '' }, format: :json
       end.to_not change(Idea, :count)
       response.status.should eq(422) # :unprocessable_entity
     end

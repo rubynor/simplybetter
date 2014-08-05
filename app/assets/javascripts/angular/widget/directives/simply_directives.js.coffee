@@ -37,10 +37,10 @@ simplyDirectives.directive 'vote', ->
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/comments']
-  controller: ['$scope', '$location', '$timeout', 'Comment', '$routeParams', ($scope, $location, $timeout, Comment, $routeParams) ->
+  controller: ['$scope', '$location', '$timeout', '$routeParams', 'Comment', ($scope, $location, $timeout, $routeParams, Comment) ->
     $scope.comments = Comment.query {idea_id: $routeParams.id}
     $scope.comment_id = $location.search().comment_id
-    $scope.highlight = {comment: false}
+    $scope.highlight = { comment: false }
 
     $scope.unhighlight = ->
       $scope.highlight.comment = false
@@ -66,7 +66,7 @@ simplyDirectives.directive 'comments', ->
     $scope.save_comment = (newComment) ->
       $scope.error_message = undefined
       $scope.success_message = undefined
-      hash = { body: newComment, idea_id: $scope.idea.id, user: { email: $scope.email } }
+      hash = { body: newComment, idea_id: $scope.idea.id }
       comment = new Comment(hash)
       comment.$save(
         (data) ->
