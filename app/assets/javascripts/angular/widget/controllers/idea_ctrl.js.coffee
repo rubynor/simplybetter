@@ -1,5 +1,5 @@
-widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
-  $scope.idea = Idea.get({id: $routeParams.id, token: $scope.token, user_email: $scope.email},
+widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$cookieStore', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $cookieStore, $timeout, Idea, Redirect) ->
+  $scope.idea = Idea.get({id: $routeParams.id},
     (data) ->
   , (err) ->
     $scope.error_message = 'Not available'
@@ -19,7 +19,7 @@ widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout'
 
   $scope.update_idea = (idea) ->
     id = idea.id
-    idea.$patch({token: $scope.token, user_email: $scope.email}
+    idea.$patch(
       (data) ->
         Redirect('idea', { id: id })
     , (err) ->

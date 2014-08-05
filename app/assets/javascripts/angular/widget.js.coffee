@@ -15,7 +15,14 @@ angular.module("filters", []).filter "truncate", ->
   'simplyDirectives'
   'ui.bootstrap'
   'zj.namedRoutes'
+  'ngCookies'
 ]
+
+@widget.run ['$cookieStore', ($cookieStore) ->
+  $cookieStore.put('token', token)
+  $cookieStore.put('email', email)
+]
+
 
 @widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
     # use hashbang fallback mode
