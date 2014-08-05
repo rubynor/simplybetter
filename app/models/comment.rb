@@ -11,6 +11,22 @@ class Comment < ActiveRecord::Base
 
   scope :visible, -> { where(visible: true) }
 
+  def save_and_notify(idea)
+    if save
+      Thread.abort_on_exception = true
+      subscribe
+      notify
+      t =  Thread.new do
+        UserNotifier.notify_group_comment(idea.subscribers, self)
+        ActiveRecord::Base.connection.close
+      end
+      at_exit { t.join }
+      true
+    else
+      false
+    end
+  end
+
   def subscribe
     IdeaSubscription.add(self, self.creator, self.idea)
   end

@@ -12,7 +12,6 @@ class Vote < ActiveRecord::Base
     vote_val = value > 1 ? 1 : -1
     cast(vote_val)
     subscribe
-    notify(app_id)
   end
 
   def cast(value)

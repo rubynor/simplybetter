@@ -45,11 +45,6 @@ describe Idea do
         Idea.new(valid_attributes).widget_save_and_notify(@application, user)
       end.to change( Notification, :count).by 1
     end
-    it 'sends email to admin about new idea' do
-      expect do
-        Idea.new(valid_attributes).widget_save_and_notify(@application, user)
-      end.to change(ActionMailer::Base.deliveries, :count).by 1
-    end
     it 'returns false if not valid' do
       valid_attributes[:title] = nil
       expect do
@@ -67,12 +62,6 @@ describe Idea do
       expect do
         @idea.save_and_notify({completed: true}, @customer)
       end.to change(Notification, :count).by 1
-    end
-
-    it 'sends email to idea owner when completed' do
-      expect do
-        @idea.save_and_notify({completed: true }, @customer)
-      end.to change(ActionMailer::Base.deliveries, :count).by 1
     end
   end
 end

@@ -1,5 +1,24 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe AdminNotifier do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'send email for new idea to app owners' do
+    let(:customer) { Customer.make! }
+    let(:group) { [customer, Customer.make!] }
+    let(:idea) { Idea.make! }
+    let(:mail) { AdminNotifier.send_to_group(group, idea) }
+
+    it 'sends email' do
+      expect do
+        AdminNotifier.send_to_group(group, idea)
+      end.to change { ActionMailer::Base.deliveries.count }.by(2)
+    end
+
+    it 'renders the subject' do
+      expect(mail.subject).to eql('SimplyBetter: A new idea has been submitted!')
+    end
+
+    it 'renders the body' do
+      mail.body.encoded.should match('just submittet an idea on your SimplyBetter application')
+    end
+  end
 end
