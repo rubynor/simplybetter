@@ -84,8 +84,8 @@ simplyDirectives.directive 'comments', ->
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/notifications'],
-  controller: ['$scope', 'Notification', 'NotificationsCount', 'Redirect', ($scope, Notification, NotificationsCount, Redirect) ->
-    $scope.notifications = Notification.query() if $scope.email
+  controller: ['$scope', '$cookieStore', 'Notification', 'NotificationsCount', 'Redirect', ($scope, $cookieStore, Notification, NotificationsCount, Redirect) ->
+    $scope.notifications = Notification.query() if $cookieStore.get('email')
 
     $scope.notificationsActive = false
     $scope.new_notifications = undefined
@@ -96,7 +96,7 @@ simplyDirectives.directive 'notifications', ->
     $scope.toggleNotifications = ->
       $scope.notificationsActive = !$scope.notificationsActive
 
-    if $scope.email
+    if $cookieStore.get('email')
       $scope.updateNotiCount()
 
     $scope.timeago = (time) ->
