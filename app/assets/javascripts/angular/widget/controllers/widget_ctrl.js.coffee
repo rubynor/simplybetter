@@ -1,9 +1,4 @@
 widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect', ($scope, Idea, FindSimilarIdea, Redirect) ->
-
-  $scope.init = (token, email) ->
-    $scope.email = email
-    $scope.token = token
-
   $scope.newIdea = new Idea({})
 
   $scope.reset_path = () ->

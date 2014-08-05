@@ -46,10 +46,11 @@ simplyDirectives.directive 'vote', ->
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/comments']
-  controller: ['$scope', '$location', '$timeout', '$routeParams', 'Comment', ($scope, $location, $timeout, $routeParams, Comment) ->
+  controller: ['$scope', '$location', '$timeout', '$routeParams', '$cookieStore', 'Comment', ($scope, $location, $timeout, $routeParams, $cookieStore, Comment) ->
     $scope.comments = Comment.query {idea_id: $routeParams.id}
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = { comment: false }
+    $scope.user = $cookieStore.get('email')
 
     $scope.unhighlight = ->
       $scope.highlight.comment = false
@@ -128,9 +129,9 @@ simplyDirectives.directive 'notifications', ->
 simplyDirectives.directive 'accountSettingsButton', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/account_settings_button']
-  controller: ['$scope', ($scope) ->
+  controller: ['$scope', '$cookieStore', ($scope, $cookieStore) ->
     @hidden = true
-    if $scope.email
+    if $cookieStore.get('email')
       @hidden = false
   ]
   controllerAs: 'button'

@@ -1,12 +1,11 @@
-widget.factory 'User', ['$resource', ($resource) ->
+widget.factory 'User', ['$resource', '$cookieStore', ($resource, $cookieStore) ->
   $resource '/widget_api/user.json',
-    email: '@email'
-    token: '@token'
+    email: $cookieStore.get('email')
+    token: $cookieStore.get('token')
   ,
     update:
       method: 'PUT'
       params:
-        email: '@email'
-        name: '@name'
-        token: '@token'
+        email: $cookieStore.get('email')
+        token: $cookieStore.get('token')
 ]
