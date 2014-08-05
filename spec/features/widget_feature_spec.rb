@@ -81,12 +81,26 @@ describe WidgetController, js: true do
     end
 
     context 'settings page' do
-      example 'update name' do
+      before do
         within_frame 0 do
           first('.settings-button').click
+        end
+      end
+
+      example 'update name' do
+        within_frame 0 do
           fill_in 'user_name', with: 'Cool Person'
           click_button 'Save'
           page.should have_css('.success')
+        end
+      end
+
+      example 'unsubscribe from emails' do
+        within_frame 0 do
+          check 'unsubscribe'
+          page.should have_css('.unsubscribed')
+          uncheck 'unsubscribe'
+          page.should have_css('.subscribed')
         end
       end
     end

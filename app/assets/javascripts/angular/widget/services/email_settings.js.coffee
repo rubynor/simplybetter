@@ -1,23 +1,24 @@
-widget.factory 'User', ['$resource', ($resource) ->
-  @user = {}
+widget.factory 'EmailSettings', ['$resource', ($resource) ->
+  @settings = {}
   @authParams = {}
 
   @get = (email, token) ->
     @setAuthParams(email, token)
-    if @user.length > 0
-      @user
+    if @settings.length > 0
+      @settings
     else
       @fetchFromBackend()
 
   @fetchFromBackend = ->
-    @user =
+    @settings =
       @resource.get
         email: @authParams.email
         token: @authParams.token
 
   @update = (success, error) ->
-    @user.$update(
+    @settings.$update(
       token: @authParams.token
+      email: @authParams.email
     ,(data) =>
       success(data)
     , =>
@@ -28,7 +29,7 @@ widget.factory 'User', ['$resource', ($resource) ->
     @authParams = { email: email, token: token }
 
   @resource = (->
-    $resource '/widget_api/user.json', null,
+    $resource '/widget_api/email_settings.json', null,
       update:
         method: 'PUT'
   )()

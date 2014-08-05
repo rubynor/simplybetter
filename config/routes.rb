@@ -16,6 +16,7 @@ SimplyBetter::Application.routes.draw do
       get :count, on: :collection
     end
     resource :user, only: [:show, :update]
+    resource :email_settings, only: [:show, :update]
   end
 
   resources :customers, only: [:index, :new, :create, :edit, :update] do

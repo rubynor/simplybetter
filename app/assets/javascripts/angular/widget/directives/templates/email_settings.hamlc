@@ -1,0 +1,6 @@
+%form
+  %label Unsubscribe from email notifications
+  %input(type='checkbox' name='unsubscribe' ng-model='emailSetting.settings.unsubscribed')
+  .subscribed.success(ng-show='emailSetting.justSubscribed') You are now subscribed
+  .unsubscribed.success(ng-show='emailSetting.justUnsubscribed') You are now unsubscribed
+  .error(ng-show='emailSetting.error') Something bad happened and we could not save this data :-(

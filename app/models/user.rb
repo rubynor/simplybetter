@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments, as: :creator, inverse_of: :creator
   has_many :ideas, as: :creator
   has_many :votes, as: :voter
+  has_one :email_setting, as: :mailable, dependent: :destroy
 
   validates :email,
     format: {

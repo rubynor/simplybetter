@@ -24,6 +24,7 @@ Customer.blueprint do
   email { "test-#{sn}@example.com" }
   password { "secret" }
   password_confirmation { "secret" }
+  email_setting
 end
 
 Comment.blueprint do
@@ -35,6 +36,10 @@ end
 User.blueprint do
   name { "Machinist user" }
   email { "test-#{sn}@machinist.com" }
+  email_setting
+end
+
+EmailSetting.blueprint do
 end
 
 Vote.blueprint do

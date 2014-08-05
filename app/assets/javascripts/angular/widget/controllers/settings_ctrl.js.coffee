@@ -3,12 +3,13 @@ SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', ($sc
   @spinnerVisible = false
   @errorVisible = false
   @successVisible = false
-  @user = {}
-  @user = User.get
-    email: $scope.$parent.email
-    token: $scope.$parent.token
-  , (data) ->
-    data.token = $scope.$parent.token
+
+  email = $scope.$parent.email
+  token = $scope.$parent.token
+
+  @user = ( ->
+    User.get email, token
+  )()
 
   @initSpinner = ->
     spinner = new Spinner().spin()
@@ -17,11 +18,10 @@ SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', ($sc
 
   @submitForm = ->
     @showSpinner()
-    @user.$update( (data) =>
+    User.update( =>
       @hideSpinner()
       @hideError()
       @showSuccess()
-      data.token = $scope.$parent.token
     , =>
       @hideSpinner()
       @showError()
