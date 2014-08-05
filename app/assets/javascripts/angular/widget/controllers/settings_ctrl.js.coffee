@@ -1,9 +1,9 @@
-SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', ($scope, $rootScope, $routeParams, $timeout, User) ->
+SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', 'Session', ($scope, $rootScope, $routeParams, $timeout, User, Session) ->
   $scope.$parent.path = true
   @spinnerVisible = false
   @errorVisible = false
   @successVisible = false
-  @user = {}
+
   @user = User.get()
 
   @initSpinner = ->
@@ -13,7 +13,7 @@ SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', ($sc
 
   @submitForm = ->
     @showSpinner()
-    @user.$update( (data) =>
+    User.update( =>
       @hideSpinner()
       @hideError()
       @showSuccess()

@@ -135,3 +135,43 @@ simplyDirectives.directive 'accountSettingsButton', ->
       @hidden = false
   ]
   controllerAs: 'button'
+
+simplyDirectives.directive 'emailSettings', ->
+  restrict: 'E'
+  template: JST['angular/widget/directives/templates/email_settings']
+  controller: ['$scope', '$timeout', 'EmailSettings', ($scope, $timeout, EmailSettings) ->
+    @justSubscribed = false
+    @justUnsubscribed = false
+    @error = false
+
+    @settings = EmailSettings.get()
+
+    @submit = ->
+      EmailSettings.update( =>
+        if @settings.unsubscribed
+          @justUnsubscribed = true
+          @hideAlert()
+        else
+          @justSubscribed = true
+          @hideAlert()
+        @hideError()
+      , (error) =>
+        @error = true
+      )
+
+    @hideAlert = () ->
+      $timeout( =>
+        @justSubscribed = false
+        @justUnsubscribed = false
+      , 3000)
+
+    @hideError = ->
+      @error = false
+
+    $scope.$watch 'emailSetting.settings.unsubscribed', (newValue, oldValue) =>
+      unless oldValue == undefined || newValue == undefined
+        @submit()
+
+    return
+  ]
+  controllerAs: 'emailSetting'
