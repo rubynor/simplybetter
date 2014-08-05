@@ -1,4 +1,4 @@
-widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$cookieStore', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $cookieStore, $timeout, Idea, Redirect) ->
+widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
   $scope.idea = Idea.get({id: $routeParams.id},
     (data) ->
   , (err) ->

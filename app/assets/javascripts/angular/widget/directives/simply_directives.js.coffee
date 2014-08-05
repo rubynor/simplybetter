@@ -11,8 +11,8 @@ simplyDirectives.directive 'onFinishRender', ['$timeout', ($timeout) ->
 simplyDirectives.directive 'ideaNew', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/idea_new']
-  controller: ['$scope', '$cookieStore', ($scope, $cookieStore) ->
-    $scope.user = $cookieStore.get('email')
+  controller: ['$scope', 'Session', ($scope, Session) ->
+    $scope.user = Session.user_signed_in()
   ]
 
 simplyDirectives.directive 'ideaItem', ->
@@ -46,11 +46,11 @@ simplyDirectives.directive 'vote', ->
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/comments']
-  controller: ['$scope', '$location', '$timeout', '$routeParams', '$cookieStore', 'Comment', ($scope, $location, $timeout, $routeParams, $cookieStore, Comment) ->
+  controller: ['$scope', '$location', '$timeout', '$routeParams', 'Session', 'Comment', ($scope, $location, $timeout, $routeParams, Session, Comment) ->
     $scope.comments = Comment.query {idea_id: $routeParams.id}
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = { comment: false }
-    $scope.user = $cookieStore.get('email')
+    $scope.user = Session.user_signed_in()
 
     $scope.unhighlight = ->
       $scope.highlight.comment = false
@@ -94,8 +94,9 @@ simplyDirectives.directive 'comments', ->
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/notifications'],
-  controller: ['$scope', '$cookieStore', 'Notification', 'NotificationsCount', 'Redirect', ($scope, $cookieStore, Notification, NotificationsCount, Redirect) ->
-    $scope.notifications = Notification.query() if $cookieStore.get('email')
+  controller: ['$scope', 'Session', 'Notification', 'NotificationsCount', 'Redirect', ($scope, Session, Notification, NotificationsCount, Redirect) ->
+    user = Session.user_signed_in()
+    $scope.notifications = Notification.query() if user
 
     $scope.notificationsActive = false
     $scope.new_notifications = undefined
@@ -106,7 +107,7 @@ simplyDirectives.directive 'notifications', ->
     $scope.toggleNotifications = ->
       $scope.notificationsActive = !$scope.notificationsActive
 
-    if $cookieStore.get('email')
+    if user
       $scope.updateNotiCount()
 
     $scope.timeago = (time) ->
@@ -129,9 +130,9 @@ simplyDirectives.directive 'notifications', ->
 simplyDirectives.directive 'accountSettingsButton', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/account_settings_button']
-  controller: ['$scope', '$cookieStore', ($scope, $cookieStore) ->
+  controller: ['$scope', 'Session', ($scope, Session) ->
     @hidden = true
-    if $cookieStore.get('email')
+    if Session.user_signed_in()
       @hidden = false
   ]
   controllerAs: 'button'
