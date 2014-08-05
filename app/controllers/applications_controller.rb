@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show, :administrate_group, :edit, :update]
+  before_action :set_application, only: [:show, :administrate_group, :edit, :update, :preview]
 
   def index
     if applications.any?
@@ -36,6 +36,12 @@ class ApplicationsController < ApplicationController
   end
 
   def administrate_group
+  end
+
+  def preview
+    @token = @application.token
+    @email = current_customer.email
+    @name = current_customer.name
   end
 
   private
