@@ -1,10 +1,6 @@
 widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect', ($scope, Idea, FindSimilarIdea, Redirect) ->
   $scope.newIdea = new Idea({})
 
-  $scope.init = (token, email) ->
-    $scope.email = email
-    $scope.token = token
-
   $scope.reset_path = () ->
     $scope.path = undefined
     $scope.ideas = Idea.query()
@@ -13,7 +9,7 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect'
 
   $scope.find_similar = (txt) ->
     return unless txt.length > 10
-    FindSimilarIdea.query({ token: $scope.token, query: txt },
+    FindSimilarIdea.query({ query: txt },
       (response) ->
         $scope.similar_ideas = response
     )
@@ -30,7 +26,7 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect'
   $scope.save_idea = (newIdea) ->
     $scope.success_message = undefined
     $scope.error_message = undefined
-    hash = { idea: newIdea, user: {email: $scope.email}, token: $scope.token}
+    hash = { idea: newIdea }
     idea = new Idea(hash)
     idea.$save(
       (data) ->

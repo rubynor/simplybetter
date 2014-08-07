@@ -15,6 +15,12 @@ angular.module("filters", []).filter "truncate", ->
   'simplyDirectives'
   'ui.bootstrap'
   'zj.namedRoutes'
+  'ngCookies'
+]
+
+@widget.run ['$cookieStore', '$cookies', ($cookieStore, $cookies) ->
+  $cookieStore.put('token', $cookies.token)
+  $cookieStore.put('email', $cookies.email)
 ]
 
 @widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->

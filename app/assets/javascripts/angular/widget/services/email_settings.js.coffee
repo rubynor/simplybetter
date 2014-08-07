@@ -1,9 +1,10 @@
-widget.factory 'EmailSettings', ['$resource', ($resource) ->
+widget.factory 'EmailSettings', ['$resource', 'Session', ($resource, Session) ->
   @settings = {}
   @authParams = {}
+  email = Session.email()
+  token = Session.token()
 
-  @get = (email, token) ->
-    @setAuthParams(email, token)
+  @get =  ->
     if @settings.length > 0
       @settings
     else
@@ -12,21 +13,19 @@ widget.factory 'EmailSettings', ['$resource', ($resource) ->
   @fetchFromBackend = ->
     @settings =
       @resource.get
-        email: @authParams.email
-        token: @authParams.token
+        email: email
+        token: token
 
   @update = (success, error) ->
     @settings.$update(
-      token: @authParams.token
-      email: @authParams.email
+      token: token
+      email: email
     ,(data) =>
       success(data)
     , =>
       error()
     )
 
-  @setAuthParams = (email, token) ->
-    @authParams = { email: email, token: token }
 
   @resource = (->
     $resource '/widget_api/email_settings.json', null,
