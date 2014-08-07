@@ -18,6 +18,6 @@ describe Comment do
 
   it 'should respond to idea' do
     c = Comment.make!
-    c.should respond_to(:idea)
+    expect(c).to respond_to(:idea)
   end
 end

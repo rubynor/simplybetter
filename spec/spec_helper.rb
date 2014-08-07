@@ -46,6 +46,8 @@ RSpec.configure do |config|
   # users so from RSpec 3 onwards this behaviour must be explicitly opted into
   config.infer_spec_type_from_file_location!
 
+  #config.raise_errors_for_deprecations!
+
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.

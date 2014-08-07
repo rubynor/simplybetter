@@ -19,7 +19,7 @@ describe UserNotifier do
     end
 
     it 'renders the body' do
-      mail.body.encoded.should match('just wrote this comment:')
+      expect(mail.body.encoded).to match('just wrote this comment:')
     end
   end
 
@@ -38,7 +38,7 @@ describe UserNotifier do
     end
 
     it 'renders the body' do
-      mail.body.encoded.should match('changed the status of the idea below to completed')
+      expect(mail.body.encoded).to match('changed the status of the idea below to completed')
     end
   end
 end
