@@ -17,7 +17,7 @@ class WidgetApi::CommentsController < ApplicationController
     end
     app = @idea.application
     @comment = Comment.new(comment_attributes)
-    @comment.creator = creator(app, params[:user][:email])#From module
+    @comment.creator = creator(app, params[:user_email])#From module
     if @comment.save_and_notify!
       render 'widget_api/comments/show'
     else
