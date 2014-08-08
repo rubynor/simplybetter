@@ -21,9 +21,9 @@ describe CustomersController do
     end
 
     it 'should render new when not valid' do
-      Customer.any_instance.stub(:save).and_return(false)
+      allow_any_instance_of(Customer).to receive(:save).and_return(false)
       post :create, customer: valid_attributes
-      response.should render_template :new
+      expect(response).to render_template :new
     end
 
     it 'should not create customer when not valid' do
@@ -43,24 +43,24 @@ describe CustomersController do
       describe 'change email' do
         it 'should update customers email' do
           patch :update_unsafe, id: @customer.to_param, customer: { email: 'test@test.no', current_password: 'secret' }
-          response.should redirect_to edit_unsafe_customer_path(@customer.id)
-          Customer.last.email.should eq('test@test.no')
+          expect(response).to redirect_to edit_unsafe_customer_path(@customer.id)
+          expect(Customer.last.email).to eq('test@test.no')
         end
         it 'should render edit_unsafe' do
           patch :update_unsafe, id: @customer.to_param, customer: { email: '', current_password: 'secret' }
-          response.should render_template :edit_unsafe
+          expect(response).to render_template :edit_unsafe
         end
         it 'should redirect to back' do
           request.env['HTTP_REFERER'] = edit_unsafe_customer_path(@customer.id)
           patch :update_unsafe, id: @customer.to_param, customer: { email: @customer.email, current_password: 's' }
-          response.should redirect_to edit_unsafe_customer_path(@customer.id)
+          expect(response).to redirect_to edit_unsafe_customer_path(@customer.id)
         end
       end
       describe 'change password' do
         it 'should update customers password' do
           patch :update_unsafe, id: @customer.to_param, customer: { password: '12345', password_confirmation: '12345', current_password: 'secret' }
-          response.should redirect_to edit_unsafe_customer_path(@customer.id)
-          Customer.last.password_digest.should_not eq(@customer.password_digest)
+          expect(response).to redirect_to edit_unsafe_customer_path(@customer.id)
+          expect(Customer.last.password_digest).not_to eq(@customer.password_digest)
         end
       end
     end
@@ -71,16 +71,16 @@ describe CustomersController do
       describe 'change name' do
         it 'should update customers name' do
           put :update, id: @customer.to_param, customer: { name: 'Arne' }
-          response.should redirect_to request.env['HTTP_REFERER']
-          Customer.last.name.should eq('Arne')
-          flash[:error].should be(nil)
-          flash[:notice].should_not be(nil)
+          expect(response).to redirect_to request.env['HTTP_REFERER']
+          expect(Customer.last.name).to eq('Arne')
+          expect(flash[:error]).to be(nil)
+          expect(flash[:notice]).not_to be(nil)
         end
         it 'should flash error when name is blank' do
           put :update, id: @customer.to_param, customer: { name: '' }
-          response.should redirect_to request.env['HTTP_REFERER']
-          flash[:notice].should be(nil)
-          flash[:error].should_not be(nil)
+          expect(response).to redirect_to request.env['HTTP_REFERER']
+          expect(flash[:notice]).to be(nil)
+          expect(flash[:error]).not_to be(nil)
         end
       end
     end

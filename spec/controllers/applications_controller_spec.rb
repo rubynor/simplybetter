@@ -12,14 +12,14 @@ describe ApplicationsController do
   describe 'index' do
     it 'should assign variables @applications and @application' do
       get :index
-      assigns(:applications).first.should be_kind_of(Application)
+      expect(assigns(:applications).first).to be_kind_of(Application)
     end
   end
 
   describe 'show' do
     it 'should assign @application' do
       get :show, id: @application.id
-      assigns(:application).should be_an_instance_of(Application)
+      expect(assigns(:application)).to be_an_instance_of(Application)
     end
   end
 
@@ -31,7 +31,7 @@ describe ApplicationsController do
     end
     it 'should redirect to applications_path' do
       post :create, application: {name: 'The bestest application'}
-      response.should redirect_to(application_path(Application.last.id))
+      expect(response).to redirect_to(application_path(Application.last.id))
     end
   end
 end
