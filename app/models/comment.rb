@@ -9,6 +9,7 @@ class Comment < ActiveRecord::Base
 
   include CommentNotificationHelpers
 
+  default_scope { order('created_at ASC') }
   scope :visible, -> { where(visible: true) }
 
   def save_and_notify(idea)
