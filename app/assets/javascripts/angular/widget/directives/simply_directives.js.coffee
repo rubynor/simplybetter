@@ -62,7 +62,7 @@ simplyDirectives.directive 'comments', ->
           $scope.error_message = 'This comment is not available'
         else
           $scope.error_message = undefined
-          $('#simplybetterIdeasModalContent').animate({scrollTop: ($elm.offset().top - 150)},'slow')
+          $('#simplybetterIdeasModalContent').animate({scrollTop: ($elm.position().top - 150)},'slow')
           $scope.highlight.comment = true
           $timeout($scope.unhighlight, 3000)
 
