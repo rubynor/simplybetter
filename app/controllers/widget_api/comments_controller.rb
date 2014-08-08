@@ -15,15 +15,10 @@ class WidgetApi::CommentsController < ApplicationController
     if params[:user_email].blank?
       render json: 'You must be signed in to comment', status: :unauthorized and return
     end
-
-    user_email = params[:comment].delete(:user_email)
-    customer_email = params[:comment].delete(:customer_email)
     app = @idea.application
-
     @comment = Comment.new(comment_attributes)
     @comment.creator = creator(app, params[:user_email])#From module
-    # TODO: Refactor down to comment modell
-    if @comment.save_and_notify(@idea)
+    if @comment.save_and_notify!
       render 'widget_api/comments/show'
     else
       render json: @comment.errors, status: :unprocessable_entity

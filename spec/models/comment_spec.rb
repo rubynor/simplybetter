@@ -1,23 +1,41 @@
 require 'spec_helper'
 
 describe Comment do
-  it 'body can not be blank' do
-    c = Comment.new(idea_id: Idea.make!.id, creator: User.make)
-    expect{ c.save! }.to raise_error ActiveRecord::RecordInvalid, /body/i
+  before :all do
+    @idea = Idea.make!
   end
+  let(:valid_attributes) { { body: 'O hai thar', idea: @idea, creator: User.make! } }
 
-  it 'idea_id can not be blank' do
-    c = Comment.new(creator: User.make, body: 'O hai thar')
-    expect{ c.save! }.to raise_error ActiveRecord::RecordInvalid, /idea/i
-  end
-
-  it 'user_id can not be blank' do
-    c = Comment.new(idea_id: Idea.make!.id, body: 'O hai thar')
-    expect{ c.save! }.to raise_error ActiveRecord::RecordInvalid, /creator/i
+  describe 'validations' do
+    subject { Comment.new(valid_attributes) }
+    it { is_expected.to validate_presence_of(:body) }
+    it { is_expected.to validate_presence_of(:idea) }
+    it { is_expected.to validate_presence_of(:creator) }
   end
 
   it 'should respond to idea' do
     c = Comment.make!
     expect(c).to respond_to(:idea)
+  end
+
+  describe '#save_and_notify' do
+    it 'should save an idea' do
+      expect do
+        Comment.new(valid_attributes).save_and_notify!
+      end.to change(Comment, :count).by 1
+    end
+
+    it 'should subscribe commenter to idea' do
+      expect do
+        Comment.new(valid_attributes).save_and_notify!
+      end.to change(IdeaSubscription, :count).by 1
+    end
+
+    it 'should notify idea creator' do
+      @idea.subscribe
+      expect do
+        Comment.new(valid_attributes).save_and_notify!
+      end.to change(Notification, :count).by 1
+    end
   end
 end

@@ -30,7 +30,7 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def application
-    unless @application ||= Application.find_by_token(params[:token])
+    unless @application ||= Application.find_by(token: params[:token])
       raise "Can't find application"
     end
     @application
@@ -52,7 +52,5 @@ class WidgetApi::VotesController < ApplicationController
 
   def voter
     creator(application, params[:voter_email])
-  rescue NoUserException
-    # It's ok if user, not signed in
   end
 end
