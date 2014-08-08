@@ -12,7 +12,7 @@ class WidgetApi::CommentsController < ApplicationController
 
   def create
     # Early exit if no user..
-    if params[:user][:email].blank?
+    if params[:user_email].blank?
       render json: 'You must be signed in to comment', status: :unauthorized and return
     end
 
@@ -21,7 +21,7 @@ class WidgetApi::CommentsController < ApplicationController
     app = @idea.application
 
     @comment = Comment.new(comment_attributes)
-    @comment.creator = creator(app, params[:user][:email])#From module
+    @comment.creator = creator(app, params[:user_email])#From module
     # TODO: Refactor down to comment modell
     if @comment.save_and_notify(@idea)
       render 'widget_api/comments/show'

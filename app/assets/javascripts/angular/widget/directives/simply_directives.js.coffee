@@ -6,22 +6,30 @@ simplyDirectives.directive 'onFinishRender', ['$timeout', ($timeout) ->
     if scope.$last == true
       $timeout ->
         scope.$emit('ngRepeatFinished')
-  ]
+]
 
 simplyDirectives.directive 'ideaNew', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/idea_new']
+  controller: ['$scope', 'Session', ($scope, Session) ->
+    $scope.user = Session.user_signed_in()
+  ]
 
 simplyDirectives.directive 'ideaItem', ->
   restrict: 'E'
   template: JST["angular/widget/directives/templates/idea_item"]
+  controller: ['$scope', '$cookieStore', 'Session', ($scope, $cookieStore, Session) ->
+
+    $scope.owner = (idea) ->
+      Session.owner(idea.creator_email)
+  ]
 
 simplyDirectives.directive 'vote', ->
   restrict: 'E'
   template: JST["angular/widget/directives/templates/vote"]
   controller: ['$scope', 'Vote', ($scope, Vote) ->
     $scope.vote = (idea, val) ->
-      hash = {idea_id: idea.id, voter_email: $scope.email, value: val, votes_count: idea.votes_count, token: $scope.token, vote: {value: val}}
+      hash = {idea_id: idea.id, value: val, votes_count: idea.votes_count, vote: {value: val}}
       vote = new Vote(hash)
       vote.$save(
         (data) ->
@@ -37,10 +45,11 @@ simplyDirectives.directive 'vote', ->
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/comments']
-  controller: ['$scope', '$location', '$timeout', 'Comment', '$routeParams', ($scope, $location, $timeout, Comment, $routeParams) ->
+  controller: ['$scope', '$location', '$timeout', '$routeParams', 'Session', 'Comment', ($scope, $location, $timeout, $routeParams, Session, Comment) ->
     $scope.comments = Comment.query {idea_id: $routeParams.id}
     $scope.comment_id = $location.search().comment_id
-    $scope.highlight = {comment: false}
+    $scope.highlight = { comment: false }
+    $scope.user = Session.user_signed_in()
 
     $scope.unhighlight = ->
       $scope.highlight.comment = false
@@ -66,7 +75,7 @@ simplyDirectives.directive 'comments', ->
     $scope.save_comment = (newComment) ->
       $scope.error_message = undefined
       $scope.success_message = undefined
-      hash = { body: newComment, idea_id: $scope.idea.id, user: { email: $scope.email } }
+      hash = { body: newComment, idea_id: $scope.idea.id }
       comment = new Comment(hash)
       comment.$save(
         (data) ->
@@ -84,8 +93,9 @@ simplyDirectives.directive 'comments', ->
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/notifications'],
-  controller: ['$scope', 'Notification', 'NotificationsCount', 'Redirect', ($scope, Notification, NotificationsCount, Redirect) ->
-    $scope.notifications = Notification.query() if $scope.email
+  controller: ['$scope', 'Session', 'Notification', 'NotificationsCount', 'Redirect', ($scope, Session, Notification, NotificationsCount, Redirect) ->
+    user = Session.user_signed_in()
+    $scope.notifications = Notification.query() if user
 
     $scope.notificationsActive = false
     $scope.new_notifications = undefined
@@ -96,7 +106,7 @@ simplyDirectives.directive 'notifications', ->
     $scope.toggleNotifications = ->
       $scope.notificationsActive = !$scope.notificationsActive
 
-    if $scope.email
+    if user
       $scope.updateNotiCount()
 
     $scope.timeago = (time) ->
@@ -119,9 +129,9 @@ simplyDirectives.directive 'notifications', ->
 simplyDirectives.directive 'accountSettingsButton', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/account_settings_button']
-  controller: ['$scope', ($scope) ->
+  controller: ['$scope', 'Session', ($scope, Session) ->
     @hidden = true
-    if $scope.email
+    if Session.user_signed_in()
       @hidden = false
   ]
   controllerAs: 'button'
@@ -133,12 +143,8 @@ simplyDirectives.directive 'emailSettings', ->
     @justSubscribed = false
     @justUnsubscribed = false
     @error = false
-    email = $scope.$parent.email
-    token = $scope.$parent.token
 
-    @settings = ( ->
-      EmailSettings.get email, token
-    )()
+    @settings = EmailSettings.get()
 
     @submit = ->
       EmailSettings.update( =>

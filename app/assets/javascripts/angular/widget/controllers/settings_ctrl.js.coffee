@@ -1,15 +1,10 @@
-SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', ($scope, $rootScope, $routeParams, $timeout, User) ->
+SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', 'Session', ($scope, $rootScope, $routeParams, $timeout, User, Session) ->
   $scope.$parent.path = true
   @spinnerVisible = false
   @errorVisible = false
   @successVisible = false
 
-  email = $scope.$parent.email
-  token = $scope.$parent.token
-
-  @user = ( ->
-    User.get email, token
-  )()
+  @user = User.get()
 
   @initSpinner = ->
     spinner = new Spinner().spin()

@@ -27,7 +27,7 @@ class WidgetApi::IdeasController < ApplicationController
     @idea = Idea.new(idea_params)
 
     respond_to do |format|
-      if @idea.widget_save_and_notify(application, creator(application, params[:user][:email]))
+      if @idea.widget_save_and_notify(application, creator(application, params[:user_email]))
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }

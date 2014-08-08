@@ -22,11 +22,11 @@ describe Idea do
 
   describe 'validations' do
     subject { Idea.new(valid_attributes) }
-    it { should_not have_valid(:title).when(nil) }
-    it { should_not have_valid(:description).when(nil) }
-    it { should_not have_valid(:creator).when(nil) }
-    it { should_not have_valid(:application).when(nil) }
-    it { should_not have_valid(:title).when(@idea.title) }
+    it { is_expected.not_to have_valid(:title).when(nil) }
+    it { is_expected.not_to have_valid(:description).when(nil) }
+    it { is_expected.not_to have_valid(:creator).when(nil) }
+    it { is_expected.not_to have_valid(:application).when(nil) }
+    it { is_expected.not_to have_valid(:title).when(@idea.title) }
   end
 
   describe '#widget_save_and_notify' do
