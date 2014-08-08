@@ -1,7 +1,8 @@
 class AdminNotifierPreview < ActionMailer::Preview
-  def send_to_group
-    customer = Customer.all.limit(2)
+  def new_idea
+    receiver = Customer.last
     idea = Idea.last
-    AdminNotifier.send_to_group(customer, idea)
+    creator = idea.creator
+    AdminNotifier.new_idea(receiver, creator, idea)
   end
 end

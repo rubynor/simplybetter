@@ -6,7 +6,7 @@ describe UserNotifier do
   let(:comment) { Comment.make! }
 
   describe 'notify for new comment' do
-    let(:mail) { UserNotifier.new_comment(customer, comment.creator, comment) }
+    let(:mail) { UserNotifier.new_comment(customer, comment.creator, comment, comment.idea) }
 
     it 'sends email to application subscribers' do
       expect do
@@ -15,7 +15,7 @@ describe UserNotifier do
     end
 
     it 'renders the subject' do
-      expect(mail.subject).to eql('SimplyBetter: A user made a comment on an idea you commented on')
+      expect(mail.subject).to eql("SimplyBetter: New comment on the idea: '#{comment.idea.title}'")
     end
 
     it 'renders the body' do
