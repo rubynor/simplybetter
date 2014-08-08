@@ -10,6 +10,6 @@ class UserNotifierPreview < ActionMailer::Preview
     creator = User.last
     comment = Comment.last
     receiver = User.first
-    UserNotifier.new_comment(receiver, creator, comment)
+    UserNotifier.new_comment(receiver, creator, comment, comment.idea)
   end
 end
