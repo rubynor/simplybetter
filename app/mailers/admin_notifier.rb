@@ -1,8 +1,8 @@
 class AdminNotifier < ActionMailer::Base
-  include MailerHelpers
+  extend MailerHelpers
   default from: 'noreply@simplybetter.io'
 
-  def send_to_group(group, idea)
+  def self.send_to_group(group, idea)
     creator = idea.creator
     group.each do |u|
       if should_send_mail?(u, creator)
@@ -11,9 +11,7 @@ class AdminNotifier < ActionMailer::Base
     end
   end
 
-  private
-
-  def new_idea(receiver,creator,idea)
+  def new_idea(receiver, creator, idea)
     @receiver = receiver
     @creator = creator
     @idea = idea

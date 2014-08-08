@@ -4,7 +4,6 @@ class UserNotifier < ActionMailer::Base
 
   def self.notify_group_comment(group, comment)
     group.each do |u|
-
       if should_send_mail?(u, comment.creator)
         new_comment(u, comment.creator, comment).deliver
       end
