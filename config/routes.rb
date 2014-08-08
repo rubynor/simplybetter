@@ -35,6 +35,10 @@ SimplyBetter::Application.routes.draw do
 
   resources :comments, only: [:update]
 
+  resources :email_settings, param: :unsubscribe_token, only: [] do
+    get :unsubscribe, on: :member
+  end
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'widget' => "widget#widget"
