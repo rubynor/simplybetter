@@ -15,9 +15,9 @@ class UserNotifier < ActionMailer::Base
     @creator = creator
     @comment = comment
     @receiver = receiver
-    @idea = @comment.idea
+    @idea = idea
 
-    subject = "SimplyBetter: New comment on the idea: '#{idea.title}'"
+    subject = "SimplyBetter: New comment on the idea: '#{@idea.title}'"
 
     mail to: @receiver.email, subject: subject
   end
