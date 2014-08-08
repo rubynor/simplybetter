@@ -1,6 +1,6 @@
 class Idea < ActiveRecord::Base
   has_paper_trail
-  searchkick autocomplete: [:title]
+  searchkick
 
   belongs_to :application
   belongs_to :creator, polymorphic: true
