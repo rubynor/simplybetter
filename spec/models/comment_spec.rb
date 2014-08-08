@@ -8,9 +8,9 @@ describe Comment do
 
   describe 'validations' do
     subject { Comment.new(valid_attributes) }
-    it { should_not have_valid(:body).when(nil) }
-    it { should_not have_valid(:idea).when(nil) }
-    it { should_not have_valid(:creator).when(nil) }
+    it { is_expected.to validate_presence_of(:body) }
+    it { is_expected.to validate_presence_of(:idea) }
+    it { is_expected.to validate_presence_of(:creator) }
   end
 
   it 'should respond to idea' do

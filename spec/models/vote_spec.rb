@@ -11,9 +11,9 @@ describe Vote do
 
   describe 'validations' do
     subject { Vote.new(valid_attributes) }
-    it { should_not have_valid(:voter).when(nil) }
-    it { should_not have_valid(:vote_receiver).when(nil) }
-    it { should_not have_valid(:value).when(nil) }
+    it { is_expected.to validate_presence_of(:voter) }
+    it { is_expected.to validate_presence_of(:vote_receiver) }
+    it { is_expected.to validate_presence_of(:value) }
   end
 
   describe '#cast_vote' do
@@ -39,17 +39,17 @@ describe Vote do
     end
 
     it 'notifies subscribers' do
-      @vote.should_receive(:notify)
+      expect(@vote).to receive(:notify)
       @vote.cast_vote(1, 1)
     end
 
     it 'subscribes voter to vote_receiver' do
-      @vote.should_receive(:subscribe)
+      expect(@vote).to receive(:subscribe)
       @vote.cast_vote(-1, 1)
     end
 
     it 'updates parent vote count' do
-      @vote.should_receive(:update_parent_votes_count)
+      expect(@vote).to receive(:update_parent_votes_count)
       @vote.cast_vote(-1, 1)
     end
 

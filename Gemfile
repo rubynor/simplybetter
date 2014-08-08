@@ -41,6 +41,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'machinist'
   gem 'database_cleaner'
   gem 'valid_attribute'

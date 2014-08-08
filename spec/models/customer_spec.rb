@@ -13,10 +13,10 @@ describe Customer, type: :model do
 
   describe 'validations' do
     subject { Customer.new(valid_attributes) }
-    it { is_expected.not_to have_valid(:name).when(nil) }
-    it { is_expected.not_to have_valid(:email).when(nil) }
-    it { is_expected.not_to have_valid(:email).when('jh') }
-    it { is_expected.not_to have_valid(:password_digest).when(nil) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:password_digest) }
+    it { is_expected.not_to allow_value('email.com').for(:email) }
   end
 
   describe 'send_password_reset' do

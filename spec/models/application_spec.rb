@@ -1,22 +1,17 @@
 require 'spec_helper'
 
 describe Application do
-
-  before :all do
-    @application = Application.make!
-  end
-
   let(:valid_attributes){ { name: 'My application' } }
 
   describe 'validations' do
     subject { Application.new(valid_attributes) }
-    it { should_not have_valid(:name).when(nil) }
-    it { should_not have_valid(:token).when(@application.token) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:token) }
   end
 
-  describe 'should have many' do
+  describe 'has_many association' do
     after :each do
-      @reflection.macro.should == :has_many
+      expect(@reflection.macro).to eq(:has_many)
     end
     it 'ideas' do
       @reflection = Application.reflect_on_association(:ideas)
@@ -26,6 +21,11 @@ describe Application do
     end
     it 'notifications' do
       @reflection = Application.reflect_on_association(:notifications)
+    end
+  end
+  describe 'has_and_belongs_to_many association' do
+    after :each do
+      expect(@reflection.macro).to eq(:has_and_belongs_to_many)
     end
     it 'customers' do
       @reflection = Application.reflect_on_association(:customers)
