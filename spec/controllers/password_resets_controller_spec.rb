@@ -5,24 +5,24 @@ describe PasswordResetsController do
   describe 'GET "new"' do
     it 'returns http success' do
       get 'new'
-      response.should be_success
+      expect(response).to be_success
     end
   end
 
   describe 'Send reset instructions' do
     it 'should set password_reset_token' do
       @customer = Customer.make!
-      @customer.password_reset_token.should eq(nil)
+      expect(@customer.password_reset_token).to eq(nil)
       post :create, email: @customer.email
-      response.should redirect_to root_url
-      flash[:notice].should_not eq(nil)
+      expect(response).to redirect_to root_url
+      expect(flash[:notice]).not_to eq(nil)
       @customer.reload
-      @customer.password_reset_token.should_not eq(nil)
+      expect(@customer.password_reset_token).not_to eq(nil)
     end
     it 'should just ignore if email not found' do
       post :create, email: 'nonexisting@mail.com'
-      response.should redirect_to root_url
-      flash[:notice].should_not eq(nil)
+      expect(response).to redirect_to root_url
+      expect(flash[:notice]).not_to eq(nil)
     end
   end
 
@@ -34,12 +34,12 @@ describe PasswordResetsController do
     it 'should change password' do
       @customer.reload
       patch :update, id: @customer.password_reset_token, customer: { password: 'test', password_confirmation: 'test' }
-      Customer.last.password_digest.should_not eq(@customer.password_digest)
+      expect(Customer.last.password_digest).not_to eq(@customer.password_digest)
     end
     it 'should not change password if time limit is out' do
       Timecop.freeze(Time.zone.now + 2.hours)
       patch :update, id: @customer.password_reset_token, customer: { password: 'test', password_confirmation: 'test' }
-      Customer.last.password_digest.should eq(@customer.password_digest)
+      expect(Customer.last.password_digest).to eq(@customer.password_digest)
     end
   end
 end

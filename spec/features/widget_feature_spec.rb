@@ -17,12 +17,12 @@ describe WidgetController, js: true do
     example 'comment an idea' do
       within_frame 0 do
         title = Idea.first.title
-        page.should have_content title
+        expect(page).to have_content title
         first('h1', text: title).click
         fill_in 'Leave a comment...', with: 'My new comment'
         click_button 'OK'
-        page.should have_content('My new comment')
-        find_field('Leave a comment...').value.should_not eq('My new comment')
+        expect(page).to have_content('My new comment')
+        expect(find_field('Leave a comment...').value).not_to eq('My new comment')
       end
     end
     example 'new idea' do
@@ -30,53 +30,53 @@ describe WidgetController, js: true do
         fill_in 'title-input', with: 'Idea'
         fill_in 'Description', with: 'My idea description'
         click_button 'send'
-        page.should have_css('.comment-body')
+        expect(page).to have_css('.comment-body')
       end
     end
     example 'edit idea' do
       within_frame 0 do
-        page.should have_content '[edit idea]'
+        expect(page).to have_content '[edit idea]'
         first('a', text: '[edit idea]').click
-        page.should_not have_css('.comment-body')
+        expect(page).not_to have_css('.comment-body')
         fill_in 'title-input', with: 'New text for title'
         click_button 'send'
-        page.should have_css('.comment-body')
-        page.should have_content('New text for title')
+        expect(page).to have_css('.comment-body')
+        expect(page).to have_content('New text for title')
       end
     end
     example 'up vote' do
       within_frame 0 do
-        page.should have_css '.up'
+        expect(page).to have_css '.up'
         first('.up').click
-        page.should have_css '.active'
+        expect(page).to have_css '.active'
       end
     end
     example 'down vote' do
       within_frame 0 do
-        page.should have_css '.down'
+        expect(page).to have_css '.down'
         first('.down').click
-        page.should have_css '.active'
+        expect(page).to have_css '.active'
       end
     end
     example 'mark notification as read' do
       within_frame 0 do
-        Notification.last.checked.should eq(nil)
-        page.should_not have_content 'Notifications'
-        page.should have_css '.new-notifications'
+        expect(Notification.last.checked).to eq(nil)
+        expect(page).not_to have_content 'Notifications'
+        expect(page).to have_css '.new-notifications'
         first('.new-notifications').click
-        page.should have_css '.new'
+        expect(page).to have_css '.new'
         first('.new').click
-        Notification.last.checked.should eq(true)
+        expect(Notification.last.checked).to eq(true)
       end
     end
     example 'navigation' do
       within_frame 0 do
         title = Idea.first.title
-        page.should have_content title
+        expect(page).to have_content title
         first('h1', text: title).click
-        page.should have_content 'BACK'
+        expect(page).to have_content 'BACK'
         first('.back-arrow').click
-        page.should_not have_content 'BACK'
+        expect(page).not_to have_content 'BACK'
       end
     end
 
@@ -91,16 +91,16 @@ describe WidgetController, js: true do
         within_frame 0 do
           fill_in 'user_name', with: 'Cool Person'
           click_button 'Save'
-          page.should have_css('.success')
+          expect(page).to have_css('.success')
         end
       end
 
       example 'unsubscribe from emails' do
         within_frame 0 do
           check 'unsubscribe'
-          page.should have_css('.unsubscribed')
+          expect(page).to have_css('.unsubscribed')
           uncheck 'unsubscribe'
-          page.should have_css('.subscribed')
+          expect(page).to have_css('.subscribed')
         end
       end
     end

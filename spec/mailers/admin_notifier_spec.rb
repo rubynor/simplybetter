@@ -6,8 +6,8 @@ describe AdminNotifier do
 
     it 'should call new_idea for each user in the group' do
       notifier = AdminNotifier.send(:new)
-      notifier.stub(:should_send_mail?) { true }
-      notifier.stub_chain(:new_idea, :deliver) { true }
+      allow(notifier).to receive(:should_send_mail?) { true }
+      allow(notifier).to receive_message_chain(:new_idea, :deliver) { true }
       expect(notifier).to receive(:new_idea).exactly(3).times
       notifier.send_to_group(users, Idea.make)
     end
@@ -30,7 +30,7 @@ describe AdminNotifier do
     end
 
     it 'renders the body' do
-      mail.body.encoded.should match('just submittet an idea on your SimplyBetter application')
+      expect(mail.body.encoded).to match('just submittet an idea on your SimplyBetter application')
     end
   end
 end
