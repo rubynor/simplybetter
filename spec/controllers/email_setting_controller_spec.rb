@@ -14,7 +14,7 @@ describe EmailSettingsController do
       it 'should do nothing' do
         expect do
           get :unsubscribe, unsubscribe_token: "bad_token"
-        end.not_to change{ email_setting.reload.unsubscribed }.from(false).to(true)
+        end.to_not change{ email_setting.reload.unsubscribed }
       end
     end
   end
