@@ -55,3 +55,7 @@ end
 Notification.blueprint do
   # Attributes here
 end
+
+AbuseReports.blueprint do
+  # Attributes here
+end
