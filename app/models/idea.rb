@@ -1,4 +1,6 @@
 class Idea < ActiveRecord::Base
+  include IdeaNotificationHelpers
+  include AbuseReportable
   has_paper_trail
   searchkick
 
@@ -11,8 +13,6 @@ class Idea < ActiveRecord::Base
 
   validates_presence_of :title, :description, :creator, :application
   validates_uniqueness_of :title, scope: :application
-
-  include IdeaNotificationHelpers
 
   scope :visible, -> { where(visible: true) }
 
