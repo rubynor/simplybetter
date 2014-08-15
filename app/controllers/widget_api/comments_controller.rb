@@ -1,6 +1,8 @@
 class WidgetApi::CommentsController < ApplicationController
   include CreatorFinder
+  include AbuseReportAction
   before_action :set_idea, only: [:index, :show, :create]
+  report_abuse_action model: Comment, app: @idea.application, user_param: :user_email
 
   def index
     @comments = @idea.comments.visible
