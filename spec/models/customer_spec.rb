@@ -28,4 +28,17 @@ describe Customer, type: :model do
       expect(customer.password_reset_sent_at).not_to eq(nil)
     end
   end
+
+  describe 'set email setting' do
+    it 'creates email setting' do
+      customer = Customer.create!(valid_attributes)
+      expect(customer.reload.email_setting.mailable).to eq(customer)
+    end
+
+    it 'should set email setting after create' do
+      customer = Customer.new(valid_attributes)
+      expect(customer).to receive(:create_email_setting)
+      customer.save!
+    end
+  end
 end

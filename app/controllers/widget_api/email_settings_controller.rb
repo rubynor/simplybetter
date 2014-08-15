@@ -19,7 +19,7 @@ class WidgetApi::EmailSettingsController < ApplicationController
 
   def find_or_create_email_settings
     raise "Undefined @user variable" if @current_user.blank?
-    @settings = EmailSetting.find_or_create_by(mailable: @current_user)
+    @settings = EmailSetting.find_by(mailable: @current_user)
   end
 
   def setting_params
