@@ -1,6 +1,8 @@
 class WidgetApi::IdeasController < ApplicationController
   include CreatorFinder
   before_action :set_idea, only: [:show, :update, :destroy]
+  include AbuseReportAction
+  report_abuse_action model: Idea, app: @idea.application, user_param: :user_email
 
   def index
     app = application
