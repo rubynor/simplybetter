@@ -34,6 +34,7 @@ SimplyBetter::Application.routes.draw do
     get :administrate_group, on: :member
     get :preview, on: :member
     resources :ideas, only: [:index, :update, :destroy]
+    resources :abuse_report, only: [:index]
   end
 
   resources :comments, only: [:update]

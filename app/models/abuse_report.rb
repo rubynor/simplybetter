@@ -3,4 +3,6 @@ class AbuseReport < ActiveRecord::Base
   belongs_to :reporter, polymorphic: true
 
   validates_presence_of :reportable, :reporter
+
+  scope :for, ->(application) { where(application: application) }
 end
