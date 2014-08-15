@@ -1,5 +1,8 @@
 class Comment < ActiveRecord::Base
+  include CommentNotificationHelpers
+  include AbuseReportable
   has_paper_trail
+
   belongs_to :idea, inverse_of: :comments
   has_many :votes, as: :vote_receiver
   has_one :idea_subscription, as: :subscriber_from, dependent: :destroy 
@@ -7,10 +10,10 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body, :idea, :creator
   belongs_to :creator, polymorphic: true, inverse_of: :comments
 
-  include CommentNotificationHelpers
-
   default_scope { order('created_at ASC') }
   scope :visible, -> { where(visible: true) }
+
+  delegate :application, to: :idea
 
   def save_and_notify!
     if save!
