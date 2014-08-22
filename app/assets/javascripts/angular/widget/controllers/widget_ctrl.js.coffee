@@ -1,5 +1,8 @@
-widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect', ($scope, Idea, FindSimilarIdea, Redirect) ->
+widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect', 'Session', ($scope, Idea, FindSimilarIdea, Redirect, Session) ->
   $scope.newIdea = new Idea({})
+
+  $scope.signed_in = Session.user_signed_in()
+  $scope.email = Session.email()
 
   $scope.reset_path = () ->
     $scope.path = undefined
