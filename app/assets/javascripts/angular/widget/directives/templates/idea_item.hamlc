@@ -1,5 +1,9 @@
 .idea-item
-  %a(named-route='idea' kwarg-id='{{ idea.id }}')
+  %span(ng-if='!path')
+    %a(named-route='idea' kwarg-id='{{ idea.id }}')
+      %h1
+        {{ idea.title }}
+  %span(ng-if='path')
     %h1
       {{ idea.title }}
   %p.desc.ideaView(ng-if='path')

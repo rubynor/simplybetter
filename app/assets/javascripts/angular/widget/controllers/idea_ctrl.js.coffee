@@ -1,9 +1,11 @@
 widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
-  $scope.idea = Idea.get({id: $routeParams.id},
+  Idea.get({id: $routeParams.id},
     (data) ->
+      $scope.idea = data
   , (err) ->
     $scope.error_message = 'Not available'
   )
+
   $scope.$parent.path = $location.path()
   $scope.highlight = { idea: false }
 
