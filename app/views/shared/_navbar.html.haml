@@ -11,5 +11,7 @@
         Show ideas
       = link_to edit_application_path(@application.id) do
         Settings
+      = link_to abuse_reports_page_application_path(@application.id) do
+        Abuse reports
       = link_to preview_application_path(@application.id) do
         My widget
