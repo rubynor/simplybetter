@@ -57,5 +57,6 @@ Notification.blueprint do
 end
 
 AbuseReport.blueprint do
-  # Attributes here
+  abuse_reportable { Comment.make! }
+  abuse_reporter { Customer.make! }
 end
