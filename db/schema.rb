@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20140815120709) do
   create_table "abuse_reports", force: true do |t|
     t.integer  "abuse_reportable_id"
     t.string   "abuse_reportable_type"
-    t.integer  "reporter_id"
-    t.string   "reporter_type"
+    t.integer  "abuse_reporter_id"
+    t.string   "abuse_reporter_type"
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
