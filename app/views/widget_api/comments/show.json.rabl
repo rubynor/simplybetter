@@ -8,4 +8,3 @@ end
 node(:gravatar_url) do |c|
   c.creator.gravatar_url
 end
-
