@@ -1,2 +1,2 @@
 collection @reports
-attributes :id, :message, :reporter, :reportable
+extends 'abuse_reports/show'
