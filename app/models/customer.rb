@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
+  include AbuseReporter
   has_paper_trail
   include Gravtastic
   gravtastic size: 50
