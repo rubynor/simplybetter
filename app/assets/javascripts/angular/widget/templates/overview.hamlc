@@ -4,7 +4,7 @@
     %span(ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
     %span(ng-click='hideCompleted()' ng-class='{ active: activeClass == "hide_completed" }') Not completed
     %span(ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
-    %span(ng-if='email' ng-click='showMine()' ng-class='{ active: activeClass == "mine" }') Mine
+    %span(ng-if='signed_in' ng-click='showMine(email)' ng-class='{ active: activeClass == "mine" }') Mine
 
   #ideas
     %ol.overview.layout
