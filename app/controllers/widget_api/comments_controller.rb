@@ -2,7 +2,7 @@ class WidgetApi::CommentsController < ApplicationController
   include CreatorFinder
   include AbuseReportAction
   before_action :set_idea, only: [:index, :show, :create]
-  report_abuse_action model: Comment, app: @idea.application, user_param: :user_email
+  report_abuse_action model: Comment, app: :application, user_param: :user_email
 
   def index
     @comments = @idea.comments.visible
@@ -47,5 +47,9 @@ class WidgetApi::CommentsController < ApplicationController
 
   def set_idea
     @idea ||= Idea.find(params[:idea_id])
+  end
+
+  def application
+    set_idea.application
   end
 end

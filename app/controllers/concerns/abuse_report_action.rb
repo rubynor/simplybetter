@@ -12,7 +12,7 @@ module AbuseReportAction
       if defined?(model)
         define_method "report_abuse" do
           record = model.find_by(params[:id])
-          AbuseReport.create!(reportable: record, reporter: get_current_user(app, params[user_param]))
+          AbuseReport.create!(abuse_reportable: record, abuse_reporter: get_current_user(send(app), params[user_param]), application: send(app))
           render status: 200
         end
       else
