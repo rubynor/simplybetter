@@ -4,48 +4,114 @@ $blue: #239ed7
 $blue_darker: #0e8ac4
 $green: #1dd69b
 $green_darker: #10c189
+$white: #ffffff
+$light_grey: #d8d8d8
 
 $primary_color: $blue
 $primary_color_hover:  $blue_darker
 $secondary_color: $green
 $secondary_color_hover: $green_darker
+$menu_text: $white
+$menu_text_hover: $light_grey
 
 $button_height: 40px
+$button_active_height: $button_height - 2px
 
-body
+*
   font-family: Lucida Grande, Lucida Sans, Arial, sans-serif
 
 .container
-  width: 1920px
+  padding: 0px
+  width: 100%
+  max-width: 1920px
+  margin: auto
 
 .button
   @extend .btn
   height: $button_height
   border-radius: 3px
-  padding: 6px 12px
-  &.primary
+  padding: 8px 12px
+  color: white
+  &:active
+    height: $button_active_height
+    box-shadow: none
     color: white
+  &:hover
+    color: white
+  &.primary
     background-color: $primary_color
     &:hover
       background-color: $primary_color_hover
-    &:active
-      height: $button_height - 2px
-      box-shadow: none
+  &.secondary
+    background-color: $secondary_color
+    &:hover
+      background-color: $secondary_color_hover
+  &.default
+    background-color: white
+    color: $primary_color
+    &:hover
+      color: $primary_color_hover
+
+
+.menu
+  @extend .navbar-default
+  max-width: 1920px
+  margin: auto
+  background: none
+  &.scrolled
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))
+  padding: 10px 0.8em
+  color: $menu_text
+  border: none
+  .container
+    @media (min-width: 1024px)
+      width: 80%
+      margin: auto
+    @media (min-width: 768px)
+      width: 90%
+      margin: auto
+  .button
+    margin-top: 5px
+    margin-left: 12px
+    margin-right: 20px
+  .navbar-nav > li
+    a
+      color: $menu_text
+      &:hover
+        color: $menu_text_hover
 
 .intro
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('/new_york.png') no-repeat
-  width: 1920px
-  height: 1312px
-
-.tmp
-  display: inline-block
-  margin-bottom: 0
+  padding-top: 200px
+  color: white
   text-align: center
-  vertical-align: middle
-  cursor: pointer
-  border: none
-  white-space: nowrap
-  padding: 6px 12px
-  font-size: 14px
-  line-height: 1.428571429
-  border-radius: 4px
+  h1
+    font-weight: lighter
+    font-size: 46px
+    padding-bottom: 30px
+  p
+    font-weight: lighter
+    width: 700px
+    margin: auto
+    font-size: 18px
+    padding-bottom: 30px
+  .button
+    padding-top: 14px
+    margin-right: 10px
+    margin-left: 10px
+    width: 170px
+    height: 50px
+    vertical-align: middle
+
+.logo
+  font-family: Lucida Grande, Lucida Sans, Arial, sans-serif
+  color: white
+  float: left
+  font-size: 1em
+  font-weight: lighter
+  &:before
+    content: 'SimplyBetter'
+  &:after
+    color: $primary_color
+    content: '.io'
+

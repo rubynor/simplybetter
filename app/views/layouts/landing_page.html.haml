@@ -6,5 +6,28 @@
     = javascript_include_tag 'landing_page', 'data-turbolinks-track' => true
     = csrf_meta_tags
     %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
-  %body
-    = yield
+  %body(ng-app='landingPage')
+    .container(ng-init='scroll = 0')
+      %span(scroll-position='scroll')
+      %nav.navbar.menu.navbar-fixed-top(role='navigation' ng-init='collapsed = true' ng-class='{scrolled: scroll > 1 }')
+        .container
+          / Brand and toggle get grouped for better mobile display
+          .navbar-header
+            %button.navbar-toggle(ng-click='collapsed = !collapsed')
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand
+              .logo
+          #bs-example-navbar-collapse-1.navbar-collapse(ng-class='{ collapse: collapsed }')
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                %a{:href => "#"} ABOUT
+              %li
+                %a{:href => "#"} PRICE
+              %li
+                %a{:href => "#"} CONTACT
+              %li.divider
+                .button.primary GET SIMPLYBETTER
+      = yield
