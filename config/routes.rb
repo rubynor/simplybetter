@@ -1,5 +1,7 @@
 SimplyBetter::Application.routes.draw do
 
+  resources :landing_page, only: :index
+
   namespace :widget_api do
     resources :ideas, except: [:new, :edit] do
       resources :comments, only: [:create, :destroy, :index, :show]

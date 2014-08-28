@@ -1,0 +1,51 @@
+@import 'bootstrap'
+
+$blue: #239ed7
+$blue_darker: #0e8ac4
+$green: #1dd69b
+$green_darker: #10c189
+
+$primary_color: $blue
+$primary_color_hover:  $blue_darker
+$secondary_color: $green
+$secondary_color_hover: $green_darker
+
+$button_height: 40px
+
+body
+  font-family: Lucida Grande, Lucida Sans, Arial, sans-serif
+
+.container
+  width: 1920px
+
+.button
+  @extend .btn
+  height: $button_height
+  border-radius: 3px
+  padding: 6px 12px
+  &.primary
+    color: white
+    background-color: $primary_color
+    &:hover
+      background-color: $primary_color_hover
+    &:active
+      height: $button_height - 2px
+      box-shadow: none
+
+.intro
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('/new_york.png') no-repeat
+  width: 1920px
+  height: 1312px
+
+.tmp
+  display: inline-block
+  margin-bottom: 0
+  text-align: center
+  vertical-align: middle
+  cursor: pointer
+  border: none
+  white-space: nowrap
+  padding: 6px 12px
+  font-size: 14px
+  line-height: 1.428571429
+  border-radius: 4px
