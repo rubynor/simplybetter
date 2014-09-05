@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  database: howhard
+  database: simplybetter_dev
   pool: 5
   timeout: 5000
   encoding: unicode
@@ -8,7 +8,7 @@ development:
 
 test:
   adapter: postgresql
-  database: howhard_test
+  database: simplybetter_test
   pool: 5
   timeout: 5000
   encoding: unicode
