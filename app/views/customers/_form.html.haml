@@ -25,6 +25,10 @@
       %label
         Confirm password
       = f.password_field :password_confirmation, placeholder: 'confirm password'
+    .field
+      %label
+        Promotion code(optional)
+      = f.text_field :promotion_code, placeholder: 'promotion code'
     .field.clearfix
       .pull-right
         = f.submit 'CREATE ACCOUNT'
