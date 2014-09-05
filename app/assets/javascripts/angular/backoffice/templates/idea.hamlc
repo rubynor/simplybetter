@@ -1,0 +1,44 @@
+%div(ng-if='idea.$edit')
+  .error(ng-if='error_message')
+    {{ error_message }}
+  %form(name='editIdea' novalidate)
+    %input(type='text' name='title' value='{{idea.title}}' ng-model='idea.title' required)
+    %textarea(name='description' ng-model='idea.description')
+      {{ idea.description }}
+      {{ editIdea }}
+    %button.btn(ng-click='save(idea, $index)' ng-class='{ disabled: !editIdea.$dirty || editIdea.$invalid }') Save
+    %button.btn(ng-click='cancel($index)') Cancel
+%div(ng-if='!idea.$edit')
+  %h1
+    {{ idea.title }}
+  %p
+    {{ idea.description }}
+  .meta
+    .icon.upvote
+    %span.upvotes
+      {{ idea.upvotes }}
+    %span.dot •
+    .icon.downvote
+    %span.downvotes
+      {{ idea.downvotes }}
+    %span.dot •
+    .icon.comment
+    %span.comment(ng-click='idea.$show_comments = !idea.$show_comments')
+      {{ idea.comments_count }} comments
+    %span.dot •
+    by
+    %span.user
+      %span
+        {{ idea.creator_name }}
+    on
+    %span.time
+      {{ idea.updated_at }}
+  .not-visible-overlay(ng-if='!idea.visible')
+  .options
+    .icon(ng-class='{ visible: idea.visible, "not-visible": !idea.visible }' ng-click='toggleVisible(idea)')
+    .icon.edit(ng-click='edit(idea)')
+    .icon.delete(ng-click='delete(idea, $index)')
+    .icon(ng-class='{ completed: idea.completed, "not-completed": !idea.completed }' ng-click='toggleCompleted(idea)') ✔
+  .comments(ng-if='idea.$show_comments')
+    %ul
+      %li.comment-item(ng-repeat='comment in idea.comments' comment='comment')
