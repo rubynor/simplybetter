@@ -27,6 +27,13 @@ $button_active_height: $button_height - 2px
   max-width: 1920px
   margin: auto
 
+
+.landing-page
+  h1
+    font-weight: lighter
+    font-size: 46px
+    padding-bottom: 30px
+
 .button
   @extend .btn
   height: $button_height
@@ -59,11 +66,15 @@ $button_active_height: $button_height - 2px
   max-width: 1920px
   margin: auto
   background: none
-  &.scrolled
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))
   padding: 10px 0.8em
   color: $menu_text
   border: none
+  &.scrolled
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))
+  img.logo
+    position: absolute
+    height: 45px
+    margin-top: -10px
   .container
     @media (min-width: 1024px)
       width: 80%
@@ -107,23 +118,9 @@ $button_active_height: $button_height - 2px
     height: 50px
     vertical-align: middle
 
-.logo
-  font-family: Lucida Grande, Lucida Sans, Arial, sans-serif
-  color: white
-  float: left
-  font-size: 1em
-  font-weight: lighter
-  &:before
-    content: url('/logo_with_text.png')
 
 #about
   text-align: center
   padding-top: 100px
   h1
     color: $dark_grey
-
-.landing-page
-  h1
-    font-weight: lighter
-    font-size: 46px
-    padding-bottom: 30px
