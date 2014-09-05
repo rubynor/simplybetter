@@ -1,19 +1,22 @@
-.col-md-12
-  =render 'shared/alert_success', notice: notice
-.col-md-12
-  = form_for @application,html: {role: "form"} do |f|
-    - if @application.errors.any?
-      .alert.alert-danger
-        %p
-          %strong
-            Unfortunately some errors prevented you from creating the application:
-        %ul
-          - @application.errors.full_messages.each do |msg|
-            %li= msg
-    = f.label :name
-    = f.text_field :name, placeholder: 'Application name'
-    - if @current_action == 'edit'
-      = f.label :intro
-      = f.text_area :intro
-    = f.button 'Save'
+.application_form
+  .col-md-12
+    =render 'shared/alert_success', notice: notice
+    = form_for @application, html: { role: 'form' } do |f|
+      - if @application.errors.any?
+        .alert.alert-danger
+          %p
+            %strong
+              Unfortunately some errors prevented you from creating the application:
+          %ul
+            - @application.errors.full_messages.each do |msg|
+              %li= msg
+      = f.label :name
+      = f.text_field :name, placeholder: 'Application name'
+      - if @current_action == 'new'
+        = f.button 'Get started!'
+      - else
+        = f.label :intro
+        = f.text_area :intro
+        = f.button 'Save'
+
 
