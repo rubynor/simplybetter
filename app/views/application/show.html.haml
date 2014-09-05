@@ -3,10 +3,14 @@
   = render 'shared/alert_success'
   = render 'application/instalation_instructions'
 
-  .row
-    .col-lg-4
-      = render 'application/select_icon'
-    .col-lg-12
-      = render 'application/form'
-    .col-lg-12
-      = render 'application/advanced_customization'
+.col-lg-12
+  .divider
+  %h2 Customize your widget (optional)
+.col-lg-5
+  = render 'application/form'
+.col-lg-4
+  = render 'application/select_icon'
+.col-lg-12
+  .divider
+  %h2 Advanced cutomization of icon (optional)
+  = render 'application/advanced_customization'
