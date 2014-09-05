@@ -1,0 +1,8 @@
+Reported by:
+%br
+%img(ng-src='{{ infoCtrl.report.user.gravatar_url }}')
+{{ infoCtrl.report.user.name }}
+%br
+Reason:
+%br
+{{ infoCtrl.report.reason }}
