@@ -6,6 +6,7 @@ $green: #1dd69b
 $green_darker: #10c189
 $white: #ffffff
 $light_grey: #d8d8d8
+$dark_grey: #838383
 
 $primary_color: $blue
 $primary_color_hover:  $blue_darker
@@ -85,17 +86,13 @@ $button_active_height: $button_height - 2px
         &:hover
           color: $blue_darker
 
-.intro
+#intro
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('/new_york.png') no-repeat
   padding-top: 200px
   color: white
   text-align: center
   @media (min-width: 768px)
     height: 768px
-  h1
-    font-weight: lighter
-    font-size: 46px
-    padding-bottom: 30px
   p
     font-weight: lighter
     width: 700px
@@ -118,3 +115,15 @@ $button_active_height: $button_height - 2px
   font-weight: lighter
   &:before
     content: url('/logo_with_text.png')
+
+#about
+  text-align: center
+  padding-top: 100px
+  h1
+    color: $dark_grey
+
+.landing-page
+  h1
+    font-weight: lighter
+    font-size: 46px
+    padding-bottom: 30px

@@ -18,18 +18,18 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.navbar-brand
+            %a.navbar-brand(href='#intro')
               .logo
           #bs-example-navbar-collapse-1.navbar-collapse(ng-class='{ collapse: collapsed }')
             %ul.nav.navbar-nav.navbar-right
               %li
-                %a{:href => "#"} ABOUT
+                %a(href='#about') ABOUT
               %li
-                %a{:href => "#"} PRICE
+                %a(href='#price') PRICE
               %li
-                %a{:href => "#"} CONTACT
+                %a(href='#contact') CONTACT
               %li.sign_in
-                %a{href: '#'} SIGN IN
+                %a(href='#sign_in') SIGN IN
               %li.divider
                 .button.primary GET SIMPLYBETTER
       = yield
