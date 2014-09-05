@@ -1,5 +1,10 @@
-.center-box{class: "#{'error' if flash.alert}"}
-  %h1 simplybetter.io
+%h1 simplybetter.io
+%p Please login using the form below
+.form
+  .info-box
+    You need an account?
+    = link_to('Create account', new_customer_path)
+
   -if flash.alert
     .notice
       = flash.alert
@@ -9,19 +14,19 @@
   = form_tag '/sessions/create' do
     .field
       %label
-        %i.fa.fa-envelope
+        Email
       = text_field_tag :email, params[:email], placeholder: 'email'
     .field
       %label
-        %i.fa.fa-lock
+        Password
       = password_field_tag :password, nil, placeholder: 'password'
 
-    .field
+    .field.checkbox
       .pull-left
         = check_box_tag :remember_me, 1, params[:remember_me]
-        Remember me?
-      .actions= submit_tag "Sign in"
-  %br
-  = link_to('Register', new_customer_path)
-  |
-  = link_to 'Forgotten password?', new_password_reset_path
+        = label_tag :remember_me, 'Remember me on this device', class: 'small'
+    .field
+      .pull-right
+        .actions
+          = submit_tag "LOG ME IN"
+    = link_to 'Forgotten password?', new_password_reset_path

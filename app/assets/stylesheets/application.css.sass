@@ -27,6 +27,7 @@ p
 
 $logo-width: 70px
 $navigation-width: 270px
+$navigation-width-compressed: 40px
 
 #logo
   width: $logo-width
@@ -98,10 +99,14 @@ $navigation-width: 270px
       font-size: 30px
   .user
     margin-top: 30px
+  &.compressed
+    width: $navigation-width-compressed
 
 #content
   $content-padding: 30px
   padding-left: $logo-width + $navigation-width + $content-padding
   padding-right: $content-padding
   width: 100%
+  &.compressed
+    padding-left: $logo-width + $navigation-width-compressed + $content-padding
 
