@@ -1,12 +1,9 @@
 AbuseReportsCtrl = ($scope, AbuseReport) ->
-  $scope.init = (app_id) ->
-    @app_id = app_id
-    AbuseReport.all(@app_id, allSuccess, allError)
+  $scope.appId = undefined
+  $scope.init = (appId) ->
+    $scope.appId = appId
 
-  allSuccess = (data) ->
-    console.log data
-  allError = (err) ->
-    console.log err
+  return
 
 angular
   .module('Backoffice')

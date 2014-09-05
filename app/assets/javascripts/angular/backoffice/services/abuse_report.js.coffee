@@ -1,14 +1,20 @@
 AbuseReport = ($http) ->
-  all = (application_id, allSuccess, allError) ->
-    $http
-      .get("/applications/#{application_id}/abuse_reports")
-      .success (data) ->
-        allSuccess(data)
-      .error (error) ->
-        allError(error)
+  service = @
+  service.all = undefined
+  getAll = (application_id, allSuccess, allError) ->
+    if service.all
+      return service.all
+    else
+      $http
+        .get("/applications/#{application_id}/abuse_reports")
+        .success (data) ->
+          service.all = data
+          allSuccess(data)
+        .error (error) ->
+          allError(error)
 
   return {
-    all: all
+    all: getAll
   }
 
 angular
