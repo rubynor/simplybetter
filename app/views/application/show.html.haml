@@ -1,151 +1,16 @@
 =render 'shared/navbar'
-.col-md-12
-  .row
-    .col-md-12
-      =render 'shared/alert_success'
-  .row
-    .col-md-6
-      %h2 Select style
-      %p You can change the icon whenever you want
-      .box
-        .col-xs-12
-          = form_for @application do |f|
-            -# TODO: Use variable @icons from controller
-            - @icons.each do |i|
-              = f.label "icon_#{i}".to_sym, 
-                class: selected(@application,i) do
-                %table
-                  %tr
-                    %td
-                      = f.radio_button :icon, i
-                    %td
-                      .icon{class: i}
+.col-lg-12
+  = render 'application/instalation_instructions'
+  = render 'shared/alert_success'
+#customize.col-lg-12
+  .divider
+  %h2 Customize your widget (optional)
+  .col-lg-4
+    = render 'application/select_icon'
+  .col-lg-6
+    = render 'application/form'
 
-    .col-md-6#application-code
-      %h2 Add this code to your website
-      %ul
-        %li
-          First you have to copy the snippet below and paste it anywhere inside your &lt;body&gt; tag.
-        %li
-          Replace "INSERT EMAIL HERE" with the signed in user's email address.
-          In a rails app this would typically be \#{current_user.email}. Do the same with the users name or nickname!
-      / Nav tabs
-      %ul.nav.nav-tabs
-        %li.active
-          %a{"data-toggle" => "tab", href: "#other"} Other
-        %li
-          %a{"data-toggle" => "tab", href: "#rails"} Rails + Devise (erb)
-        %li
-          %a{"data-toggle" => "tab", href: "#rails_haml"} Rails + Devise (haml)
-      / Tab panes
-      .tab-content
-        #other.fade.tab-pane.active.in
-          %pre.copy-code
-            %code
-              = preserve do
-                :escaped
-                  <!-- Paste at the BOTTOM of BODY -->
-                  <script>
-                      var _smplyBtr = _smplyBtr || {};
-                      _smplyBtr.email = "<INSERT EMAIL HERE>";
-                      _smplyBtr.name = "<INSERT NAME HERE>" ;
-
-                      _smplyBtr.appKey = "#{@application.token}";
-                      (function() {
-                          var sb = document.createElement('script'); 
-                          sb.type = 'text/javascript'; 
-                          sb.async = true; 
-                          sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey; 
-                          var s = document.getElementsByTagName('body')[0]; 
-                          s.appendChild(sb);
-                      })();
-                  </script>
-        #rails.fade.tab-pane
-          %pre.copy-code
-            %code
-              = preserve do
-                :escaped
-                  <!-- Paste at the BOTTOM of BODY -->
-                  <%- if user_signed_in? && Rails.env.production? %>
-                    <script>
-                        var _smplyBtr = _smplyBtr || {};
-                        _smplyBtr.email = "<%= current_user.email %>";
-                        _smplyBtr.name = "<%= current_user.name %>" ;
-
-                        _smplyBtr.appKey = "#{@application.token}";
-                        (function() {
-                            var sb = document.createElement('script'); 
-                            sb.type = 'text/javascript'; 
-                            sb.async = true; 
-                            sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey; 
-                            var s = document.getElementsByTagName('body')[0]; 
-                            s.appendChild(sb);
-                        })();
-                    </script>
-                  <% end %>
-        #rails_haml.fade.tab-pane
-          %pre.copy-code
-            %code
-              = preserve do
-                :escaped
-                  / Paste at the BOTTOM of BODY
-                  - if user_signed_in? && Rails.env.production?
-                    :javascript
-                      var _smplyBtr = _smplyBtr || {};
-                      _smplyBtr.email = "\#{current_user.email}";
-                      _smplyBtr.name = "\#{current_user.name}";
-
-                      _smplyBtr.appKey = "#{@application.token}";
-                      (function() {
-                          var sb = document.createElement('script');
-                          sb.type = 'text/javascript';
-                          sb.async = true;
-                          sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey;
-                          var s = document.getElementsByTagName('body')[0];
-                          s.appendChild(sb);
-                      })();
-
-
-  .row
-    .col-md-12
-      %h1 Customizing your icon
-      %p
-        It's really easy to use your own custom icon if you want to. 
-        You can override the css so you'll have complete control. Below is the current
-        styling for the triangle-call-for-action icon. You can override any property by adding at the end !important 
-
-      %pre
-        %code
-          = preserve do
-            :escaped
-              #simplybetterActivateButton {
-                position: fixed;
-                right: -75px;
-                bottom: -75px;
-                height: 150px;
-                width: 150px;
-                z-index: 2000;
-                background: url('/lightbulb_triangle.gif') no-repeat;
-                background-size: contain;
-                transform:rotate(45deg);
-                -ms-transform:rotate(45deg); /* IE 9 */
-                -webkit-transform:rotate(45deg); /* Safari and Chrome */
-
-                &:hover{
-                  cursor: pointer;
-                }
-              }
-
-      %h3 Example: Moving the triangle to the left side
-      %pre
-        %code
-          = preserve do
-            :escaped
-              #simplybetterActivateButton{
-                left: -75px !important;
-                transform: rotate(135deg) !important;
-                -ms-transform: rotate(135deg) !important;
-                -webkit-transform: rotate(135deg) !important;
-              }
-
-
+.col-lg-12
+  .divider
+  %h2 Advanced cutomization of icon (optional)
+  = render 'application/advanced_customization'

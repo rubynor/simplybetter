@@ -2,6 +2,7 @@ body.applications.show
   .box
     @include box
     padding: 15px 0px
+    margin-bottom: 20px
   label
     width: 100%
     padding: 0px 20px 0px 20px
@@ -39,12 +40,17 @@ body.applications.show
       -o-transition: opacity 1s
 
   ul > li, p
-    color: $gray
+    color: $dark_grey
     font-weight: 500
 
   pre
     @include box
     border: 0px
 
-
-
+.divider
+  background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.2))
+  border-radius: 2px
+  height: 5px
+  width: 100%
+  display: inline-block
+  margin-top: 40px
