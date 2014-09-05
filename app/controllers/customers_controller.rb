@@ -11,6 +11,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_attributes)
     if @customer.save
       session[:customer_id] = @customer.id
+      cookies[:auth_token] = @customer.auth_token
       redirect_to root_path, notice: "Congratulations! You are now a registered customer of simplybetter.io"
     else
       render action: :new

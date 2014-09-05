@@ -1,14 +1,15 @@
-.center-box{class: "#{'error' if flash.alert}"}
-  %h1 Reset password
-
+%h1 Reset password
+%p Enter your new password below
+.form
   = form_for @customer, url: password_reset_path(params[:id]) do |f|
     .field
       %label
-        %i.fa.fa-lock
+        New password
       = f.password_field :password, placeholder: 'password'
     .field
       %label
-        %i.fa.fa-lock
+        Confirm new password
       = f.password_field :password_confirmation, placeholder: 'confirm password'
     .field
-      .actions= f.submit 'Update password'
+      .pull-right
+        .actions= f.submit 'Update password'

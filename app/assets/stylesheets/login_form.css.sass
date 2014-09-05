@@ -1,0 +1,49 @@
+.sessions.new, .sessions.create, .customers.new, .customers.create, .password_resets
+  .form
+    max-width: 600px
+  .field
+    display: block
+  font-size: 16px
+  .notice
+    border: 1px solid $red
+    padding: 20px
+    border-radius: 5px
+    background: #ffb6b6
+    &.green
+      border: 1px solid $green
+      background: #a5ff93
+  h1
+    color: $gray
+  .info-box
+    @include info-box
+    font-weight: 500
+    margin: 30px 0
+    clear: both
+    a
+      font-weight: 700
+  input[type=password],input[type=text], input[type=email]
+    @include input
+    display: block
+    width: 100%
+  input[type=submit]
+    @include button-big
+    display: block
+    margin-top: 20px
+    font-size: 18px
+  .field_with_errors
+    input[type=password],input[type=text], input[type=email]
+      border-color: red
+  .field.checkbox
+    margin: 30px 0px
+    display: block
+    font-weight: 500
+  label
+    @include label
+    margin-top: 20px
+    clear: both
+    &.small
+      margin-top: 0px
+      font-size: 16px
+      clear: none
+      display: inline-block
+      font-weight: 500

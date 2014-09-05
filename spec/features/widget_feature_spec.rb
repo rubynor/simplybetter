@@ -11,7 +11,7 @@ describe WidgetController, js: true do
       visit root_path
       fill_in 'email', with: 'lol@lol.com'
       fill_in 'password', with: 'dev'
-      click_button 'Sign in'
+      click_button 'LOG ME IN'
       click_link 'My widget'
     end
     example 'comment an idea' do

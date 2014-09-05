@@ -1,13 +1,14 @@
-.center-box{class: "#{'error' if flash.alert}"}
+%h1 Send reset instructions
+%p Enter your email below
+.form
   -if flash.alert
     .notice
       = flash.alert
-  %h2 Send reset instructions
-
   = form_tag password_resets_path, method: :post do
     .field
       %label
-        %i.fa.fa-envelope
-      = text_field_tag :email, params[:email], placeholder: 'your email'
+        E-mail
+      = email_field_tag :email, params[:email], placeholder: 'your email'
     .field
-      .actions= submit_tag 'Reset password'
+      .pull-right
+        .actions= submit_tag 'Reset password'
