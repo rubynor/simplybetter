@@ -79,12 +79,19 @@ $button_active_height: $button_height - 2px
       color: $menu_text
       &:hover
         color: $menu_text_hover
+    &.sign_in
+      a
+        color: $blue
+        &:hover
+          color: $blue_darker
 
 .intro
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('/new_york.png') no-repeat
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('/new_york.png') no-repeat
   padding-top: 200px
   color: white
   text-align: center
+  @media (min-width: 768px)
+    height: 768px
   h1
     font-weight: lighter
     font-size: 46px
@@ -110,8 +117,4 @@ $button_active_height: $button_height - 2px
   font-size: 1em
   font-weight: lighter
   &:before
-    content: 'SimplyBetter'
-  &:after
-    color: $primary_color
-    content: '.io'
-
+    content: url('/logo_with_text.png')
