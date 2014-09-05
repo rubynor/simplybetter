@@ -1,9 +1,11 @@
 @import 'bootstrap'
+@import url(http://fonts.googleapis.com/css?family=Antic)
 
 $blue: #239ed7
 $blue_darker: #0e8ac4
 $green: #1dd69b
 $green_darker: #10c189
+$green_dark:    #40ad7c
 $white: #ffffff
 $light_grey: #d8d8d8
 $dark_grey: #838383
@@ -29,10 +31,13 @@ $button_active_height: $button_height - 2px
 
 
 .landing-page
+  text-align: center
   h1
+    padding-top: 100px
     font-weight: lighter
     font-size: 46px
     padding-bottom: 50px
+    font-family: 'Antic', sans-serif
   h2
     font-weight: normal
     font-size: 24px
@@ -104,7 +109,6 @@ $button_active_height: $button_height - 2px
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('/new_york.png') no-repeat
   padding-top: 200px
   color: white
-  text-align: center
   @media (min-width: 768px)
     height: 768px
   p
@@ -123,8 +127,6 @@ $button_active_height: $button_height - 2px
 
 
 #about
-  text-align: center
-  padding-top: 100px
   max-width: 1000px
   margin: auto
   min-height: 600px
@@ -135,3 +137,8 @@ $button_active_height: $button_height - 2px
     max-width: 300px
     margin: auto
     margin-bottom: 40px
+
+#price
+  background: #01d69c
+  min-height: 500px
+  color: white
