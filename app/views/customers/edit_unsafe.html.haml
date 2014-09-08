@@ -2,13 +2,12 @@
 .col-lg-6.col-md-8.col-xs-12.form
   = render 'shared/alerts', model: current_customer
   = form_for current_customer, url: {action: :update_unsafe} do |f|
-    = f.label :email
-    = f.text_field :email
-    = f.label :password
-    = f.password_field :password
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
+    = f.label :current_password
+    = f.password_field :current_password
+    = f.hidden_field :email
     .gap
-      = f.label :current_password
-      = f.password_field :current_password
+      = f.label :new_password
+      = f.password_field :password
+      = f.label :new_password_confirmation
+      = f.password_field :password_confirmation
       = f.button :save, class: 'big'

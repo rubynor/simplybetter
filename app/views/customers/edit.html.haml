@@ -9,13 +9,24 @@
         At the moment we are using gravatar as
         our avatar provider. We plan to support
         uploading and hosting of avatars in the
-        future. Visit 
+        future. Visit
         = link_to 'Gravatar', 'http://gravatar.com', target: '_blank'
-        to change you avatar.
+        to change you avatar. It is linked to your email:
+        %a= current_customer.email
 .row
   .col-lg-6.col-md-10.col-xs-12.form
     = form_for current_customer do |f|
       = f.label :name
       = f.text_field :name
       = f.button :save, class: 'big'
-
+    -#
+    -#= form_for current_customer, html: { class: 'form-horizontal', role: 'form'} do |f|
+    -#  .form-group
+    -#
+    -#    .col-sm-2
+    -#      = f.label :name
+    -#    .col-sm-10
+    -#      = f.text_field :name
+    -#  .form-group
+    -#    = f.button :save, class: 'big'
+    -#
