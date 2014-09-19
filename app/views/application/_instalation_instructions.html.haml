@@ -42,7 +42,7 @@
         = preserve do
           :escaped
             <!-- Paste at the BOTTOM of BODY -->
-            <%- if user_signed_in? && Rails.env.production? %>
+            <% if user_signed_in? && Rails.env.production? %>
               <script>
                   var _smplyBtr = _smplyBtr || {};
                   _smplyBtr.email = "<%= current_user.email %>";

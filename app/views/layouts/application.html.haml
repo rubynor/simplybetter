@@ -15,6 +15,7 @@
       .customer
         = link_to edit_customer_path(current_customer.id) do
           = image_tag current_customer.gravatar_url
+          Account
     #navigation
       = render 'shared/sidebar'
     #content

@@ -24,7 +24,7 @@ end
 gem 'searchkick'
 
 gem 'gravtastic'
-gem 'paper_trail', '~> 3.0.0'
+gem 'paper_trail', '~> 3.0.5'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer', platforms: :ruby
