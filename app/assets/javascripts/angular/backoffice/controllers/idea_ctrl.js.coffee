@@ -1,50 +1,57 @@
-backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, Comment) ->
-  $scope.init = (app_id) ->
-    $scope.app_id = app_id
-    $scope.ideas = Idea.query(application_id: app_id)
+IdeaCtrl = ($scope, Idea, Comment) ->
+  @idea = $scope.idea
+  @ideas = []
 
-  $scope.toggleVisible = (idea) ->
+  $scope.init = (app_id) =>
+    @app_id = app_id
+    @ideas = Idea.query(application_id: app_id)
+
+  @toggleVisible = (idea) ->
     updated_idea = new Idea( { id: idea.id, visible: !idea.visible } )
     idea.$show_comments = false
-    updated_idea.$patch({ application_id: $scope.app_id }
+    updated_idea.$patch({ application_id: @app_id }
       (data) ->
         idea.visible = data.visible
     )
 
-  $scope.toggleCompleted = (idea) ->
+  @toggleCompleted = (idea) ->
     updated_idea = new Idea( { id: idea.id, completed: !idea.completed } )
-    updated_idea.$patch({ application_id: $scope.app_id }
+    updated_idea.$patch({ application_id: @app_id }
       (data) ->
         idea.completed = data.completed
     )
 
-  $scope.delete = (idea, idx) ->
+  @delete = ->
     if confirm 'Are you sure?'
-      idea.$delete({application_id: $scope.app_id})
-      $scope.ideas.splice(idx, 1)
+      @idea.$delete({application_id: @app_id})
+      #Check if this works! @ideas.splice(idx, 1)
 
-  $scope.save = (idea, idx) ->
-    $scope.error_message = undefined
-    updated_idea = new Idea({ id: idea.id, title: idea.title, description: idea.description})
-    updated_idea.$patch({application_id: $scope.app_id},
+  @save = ->
+    @error_message = undefined
+    updated_idea = new Idea({ id: @idea.id, title: @idea.title, description: @idea.description})
+    updated_idea.$patch({application_id: @app_id},
       (data) ->
-        $scope.ideas[idx] = data
+        @idea = data
     , (err) ->
-      $scope.error_message = err.data
+      @error_message = err.data
     )
 
-  $scope.edit = (idea) ->
-    $scope.copy = angular.copy(idea)
-    idea.$edit = true
+  @edit = ->
+    @copy = angular.copy(@idea)
+    @idea.$edit = true
 
-  $scope.cancel = (idx) ->
-    $scope.copy.$edit = false
-    $scope.ideas[idx] = $scope.copy
+  @cancel = ->
+    @copy.$edit = false
+    @idea = @copy
 
-  $scope.toggleVisibleComment = (comment) ->
+  @toggleVisibleComment = (comment) ->
     updated_comment = new Comment( { id: comment.id, visible: !comment.visible } )
     updated_comment.$patch(
       (data) ->
         comment.visible = data.visible
     )
-]
+  return
+
+angular
+  .module('Backoffice')
+  .controller('IdeaCtrl', ['$scope', 'Idea', 'Comment', IdeaCtrl])
