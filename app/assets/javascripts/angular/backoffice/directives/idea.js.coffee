@@ -1,15 +1,10 @@
-IdeaCtrl = ($scope) ->
-  @idea = $scope.idea
-  return
-
 IdeaDirective = ->
   restrict: 'A'
   scope:
     idea: '='
   template: JST['angular/backoffice/templates/idea']
-  controller: ['$scope', IdeaCtrl]
-  controllerAs: 'ideaCtrl'
+  controller: 'IdeaCtrl as ideaCtrl'
 
 angular
   .module('Backoffice')
-  .directive('idea', [IdeaDirective])
+  .directive('idea', IdeaDirective)
