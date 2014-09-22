@@ -7,7 +7,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-  %body{class: "#{@current_controller} #{@current_action}"}
+  %body(class="#{@current_controller} #{@current_action}" ng-controller='MainCtrl as main' ng-init="init('#{@application.id}')")
     #logo
       .logo
       .name
