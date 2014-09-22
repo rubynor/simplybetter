@@ -10,9 +10,10 @@
     $scope.activeClass = 'completed'
     $scope.selectedFilter = { completed: true }
 
-  $scope.hideCompleted = ->
-    $scope.activeClass = 'hide_completed'
-    $scope.selectedFilter = { completed: false }
+  $scope.hideCompleted = (ideas = null) ->
+    if !ideas || ideas.length < 3
+      $scope.activeClass = 'hide_completed'
+      $scope.selectedFilter = { completed: false }
 
   $scope.showVisible = ->
     $scope.activeClass = 'visible'

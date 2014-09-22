@@ -1,4 +1,4 @@
-%div(ng-controller='IdeaFilterCtrl' ng-init='hideCompleted()')
+%div(ng-controller='IdeaFilterCtrl' ng-init='hideCompleted(ideas)')
   %idea-new
   .ideas-navigate
     %span(ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
