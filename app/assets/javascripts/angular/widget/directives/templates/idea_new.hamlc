@@ -1,5 +1,7 @@
 #newIdea(ng-if='user')
   .newIdea
+    .no-ideas(ng-if='ideas.length == 0')
+      Do you have an idea for how our site can be better? We would love to hear them! Just click in the field below and share your idea :)
     %form(name='newIdeaForm' novalidate)
       .error(ng-if='error_message')
         {{ error_message }}
