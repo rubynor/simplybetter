@@ -7,5 +7,5 @@
       %a(href='#' ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
       %a(href='#' ng-click='showVisible()' ng-class='{ active: activeClass == "visible" }') Visible
       %a(href='#' ng-click='hideVisible()' ng-class='{ active: activeClass == "hide_visible" }') Hidden
-    %ul(ng-controller='IdeaCtrl as ideas' ng-init="init('#{@application.id}')")
-      %li.idea(ng-repeat='idea in ideas.ideas | filter:selectedFilter' ng-class='{ "completed": idea.completed}' idea='idea')
+    %ul(ng-controller='IdeasCtrl as ideasCtrl' ng-init="init('#{@application.id}')")
+      %li.idea(ng-repeat='idea in ideasCtrl.ideas | filter:selectedFilter' ng-class='{ "completed": idea.completed}' idea='idea')
