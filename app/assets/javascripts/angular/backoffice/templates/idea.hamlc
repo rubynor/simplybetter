@@ -23,7 +23,7 @@
       {{ ideaCtrl.idea.downvotes }}
     %span.dot •
     .icon.comment
-    %span.comment(ng-click='ideaCtrl.idea.$show_comments = !ideaCtrl.idea.$show_comments')
+    %span.comment(ng-click='ideaCtrl.idea.$showComments = !ideaCtrl.idea.$showComments')
       {{ ideaCtrl.idea.comments_count }} comments
     %span.dot •
     by
@@ -35,10 +35,10 @@
       {{ ideaCtrl.idea.updated_at }}
   .not-visible-overlay(ng-if='!ideaCtrl.idea.visible')
   .options
-    .icon(ng-class='{ visible: ideaCtrl.idea.visible, "not-visible": !ideaCtrl.idea.visible }' ng-click='ideaCtrl.toggleVisible(idea)')
+    .icon(ng-class='{ visible: ideaCtrl.idea.visible, "not-visible": !ideaCtrl.idea.visible }' ng-click='ideaCtrl.toggleVisible()')
     .icon.edit(ng-click='ideaCtrl.edit()')
     .icon.delete(ng-click='ideaCtrl.delete()')
-    .icon(ng-class='{ completed: ideaCtrl.idea.completed, "not-completed": !ideaCtrl.idea.completed }' ng-click='toggleCompleted()') ✔
-  .comments(ng-if='ideaCtrl.idea.$show_comments')
+    .icon(ng-class='{ completed: ideaCtrl.idea.completed, "not-completed": !ideaCtrl.idea.completed }' ng-click='ideaCtrl.toggleCompleted()') ✔
+  .comments(ng-show='ideaCtrl.idea.$showComments')
     %ul
       %li.comment-item(ng-repeat='comment in ideaCtrl.idea.comments' comment='comment')

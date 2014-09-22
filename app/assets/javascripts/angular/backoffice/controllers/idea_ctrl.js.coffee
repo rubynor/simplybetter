@@ -1,40 +1,33 @@
-IdeaCtrl = ($scope, Idea, Comment) ->
+IdeaCtrl = ($scope, Idea, Comment, IdeasCache) ->
   @idea = $scope.idea
-  @ideas = []
+  appId = $scope.$parent.appId
 
-  $scope.init = (app_id) =>
-    @app_id = app_id
-    @ideas = Idea.query(application_id: app_id)
+  @toggleVisible = ->
+    updated_idea = new Idea( { id: @idea.id, visible: !@idea.visible } )
+    @idea.$showComments = false
+    updated_idea.$patch { application_id: appId }
+    , (data) =>
+      @idea.visible = data.visible
 
-  @toggleVisible = (idea) ->
-    updated_idea = new Idea( { id: idea.id, visible: !idea.visible } )
-    idea.$show_comments = false
-    updated_idea.$patch({ application_id: @app_id }
-      (data) ->
-        idea.visible = data.visible
-    )
-
-  @toggleCompleted = (idea) ->
-    updated_idea = new Idea( { id: idea.id, completed: !idea.completed } )
-    updated_idea.$patch({ application_id: @app_id }
-      (data) ->
-        idea.completed = data.completed
-    )
+  @toggleCompleted = ->
+    updated_idea = new Idea( { id: @idea.id, completed: !@idea.completed } )
+    updated_idea.$patch { application_id: appId }
+    , (data) =>
+      @idea.completed = data.completed
 
   @delete = ->
     if confirm 'Are you sure?'
-      @idea.$delete({application_id: @app_id})
-      #Check if this works! @ideas.splice(idx, 1)
+      @idea.$delete({application_id: appId})
+      IdeasCache.remove(@idea)
 
   @save = ->
     @error_message = undefined
     updated_idea = new Idea({ id: @idea.id, title: @idea.title, description: @idea.description})
-    updated_idea.$patch({application_id: @app_id},
-      (data) ->
+    updated_idea.$patch {application_id: appId}
+    , (data) =>
         @idea = data
-    , (err) ->
+    , (err) =>
       @error_message = err.data
-    )
 
   @edit = ->
     @copy = angular.copy(@idea)
@@ -44,14 +37,8 @@ IdeaCtrl = ($scope, Idea, Comment) ->
     @copy.$edit = false
     @idea = @copy
 
-  @toggleVisibleComment = (comment) ->
-    updated_comment = new Comment( { id: comment.id, visible: !comment.visible } )
-    updated_comment.$patch(
-      (data) ->
-        comment.visible = data.visible
-    )
   return
 
 angular
   .module('Backoffice')
-  .controller('IdeaCtrl', ['$scope', 'Idea', 'Comment', IdeaCtrl])
+  .controller('IdeaCtrl', ['$scope', 'Idea', 'Comment', 'IdeasCache', IdeaCtrl])
