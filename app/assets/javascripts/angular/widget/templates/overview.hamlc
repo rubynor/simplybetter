@@ -11,4 +11,4 @@
       %li.idea(ng-repeat='idea in ideas | filter: selectedFilter' ng-class='{ completed: idea.completed }')
         %vote
         %idea-item
-        %comments(comments='idea.comments')(ng-if='ideas.length == 1 && idea.comments')
+        %comments(comments='idea.comments' ng-if='idea.comments')
