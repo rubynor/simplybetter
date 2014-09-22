@@ -11,4 +11,4 @@
     {{ commentCtrl.comment.body }}
   .not-visible-overlay(ng-if='!commentCtrl.comment.visible')
   .options
-    .icon(ng-class='{ visible: commentCtrl.comment.visible, "not-visible": !commentCtrl.comment.visible }' ng-click='toggleVisibleComment(comment)')
+    .icon(ng-class='{ visible: commentCtrl.comment.visible, "not-visible": !commentCtrl.comment.visible }' ng-click='commentCtrl.toggleVisibleComment()')

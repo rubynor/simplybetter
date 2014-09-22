@@ -1,14 +1,9 @@
-CommentCtrl = ($scope) ->
-  @comment = $scope.comment
-  return
-
-
 CommentDirective = ->
   restrict: 'A'
   scope:
     comment: '='
   template: JST['angular/backoffice/templates/comment']
-  controller: ['$scope', CommentCtrl]
+  controller: 'CommentsCtrl'
   controllerAs: 'commentCtrl'
 
 angular
