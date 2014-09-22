@@ -4,17 +4,38 @@
 @import 'compass/utilities/general/clearfix'
 @import mixins
 
+body
+  background: #f4f4f4
+
 h1
   font-family: 'Lato', sans-serif
   font-weight: 300
-  margin-top: 20px
+  margin-top: 0px
   margin-bottom: 10px
+  color: #bababa
 
 p
   font-family: 'Lato', serif
   font-weight: 400
   margin-top: 10px
 
+button
+  @include button-big
+  height: 55px
+  padding: 10px 55px
+  font-size: 18px
+  font-weight: normal
+  margin-top: 70px
+  cursor: pointer
+
+#email-box
+  margin: auto
+  width: 500px
+  background: white
+  padding: 30px
+  border-radius: 5px
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2)
+  margin-top: 70px
 
 .idea-layout
   position: relative
