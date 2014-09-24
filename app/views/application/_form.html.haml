@@ -5,12 +5,12 @@
         .alert.alert-danger
           %p
             %strong
-              Unfortunately some errors prevented you from creating the application:
+              Unfortunately some errors prevented you from creating the project:
           %ul
             - @application.errors.full_messages.each do |msg|
               %li= msg
       = f.label :name
-      = f.text_field :name, placeholder: 'Application name'
+      = f.text_field :name, placeholder: 'Project name (ie your website name)'
       - if @current_action == 'new'
         = f.button 'Get started!'
       - else

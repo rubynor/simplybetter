@@ -4,7 +4,7 @@
   .idea-item
     %p
       = "'#{@creator.name}'"
-      just submittet an idea on your SimplyBetter application
+      just submittet an idea to your SimplyBetter project
       %strong= "'#{@idea.application.name}'"
     %hr
     %a(href="#{WidgetPath.path}/widget?appkey=#{@idea.application.token}&email=#{@receiver.email}&name='#{@receiver.name}'#/widget/ideas/#{@idea.id}")
