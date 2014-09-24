@@ -1,6 +1,7 @@
 @import imports
 @import fonts
 @import font-awesome
+@import icons
 @import mixins
 @import widget/ideas
 @import widget/navbar
@@ -9,6 +10,7 @@
 @import widget/new_idea
 @import widget/success
 @import widget/settings
+@import widget/support
 
 h1,h2,h3,h4,h5,body,label,input,textarea
   font-family: 'Roboto', sans-serif
@@ -32,6 +34,9 @@ strong
   height: 100%
   background-color: $background
   padding-left: 60px
+
+  .support-icon
+    @include support-icon
 
   .logobar
     background: image-url('widget/sidebar.png')
@@ -59,6 +64,17 @@ strong
     a:hover
       text-decoration: none
 
+    .support-button
+      height: 31px
+      width: 31px
+      position: absolute
+      left: 16px
+      bottom: 115px
+      cursor: pointer
+      overflow: visible
+      color: rgba(255, 255, 255, 0.5)
+      &:hover
+        color: rgba(255, 255, 255, 0.8)
     .settings-button
       position: absolute
       bottom: 80px
@@ -172,7 +188,7 @@ strong
     width: 100%
     tr.hax
       height: 100%
-     
+
     td.content
       height: 100%
       padding: 0px

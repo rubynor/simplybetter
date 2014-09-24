@@ -1,0 +1,2 @@
+%a.support-button(data-named-route='support' ng-hide='button.hidden' tooltip-placement='right' tooltip='Need support?' tooltip-trigger='mouseenter')
+  .support-icon

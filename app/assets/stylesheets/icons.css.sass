@@ -1,0 +1,41 @@
+@mixin support-icon
+  background: image-url('widget/support-icon.png') no-repeat
+  //&:hover
+  //  background-position: -14px $y
+  //  cursor: pointer
+  height: 30px
+  width: 31px
+
+
+@mixin icon($y)
+  background: image-url('widget/icons.png') no-repeat 0 $y
+  height: 24px
+  width: 24px
+  &:hover
+    background-position: -24px $y
+    cursor: pointer
+
+@mixin thumb($y)
+  background: image-url('widget/thumbs.png') no-repeat 0 $y
+  &:hover
+    background-position: -25px $y
+    cursor: pointer
+
+@mixin comment-icon($y)
+  background: image-url('widget/comment-icons.png') no-repeat 0 $y
+  &:hover
+    background-position: -14px $y
+    cursor: pointer
+
+@mixin button-new
+  background: $button-new image-url('dashboard/new.png') no-repeat left center
+  display: inline-block
+  height: 40px
+  padding: 10px 25px 0px 75px
+  border-radius: 50px
+  border: 0px
+  text-transform: uppercase
+  color: white
+  font-weight: 700
+  &:hover
+    text-decoration: none

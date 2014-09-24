@@ -1,0 +1,18 @@
+#support
+  .box
+    %h1
+      .support-icon
+
+      {{support.app_name}} Support
+    #support-form
+      %form(ng-submit='support.submitForm()')
+        %label Send us a message:
+        .alert.alert-danger.alert-dismissable(ng-show='support.errorVisible')
+          Unfortunately something bad happened, and we
+          could not receive your message.
+        .alert.alert-success.alert-dismissable(ng-show='support.successVisible')
+          Message sent! We'll get back to you by email promptly :)
+        .inputs(ng-hide='support.showForm()')
+          %textarea(ng-model='support.message' type='textarea' name='message')
+          %button(type='submit' ng-click='support.showSpinner()' ng-hide='support.spin') Send
+      .spinner(ng-show='support.spinnerVisible')
