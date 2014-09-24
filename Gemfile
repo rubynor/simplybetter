@@ -14,6 +14,7 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'font-awesome-rails'
 gem 'haml_coffee_assets', git: "https://github.com/netzpirat/haml_coffee_assets"
 gem 'ng-rails-csrf'
+gem 'autoprefixer-rails'
 
 group :production do
   gem 'newrelic_rpm'

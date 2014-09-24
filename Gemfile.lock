@@ -38,6 +38,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (2.2.0.20140804)
+      execjs
     aws-ses (0.5.0)
       builder
       mail (> 2.2.5)
@@ -296,6 +298,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   aws-ses
   bcrypt (~> 3.1.0)
   better_errors
