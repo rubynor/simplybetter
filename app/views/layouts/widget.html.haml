@@ -29,6 +29,6 @@
             BACK
         %h2= @app.name
         %p= @app.intro
-      #simplybetterIdeasModalContent(ng-view='')
+      #simplybetterIdeasModalContent(ng-view='' stretch-to-fit)
 
     = render 'shared/google_analytics_main' if Rails.env.production?
