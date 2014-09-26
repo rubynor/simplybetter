@@ -30,7 +30,7 @@
         %h2= @app.name
         %p= @app.intro
 
-        %idea-new(ng-if='!path')
+        %idea-new(ng-if='!path || newIdea.title.length')
       #simplybetterIdeasModalContent(ng-view='')
 
     = render 'shared/google_analytics_main' if Rails.env.production?
