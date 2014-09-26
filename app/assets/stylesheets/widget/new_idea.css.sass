@@ -1,85 +1,111 @@
 #simplybetterIdeasModal
-  #simplybetterIdeasModalContent
-    #newIdea
-      form
-        input.dirty, textarea
-          &.ng-invalid
-            border-color: #FA787E !important
-      background: $background
-      .newIdea
-        padding: 30px
-        padding-bottom: 10px
-        font-family: sans-serif
-        box-sizing: border-box
-        -moz-box-sizing: border-box
+  #newIdea
+    .newIdea
+      font-family: sans-serif
+      box-sizing: border-box
+      position: relative
+      &:before, &:after
+        content: ''
+        position: absolute
+        width: 0
+        height: 0
+        border-style: solid
+      &:before
+        border-color: transparent transparent $form-border transparent
+        border-width: 0 16px 17px 16px
+        top: -6px
+        left: 29px
+      &:after
+        border-color: transparent transparent $form-hover transparent
+        border-width: 0 15px 16px 15px
+        top: -5px
+        left: 30px
 
-        input[type="text"]
-          width: 100%
-          @include input
-          &.show-similar-ideas
-            border-bottom-left-radius: 0px
-            border-bottom-right-radius: 0px
-            box-shadow: none
-        button[type="submit"]
-          @include button-big
-          float: right
-        textarea
-          @include textarea
-          width: 100%
-          height: 120px
+      input[type="text"]
+        width: 100%
+        @include input
+        font-style: normal
+        margin-top: 10px
+        font-weight: 400
+        padding: 0px 15px
+        background: $form-hover
+        &:focus
+          background-color: $form-hover
+        &.show-similar-ideas
+          border-bottom-left-radius: 0px
+          border-bottom-right-radius: 0px
+          box-shadow: none
+      button[type="submit"]
+        @include button-big
+        float: right
+      .cancel
+        float: right
+        padding: 32px 30px 0px 30px
+        text-decoration: underline
+        color: $button-main
+        cursor: pointer
+      textarea
+        @include textarea
+        width: 100%
+        height: 120px
+        padding: 15px
+        &:focus
+          background-color: $form-hover
 
-        .error
-          color: #FF565E
-          margin-bottom: 20px
+      .error
+        color: #FF565E
+        margin-bottom: 20px
 
-        .new-idea-form
-          padding: 0px
+      .new-idea-form
+        padding: 0px
+        max-height: 0px
+        overflow: hidden
+        width: 100%
+        transition: max-height 1s
+        -webkit-transition: max-height 1s
+        &.focused
+          max-height: 400px
+
+      .similar-ideas
+        background: $white
+        border: 1px solid $form-border
+        border-top: 0px
+        border-bottom-left-radius: $input-radius
+        border-bottom-right-radius: $input-radius
+        overflow: hidden
+        max-height: 200px
+        opacity: 1
+        transition: max-height 1s, opacity 1s
+        -webkit-transition: max-height 1s, opacity 1s
+        &.fade-hidden
+          opacity: 0
           max-height: 0px
-          overflow: hidden
-          width: 100%
-          transition: max-height 1s
-          -webkit-transition: max-height 1s
-          &.focused
-            max-height: 900px
-
-        .similar-ideas
+          padding: 0px
+        ol
+          margin: 0
+        li.idea
+          box-shadow: none
           background: $white
-          border: 1px solid $form-border
-          border-top: 0px
-          padding-bottom: 30px
-          border-bottom-left-radius: 30px
-          border-bottom-right-radius: 30px
-          margin-bottom: 10px
-          overflow: hidden
-          max-height: 200px
-          opacity: 1
-          transition: max-height 1s, opacity 1s
-          -webkit-transition: max-height 1s, opacity 1s
-          &.fade-hidden
-            opacity: 0
-            max-height: 0px
-            padding: 0px
-          li.idea
-            box-shadow: none
-            background: $white
-            padding: 10px
-            min-height: 10px
-            display: block
-            margin: 0px 0px
-            border-bottom: 1px solid $form-border
-            border-radius: 0px
-            +clearfix
-          .vote
-            display: none
-          .idea-item
-            width: 100%
-            cursor: pointer
-            min-height: 10px
-            h1
-              font-size: 20px
-              margin: 0px
-          .desc
-            display: none
-          .meta
-            display: none
+          padding: 10px
+          min-height: 10px
+          display: block
+          margin: 0px 0px
+          border-bottom: 1px solid $form-border
+          border-radius: 0px
+          +clearfix
+          &:last-child
+            border: 0
+        .vote
+          display: none
+        .idea-item
+          width: 100%
+          cursor: pointer
+          min-height: 10px
+          h1
+            font-size: 20px
+            margin: 0px
+        .desc
+          display: none
+        .meta
+          display: none
 

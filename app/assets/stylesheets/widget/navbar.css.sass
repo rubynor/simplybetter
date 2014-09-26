@@ -1,10 +1,11 @@
 #simplybetterIdeasModal
   $navbar-height: 40px
   #simplybetterNavbar
-    background: image-url('widget/seperator-dark.png') repeat-y 75px 0
+    background: image-url('widget/seperator-dark.png') repeat-y 76px 0
     position: relative
     padding: 25px 30px 25px 90px
     min-height: 90px
+    border-bottom: 1px solid $background
     h2
       color: $black
       margin: 0px
@@ -15,13 +16,14 @@
       &:hover
         cursor: pointer
     p
-      color: $gray
-      font-size: 14px
-      margin-top: 2px
+      color: $black
+      font-weight: 400
+      font-size: 20px
+      margin: 2px 0px 12px 0px
       line-height: 20px
     a.link
       position: absolute
-      bottom: 30px
+      top: 30px
       left: 26px
       text-align: center
       text-transform: uppercase
@@ -39,8 +41,7 @@
           background-position: -24px 0
 
     &.overview
-      margin-bottom: 10px
-      padding: 25px 30px
+      padding: 15px 20px
       background: $white
       a.link
         display: none

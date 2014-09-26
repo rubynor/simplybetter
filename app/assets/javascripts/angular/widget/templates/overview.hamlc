@@ -1,5 +1,4 @@
 %div(ng-controller='IdeaFilterCtrl' ng-init='hideCompleted()')
-  %idea-new
   .ideas-navigate
     %span(ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
     %span(ng-click='hideCompleted()' ng-class='{ active: activeClass == "hide_completed" }') Not completed

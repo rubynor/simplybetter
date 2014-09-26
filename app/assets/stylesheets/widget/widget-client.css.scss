@@ -1,14 +1,17 @@
 @import 'colors';
 
 #simplybetterCloseButton {
-  background: image-url('widget/icons.png') no-repeat 0 -24px;
+  //background: image-url('widget/icons.png') no-repeat 0 -24px;
+  font-size: 30px;
+  line-height: 12px;
   width: 24px;
   height: 24px;
   position: absolute;
   z-index: 2000;
-  right: 5px;
-  top: 5px;
+  right: -30px;
+  top: 0px;
   cursor: pointer;
+  color: white;
   &:hover{
     background-position: -24px -24px;
   }
@@ -21,7 +24,7 @@
   height: 100%;
   z-index: 1500;
   width: 100%;
-  background-color: rgba(20, 20, 20, 0.20)
+  background-color: rgba(20, 20, 20, 0.70)
 }
 
 #simplybetterActivateButton {
@@ -44,16 +47,16 @@
   width: $width;
   position: fixed;
   z-index: 2000;
-  top: 10%;
+  top: 30px;
+  bottom: 30px;
   left: 50%;
   margin-left: - $width/2;
-  height: 70%;
   border: 0px;
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     width: auto;
     margin-left: 0px;
-    left: 3%;
-    right: 3%;
+    left: 5px;
+    right: 35px;
   }
 }
 

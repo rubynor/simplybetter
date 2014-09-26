@@ -23,6 +23,7 @@
 @mixin button
   width: 50px
 
+$input-radius: 3px
 @mixin input
   outline: none
   box-sizing: border-box
@@ -31,7 +32,7 @@
   font-size: 20px
   font-style: italic
   border: 1px solid $form-border
-  border-radius: 30px
+  border-radius: $input-radius
   padding: 0px 30px
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2)
   &:hover
@@ -70,9 +71,9 @@
     background-position: -24px $y
     cursor: pointer
 @mixin thumb($y)
-  background: image-url('widget/thumbs.png') no-repeat 0 $y
+  background: image-url('widget/thumbs.png') no-repeat -2px $y
   &:hover
-    background-position: -25px $y
+    background-position: -27px $y
     cursor: pointer
 
 @mixin comment-icon($y)
