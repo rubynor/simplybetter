@@ -1,11 +1,8 @@
 class WidgetApi::NotificationsController < ApplicationController
   include CreatorFinder
-  before_filter :application
 
   def index
-    user_email = params[:user_email]
-    recipient = get_current_user(@application, user_email)
-    @notifications = Notification.for(recipient, @application.id)
+    @notifications = Notification.for(current_user, current_application.id)
   rescue NoAccessException
     # No problem if no user
   end
@@ -24,11 +21,7 @@ class WidgetApi::NotificationsController < ApplicationController
 
   private
 
-    def notification_attributes
-      params.require(:notification).permit(:id, :checked)
-    end
-
-    def application
-      @application ||= Application.find_by(token: params[:token]) if params[:token]
-    end
+  def notification_attributes
+    params.require(:notification).permit(:id, :checked)
+  end
 end

@@ -8,7 +8,7 @@ describe CustomerMailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Password Reset')
       expect(mail.to).to eq([customer.email])
-      expect(mail.from).to eq(['noreply@simplybetter.io'])
+      expect(mail.from).to eq(['support@simplybetter.io'])
     end
 
     it 'renders the body' do

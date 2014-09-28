@@ -1,6 +1,6 @@
 class UserNotifier < ActionMailer::Base
   extend MailerHelpers
-  default from: 'noreply@simplybetter.io'
+  default from: 'support@simplybetter.io'
 
   def self.notify_group_comment(group, comment)
     idea = comment.idea

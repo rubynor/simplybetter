@@ -49,6 +49,7 @@ class Idea < ActiveRecord::Base
         AdminNotifier.send_to_group(app.customers, self)
         ActiveRecord::Base.connection.close
       end
+      #TODO OMA Q:Jeg forstår ikke denne. Her lages det en tråd man må vente på. Ingen andre tråder kjører? Må ha en gruppe tråder, da kan man vente til siste har fullført, før man fortsetter :)
       at_exit { t.join }
       true
     else
@@ -74,7 +75,7 @@ class Idea < ActiveRecord::Base
 
   def downvotes
     votes.where("value < 0").count
-  end 
+  end
 
   def voter_status(voter)
     votes.find_by(voter: voter).try(:value) if voter

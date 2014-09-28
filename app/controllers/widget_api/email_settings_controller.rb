@@ -1,7 +1,5 @@
 class WidgetApi::EmailSettingsController < ApplicationController
   include CreatorFinder
-
-  before_action :set_user
   before_action :find_or_create_email_settings
 
   def show
@@ -13,13 +11,9 @@ class WidgetApi::EmailSettingsController < ApplicationController
 
   private
 
-  def set_user
-    get_current_user(Application.find_by(token: params[:token]), params[:email])
-  end
-
   def find_or_create_email_settings
-    raise "Undefined @user variable" if @current_user.blank?
-    @settings = EmailSetting.find_by(mailable: @current_user)
+    raise "Undefined @user variable" if current_user.blank?
+    @settings = EmailSetting.find_by(mailable: current_user)
   end
 
   def setting_params

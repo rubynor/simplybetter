@@ -5,12 +5,15 @@ class NoAccessException < StandardError
 end
 
 module CreatorFinder
-  def get_current_user(application, user_email)
-    if application && user_email
-      @current_user ||= creator(application, user_email)
-    else
-      fail ArgumentError, "Missing one of the arguments application: #{application}, or user_email: #{user_email}"
-    end
+
+  def current_user
+    #TODO: OMA: We should always use the same user param, for simplicity. Convention :)
+    get_current_user(current_application, params[:user_email] || params[:email])
+  end
+
+
+  def current_application
+    @application ||= Application.find_by!(token: params[:token])
   end
 
   def creator(application, creator_email)
@@ -29,6 +32,16 @@ module CreatorFinder
     end
 
     raise NoUserException, 'This user does not exist'
+  end
+
+  private
+  def get_current_user(application, user_email)
+
+    if application && user_email
+      @current_user ||= creator(application, user_email)
+    else
+      fail ArgumentError, "Missing one of the arguments application: #{application}, or user_email: #{user_email}"
+    end
   end
 
 end

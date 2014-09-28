@@ -25,22 +25,15 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def cast_vote(value)
-    vote.cast_vote(value, @application.id)
+    vote.cast_vote(value, current_application.id)
     vote_receiver.reload
-  end
-
-  def application
-    unless @application ||= Application.find_by(token: params[:token])
-      raise "Can't find application"
-    end
-    @application
   end
 
   def vote_receiver
     @vote_receiver ||= if params[:idea_id]
-      application.ideas.find(params[:idea_id])
+      current_application.ideas.find(params[:idea_id])
     elsif params[:comment_id]
-      application.comments.find(params[:comment_id])
+      current_application.comments.find(params[:comment_id])
     else
       raise 'No vote receiver'
     end
@@ -51,6 +44,6 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def voter
-    creator(application, params[:voter_email])
+    creator(current_application, params[:voter_email])
   end
 end

@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
   has_paper_trail
   belongs_to :idea, inverse_of: :comments
   has_many :votes, as: :vote_receiver
-  has_one :idea_subscription, as: :subscriber_from, dependent: :destroy 
+  has_one :idea_subscription, as: :subscriber_from, dependent: :destroy
 
   validates_presence_of :body, :idea, :creator
   belongs_to :creator, polymorphic: true, inverse_of: :comments
@@ -43,6 +43,7 @@ class Comment < ActiveRecord::Base
   def customers
     idea.customers
   end
+
 
   def idea_creator
     [self.idea.creator]

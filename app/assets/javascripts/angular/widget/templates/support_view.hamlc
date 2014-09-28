@@ -1,7 +1,7 @@
 #support
   .box
     %h1
-      .support-icon
+      -#.support-icon
 
       {{support.app_name}} Support
     #support-form

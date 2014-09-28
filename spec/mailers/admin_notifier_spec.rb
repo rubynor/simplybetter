@@ -29,7 +29,7 @@ describe AdminNotifier do
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to match('just submittet an idea on your SimplyBetter application')
+      expect(mail.body.encoded).to match('submitted an idea to your SimplyBetter project')
     end
   end
 end
