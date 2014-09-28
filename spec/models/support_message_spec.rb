@@ -24,4 +24,11 @@ describe SupportMessage do
     expect(msg.errors.count).to eq(1)
     expect(ActionMailer::Base.deliveries.count).to eq(0)
   end
+
+  it "should send to support email when present" do
+    @application.update(support_email: 'support@awesomeclient.com')
+    msg = SupportMessage.new(user: @user, application: @application, message: "this is a message")
+    msg.save
+    expect(msg.to).to eq('support@awesomeclient.com')
+  end
 end

@@ -10,9 +10,7 @@ module CustomerUserShared
     after_create :create_email_setting
 
     validates :email,
-              format: {
-                  with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-                  on: :create},
+              format: EmailValidator.validator,
               uniqueness: true,
               presence: true
 

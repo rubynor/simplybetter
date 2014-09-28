@@ -29,7 +29,7 @@ class SupportMessage < ActiveRecord::Base
   private
 
   def assign_emails
-    self.to = application.customers.map(&:email).join(',')
+    self.to = application.support_emails
     self.from = user.email
   end
 end
