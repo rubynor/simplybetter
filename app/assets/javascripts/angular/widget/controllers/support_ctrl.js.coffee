@@ -8,7 +8,7 @@ SupportCtrl = ['$scope', '$routeParams', '$timeout', 'Support', ($scope, $routeP
 
   @submitForm = ->
     @showSpinner()
-    Support.save( =>
+    Support.save({message: @message}, =>
       @hideSpinner()
       @hideError()
       @showSuccess()

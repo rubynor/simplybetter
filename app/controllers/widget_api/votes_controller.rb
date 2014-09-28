@@ -6,7 +6,7 @@ class WidgetApi::VotesController < ApplicationController
     vote_val = params[:value] || 0
     if vote_val == 0
       status
-    elsif voter
+    elsif current_user
       cast_vote(vote_val)
     else
       render json: { error: 'You need to be signed in to vote' }, status: 403
@@ -17,7 +17,7 @@ class WidgetApi::VotesController < ApplicationController
 
   def status
     vote_receiver
-    if voter
+    if current_user
       vote
     else
       @vote = Vote.new
@@ -40,10 +40,6 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def vote
-    @vote ||= voter.votes.find_or_initialize_by(vote_receiver: vote_receiver)
-  end
-
-  def voter
-    creator(current_application, params[:voter_email])
+    @vote ||= current_user.votes.find_or_initialize_by(vote_receiver: vote_receiver)
   end
 end
