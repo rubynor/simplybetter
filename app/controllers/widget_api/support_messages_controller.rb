@@ -3,13 +3,20 @@ class WidgetApi::SupportMessagesController < ApplicationController
 
   respond_to :json
   def create
-
-    message = params[:support_message]
-    puts "YAAY", message
-    render json: {message: message, status: :created}
+    support_message = SupportMessage.new(support_params.merge({
+      application_id: current_application.id,
+      user: current_user,
+      to: current_application.customers.map(&:name).join(','),
+      from: current_user.email,
+    }))
+    if support_message.save_and_send
+      render json: {message: support_message.message, status: :created}
+    else
+      raise "Support Message sending failed: #{support_message.inspect}, errors #{support_message.errors.inspect}"
+    end
   end
 
   def support_params
-    params.require(:support_message).permit(:app_id, )
+    params.require(:support_message).permit(:message)
   end
 end
