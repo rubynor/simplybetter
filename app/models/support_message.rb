@@ -5,10 +5,17 @@ class SupportMessage < ActiveRecord::Base
 
   validates_presence_of :user_id, :application_id, :message, :to, :from
 
+  before_validation :assign_emails
+
   def save_and_send
-    SupportMailer.send_to_support(self).deliver
-    self.sent_at = Time.now
-    save
+    if save
+      SupportMailer.send_to_support(self).deliver
+      self.sent_at = Time.now
+      save
+    else
+      false
+    end
+
   end
 
   def app_name
@@ -17,5 +24,12 @@ class SupportMessage < ActiveRecord::Base
 
   def name_or_email
     self.user.try(:name) || self.user.email
+  end
+
+  private
+
+  def assign_emails
+    self.to = application.customers.map(&:email).join(',')
+    self.from = user.email
   end
 end

@@ -104,6 +104,7 @@ describe WidgetController, js: true do
         end
       end
     end
+    pending 'example support message'
   end
 
 end

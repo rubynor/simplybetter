@@ -21,7 +21,7 @@ end
 
 Customer.blueprint do
   name { "Acme Inc" }
-  email { "test-#{sn}@example.com" }
+  email { "customer-#{sn}@example.com" }
   password { "secret" }
   password_confirmation { "secret" }
   email_setting
@@ -35,7 +35,7 @@ end
 
 User.blueprint do
   name { "Machinist user" }
-  email { "test-#{sn}@machinist.com" }
+  email { "user-#{sn}@machinist.com" }
   email_setting
 end
 

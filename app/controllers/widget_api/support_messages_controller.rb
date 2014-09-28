@@ -5,9 +5,7 @@ class WidgetApi::SupportMessagesController < ApplicationController
   def create
     support_message = SupportMessage.new(support_params.merge({
       application_id: current_application.id,
-      user: current_user,
-      to: current_application.customers.map(&:name).join(','),
-      from: current_user.email,
+      user: current_user
     }))
     if support_message.save_and_send
       render json: {message: support_message.message, status: :created}
