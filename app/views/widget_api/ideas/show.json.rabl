@@ -15,6 +15,6 @@ node(:comments_count) do |c|
 end
 
 node(:voter_status) do |c|
-  c.voter_status(current_user)
+  c.voter_status(@current_user)
 end
 

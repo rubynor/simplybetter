@@ -39,7 +39,7 @@ describe WidgetController, js: true do
         first('a', text: '[edit idea]').click
         expect(page).not_to have_css('.comment-body')
         fill_in 'title-input', with: 'New text for title'
-        click_button 'send'
+        click_button 'update'
         expect(page).to have_css('.comment-body')
         expect(page).to have_content('New text for title')
       end
@@ -48,13 +48,6 @@ describe WidgetController, js: true do
       within_frame 0 do
         expect(page).to have_css '.up'
         first('.up').click
-        expect(page).to have_css '.active'
-      end
-    end
-    example 'down vote' do
-      within_frame 0 do
-        expect(page).to have_css '.down'
-        first('.down').click
         expect(page).to have_css '.active'
       end
     end

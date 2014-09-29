@@ -6,7 +6,6 @@
   height: 30px
   width: 31px
 
-
 @mixin icon($y)
   background: image-url('widget/icons.png') no-repeat 0 $y
   height: 24px
@@ -16,9 +15,9 @@
     cursor: pointer
 
 @mixin thumb($y)
-  background: image-url('widget/thumbs.png') no-repeat 0 $y
+  background: image-url('widget/thumbs.png') no-repeat -2px $y
   &:hover
-    background-position: -25px $y
+    background-position: -27px $y
     cursor: pointer
 
 @mixin comment-icon($y)
@@ -26,6 +25,7 @@
   &:hover
     background-position: -14px $y
     cursor: pointer
+
 
 @mixin button-new
   background: $button-new image-url('dashboard/new.png') no-repeat left center

@@ -11,3 +11,5 @@
       .new-idea-form(ng-class='{ focused: write }')
         %textarea.description(placeholder='Description' ng-model='newIdea.description' ng-focus='hide_similar()' required)
         %button.btn.submit(type='submit' ng-click='save_idea(newIdea)' ng-class='{disabled: !newIdeaForm.$valid}') send
+        .cancel(ng-click='write = false')
+          cancel

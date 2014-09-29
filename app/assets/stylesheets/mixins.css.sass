@@ -23,6 +23,7 @@
 @mixin button
   width: 50px
 
+$input-radius: 3px
 @mixin input
   outline: none
   box-sizing: border-box
@@ -31,7 +32,7 @@
   font-size: 20px
   //font-style: italic   ole : testing, cleaner straight?
   border: 1px solid $form-border
-  border-radius: 30px
+  border-radius: $input-radius
   padding: 0px 30px
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2)
   &:hover
