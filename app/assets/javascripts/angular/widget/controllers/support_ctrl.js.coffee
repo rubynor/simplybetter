@@ -28,9 +28,6 @@ SupportCtrl = ['$scope', '$routeParams', '$timeout', 'Support', ($scope, $routeP
 
   @showSuccess = ->
     @successVisible = true
-    $timeout( =>
-      @successVisible = false
-    , 5000)
 
   @showSpinner = ->
     @spinnerVisible = true
