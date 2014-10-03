@@ -5,28 +5,33 @@
       position: absolute
       top: 0px
       left: 0px
-      padding: 15px
+      padding: 20px 0px 20px 0px
+      text-align: center
+      width: 58px
+      line-height: 16px
       .votes
-        display: block
-        line-height: 44px
+        display: inline-block
+        line-height: 13px
         text-align: center
-        font-size: 16px
-        font-weight: bold
-        width: 36px
-        height: 46px
-        background: image-url('widget/vote-circle.png') no-repeat 0 -6px
+        font-size: 12px
+        color: #9f9f9f
+        font-weight: 400
+        height: 16px
+        border: 1px solid #9f9f9f
+        padding: 0px 6px
+        border-radius: 10px
         &.upvote
           color: $upvote
         &.downvote
           color: $downvote
       .up, .down, .up.active, .down.active
-        margin-left: 5px
-        display: block
-        width: 25px
+        display: inline-block
+        width: 23px
         height: 22px
         cursor: pointer
       .up
         @include thumb(-44px)
+        margin-left: 4px
         &.active
           @include thumb(0px)
       .down
@@ -40,7 +45,7 @@
     overflow-x: hidden
     overflow-Y: scroll
     position: relative
-    padding: 0px 10px 10px 10px
+    padding: 0px 20px 10px 20px
 
     .close-view-button
       display: none
@@ -51,7 +56,7 @@
       color: white
       box-sizing: border-box
       -moz-box-sizing: border-box
-      margin-bottom: 50px
+      margin-top: 50px
       font-size: 20px
     .overview
       .idea-layout
@@ -96,19 +101,14 @@
 
     // Idea item
     .idea, .idea-layout
-      background: image-url('widget/seperator.png') repeat-y 65px 0px
+      background: image-url('widget/seperator.png') repeat-y 56px 0px
       position: relative
       display: block
       text-align: left
       margin-bottom: 10px
-      padding: 15px 0px 20px 66px
+      padding: 20px 0px 20px 56px
       min-height: 110px
       width: 100%
-      -webkit-transition: all 1s linear
-      -o-transition: all 1s linear
-      -moz-transition: all 1s linear
-      -ms-transition: all 1s linear
-      -kthtml-transition: all 1s linear
       transition: all 1s linear
       @include box
       @include vote-buttons
@@ -129,24 +129,21 @@
           font-size: 12px
 
       &.highlighted
-        -webkit-box-shadow: inset 0px 0px 10px 0px $notification-background
-        -moz-box-shadow: inset 0px 0px 10px 0px $notification-background
         box-shadow: inset 0px 0px 10px 0px $notification-background
-        -webkit-transition: all 1s linear
-        -o-transition: all 1s linear
-        -moz-transition: all 1s linear
-        -ms-transition: all 1s linear
-        -kthtml-transition: all 1s linear
         transition: all 1s linear
 
       .idea-item
         display: block
-        padding: 0px 15px 0px 15px
+        padding: 0px 20px 0px 20px
+        a
+          text-decoration: none
         h1
           color: $black
           margin: 0px 0px 10px 0px
           padding: 0
-          font-size: 30px
+          line-height: 20px
+          font-size: 24px
+          font-weight: 500
         p.desc
           color: $gray
           font-size: 14px
@@ -155,27 +152,28 @@
             color: #777
             font-size: 22px
             line-height: 34px
-            font-weight: 100
+            font-weight: 300
         .meta
           color: $gray
-          margin-top: 15px
+          margin-top: 10px
           font-weight: 500
           font-size: 12px
           .comments
-            margin-right: 3px
+            margin: 4px 3px 0px 0px
             width: 14px
             height: 13px
             display: inline-block
             float: left
             @include comment-icon(-26px)
           span
-            &.user
-              color: $button-main
-            &.date
+            &.black
               color: $black
+            &.blue
+              color: $button-main
+              margin-right: 15px
 
   .ideas-navigate
-    text-align: right
+    text-align: left
     span
       cursor: pointer
       font-size: 20px
@@ -184,4 +182,4 @@
       padding: 10px 30px 0px 0px
       display: inline-block
       &.active
-        color: black
+        color: $gray
