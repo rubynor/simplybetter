@@ -1,2 +1,1 @@
-%a.settings-button(data-named-route='settings' ng-hide='button.hidden')
-  %i.fa.fa-cog(tooltip-placement='right' tooltip='Account settings' tooltip-trigger='mouseenter')
+%a.settings-button(data-named-route='settings' ng-hide='button.hidden' tooltip-placement='right' tooltip='Account settings' tooltip-trigger='mouseenter')

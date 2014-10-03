@@ -12,10 +12,13 @@
     {{ idea.description | truncate:120 }}
   .meta
     .comments
-    {{ idea.comments_count }} comments • by
-    %span.user
-      {{ idea.creator_name }} on
-    %span.date
+    %span.blue
+      {{ idea.comments_count }} comments
+    by
+    %span.black
+      {{ idea.creator_name }}
+    on
+    %span.black
       {{ idea.updated_at }}
     %a(ng-if='owner(idea)' named-route='idea_edit' kwarg-id='{{ idea.id }}')
       [edit idea]
