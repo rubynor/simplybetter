@@ -1,5 +1,6 @@
 =render 'shared/navbar'
 .col-xs-12
+  = render 'shared/alerts', model: current_customer
   #manage-ideas(ng-controller='IdeaFilterCtrl')
     %div.ideas-navigate
       %a(href='#' ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All
