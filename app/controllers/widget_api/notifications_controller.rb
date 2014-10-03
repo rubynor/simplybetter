@@ -18,9 +18,9 @@ class WidgetApi::NotificationsController < ApplicationController
 
   def count
     user_email = params[:user_email]
-    recipient_id = Customer.find_by(email: user_email).try(:id)
-    recipient_id = User.find_by(email: user_email).try(:id) unless recipient_id
-    notifications = Notification.joins(:application).where(recipient_id: recipient_id, applications: {token: params[:token]}).where(checked: nil)
+    recipient = Customer.find_by(email: user_email)
+    recipient = User.find_by(email: user_email) unless recipient
+    notifications = Notification.joins(:application).where(recipient: recipient, applications: {token: params[:token]}).where(checked: nil)
     render json: { count: notifications.count }
   end
 
