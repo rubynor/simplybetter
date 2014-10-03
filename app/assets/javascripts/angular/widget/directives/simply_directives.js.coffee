@@ -1,4 +1,4 @@
-@simplyDirectives = angular.module('simplyDirectives', []);
+@simplyDirectives = angular.module('simplyDirectives', [])
 
 simplyDirectives.directive 'onFinishRender', ['$timeout', ($timeout) ->
   restrict: 'A'

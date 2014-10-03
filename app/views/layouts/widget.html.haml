@@ -31,6 +31,6 @@
         %p= @app.intro
 
         %idea-new(ng-if='!path || newIdea.title.length')
-      #simplybetterIdeasModalContent(ng-view='')
+      #simplybetterIdeasModalContent(ng-view='' stretch-to-fit)
 
     = render 'shared/google_analytics_main' if Rails.env.production?
