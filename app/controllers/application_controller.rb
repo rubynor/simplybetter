@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_customer
-    @current_customer ||= Customer.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+    @current_customer ||= Customer.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token] && cookies[:auth_token].length > 1
   end
   helper_method :current_customer
 
