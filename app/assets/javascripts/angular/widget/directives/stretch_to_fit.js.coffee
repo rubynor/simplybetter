@@ -1,6 +1,6 @@
 # This directive is created for #simplybetterIdeasModalContent
 # it's not intended to be used anywhere else
-StretchToFit = ($window) ->
+StretchToFit = ($window, $timeout) ->
   restrict: 'A'
   link: (scope, element, attr) ->
     resize = ->
@@ -11,8 +11,13 @@ StretchToFit = ($window) ->
     angular.element($window).bind 'resize', ->
       resize()
 
+    angular.element($window).bind 'mouseup', ->
+      $timeout ->
+        resize()
+      , 550
+
     resize()
 
 angular
   .module('Simplybetter')
-  .directive('stretchToFit', ['$window', StretchToFit])
+  .directive('stretchToFit', ['$window', '$timeout', StretchToFit])
