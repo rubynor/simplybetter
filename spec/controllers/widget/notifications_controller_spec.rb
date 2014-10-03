@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe WidgetApi::NotificationsController do
-  before :all do
+  before do
     @customer = Customer.make!
     @application = Application.make!(customers: [@customer])
     @customer.widgets << @application
