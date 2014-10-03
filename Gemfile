@@ -17,7 +17,6 @@ gem 'ng-rails-csrf'
 gem 'autoprefixer-rails'
 
 group :production do
-  gem 'newrelic_rpm'
   gem "sentry-raven"
   gem 'aws-ses', require: 'aws/ses'
 end
@@ -77,4 +76,5 @@ gem 'nokogiri'
 
 group :staging,:production do
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
