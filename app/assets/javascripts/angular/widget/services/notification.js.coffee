@@ -1,3 +1,3 @@
-widget.factory 'Notification', ['$resource', '$cookieStore', ($resource, $cookieStore) ->
-  $resource '/widget_api/notifications/:id.json', { id: '@id', token: $cookieStore.get('token'), user_email: $cookieStore.get('email') }, { update: { method: 'PUT' } }
+widget.factory 'Notification', ['$resource', 'Session', ($resource, Session) ->
+  $resource '/widget_api/notifications/:id.json', { id: '@id', token: Session.token, user_email: Session.email }, { update: { method: 'PUT' } }
 ]
