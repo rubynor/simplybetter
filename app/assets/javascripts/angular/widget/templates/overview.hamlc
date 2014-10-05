@@ -5,7 +5,7 @@
     %span(ng-click='showCompleted()' ng-class='{ active: activeClass == "completed"}') Completed
     %span(ng-if='signed_in' ng-click='showMine(email)' ng-class='{ active: activeClass == "mine" }') Mine
 
-  .no-ideas(ng-if='ideas.length == 0')
+  .no-ideas(ng-if='no_ideas')
     Do you have an idea for how our site can be better? We would love to hear them! Just click in the field above and share your idea :)
 
   #ideas
