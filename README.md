@@ -26,3 +26,9 @@ Noen ganger trenger vi å legge på ekstra url-parametre på slutten
 #### Links
 
 For å lage lenker i templates, kan vi bruke fremgangsmåten beskrevet her: https://github.com/airtonix/angular-named-routes#directive
+
+
+#### Email preview
+Preview email example to preview password_reset: /rails/mailers/customer_mailer/password_reset
+
+/rails/mailers/{file}/{method}
