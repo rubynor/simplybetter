@@ -1,1 +1,14 @@
-#contact
+%section#contact.contact-section
+  .site-content
+    %h2 Contact
+    .form-box
+      %form{action: '', method: ''}
+        %label Name
+        %input{name: 'name', type: 'text'}
+        %label E-mail
+        %input.correct{name: 'email', type: 'text'}
+        %label You are bothering us because...
+        %textarea.error{name: 'message'}
+        %input{type: 'submit', value: 'SUBMIT'}
+        .clear
+.clear
