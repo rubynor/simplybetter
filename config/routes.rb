@@ -47,7 +47,7 @@ SimplyBetter::Application.routes.draw do
 
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
-  root 'sessions#new'
+  root 'landing_page#index'
   delete '/sessions/destroy' => "sessions#destroy", as: "sign_out"
 
 end

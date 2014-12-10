@@ -2,17 +2,12 @@
   .site-content
     %a.fLogo{href: "#wrapper", title: "Go Top"}
     %ul.fMenu
-      %li
-        %a{href: "#why", title: "About"} About
-      %li
-        %a{href: "#feature", title: "About"} Feature
-      %li
-        %a{href: "#price", title: "Price"} Price
-      %li.last
-        %a{href: "#contact", title: "Contact"} Contact
+      = render 'landing_page/navigation_list'
     .clear
     %p.copy
-      \© 2014 SimplyBetter. All rights reserved. Read more about our
+      \©
+      = Date.today.year
+      SimplyBetter. All rights reserved. Read more about our
       %a{href: "#", title: "Terms  Condition"} Terms  Condition
   .mobile-menu
     %ul

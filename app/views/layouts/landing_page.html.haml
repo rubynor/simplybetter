@@ -18,17 +18,10 @@
             %img.sLogo{alt: 'Simply Better', src: 'img/sLogo.png'}
           .contactBox
             %ul
-              %li
-                %a{href: '#what', title: 'About'} About
-              %li
-                %a{href: '#why', title: 'Features'} Features
-              %li
-                %a{href: '#price', title: 'Price'} Price
-              %li
-                %a{href: '#contact', title: 'Contact'} Contact
+              = render 'landing_page/navigation_list'
               %li.divider-list
-                %a{href: '', title: 'SIGN IN'} SIGN IN
+                = link_to 'SIGN IN', login_path
               %li.last
-                %a.contact{href: '#', title: 'GET SIMPLY BETTER'} GET SIMPLY BETTER
+                = link_to 'GET SIMPLY BETTER', new_customer_path, class: 'contact'
           .clear
       = yield
