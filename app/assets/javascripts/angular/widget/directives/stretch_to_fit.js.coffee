@@ -4,8 +4,8 @@ StretchToFit = ($window, $timeout) ->
   restrict: 'A'
   link: (scope, element, attr) ->
     resize = ->
-      navbarHeight = element.siblings('#simplybetterNavbar')[0].offsetHeight
-      totalHeight = element.parent()[0].offsetHeight
+      navbarHeight = angular.element( document.querySelector( '#simplybetterNavbar' ))[0].offsetHeight
+      totalHeight = angular.element( document.querySelector('#simplybetterIdeasModal'))[0].offsetHeight
       element.css('height', totalHeight - navbarHeight)
 
     angular.element($window).bind 'resize', ->
