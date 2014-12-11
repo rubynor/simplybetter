@@ -1,3 +1,3 @@
-widget.factory 'Vote', ['$resource', '$cookieStore', ($resource, $cookieStore) ->
-  $resource '/widget_api/votes/cast.json', { token: $cookieStore.get('token'), user_email: $cookieStore.get('email') }
+widget.factory 'Vote', ['$resource', 'Session', ($resource, Session) ->
+  $resource '/widget_api/votes/cast.json', { token: Session.token, user_email: Session.email }
 ]
