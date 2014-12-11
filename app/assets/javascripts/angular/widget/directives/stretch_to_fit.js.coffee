@@ -16,7 +16,9 @@ StretchToFit = ($window, $timeout) ->
         resize()
       , 550
 
-    resize()
+    $timeout ->
+      resize()
+    , 50
 
 angular
   .module('Simplybetter')
