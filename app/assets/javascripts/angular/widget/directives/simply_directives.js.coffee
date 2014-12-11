@@ -21,7 +21,7 @@ simplyDirectives.directive 'ideaItem', ->
   controller: ['$scope', '$cookieStore', 'Session', ($scope, $cookieStore, Session) ->
 
     $scope.owner = (idea) ->
-      Session.owner(idea.creator_email)
+      Session.owner(idea.creator_email) if idea
   ]
 
 simplyDirectives.directive 'vote', ->
