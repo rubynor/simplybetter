@@ -1,6 +1,8 @@
 SimplyBetter::Application.routes.draw do
 
-  resources :landing_page, only: :index
+  resources :landing_page, only: :index do
+    get :contact_us, on: :collection
+  end
 
   namespace :widget_api do
     resources :ideas, except: [:new, :edit] do
