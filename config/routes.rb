@@ -1,7 +1,7 @@
 SimplyBetter::Application.routes.draw do
 
   resources :landing_page, only: :index do
-    get :contact_us, on: :collection
+    post :contact_us, on: :collection
   end
 
   namespace :widget_api do

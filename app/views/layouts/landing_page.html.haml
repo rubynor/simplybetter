@@ -8,7 +8,7 @@
     = stylesheet_link_tag    'landing_page', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'landing', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body(ng-app='landingPage')
+  %body(ng-app='LandingPage')
     .container(ng-init='scroll = 0')
       %span(scroll-position='scroll')
       %header
