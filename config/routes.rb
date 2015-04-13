@@ -1,5 +1,9 @@
 SimplyBetter::Application.routes.draw do
 
+  resources :landing_page, only: :index do
+    post :contact_us, on: :collection
+  end
+
   namespace :widget_api do
     resources :ideas, except: [:new, :edit] do
       resources :comments, only: [:create, :destroy, :index, :show]
@@ -45,7 +49,7 @@ SimplyBetter::Application.routes.draw do
 
   get '/login' => "sessions#new"
   post '/sessions/create' => "sessions#create"
-  root 'sessions#new'
+  root 'landing_page#index'
   delete '/sessions/destroy' => "sessions#destroy", as: "sign_out"
 
 end

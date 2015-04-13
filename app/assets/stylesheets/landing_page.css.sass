@@ -1,0 +1,824 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700)
+
+/* CSS Document
+
+html
+  font-size: 100%
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%
+  height: 100%
+
+body
+  width: 100%
+  height: 100%
+  margin: 0
+  padding: 0
+  font-family: 'Lato', sans-serif
+  max-width: 100%
+  outline: none
+
+.clear
+  clear: both
+  display: block
+
+a
+  text-decoration: none
+
+p
+  margin-top: 0
+  margin-bottom: 10px
+  font-size: 16px
+  color: #fff
+  text-align: center
+  &.subtitle
+    font-size: 34px
+    margin-bottom: 4px
+
+header
+  padding: 20px 20px 10px
+  z-index: 9999
+  position: relative
+  background: #52596b
+  color: #fff
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  box-sizing: border-box
+
+.logoBox
+  float: left
+
+header
+  .logo
+    display: block
+  .sLogo
+    display: none
+  &.scrollHeader
+    padding: 10px 20px 10px
+    .sLogo
+      display: block
+      margin-top: 4px
+    .logo
+      display: none
+
+.contactBox
+  float: right
+  margin-top: 2px
+
+.message_to_customer
+  color: white
+  font-size: 20px
+
+.site-content
+  max-width: 970px
+  padding: 0 15px
+  margin: 0 auto
+  z-index: 10
+  text-align: center
+
+.tablet-box
+  text-align: center
+  margin-top: 0
+  img
+    max-width: 100%
+
+.header-content
+  max-width: 1460px
+  margin: 0 auto
+
+header ul
+  margin: 0
+  padding: 0
+  li
+    display: block
+    float: left
+    height: 48px
+    margin-right: 8px
+    list-style: none
+    &.last
+      margin-right: 0
+    &.divider-list
+      border-left: 1px solid #757a89
+      padding-left: 30px
+      margin-left: 22px
+    a
+      padding: 15px 10px 16px 10px
+      color: #fff
+      display: block
+      font-size: 14px
+      text-decoration: none
+      text-transform: uppercase
+      &:hover
+        color: #e1e2e7
+
+a
+  &.contact
+    background: #947ff5
+    padding: 15px 20px 16px 20px
+    border-radius: 3px
+    text-decoration: none
+    color: #fff
+    font-size: 14px
+    display: block
+    text-transform: uppercase
+    font-weight: 700
+    &:hover, &:active, &:visited
+      color: #fff
+    &:hover, &:active
+      background-color: #866ef4
+  &.btn
+    background: #05a2d7
+    display: block
+    max-width: 267px
+    margin: 0 auto
+    padding: 15px 20px 16px 20px
+    border-radius: 3px
+    text-decoration: none
+    color: #fff
+    font-size: 16px
+    text-transform: uppercase
+    font-weight: 700
+    &:hover, &:active
+      background-color: #128abd
+
+.site-wrapper
+  height: 100%
+  position: relative
+  section
+    padding: 100px 0 0
+
+.white-section
+  color: #000
+
+.blue-section
+  background: #05a2d7
+  color: #fff
+
+.site-wrapper section.purple-section
+  background: #7c70de
+  color: #fff
+  padding-bottom: 70px
+
+section h2
+  font-size: 28px
+  margin-top: 0
+  line-height: 30px
+  margin-bottom: 46px
+  font-weight: 400
+
+.contact-section h2
+  margin-bottom: 71px
+  color: #fff
+
+.box
+  text-align: center
+  width: 31%
+  display: block
+  float: left
+  padding: 0 1.1%
+  margin-bottom: 96px
+  h3
+    color: #171717
+    font-size: 24px
+    margin-top: 0
+    font-weight: 400
+    margin-bottom: 10px
+  p
+    color: #838383
+    font-size: 16px
+    margin-top: 0
+    margin-bottom: 0
+  .box-container
+    max-width: 180px
+    margin: 0 auto
+
+.item-logo
+  display: block
+  margin: 0 auto
+  width: 60px
+  height: 62px
+  margin-bottom: 22px
+  background-size: 100% !important
+
+.whi-us .item-logo
+  width: 64px
+  height: 64px
+
+.idea-logo
+  background: url(../img/ideas.png) no-repeat
+
+.engaged-logo
+  background: url(../img/engaged.png) no-repeat
+
+.website-logo
+  background: url(../img/website.png) no-repeat
+
+.item-analitics
+  background: url(../img/scripts.png) no-repeat
+
+.item-database
+  background: url(../img/database.png) no-repeat
+
+.item-widget
+  background: url(../img/widget.png) no-repeat
+
+.item-look
+  background: url(../img/look.png) no-repeat
+
+.item-side-idea
+  background: url(../img/side-idea.png) no-repeat
+
+.item-like
+  background: url(../img/like.png) no-repeat
+
+.item-notification
+  background: url(../img/notification.png) no-repeat
+
+.item-side-notification
+  background: url(../img/side-notification.png) no-repeat
+
+.item-complete
+  background: url(../img/complete-idea.png) no-repeat
+
+.blue-section .box p
+  color: #fff
+  font-size: 16px
+
+.pk-box
+  text-align: left
+  color: #fff
+  background: #05a2d7
+  padding: 24px 30px 30px
+  float: left
+  width: 16.5%
+  margin-right: 2.1%
+  margin-bottom: 30px
+  margin-top: 20px
+
+.pk-title, .pk-text
+  text-align: left
+
+.pk-title
+  font-size: 24px
+  margin-bottom: 7px
+
+.pk-text
+  line-height: 22px
+  height: 66px
+  overflow: hidden
+  margin-bottom: 17px
+  span
+    display: block
+
+.pk-box.last
+  margin-right: 0
+
+.pk-white-box
+  width: 17.5%
+  margin-top: 0
+  background: #ffffff
+  color: #171717
+
+p.pk-price
+  height: 38px
+  line-height: 38px
+  text-align: left
+  font-size: 46px
+  position: relative
+  padding-left: 8px
+  margin-bottom: 32px
+
+.pk-price
+  sup, sub
+    position: absolute
+    font-size: 16px
+    line-height: 10px
+  sup
+    top: 1px
+    left: 0px
+    margin-right: 5px
+  sub
+    bottom: 0
+
+a.choose
+  background: #ffffff
+  color: #239ed7
+  display: block
+  border-radius: 3px
+  padding: 14px 0
+  text-align: center
+  font-weight: 700
+  &:hover, &:active
+    background: #e1e2e7
+
+.site-wrapper section.contact-section
+  background-image: url(../img/contact-bg.png)
+  background-repeat: no-repeat
+  background-position: top center
+  padding-bottom: 100px
+  padding-top: 95px
+  background-size: auto
+
+.parallax
+  background-attachment: fixed
+  background-position: center top
+  background-repeat: no-repeat
+  background-size: cover
+
+.form-box
+  max-width: 470px
+  margin: 0 auto
+  label
+    color: #fff
+    font-size: 16px
+    text-align: left
+    margin-bottom: 11px
+    display: block
+  input, textarea
+    border-collapse: collapse
+    width: 100%
+    box-sizing: border-box
+    background: #fcfcfc
+    border: 1px solid #e1e1e1
+    margin-bottom: 32px
+    border-radius: 3px
+    height: 50px
+    font-size: 18px
+    color: #171717
+    font-weight: normal
+    font-family: 'Lato', sans-serif
+    display: block
+    max-width: 100%
+    padding: 10px 35px 10px 15px
+  input:hover, textarea:hover
+    background-color: #fffef4 !important
+  input:focus, textarea:focus
+    background-color: #fffdda !important
+  input.correct, textarea.correct
+    border: 1px solid #00d7a7
+    background: url(../img/correct.png) 98% 13px no-repeat white
+  input.error
+    border: 1px solid #f66a7e
+  textarea
+    &.error
+      border: 1px solid #f66a7e
+    height: 230px
+    margin-bottom: 39px
+  input[type="submit"]
+    background: #1f9fd5
+    border: none !important
+    height: 58px
+    color: #fff
+    -webkit-appearance: none
+    &:hover
+      background: #128abd !important
+      cursor: pointer
+
+footer
+  background: #fff
+  background-size: cover
+  padding: 35px 0 40px
+
+ul.fMenu
+  padding: 0
+  margin-bottom: 15px
+  li
+    list-style: none
+    display: block
+    float: left
+    margin-right: 30px
+    &.last
+      margin-right: 0
+    a
+      font-size: 16px
+      text-transform: uppercase
+      color: #05a2d7
+      text-decoration: none
+      &:hover, &:active, &:visited
+        color: #128abd
+
+p.copy
+  font-size: 16px
+  color: #a0a0a0
+  text-align: left
+  margin-top: 3px
+  a
+    color: #05a2d7
+    &:hover
+      color: #128abd
+
+.pk-box.pk-white-box
+  padding: 44px 39px 46px
+  p
+    color: #171717
+  a.choose
+    background: #05a2d7
+    color: #fff
+    padding: 19px 0
+    &:hover, &:active
+      background: #128abd
+  .pk-text
+    margin-bottom: 11px
+  .pk-price
+    color: #239ed7
+    sub
+      color: #838383
+
+footer .site-content
+  position: relative
+  .fLogo
+    display: block
+    position: absolute
+    top: 0px
+    right: 0px
+    width: 32px
+    height: 50px
+    background: url(../img/fLogo.png) no-repeat
+    z-index: 10
+
+.site-wrapper section
+  &.img-box
+    padding-top: 90px
+    background: #52596b
+  &.error-section
+    box-sizing: border-box
+    background: url(../img/error-bg.jpg) no-repeat top center
+    text-align: center
+    color: #fff
+    padding: 140px 0 0
+    background-size: cover
+    height: 100%
+
+.message
+  width: 580px
+  position: absolute
+  top: 50%
+  margin-left: -280px
+  left: 50%
+  z-index: 101
+  margin-top: -80px
+
+.error-section
+  h1
+    font-weight: 300
+    font-size: 46px
+    color: #fff
+    margin: 0
+    margin-bottom: 23px
+  p
+    font-weight: 400
+    font-size: 18px
+    line-height: 26px
+    color: #fff
+    margin-bottom: 47px
+
+.img-box-mobile, .mobile-menu
+  display: none
+
+/**
+ * 8.0 Media Queries
+ * ----------------------------------------------------------------------------
+
+/* Does the same thing as <meta name="viewport" content="width=device-width">,
+ * but in the future W3C standard way. -ms- prefix is required for IE10+ to
+ * render responsive styling in Windows 8 "snapped" views; IE10+ does not honor
+ * the meta tag. See http://core.trac.wordpress.org/ticket/25888.
+@-ms-viewport
+  width: device-width
+
+
+@viewport
+  width: device-width
+
+
+@media (max-width: 1030px)
+  header ul li
+    a
+      padding: 15px 5px 16px
+    &.divider-list
+      margin-left: 12px
+      padding-left: 20px
+  .pk-box
+    padding: 24px 3% 30px
+  footer .site-content .fLogo
+    right: 15px
+
+@media (max-width: 900px)
+  .pk-box
+    padding: 24px 2.5% 30px
+  a.contact
+    padding: 15px 15px 16px
+  header ul li
+    a
+      padding: 15px 3px 16px
+      font-size: 13px
+    &.divider-list
+      margin-left: 5px
+      padding-left: 13px
+
+@media (max-width: 760px)
+  .site-wrapper section
+    &.error-section
+      padding-top: 20px
+      padding-bottom: 10px
+    &.img-box-mobile
+      padding-top: 90px
+  .mobile-menu
+    display: block
+    box-sizing: border-box
+    width: 100%
+    background: #f9f9f9
+    border-top: 1px solid #929292
+    position: fixed
+    bottom: 0
+    z-index: 99999
+    padding-top: 4px
+    ul
+      margin: 0
+      padding: 0
+      width: 100%
+      li
+        display: inline-block
+        width: 24.22%
+        margin: 0
+        margin-right: 1%
+        padding: 0
+        text-align: center
+        list-style: none
+        &.last
+          margin-right: 0
+        a
+          display: block
+          padding: 4px
+          span
+            &.text
+              font-size: 10px
+              color: #929292
+              display: block
+            &.item
+              color: #929292
+              height: 22px
+              width: 24px
+              margin: 0 auto 0
+              display: block
+              background-size: contain
+              background-repeat: no-repeat
+              margin-bottom: 5px
+              background-position: center center
+          &.about span.item
+            background-image: url(../img/about.png)
+          &.feature span.item
+            background-image: url(../img/feature.png)
+          &.price span.item
+            background-image: url(../img/price.png)
+          &.contactF span.item
+            background-image: url(../img/contact.png)
+  .box .box-container
+    max-width: none
+  footer
+    padding: 35px 0 90px
+    .site-content .fLogo
+      position: relative
+      margin: 65px auto 44px
+      right: auto
+  ul.fMenu
+    max-width: 335px
+    margin: 0 auto
+  p.copy
+    max-width: 300px
+    text-align: center
+    margin: 13px auto 5px
+  .site-wrapper section.contact-section
+    height: auto !important
+  p.pk-price
+    height: auto
+    margin-bottom: 5px
+  .pk-text, .pk-box.pk-white-box .pk-text
+    height: auto
+    margin-bottom: 0
+  .pk-left
+    width: 56%
+    float: left
+  .pk-right
+    width: 39%
+    margin-left: 4%
+    margin-right: 1%
+    float: left
+  .pk-box
+    width: 100%
+    margin-right: 0
+    margin-bottom: 30px
+    box-sizing: border-box
+    margin-top: 0
+    padding: 24px 3.5% 30px
+    &.pk-white-box
+      width: 100%
+      margin-right: 0
+      margin-bottom: 30px
+      box-sizing: border-box
+      margin-top: 0
+      padding: 24px 3.5% 30px
+  .whi-us .box
+    width: 40%
+    margin-left: 5%
+  .site-wrapper section
+    padding: 90px 0 0
+    &.white-section
+      padding: 90px 0 35px
+  section h2
+    font-size: 40px
+    margin-bottom: 66px
+    line-height: 48px
+  .box
+    h3
+      font-size: 34px
+      margin-bottom: 6px
+    p
+      font-size: 20px
+      margin-bottom: 40px
+  .item-logo
+    display: block
+    margin: 0 auto
+    width: 239px
+    height: 239px
+    margin-bottom: 24px
+    &.idea-logo
+      height: 244px
+  .site-content
+    padding: 0 30px
+  .img-box-mobile
+    display: block
+    background: none repeat scroll 0 0 #52596b
+    padding-top: 90px
+    h1
+      margin-bottom: 20px
+      font-size: 40px
+      font-weight: 400
+      margin-top: 25px
+      color: #f0f0f2
+    p
+      color: #a6abb7
+      font-size: 20px
+      margin-bottom: 45px
+  .img-box
+    display: none
+  .box
+    width: 100%
+    margin: 0 0 20px 0
+  .message
+    max-width: 100%
+    position: inherit
+    top: 0
+    margin: 0 auto
+    left: 0
+    z-index: 101
+    margin-top: 40px
+    margin-bottom: 30px
+  .site-wrapper
+    min-height: 300px
+    section.error-section
+      padding-top: 40px
+      padding-bottom: 20px
+  .contactBox ul li
+    display: none
+    &.last
+      display: block
+
+@media (max-width: 760px) and (orientation: landscape)
+  .mobile-menu
+    display: none
+  .message
+    margin-top: 10px
+  .error-section
+    p
+      margin-bottom: 20px
+    h1
+      margin-bottom: 10px
+
+@media (max-width: 420px)
+  .site-content
+    padding: 0 20px
+  .logoBox
+    margin-top: 3px
+    width: 110px
+  a.contact
+    font-size: 12px
+    padding: 7px 7px 7px
+  .logoBox img
+    max-width: 100%
+  header ul li
+    height: 30px
+  .img-box-mobile
+    h1
+      font-size: 20px
+      margin-bottom: 10px
+    p
+      font-size: 13px
+      margin-bottom: 25px
+  .site-wrapper section.img-box-mobile
+    padding-top: 50px
+  section h2
+    font-size: 20px
+    line-height: 26px
+  .site-wrapper section.white-section
+    padding: 44px 0 35px
+  section h2
+    margin-bottom: 30px
+  .item-logo
+    display: block
+    margin: 0 auto
+    width: 80px
+    height: 82px
+    margin-bottom: 8px
+    background-size: 100% !important
+    &.idea-logo
+      display: block
+      margin: 0 auto
+      width: 80px
+      height: 82px
+      margin-bottom: 8px
+      background-size: 100% !important
+  .box
+    h3
+      font-size: 17px
+    p
+      margin-bottom: 10px
+      font-size: 12px
+  .site-wrapper section
+    padding: 44px 0 0
+  .blue-section .box p
+    font-size: 12px
+  .whi-us .box
+    margin-left: 3%
+    width: 44%
+  .pk-title
+    font-size: 16px
+  p.pk-price
+    font-size: 28px
+  .pk-price
+    sup, sub
+      line-height: 15px
+      font-size: 11px
+  .pk-text
+    line-height: 15px
+    font-size: 11px
+  a.choose, .pk-box.pk-white-box a.choose
+    font-size: 12px
+    padding: 6px 0
+  .pk-right
+    width: 33%
+  .pk-left
+    width: 62%
+  .pk-box
+    padding: 10px 16px
+    margin-bottom: 20px
+    &.pk-white-box
+      padding: 10px 16px
+      margin-bottom: 20px
+  .site-wrapper section
+    &.purple-section
+      padding-bottom: 30px
+    &.contact-section
+      padding-top: 44px
+      padding-bottom: 32px
+  .form-box
+    input
+      height: 35px
+      font-size: 12px
+      padding: 8px 35px 8px 15px
+      margin-bottom: 20px
+    textarea
+      height: 131px
+      font-size: 12px
+      padding: 8px 35px 8px 15px
+      margin-bottom: 20px
+    input.correct, textarea.correct
+      background: url("../img/correct.png") no-repeat scroll 98% 7px white
+    label
+      font-size: 14px
+      margin-bottom: 8px
+    input[type="submit"]
+      height: 35px
+      font-size: 12px
+      padding: 8px 35px 8px 15px
+      margin-bottom: 20px
+  .contact-section h2
+    margin-bottom: 26px
+  footer .site-content .fLogo
+    margin: 15px auto 20px
+  ul.fMenu
+    li
+      a
+        font-size: 13px
+      margin-right: 15px
+    max-width: 245px
+  p.copy
+    font-size: 12px
+  header.scrollHeader
+    .logoBox
+      width: 20px
+    .sLogo
+      margin-top: 0
+  .logoBox
+    margin-top: 1px
