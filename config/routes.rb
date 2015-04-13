@@ -13,7 +13,7 @@ SimplyBetter::Application.routes.draw do
       get :cast, on: :collection
       post :cast, on: :collection
     end
-    resources :applications, only: [:show] do
+    resources :applications do
       get :client_js, on: :collection
     end
     resources :notifications, only: [:index,:update] do
