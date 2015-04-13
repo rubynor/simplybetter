@@ -8,7 +8,8 @@
         %p.pk-text
           %span Up to 500 users
       .pk-right
-        %a.choose{href: "#", title: "CHOOSE"} CHOOSE
+        = link_to new_customer_path, class: 'choose' do
+          CHOOSE
       .clear
     .pk-box.pk-white-box
       .pk-left
@@ -20,7 +21,7 @@
         %p.pk-text
           %span Up to rom 501 users to 1000 users.
       .pk-right
-        %a.choose{href: "#", title: "CHOOSE"} CHOOSE
+        %a.choose Coming later
       .clear
     .pk-box
       .pk-left
@@ -32,7 +33,7 @@
         %p.pk-text
           %span From 1001 users to 3000 users
       .pk-right
-        %a.choose{href: "#", title: "CHOOSE"} CHOOSE
+        %a.choose Coming later
       .clear
     .pk-box.last
       .pk-left
@@ -41,5 +42,5 @@
         %p.pk-text
           %span Let us customize the perfect solution for your business.
       .pk-right
-        %a.choose{href: "#", title: "ASK US"} ASK US
+        %a.choose Coming later
     .clear
