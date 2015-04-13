@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
+    %meta{content: 'user-scalable=no, initial-scale=1', name: 'viewport'}
+    %meta{content: 'telephone=no', name: 'format-detection'}
+    %title SimplyBetter
+    = stylesheet_link_tag    'landing_page', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'landing', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body(ng-app='LandingPage')
+    .container(ng-init='scroll = 0')
+      %span(scroll-position='scroll')
+      %header
+        .header-content
+          .logoBox
+            %img.logo{alt: 'Simply Better', src: 'img/logo.png'}
+            %img.sLogo{alt: 'Simply Better', src: 'img/sLogo.png'}
+          .contactBox
+            %ul
+              = render 'landing_page/navigation_list'
+              %li.divider-list
+                = link_to 'SIGN IN', login_path
+              %li.last
+                = link_to 'GET SIMPLY BETTER', new_customer_path, class: 'contact'
+          .clear
+      = yield

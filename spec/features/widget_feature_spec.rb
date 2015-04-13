@@ -8,7 +8,7 @@ describe WidgetController, js: true do
 
   describe 'widget' do
     before do
-      visit root_path
+      visit login_path
       fill_in 'email', with: 'lol@lol.com'
       fill_in 'password', with: 'dev'
       click_button 'LOG ME IN'

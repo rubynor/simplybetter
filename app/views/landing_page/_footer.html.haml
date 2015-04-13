@@ -1,0 +1,28 @@
+%footer
+  .site-content
+    %a.fLogo{href: "#wrapper", title: "Go Top"}
+    %ul.fMenu
+      = render 'landing_page/navigation_list'
+    .clear
+    %p.copy
+      \©
+      = Date.today.year
+      SimplyBetter. All rights reserved.
+  .mobile-menu
+    %ul
+      %li
+        %a.about{href: "#what", title: "About"}
+          %span.item
+          %span.text About
+      %li
+        %a.feature{href: "#why", title: "Feature"}
+          %span.item
+          %span.text Feature
+      %li
+        %a.price{href: "#price", title: "Price"}
+          %span.item
+          %span.text Price
+      %li.last
+        %a.contactF{href: "#contact", title: "Contact"}
+          %span.item
+          %span.text Contact

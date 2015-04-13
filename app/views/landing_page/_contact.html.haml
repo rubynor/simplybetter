@@ -1,0 +1,16 @@
+%section#contact.contact-section{'ng-controller' => 'ContactUsCtrl'}
+  .site-content
+    %h2 Contact
+    .form-box(ng-hide='message_to_customer')
+      %form{'ng-submit' => 'sendForm()', novalidate: true}
+        %label Name
+        %input{name: 'name', type: 'text', 'ng-model' => 'name'}
+        %label E-mail
+        %input.correct{name: 'email', type: 'text', 'ng-model' => 'email'}
+        %label You are bothering us because...
+        %textarea.error{name: 'message', 'ng-model' => 'message'}
+        %input{type: 'submit', value: 'SUBMIT'}
+        .clear
+    .message_to_customer(ng-show='message_to_customer')
+      {{ message_to_customer }}
+.clear
