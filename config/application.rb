@@ -28,5 +28,6 @@ module SimplyBetter
     end
 
     config.assets.precompile += ['jquery.js']
+    config.assets.precompile += %w( widget/widget.css.sass landing_page.css.sass landing.js widget.js )
   end
 end
