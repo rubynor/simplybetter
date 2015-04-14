@@ -7,7 +7,7 @@ task precompile_static: :environment do
 
   def precompile_all_in_path
     files_to_precompile.each do |path|
-      precompile(path)
+      precompile(path.gsub('app/assets/stylesheets/', ''))
     end
   end
 
@@ -23,6 +23,7 @@ task precompile_static: :environment do
 
   def public_path(path)
     full_path = "#{Rails.root.to_s}/public/#{path.gsub(BASE_PATH, '')}"
+    full_path = full_path.gsub('static/','') # Remove static/
     full_path.rpartition('.').first # Use only the first file ending(.css)
   end
 
