@@ -22,14 +22,13 @@ task precompile_static: :environment do
   end
 
   def public_path(path)
-    full_path = "#{Rails.root.to_s}/public/#{path.gsub(BASE_PATH, '')}"
-    full_path = full_path.gsub('static/','') # Remove static/
+    full_path = "#{Rails.root.to_s}/public/assets/#{path.gsub(BASE_PATH, '')}"
     full_path.rpartition('.').first # Use only the first file ending(.css)
   end
 
   def create_folders
     folders.each do |path|
-      stripped_path = "#{Rails.root.to_s}/public/#{path.gsub(BASE_PATH, '')}"
+      stripped_path = "#{Rails.root.to_s}/public/assets/static/#{path.gsub(BASE_PATH, '')}"
 
       begin
         FileUtils.mkdir_p stripped_path
