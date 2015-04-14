@@ -1,0 +1,72 @@
+/* line 3, /home/strife/Arbeid/simplybetter/app/assets/stylesheets/static/widget/widget-client.css.scss */
+#simplybetterCloseButton {
+  font-size: 30px;
+  line-height: 12px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  z-index: 2000;
+  right: -30px;
+  top: 0px;
+  cursor: pointer;
+  color: white;
+}
+/* line 15, /home/strife/Arbeid/simplybetter/app/assets/stylesheets/static/widget/widget-client.css.scss */
+#simplybetterCloseButton:hover {
+  background-position: -24px -24px;
+}
+
+/* line 20, /home/strife/Arbeid/simplybetter/app/assets/stylesheets/static/widget/widget-client.css.scss */
+#simplybetterBackdropLayer {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  height: 100%;
+  z-index: 1500;
+  width: 100%;
+  background-color: rgba(20, 20, 20, 0.7);
+}
+
+/* line 31, /home/strife/Arbeid/simplybetter/app/assets/stylesheets/static/widget/widget-client.css.scss */
+#simplybetterActivateButton span {
+  position: absolute;
+  font-family: sans-serif;
+  font-size: 14px;
+  padding: 0px 5px 0px 5px;
+  background-color: #f99628;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  border: 0px;
+}
+
+/* line 44, /home/strife/Arbeid/simplybetter/app/assets/stylesheets/static/widget/widget-client.css.scss */
+#simplybetterIframeWrapper {
+  background: transparent;
+  width: 900px;
+  position: fixed;
+  z-index: 2000;
+  top: 30px;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -450px;
+  border: 0px;
+}
+@media (max-width: 1000px) {
+  /* line 44, /home/strife/Arbeid/simplybetter/app/assets/stylesheets/static/widget/widget-client.css.scss */
+  #simplybetterIframeWrapper {
+    width: auto;
+    margin-left: 0px;
+    left: 5px;
+    right: 35px;
+  }
+}
+
+/* line 63, /home/strife/Arbeid/simplybetter/app/assets/stylesheets/static/widget/widget-client.css.scss */
+.simplybetterIframe {
+  position: relative;
+  background-color: #edf0f4;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+}
