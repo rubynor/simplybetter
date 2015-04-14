@@ -1,17 +1,21 @@
 = render '/shared/email_header'
 
-.idea-layout
-  .idea-item
-    %p
-      = "'#{@creator.name}'"
-      just submittet an idea on your SimplyBetter application
-      %strong= "'#{@idea.application.name}'"
-    %hr
-    %a(href="#{WidgetPath.path}/widget?appkey=#{@idea.application.token}&email=#{@receiver.email}&name='#{@receiver.name}'#/widget/ideas/#{@idea.id}")
-      %h1
-        = @idea.title
-    %p.desc.ideaView
-      = @idea.description
-    %hr
+#email-box
+  %h1
+    = @idea.application.name
 
-= render '/shared/email_footer'
+  .idea-layout
+    .idea-item
+      %hr
+      = link_to administrate_group_application_path(@idea.application.id) do
+        %h1= @idea.title
+      %p.desc.ideaView
+        = @idea.description
+      %hr
+
+  %div(style='text-align: center')
+    = link_to administrate_group_application_path(@idea.application.id) do
+      %button GO TO SIMPLYBETTER
+  %br
+
+  = render '/shared/email_footer'
