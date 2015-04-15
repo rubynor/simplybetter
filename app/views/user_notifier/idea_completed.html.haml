@@ -1,9 +1,12 @@
 = render '/shared/email_header'
 
-%h3
-  = @creator.name
-  changed the status of the idea below to completed
+#email-box
+  %h1
+    = @idea.application.name
+  %p
+    = @creator.name
+    changed the status of the idea below to completed
 
-= render '/shared/email_idea'
+  = render '/shared/email_idea'
 
-= render '/shared/email_footer'
+  = render '/shared/email_footer'

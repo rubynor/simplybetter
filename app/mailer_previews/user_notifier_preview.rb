@@ -2,7 +2,7 @@ class UserNotifierPreview < ActionMailer::Preview
   def idea_completed
     creator = Customer.last
     receiver = User.last
-    idea = Idea.last
+    idea = Idea.first
     UserNotifier.idea_completed(receiver, creator, idea)
   end
 
