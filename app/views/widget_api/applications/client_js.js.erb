@@ -37,7 +37,7 @@
     };
 
     var widgetURI = function() {
-      urlRoot + '/widget?info=' + btoa('appkey=' + appKey + '&email=' + email + '&name=' + name)
+      return urlRoot + '/widget?info=' + btoa('?appkey=' + appKey + '&email=' + email + '&name=' + name);
     };
 
     var appendSimplyBetterWidget = function(){
