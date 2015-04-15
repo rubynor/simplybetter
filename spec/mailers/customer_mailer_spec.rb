@@ -12,7 +12,7 @@ describe CustomerMailer do
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to match('To reset you password, click the URL below.')
+      expect(mail.body.encoded).to match('we see that you forgot your password')
     end
   end
 

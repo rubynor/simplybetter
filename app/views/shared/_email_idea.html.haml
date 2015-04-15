@@ -1,9 +1,13 @@
 .idea-layout
   .idea-item
     %hr
-    %a(href="#{WidgetPath.path}/widget?appkey=#{@idea.application.token}&email=#{@receiver.email}&name='#{@receiver.name}'#/widget/ideas/#{@idea.id}")
-      %h1
-        = @idea.title
+    %h1
+      = @idea.title
     %p.desc.ideaView
       = @idea.description
+    .comments
+      - @idea.comments.each do |comment|
+        %p
+          %strong= "#{comment.creator.name}:"
+          = comment.body
     %hr

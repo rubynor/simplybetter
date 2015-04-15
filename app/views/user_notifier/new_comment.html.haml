@@ -1,11 +1,8 @@
 = render '/shared/email_header'
 
-%h3
-  = @creator.name
-  just wrote this comment:
-%p
-  = @comment.body
+#email-box
+  %h1
+    = @idea.application.name
+  = render '/shared/email_idea'
 
-= render '/shared/email_idea'
-
-= render '/shared/email_footer'
+  = render '/shared/email_footer'

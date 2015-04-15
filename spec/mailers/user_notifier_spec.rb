@@ -19,7 +19,7 @@ describe UserNotifier do
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to match('just wrote this comment:')
+      expect(mail.body.encoded).to match(comment.body)
     end
   end
 
