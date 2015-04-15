@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
   def create
     customer = Customer.find_by_email(params[:email])
     customer.send_password_reset if customer
-    redirect_to root_url, notice: 'Email sent with password reset instructions'
+    redirect_to check_email_password_resets_path
   end
 
   def edit
@@ -24,5 +24,8 @@ class PasswordResetsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def check_email
   end
 end
