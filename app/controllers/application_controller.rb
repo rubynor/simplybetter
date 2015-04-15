@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
   before_filter :set_controller_and_action_names
 
+  before_filter :set_new_relic if Rails.env == 'production' || Rails.env == 'staging'
 
 
   private
@@ -26,6 +27,13 @@ class ApplicationController < ActionController::Base
   def set_controller_and_action_names
     @current_controller = controller_name
     @current_action     = action_name
+  end
+
+  def set_new_relic
+    puts "params is #{params}"
+    ::NewRelic::Agent.add_custom_parameters(
+        params: params
+    )
   end
 
 end
