@@ -43,7 +43,9 @@ SimplyBetter::Application.routes.draw do
     get :unsubscribe, on: :member
   end
 
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update] do
+    get :check_email, on: :collection
+  end
 
   get 'widget' => "widget#widget"
 

@@ -14,15 +14,13 @@ describe PasswordResetsController do
       @customer = Customer.make!
       expect(@customer.password_reset_token).to eq(nil)
       post :create, email: @customer.email
-      expect(response).to redirect_to root_url
-      expect(flash[:notice]).not_to eq(nil)
+      expect(response).to redirect_to check_email_password_resets_path
       @customer.reload
       expect(@customer.password_reset_token).not_to eq(nil)
     end
     it 'should just ignore if email not found' do
       post :create, email: 'nonexisting@mail.com'
-      expect(response).to redirect_to root_url
-      expect(flash[:notice]).not_to eq(nil)
+      expect(response).to redirect_to check_email_password_resets_path
     end
   end
 
