@@ -5,4 +5,9 @@
       = @idea.title
     %p.desc.ideaView
       = @idea.description
+    .comments
+      - @idea.comments.each do |comment|
+        %p
+          %strong= "#{comment.creator.name}:"
+          = comment.body
     %hr
