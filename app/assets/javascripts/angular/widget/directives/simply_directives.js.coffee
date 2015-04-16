@@ -33,8 +33,9 @@ simplyDirectives.directive 'vote', ->
         "U can't wote on your own idea"
 
     $scope.vote = (idea, val) ->
-#      if Session.owner(idea.creator_email)
-#        alert 'kj'
+      # Early exit, not need to send to server
+      return if Session.owner(idea.creator_email)
+
       hash = {idea_id: idea.id, value: val, votes_count: idea.votes_count, vote: {value: val}}
       vote = new Vote(hash)
       vote.$save(
