@@ -3,6 +3,10 @@ class WidgetApi::VotesController < ApplicationController
 
   # POST / GET
   def cast
+    # Early exit if voter is the creator of the idea..
+    if voter.email == vote_receiver.creator.email
+      return render json: { error: "You can't wote for your own idea" }, status: 403
+    end
     vote_val = params[:value] || 0
     if vote_val == 0
       status

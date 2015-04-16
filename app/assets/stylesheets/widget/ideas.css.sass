@@ -32,8 +32,14 @@
       .up
         @include thumb(-44px)
         margin-left: 4px
+        &.owner
+          &:hover
+            background-position: -2px -44px
+            cursor: not-allowed
         &.active
           @include thumb(0px)
+      .tooltip-inner
+        width: 200px !important
       .down
         @include thumb(-66px)
         &.active
