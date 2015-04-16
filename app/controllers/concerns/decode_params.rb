@@ -12,8 +12,8 @@ module DecodeParams
 
   def decode_params
     matches = Base64.decode64(params["info"]).scan(/(\?|\&)([^=]+)\=([^&]+)/)
-    params[matches[0][1]] = matches[0][2]
-    params[matches[1][1]] = matches[1][2]
-    params[matches[2][1]] = matches[2][2]
+    matches.each do |match|
+      params[match[1]] = match[2]
+    end
   end
 end
