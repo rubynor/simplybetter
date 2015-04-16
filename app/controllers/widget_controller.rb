@@ -1,4 +1,5 @@
 class WidgetController < ApplicationController
+  include DecodeParams
   after_action :allow_iframe
 
   def widget
