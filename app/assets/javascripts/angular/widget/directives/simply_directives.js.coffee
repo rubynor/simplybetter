@@ -30,7 +30,7 @@ simplyDirectives.directive 'vote', ->
   controller: ['$scope', 'Vote', 'Session', ($scope, Vote, Session) ->
     $scope.cant_vote = (idea) ->
       if Session.owner(idea.creator_email)
-        "U can't wote on your own idea"
+        "You can't vote on your own idea"
 
     $scope.vote = (idea, val) ->
       # Early exit, not need to send to server
