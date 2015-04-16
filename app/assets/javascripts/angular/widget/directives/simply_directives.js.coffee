@@ -27,8 +27,14 @@ simplyDirectives.directive 'ideaItem', ->
 simplyDirectives.directive 'vote', ->
   restrict: 'E'
   template: JST["angular/widget/directives/templates/vote"]
-  controller: ['$scope', 'Vote', ($scope, Vote) ->
+  controller: ['$scope', 'Vote', 'Session', ($scope, Vote, Session) ->
+    $scope.cant_vote = (idea) ->
+      if Session.owner(idea.creator_email)
+        "U can't wote on your own idea"
+
     $scope.vote = (idea, val) ->
+#      if Session.owner(idea.creator_email)
+#        alert 'kj'
       hash = {idea_id: idea.id, value: val, votes_count: idea.votes_count, vote: {value: val}}
       vote = new Vote(hash)
       vote.$save(
