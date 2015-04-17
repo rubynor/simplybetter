@@ -18,9 +18,9 @@ angular.module("filters", []).filter "truncate", ->
   'ngCookies'
 ]
 
-@widget.run ['$cookieStore', '$cookies', ($cookieStore, $cookies) ->
-  $cookieStore.put('token', $cookies.token)
-  $cookieStore.put('email', $cookies.email)
+@widget.run ['$cookies', 'Session', ($cookies, Session) ->
+  Session.set_token($cookies.token)
+  Session.set_email($cookies.email)
 ]
 
 @widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->

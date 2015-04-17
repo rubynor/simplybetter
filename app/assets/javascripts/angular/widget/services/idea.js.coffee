@@ -1,3 +1,3 @@
-widget.factory 'Idea', ['$resource', '$cookieStore', ($resource, $cookieStore) ->
-  $resource '/widget_api/ideas/:id.json', {id: '@id', token: $cookieStore.get('token'), user_email: $cookieStore.get('email') }, { patch: { method: 'PATCH' } }
+widget.factory 'Idea', ['$resource', 'Session', ($resource, Session) ->
+  $resource '/widget_api/ideas/:id.json', {id: '@id', token: Session.token, user_email: Session.email }, { patch: { method: 'PATCH' } }
 ]

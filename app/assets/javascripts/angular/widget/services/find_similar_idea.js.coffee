@@ -1,3 +1,3 @@
-widget.factory 'FindSimilarIdea', ['$resource', '$cookieStore', ($resource, $cookieStore) ->
-  $resource '/widget_api/ideas/find_similar/:id.json', {id: '@id', token: $cookieStore.get('token')}
+widget.factory 'FindSimilarIdea', ['$resource', 'Session', ($resource, Session) ->
+  $resource '/widget_api/ideas/find_similar/:id.json', {id: '@id', token: Session.token}
 ]

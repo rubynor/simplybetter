@@ -1,8 +1,8 @@
 widget.factory 'EmailSettings', ['$resource', 'Session', ($resource, Session) ->
   @settings = {}
   @authParams = {}
-  email = Session.email()
-  token = Session.token()
+  email = Session.email
+  token = Session.token
 
   @get =  ->
     if @settings.length > 0
