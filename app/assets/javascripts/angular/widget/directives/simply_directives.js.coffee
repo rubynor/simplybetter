@@ -29,6 +29,7 @@ simplyDirectives.directive 'vote', ->
   template: JST["angular/widget/directives/templates/vote"]
   controller: ['$scope', 'Vote', 'Session', ($scope, Vote, Session) ->
     $scope.cant_vote = (idea) ->
+      return unless idea
       if Session.owner(idea.creator_email)
         "You can't vote on your own idea"
 
