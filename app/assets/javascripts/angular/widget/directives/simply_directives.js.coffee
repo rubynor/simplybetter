@@ -18,7 +18,7 @@ simplyDirectives.directive 'ideaNew', ->
 simplyDirectives.directive 'ideaItem', ->
   restrict: 'E'
   template: JST["angular/widget/directives/templates/idea_item"]
-  controller: ['$scope', '$cookieStore', 'Session', ($scope, $cookieStore, Session) ->
+  controller: ['$scope', 'Session', ($scope, Session) ->
 
     $scope.owner = (idea) ->
       Session.owner(idea.creator_email) if idea

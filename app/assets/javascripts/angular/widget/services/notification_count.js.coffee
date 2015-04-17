@@ -1,3 +1,3 @@
-widget.factory 'NotificationsCount', ['$resource', '$cookieStore', ($resource, $cookieStore) ->
-  $resource '/widget_api/notifications/count', { token: $cookieStore.get('token'), user_email: $cookieStore.get('email') }
+widget.factory 'NotificationsCount', ['$resource', 'Session', ($resource, Session) ->
+  $resource '/widget_api/notifications/count', { token: Session.token, user_email: Session.email }
 ]
