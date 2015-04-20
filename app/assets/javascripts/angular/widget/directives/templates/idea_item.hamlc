@@ -11,9 +11,10 @@
   %p.desc(ng-if='!path')
     {{ idea.description | truncate:120 }}
   .meta
-    .comments
-    %span.blue
-      {{ idea.comments_count }} comments
+    %a(named-route='idea' kwarg-id='{{ idea.id }}')
+      .comments
+      %span.blue
+        {{ idea.comments_count }} comments
     by
     %span.black
       {{ idea.creator_name }}
