@@ -19,9 +19,14 @@
           .contactBox
             %ul
               = render 'landing_page/navigation_list'
-              %li.divider-list
-                = link_to 'SIGN IN', login_path
-              %li.last
-                = link_to 'GET SIMPLY BETTER', new_customer_path, class: 'contact'
+              - if current_customer
+                %li
+                  = link_to applications_path do
+                    = image_tag current_customer.gravatar_url, class: 'avatar'
+              - else
+                %li.divider-list
+                  = link_to 'SIGN IN', login_path
+                %li.last
+                  = link_to 'GET SIMPLY BETTER', new_customer_path, class: 'contact'
           .clear
       = yield
