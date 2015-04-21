@@ -1,4 +1,4 @@
-SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', 'Session', ($scope, $rootScope, $routeParams, $timeout, User, Session) ->
+SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', '$window', '$cookies', 'User', 'Session', ($scope, $rootScope, $routeParams, $timeout, $window, $cookies, User, Session) ->
   $scope.$parent.path = true
   @spinnerVisible = false
   @errorVisible = false
@@ -39,6 +39,13 @@ SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', 'Ses
 
   @hideSpinner = ->
     @spinnerVisible = false
+
+  @isAdmin = ->
+    Session.isAdmin()
+
+  @login = ->
+    Session.adminLogin()
+    return
 
   @initSpinner()
 

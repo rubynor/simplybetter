@@ -1,4 +1,4 @@
-widget.factory 'Session',  ->
+widget.factory 'Session', ['$cookies', ($cookies) ->
   @email = ''
   @token = undefined
 
@@ -16,3 +16,10 @@ widget.factory 'Session',  ->
 
   set_token: (token) ->
     @token = token
+
+  isAdmin: ->
+    $cookies.auth_token
+
+  adminLogin: ->
+    $window.open(location.origin + '/popup_login', "login", "width=600, height=550")
+]
