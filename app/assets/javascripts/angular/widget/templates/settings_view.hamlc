@@ -27,7 +27,11 @@
           Saved!
         %input(ng-model='setting.user.name' type='text' name='user_name')
         %input(type='submit' value='Save' ng-click='setting.showSpinner()' ng-hide='setting.spin')
+
     .spinner(ng-show='setting.spinnerVisible')
 
     %email-settings
+
+    .login(ng-click="setting.login()" ng-show="!setting.isAdmin()")
+      Sign in as admin
 
