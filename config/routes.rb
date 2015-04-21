@@ -50,7 +50,10 @@ SimplyBetter::Application.routes.draw do
   get 'widget' => "widget#widget"
 
   get '/login' => "sessions#new"
+  get '/popup_login' => "sessions#popup_new"
+  get '/popup_close' => "sessions#popup_close"
   post '/sessions/create' => "sessions#create"
+  post '/sessions/popup_create' => "sessions#popup_create"
   root 'landing_page#index'
   delete '/sessions/destroy' => "sessions#destroy", as: "sign_out"
 
