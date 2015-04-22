@@ -10,7 +10,7 @@
       margin-top: 0px
 
     form
-      height: 150px
+      @include clearfix
 
     input[type='text']
       @include input
@@ -48,15 +48,20 @@
           color: $text
 
   .checkbox
+    margin: 20px 0px
     label
       font-size: 20px
       input[type="checkbox"]
-        margin: 8px 10px 0px
-        padding: 10px
+        margin: 8px 10px 0px 0px
         /* All browsers except webkit*/
         transform: scale(1.5)
         /* Webkit browsers*/
         -webkit-transform: scale(1.5)
 
+  .admin-info
+    padding-bottom: 50px
 
-
+  .login
+    cursor: pointer
+    &:hover
+      text-decoration: underline
