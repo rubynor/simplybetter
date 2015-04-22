@@ -79,10 +79,11 @@ header
 .tablet-box
   text-align: center
   margin-top: 0
-  height: 462px
   overflow: hidden
+
   img
     max-width: 100%
+    margin-bottom: -4px
 
 .header-content
   max-width: 1460px
@@ -557,7 +558,7 @@ footer .site-content
       width: 100%
       li
         display: inline-block
-        width: 24.22%
+        width: 23.22%
         margin: 0
         margin-right: 1%
         padding: 0
@@ -583,6 +584,10 @@ footer .site-content
               background-repeat: no-repeat
               margin-bottom: 5px
               background-position: center center
+          &.avatar
+            img
+              height: 22px
+              border-radius: 50%
           &.about span.item
             background-image: url(../img/about.png)
           &.feature span.item
