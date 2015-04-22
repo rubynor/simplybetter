@@ -22,7 +22,12 @@
         %a.price{href: "#price", title: "Price"}
           %span.item
           %span.text Price
-      %li.last
-        %a.contactF{href: "#contact", title: "Contact"}
-          %span.item
-          %span.text Contact
+      - if current_customer
+        %li
+          = link_to applications_path, class: 'avatar' do
+            = image_tag current_customer.gravatar_url, class: 'avatar'
+            %span.text Dashboard
+      -#%li.last
+      -#  %a.contactF{href: "#contact", title: "Contact"}
+      -#    %span.item
+      -#    %span.text Contact

@@ -2,6 +2,8 @@ class LandingPageController < ActionController::Base
   protect_from_forgery
   layout 'landing_page'
 
+  include CurrentCustomer
+
   def index
     #nothing here...
   end
@@ -12,4 +14,8 @@ class LandingPageController < ActionController::Base
     end
 
   end
+
+  private
+
+  helper_method :current_customer
 end

@@ -19,9 +19,25 @@
           .contactBox
             %ul
               = render 'landing_page/navigation_list'
-              %li.divider-list
-                = link_to 'SIGN IN', login_path
-              %li.last
-                = link_to 'GET SIMPLY BETTER', new_customer_path, class: 'contact'
+              - if current_customer
+                %li.divider-list
+                  %a{href: '#', 'ng-click'=>'display_menu = !display_menu'}
+                    = image_tag current_customer.gravatar_url, class: 'avatar'
+                %li
+                  %a(href='#' ng-click='display_menu = !display_menu')
+                    %span ▾
+                .customer-menu(ng-if='display_menu')
+                  %ul
+                    %li
+                      = link_to applications_path do
+                        Dashboard
+                    %li
+                      = link_to sign_out_path, method: :delete do
+                        Sign out
+              - else
+                %li.divider-list
+                  = link_to 'SIGN IN', login_path
+                %li.last
+                  = link_to 'GET SIMPLY BETTER', new_customer_path, class: 'contact'
           .clear
       = yield
