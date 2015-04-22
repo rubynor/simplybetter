@@ -32,6 +32,6 @@
 
     %email-settings
 
-    .login(ng-click="setting.login()" ng-show="!setting.isAdmin()")
+    .login(ng-click="setting.login()" ng-hide="setting.isAdmin()")
       Sign in as admin
 
