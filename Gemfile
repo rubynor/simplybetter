@@ -18,7 +18,6 @@ gem 'autoprefixer-rails'
 gem 'honeybadger', '~> 2.0'
 
 group :production do
-  gem "sentry-raven"
   gem 'aws-ses', require: 'aws/ses'
 end
 
