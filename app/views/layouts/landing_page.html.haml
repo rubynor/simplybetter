@@ -20,9 +20,20 @@
             %ul
               = render 'landing_page/navigation_list'
               - if current_customer
-                %li
+                %li.divider-list
                   = link_to applications_path do
                     = image_tag current_customer.gravatar_url, class: 'avatar'
+                %li(style='margin-left: -20px;')
+                  %a(href='#' ng-click='display_menu = !display_menu')
+                    %span ▾
+                .customer-menu(ng-if='display_menu')
+                  %ul
+                    %li
+                      = link_to applications_path do
+                        Dashboard
+                    %li
+                      = link_to sign_out_path, method: :delete do
+                        Sign out
               - else
                 %li.divider-list
                   = link_to 'SIGN IN', login_path
