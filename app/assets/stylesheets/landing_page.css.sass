@@ -101,6 +101,8 @@ header
       list-style: armenian
       float: none
       height: 20px
+      &:last-child
+        padding-bottom: 20px
 
 header ul
   margin: 0
@@ -521,6 +523,8 @@ footer .site-content
     padding: 24px 3% 30px
   footer .site-content .fLogo
     right: 15px
+  .customer-menu
+    margin-left: 200px
 
 @media (max-width: 900px)
   .pk-box
@@ -535,7 +539,7 @@ footer .site-content
       margin-left: 5px
       padding-left: 13px
 
-@media (max-width: 760px)
+@media (max-width: 800px)
   .site-wrapper section
     &.error-section
       padding-top: 20px
@@ -706,17 +710,6 @@ footer .site-content
     display: none
     &.last
       display: block
-
-@media (max-width: 760px) and (orientation: landscape)
-  .mobile-menu
-    display: none
-  .message
-    margin-top: 10px
-  .error-section
-    p
-      margin-bottom: 20px
-    h1
-      margin-bottom: 10px
 
 @media (max-width: 420px)
   .site-content

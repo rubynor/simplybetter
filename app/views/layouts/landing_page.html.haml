@@ -21,9 +21,9 @@
               = render 'landing_page/navigation_list'
               - if current_customer
                 %li.divider-list
-                  = link_to applications_path do
+                  %a{href: '#', 'ng-click'=>'display_menu = !display_menu'}
                     = image_tag current_customer.gravatar_url, class: 'avatar'
-                %li(style='margin-left: -20px;')
+                %li
                   %a(href='#' ng-click='display_menu = !display_menu')
                     %span ▾
                 .customer-menu(ng-if='display_menu')
