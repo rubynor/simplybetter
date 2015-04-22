@@ -3,13 +3,12 @@ class SessionsController < ApplicationController
 
   def new
     @post_path = '/sessions/create'
-    if current_customer
-      redirect_to applications_path
-    end
+    redirect_if_already_signed_in(applications_path)
   end
 
   def popup_new
     @post_path = '/sessions/popup_create'
+    redirect_if_already_signed_in(:popup_close)
   end
 
   def popup_create
@@ -42,6 +41,12 @@ class SessionsController < ApplicationController
     else
       flash.now.alert = "Email or password is invalid"
       render fail_render_action
+    end
+  end
+
+  def redirect_if_already_signed_in(path)
+    if current_customer
+      redirect_to path
     end
   end
 end
