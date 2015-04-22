@@ -3,11 +3,11 @@ widget.factory 'Session', ['$cookies', '$http', '$window', ($cookies, $http, $wi
   @token = undefined
   @admin = undefined
 
-  setAdmin = ->
-    $http.get("/widget_api/applications/#{@token}/is_admin.json")
+  setAdmin = =>
+    that = @
+    $http.get("/widget_api/applications/#{$cookies.token}/is_admin.json")
       .success (data) ->
-        console.log data
-        @admin = data.is_admin
+        that.admin = data.is_admin
       .error (err) ->
         alert(err)
 
@@ -28,7 +28,7 @@ widget.factory 'Session', ['$cookies', '$http', '$window', ($cookies, $http, $wi
   set_token: (token) ->
     @token = token
 
-  isAdmin: ->
+  isAdmin: =>
     $cookies.auth_token && @admin
 
   adminLogin: ->
