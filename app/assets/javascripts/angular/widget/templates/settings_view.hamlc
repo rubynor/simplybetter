@@ -34,4 +34,7 @@
 
     .login(ng-click="setting.login()" ng-hide="setting.isAdmin()")
       Sign in as admin
+    .admin-info(ng-show="setting.isAdmin()")
+      %h2 Welcome admin!
+      %p You are now logged in as an almighty admin, meaning that you will have access to extra features, like moderating content and other goodies.
 
