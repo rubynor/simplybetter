@@ -7,12 +7,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_new_relic if Rails.env == 'production' || Rails.env == 'staging'
 
+  include CurrentCustomer
+
 
   private
 
-  def current_customer
-    @current_customer ||= Customer.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token] && cookies[:auth_token].length > 1
-  end
   helper_method :current_customer
 
   def applications

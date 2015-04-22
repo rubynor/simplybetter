@@ -15,9 +15,9 @@ gem 'font-awesome-rails'
 gem 'haml_coffee_assets', git: "https://github.com/netzpirat/haml_coffee_assets"
 gem 'ng-rails-csrf'
 gem 'autoprefixer-rails'
+gem 'honeybadger', '~> 2.0'
 
 group :production do
-  gem "sentry-raven"
   gem 'aws-ses', require: 'aws/ses'
 end
 
