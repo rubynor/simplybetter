@@ -13,8 +13,9 @@ SimplyBetter::Application.routes.draw do
       get :cast, on: :collection
       post :cast, on: :collection
     end
-    resources :applications do
+    resources :applications, only: [], param: :token do
       get :client_js, on: :collection
+      get :is_admin, on: :member
     end
     resources :notifications, only: [:index,:update] do
       get :count, on: :collection
