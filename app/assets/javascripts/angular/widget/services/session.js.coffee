@@ -1,4 +1,4 @@
-widget.factory 'Session', ['$cookies', '$http', '$window', ($cookies, $http, $window) ->
+widget.factory 'Session', ['$cookies', '$http', '$window', '$timeout', ($cookies, $http, $window, $timeout) ->
   @email = ''
   @token = undefined
   @admin = undefined
@@ -34,6 +34,8 @@ widget.factory 'Session', ['$cookies', '$http', '$window', ($cookies, $http, $wi
   adminLogin: ->
     popup = $window.open(location.origin + '/popup_login', "login", "width=600, height=550")
     popup.onbeforeunload = ->
-      setAdmin()
+      $timeout ->
+        setAdmin()
+      , 1000
       return null
 ]
