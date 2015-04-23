@@ -22,8 +22,4 @@
     $scope.activeClass = 'hide_visible'
     $scope.selectedFilter = { visible: false }
 
-  $scope.showMine = (email) ->
-    $scope.activeClass = 'mine'
-    $scope.selectedFilter = { creator_email: email }
-
 ]
