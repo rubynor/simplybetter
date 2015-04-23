@@ -1,4 +1,4 @@
-SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', '$window', '$cookies', 'User', 'Session', ($scope, $rootScope, $routeParams, $timeout, $window, $cookies, User, Session) ->
+SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', 'Session', ($scope, $rootScope, $routeParams, $timeout, User, Session) ->
   $scope.$parent.path = true
   @spinnerVisible = false
   @errorVisible = false
