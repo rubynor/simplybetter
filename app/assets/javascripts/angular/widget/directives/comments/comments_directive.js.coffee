@@ -7,26 +7,30 @@ Comments = ->
     $scope.highlight = { comment: false }
     $scope.user = Session.user_signed_in()
 
-    $scope.unhighlight = ->
+    unhighlightComment = ->
       $scope.highlight.comment = false
       $scope.hasHighlighted = true
 
-    $scope.highlight = ->
-      if $scope.shouldHighlight()
-        $elm = $("##{$scope.comment_id}")
-        if $elm.length == 0
-          $scope.error_message = 'This comment is not available'
-        else
-          $scope.error_message = undefined
-          $('#simplybetterIdeasModalContent').animate({scrollTop: ($elm.position().top - 150)},'slow')
-          $scope.highlight.comment = true
-          $timeout($scope.unhighlight, 3000)
+    commentNotFound = (elm) ->
+      if elm.length == 0
+        $scope.error_message = 'This comment is not available'
+        true
+      else
+        $scope.error_message = undefined
+        false
+    
+    highlightComment = ->
+      $elm = $("##{$scope.comment_id}")
+      return if commentNotFound($elm)
+      $('#simplybetterIdeasModalContent').animate({scrollTop: ($elm.position().top - 150)},'slow')
+      $scope.highlight.comment = true
+      $timeout(unhighlightComment, 3000)
 
-    $scope.shouldHighlight = ->
+    shouldHighlightComment = ->
       $scope.comment_id && $scope.comment_id != 'null'
 
     $scope.$on 'ngRepeatFinished', (ngRepeatFinishedEvent)  ->
-      $scope.highlight()
+      highlightComment() if shouldHighlightComment()
 
     $scope.save_comment = (newComment) ->
       $scope.error_message = undefined
