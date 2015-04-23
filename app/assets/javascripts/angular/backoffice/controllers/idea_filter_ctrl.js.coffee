@@ -1,4 +1,4 @@
-@IdeaFilterCtrl =  ['$scope', ($scope) ->
+@IdeaFilterCtrl =  ['$scope', 'Session', ($scope, Session) ->
 
   $scope.activeClass = 'all'
 
@@ -25,4 +25,7 @@
   $scope.showMine = (email) ->
     $scope.activeClass = 'mine'
     $scope.selectedFilter = { creator_email: email }
+
+  $scope.isAdmin = ->
+    Session.isAdmin()
 ]

@@ -23,4 +23,9 @@ class Customer < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
     end while Customer.exists?(column => self[column])
   end
+
+  def admin_for?(app)
+    return false unless app
+    applications.include?(app)
+  end
 end
