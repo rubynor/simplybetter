@@ -27,7 +27,7 @@ angular.module("filters", []).filter "truncate", ->
     # use hashbang fallback mode
     $locationProvider
       .hashPrefix("")
-      .html5Mode(false);
+      .html5Mode(false)
 
     $routeProvider
       .when '/widget',

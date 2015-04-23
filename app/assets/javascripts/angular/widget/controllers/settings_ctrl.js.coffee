@@ -40,6 +40,13 @@ SettingsCtrl = ['$scope', '$rootScope', '$routeParams', '$timeout', 'User', 'Ses
   @hideSpinner = ->
     @spinnerVisible = false
 
+  @isAdmin = ->
+    Session.isAdmin()
+
+  @login = ->
+    Session.adminLogin()
+    return
+
   @initSpinner()
 
   return

@@ -27,7 +27,14 @@
           Saved!
         %input(ng-model='setting.user.name' type='text' name='user_name')
         %input(type='submit' value='Save' ng-click='setting.showSpinner()' ng-hide='setting.spin')
+
     .spinner(ng-show='setting.spinnerVisible')
 
     %email-settings
+
+    .login(ng-click="setting.login()" ng-hide="setting.isAdmin()")
+      Sign in as admin
+    .admin-info(ng-show="setting.isAdmin()")
+      %h2 Welcome admin!
+      %p You are now logged in as an almighty admin, meaning that you will have access to extra features, like moderating content and other goodies.
 

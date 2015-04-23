@@ -1,6 +1,17 @@
-widget.factory 'Session',  ->
+widget.factory 'Session', ['$cookies', '$http', '$window', '$timeout', ($cookies, $http, $window, $timeout) ->
   @email = ''
   @token = undefined
+  @admin = undefined
+
+  setAdmin = =>
+    that = @
+    $http.get("/widget_api/applications/#{$cookies.token}/is_admin.json")
+      .success (data) ->
+        that.admin = data.is_admin
+      .error (err) ->
+        alert(err)
+
+  setAdmin()
 
   user_signed_in: ->
     @email && @token
@@ -16,3 +27,15 @@ widget.factory 'Session',  ->
 
   set_token: (token) ->
     @token = token
+
+  isAdmin: =>
+    $cookies.auth_token && @admin
+
+  adminLogin: ->
+    popup = $window.open(location.origin + '/popup_login', "login", "width=600, height=550")
+    popup.onbeforeunload = ->
+      $timeout ->
+        setAdmin()
+      , 1000
+      return null
+]

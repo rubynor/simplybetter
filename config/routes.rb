@@ -13,8 +13,9 @@ SimplyBetter::Application.routes.draw do
       get :cast, on: :collection
       post :cast, on: :collection
     end
-    resources :applications do
+    resources :applications, only: [], param: :token do
       get :client_js, on: :collection
+      get :is_admin, on: :member
     end
     resources :notifications, only: [:index,:update] do
       get :count, on: :collection
@@ -49,9 +50,14 @@ SimplyBetter::Application.routes.draw do
 
   get 'widget' => "widget#widget"
 
-  get '/login' => "sessions#new"
-  post '/sessions/create' => "sessions#create"
-  root 'landing_page#index'
-  delete '/sessions/destroy' => "sessions#destroy", as: "sign_out"
+  resource :sessions, only: [], path: '', as: '' do
+    get :login, action: :new
+    get :popup_login, action: :popup_new
+    get :popup_close
+    post :create, path: 'sessions/create'
+    post :popup_create, path: 'sessions/popup_create'
+    delete :destroy, path: 'sessions/destroy', as: "sign_out"
+  end
 
+  root 'landing_page#index'
 end
