@@ -50,7 +50,7 @@ SimplyBetter::Application.routes.draw do
 
   get 'widget' => "widget#widget"
 
-  resource :sessions, only: [], path: '' do
+  resource :sessions, only: [], path: '', as: '' do
     get :login, action: :new
     get :popup_login, action: :popup_new
     get :popup_close
