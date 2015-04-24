@@ -76,9 +76,9 @@ describe IdeasController do
 
   describe 'signed in, but not access to app' do
     before do
-      @customer = Customer.make!
+      sign_in_customer(Customer.make!)
     end
-    let(:application) { Application.make!(customers: [@customer]) }
+    let(:application) { Application.make!(customers: [Customer.make!]) }
     it_behaves_like 'unauthorized'
   end
 
