@@ -44,32 +44,64 @@ describe IdeasController do
     end
   end
 
-  describe 'not logged in' do
+  describe 'not authorized' do
     before do
       @customer = Customer.make!
-      @application = Application.make!(customers: [@customer])
+      @application = Application.make!
     end
 
-    describe 'index' do
-      it 'should assign @ideas variable' do
-        get :index, application_id: @application.id, format: :json
-        expect(response.status).to eq(401)
-        expect(assigns(:application)).to eq(nil)
-        expect(assigns(:ideas)).to eq(nil)
+    describe 'not signed in' do
+      describe 'index' do
+        it 'should assign return unauthorized' do
+          get :index, application_id: @application.id, format: :json
+          expect(response.status).to eq(401)
+          expect(assigns(:application)).to eq(nil)
+          expect(assigns(:ideas)).to eq(nil)
+        end
+      end
+
+      describe 'PUT update' do
+        before do
+          @idea = Idea.make!(application: @application, completed: false)
+          @idea.subscribe
+        end
+        describe 'set complete' do
+          it 'it should not update' do
+            expect do
+              put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: true}, format: :json
+            end.to_not change{ Idea.last.completed }
+            expect(response.status).to be(401)
+          end
+        end
       end
     end
 
-    describe 'PUT update' do
+    describe 'signed in, but no access to app' do
       before do
-        @idea = Idea.make!(application: @application, completed: false)
-        @idea.subscribe
+        sign_in_customer(@customer)
       end
-      describe 'set complete' do
-        it 'sets completed to true' do
-          expect do
-            put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: true}, format: :json
-          end.to_not change{ Idea.last.completed }
-          expect(response.status).to be(401)
+
+      describe 'index' do
+        it 'should assign return unauthorized' do
+          get :index, application_id: @application.id, format: :json
+          expect(response.status).to eq(401)
+          expect(assigns(:application)).to eq(nil)
+          expect(assigns(:ideas)).to eq(nil)
+        end
+      end
+
+      describe 'PUT update' do
+        before do
+          @idea = Idea.make!(application: @application, completed: false)
+          @idea.subscribe
+        end
+        describe 'set complete' do
+          it 'it should not update' do
+            expect do
+              put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: true}, format: :json
+            end.to_not change{ Idea.last.completed }
+            expect(response.status).to be(401)
+          end
         end
       end
     end

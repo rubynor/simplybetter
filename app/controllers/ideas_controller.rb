@@ -28,6 +28,15 @@ class IdeasController < ApplicationController
 
   def set_application
     @application ||= current_customer.applications.find(params[:application_id]) if params[:application_id]
+  rescue
+    respond_to do |format|
+      format.html do
+        flash[:error] =  "U don't seem to have access to this"
+        redirect_to applications_path
+      end
+      format.json { render json: { message: 'Not authorized' }, status: :unauthorized}
+    end
+
   end
 
   def set_idea
