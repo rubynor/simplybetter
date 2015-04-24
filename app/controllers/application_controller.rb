@@ -20,7 +20,12 @@ class ApplicationController < ActionController::Base
   helper_method :applications
 
   def authorize
-    redirect_to login_url, alert: "Not authorized" if current_customer.nil?
+    if current_customer.nil?
+      respond_to do |format|
+        format.html { redirect_to login_url, alert: "Not authorized" }
+        format.json { render json: { message: 'Not authorized' }, status: :unauthorized}
+      end
+    end
   end
 
   def set_controller_and_action_names
