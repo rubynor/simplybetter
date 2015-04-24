@@ -7,14 +7,14 @@
   .idea-layout
     .idea-item
       %hr
-      = link_to administrate_group_application_path(@idea.application.id) do
+      = link_to administrate_group_application_url(@idea.application.id) do
         %h1= @idea.title
       %p.desc.ideaView
         = @idea.description
       %hr
 
   .action-button
-    = link_to administrate_group_application_path(@idea.application.id) do
+    = link_to administrate_group_application_url(@idea.application.id) do
       %button GO TO SIMPLYBETTER
   %br
 
