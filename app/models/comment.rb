@@ -12,6 +12,8 @@ class Comment < ActiveRecord::Base
   default_scope { order('created_at ASC') }
   scope :visible, -> { where(visible: true) }
 
+  delegate :application, to: :idea
+
   def save_and_notify!
     if save!
       subscribe
