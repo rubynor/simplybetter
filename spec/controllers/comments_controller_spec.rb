@@ -4,33 +4,28 @@ describe CommentsController do
 
   include SessionHelper
 
+  let(:idea) { Idea.make! }
+  let(:comment) { Comment.make! idea: idea }
+
   describe 'update comment' do
-    example 'updates for authorized customer' do
-      idea = Idea.make!
-      comment = Comment.make! idea: idea
+    subject { patch :update, { id: comment.id, comment: { visible: false }, format: :json } }
+
+    it 'updates for authorized customer' do
       customer = idea.creator
       customer.applications << idea.application
-      sign_in_customer(idea.creator)
+      sign_in_customer(customer)
 
-      expect do
-        patch :update, { id: comment.id, comment: { visible: false } }
-      end.to change { Comment.last.visible }.from(true).to(false)
+      expect { subject }.to change { comment.reload.visible }.from(true).to(false)
     end
 
-    example 'denies not signed in' do
-      idea = Idea.make!
-      comment = Comment.make! idea: idea
-
-      patch :update, { id: comment.id, comment: { visible: false } }
-      expect(response.status).to be(302)
+    it 'denies not signed in' do
+      subject
+      expect(response.status).to be(401)
     end
 
-    example 'denies if app not in customers apps' do
-      idea = Idea.make!
-      comment = Comment.make! idea: idea
+    it 'denies if app not in customers apps' do
       sign_in_customer(idea.creator)
-
-      patch :update, { id: comment.id, comment: { visible: false } }
+      subject
       expect(response.status).to be(422)
     end
   end
