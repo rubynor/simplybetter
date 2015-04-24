@@ -1,11 +1,10 @@
 class IdeasController < ApplicationController
+  before_filter :authorize
   before_action :set_application, only: [:update, :destroy, :index]
   before_action :set_idea, only: [:update, :destroy]
 
   def index
-    if current_customer
-      @ideas = @application.ideas
-    end
+    @ideas = @application.ideas
   end
 
   def update
@@ -32,8 +31,7 @@ class IdeasController < ApplicationController
   end
 
   def set_idea
-    if current_customer
-      @idea ||= set_application.ideas.find(params[:id])
-    end
+    @idea ||= @application.ideas.find(params[:id])
   end
+
 end
