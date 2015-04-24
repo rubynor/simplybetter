@@ -2,7 +2,7 @@ require 'spec_helper'
 
 shared_context 'unauthorized' do
   describe 'index' do
-    it 'response unauthorized' do
+    it 'should respond with' do
       get :index, application_id: application.id, format: :json
       expect(response.status).to eq(401)
     end
@@ -19,7 +19,7 @@ shared_context 'unauthorized' do
       expect{subject}.to_not change{ Idea.last.completed }
     end
 
-    it 'shuold respond with unauthorized' do
+    it 'should respond with unauthorized' do
       subject
       expect(response.status).to eq(401)
     end

@@ -10,7 +10,7 @@ describe CommentsController do
   describe 'update comment' do
     subject { patch :update, { id: comment.id, comment: { visible: false }, format: :json } }
 
-    it 'updates for authorized customer' do
+    it 'updates for authorized customers' do
       customer = idea.creator
       customer.applications << idea.application
       sign_in_customer(customer)
@@ -18,15 +18,18 @@ describe CommentsController do
       expect { subject }.to change { comment.reload.visible }.from(true).to(false)
     end
 
-    it 'denies not signed in' do
-      subject
-      expect(response.status).to be(401)
-    end
 
-    it 'denies if app not in customers apps' do
-      sign_in_customer(idea.creator)
-      subject
-      expect(response.status).to be(422)
+    describe 'not authorized' do
+      it 'deny if not signed in' do
+        subject
+        expect(response.status).to be(401)
+      end
+
+      it 'denies if app not in customers apps' do
+        sign_in_customer(idea.creator)
+        subject
+        expect(response.status).to be(422)
+      end
     end
   end
 end
