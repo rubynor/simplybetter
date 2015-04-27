@@ -5,7 +5,6 @@ class WidgetApi::CommentsController < ApplicationController
 
   def index
     @comments = @idea.comments
-    puts "current customer is #{current_customer}"
     @comments = @comments.visible unless current_customer
   end
 
