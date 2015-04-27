@@ -5,10 +5,15 @@ Options = ->
     complete: '='
     delete: '='
     item: '='
+    admin: '='
     togglevisible: '&'
+    edititem: '&'
+    deleteitem: '&'
+    togglecompleted: '&'
+    all: '='
   template: JST['angular/shared/options/options']
-  controller: ['Session', (Session) ->
-    @isAdmin = Session.isAdmin()
+  controller: ['Session', '$scope', (Session, $scope) ->
+    @isAdmin = $scope.admin || Session.isAdmin()
 
     @
   ]

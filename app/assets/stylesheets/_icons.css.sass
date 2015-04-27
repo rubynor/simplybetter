@@ -34,7 +34,10 @@
     @include icon(-120px)
   &.visible
     @include icon(-96px)
-  &.not-completed
-    color: $gray
   &.completed
-    color: $green
+    &:after
+      content: '✔'
+    &.no
+      color: $gray
+    &.yes
+      color: $green
