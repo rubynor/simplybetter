@@ -8,16 +8,16 @@
 Options = ->
   restrict: 'E'
   scope:
-    item: '=' # Required
-    togglevisible: '&' # Required
-    admin: '=' # Optional to override Session.isAdmin()
-    all: '=' # Optional, use if u want all symbols. Don't forget to add methods for actions
-    edit: '=' # Optional, use if u want edit symbold
-    edititem: '&' # If u want action on edit symbol, then please provide method
-    complete: '=' # Optional, use if u want complete/not-complete symbol
-    togglecompleted: '&' # If u want action on complete symbol, then please provide method
-    delete: '=' # Optional, use if u want delete symbol
-    deleteitem: '&' # If u want action on delete symbol, then please provide method
+    item: '='             # Required
+    togglevisible: '&'    # Required
+    admin: '='            # Optional to override Session.isAdmin()
+    all: '='              # Optional, use if u want all symbols. Don't forget to add methods for actions
+    edit: '='             # Optional, use if u want edit symbold
+    edititem: '&'         # If u want action on edit symbol, then please provide method
+    complete: '='         # Optional, use if u want complete/not-complete symbol
+    togglecompleted: '&'  # If u want action on complete symbol, then please provide method
+    delete: '='           # Optional, use if u want delete symbol
+    deleteitem: '&'       # If u want action on delete symbol, then please provide method
   template: JST['angular/shared/options/options']
   controller: ['Session', '$scope', (Session, $scope) ->
     @isAdmin = $scope.admin || Session.isAdmin()
