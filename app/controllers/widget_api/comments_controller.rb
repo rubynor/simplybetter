@@ -1,13 +1,26 @@
 class WidgetApi::CommentsController < ApplicationController
   include CreatorFinder
-  before_action :set_idea, only: [:index, :show, :create]
+
+  before_action :set_idea, only: [:index, :show, :create, :update]
 
   def index
-    @comments = @idea.comments.visible
+    @comments = @idea.comments
+    puts "current customer is #{current_customer}"
+    @comments = @comments.visible unless current_customer
   end
 
   def show
     @comment = @idea.comments.visible.find(params[:id])
+  end
+
+  def update
+    # TODO: Check auth
+    @comment = @idea.comments.find(params[:id])
+    if @comment.update_attributes!(comment_attributes)
+      render json: @comment
+    else
+      render json: @comment.errors, status: :unprocessable_entity
+    end
   end
 
   def create
@@ -17,7 +30,7 @@ class WidgetApi::CommentsController < ApplicationController
     end
     app = @idea.application
     @comment = Comment.new(comment_attributes)
-    @comment.creator = creator(app, params[:user_email])#From module
+    @comment.creator = creator(app, params[:user_email]) # From module
     if @comment.save_and_notify!
       render 'widget_api/comments/show'
     else
@@ -40,7 +53,7 @@ class WidgetApi::CommentsController < ApplicationController
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body, :idea_id, :user_email, :customer_email)
+    params.require(:comment).permit(:body, :idea_id, :user_email, :customer_email, :visible)
   end
 
   def set_idea

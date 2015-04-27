@@ -1,0 +1,5 @@
+.options(ng-if='options.isAdmin')
+  .icon(ng-class='{ visible: item.visible, "not-visible": !item.visible }' ng-click='togglevisible()')
+  .icon.edit(ng-if='edit' ng-click='edit(item)')
+  .icon.delete(ng-if='delete' ng-click='delete(item, $index)')
+  .icon(ng-if='complete' ng-class='{ completed: item.completed, "not-completed": !item.completed }' ng-click='toggleCompleted(item)')

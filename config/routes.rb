@@ -6,7 +6,7 @@ SimplyBetter::Application.routes.draw do
 
   namespace :widget_api do
     resources :ideas, except: [:new, :edit] do
-      resources :comments, only: [:create, :destroy, :index, :show]
+      resources :comments, only: [:create, :destroy, :index, :show, :update]
       get :find_similar, on: :collection
     end
     resources :votes, only: [] do
@@ -17,7 +17,7 @@ SimplyBetter::Application.routes.draw do
       get :client_js, on: :collection
       get :is_admin, on: :member
     end
-    resources :notifications, only: [:index,:update] do
+    resources :notifications, only: [:index, :update] do
       get :count, on: :collection
     end
     resource :user, only: [:show, :update]
@@ -48,7 +48,7 @@ SimplyBetter::Application.routes.draw do
     get :check_email, on: :collection
   end
 
-  get 'widget' => "widget#widget"
+  get 'widget' => 'widget#widget'
 
   resource :sessions, only: [], path: '', as: '' do
     get :login, action: :new
@@ -56,7 +56,7 @@ SimplyBetter::Application.routes.draw do
     get :popup_close
     post :create, path: 'sessions/create'
     post :popup_create, path: 'sessions/popup_create'
-    delete :destroy, path: 'sessions/destroy', as: "sign_out"
+    delete :destroy, path: 'sessions/destroy', as: 'sign_out'
   end
 
   root 'landing_page#index'

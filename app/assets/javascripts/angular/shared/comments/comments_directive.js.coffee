@@ -7,6 +7,14 @@ Comments = ->
     $scope.highlight = { comment: false }
     $scope.user = Session.user_signed_in()
 
+    $scope.toggleVisible = (c) ->
+      hash = { comment: {visible: !c.visible }, idea_id: $scope.idea.id, id: c.id }
+      comment = new Comment(hash)
+      comment.$update(
+        (data) ->
+          c.visible = data.visible
+      )
+
     unhighlightComment = ->
       $scope.highlight.comment = false
       $scope.hasHighlighted = true

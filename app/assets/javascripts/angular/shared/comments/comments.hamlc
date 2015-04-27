@@ -1,6 +1,6 @@
 #comments
   .comments-section
-    %ol
+    %ul
       %li.comment-item(ng-repeat='comment in comments' ng-class='{ highlighted: highlight.comment && comment_id == comment.id }' id='{{comment.id}}' on-finish-render)
         .avatar
           %img(ng-src='{{ comment.gravatar_url }}')
@@ -13,6 +13,7 @@
               {{ comment.updated_at }}
           .comment-body
             {{ comment.body }}
+        %options(item='comment' togglevisible='toggleVisible(comment)')
     .new-comment(ng-show='user')
       %form(name='commentForm' ng-submit='commentForm.$valid && save_comment(newComment)' novalidate)
         .error(ng-if='error_message')
