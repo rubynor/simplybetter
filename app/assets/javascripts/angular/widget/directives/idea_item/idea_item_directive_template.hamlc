@@ -21,5 +21,6 @@
     on
     %span.black
       {{ idea.updated_at }}
-    %a(ng-if='owner(idea)' named-route='idea_edit' kwarg-id='{{ idea.id }}')
+    %a(ng-if='owner()' named-route='idea_edit' kwarg-id='{{ idea.id }}')
       [edit idea]
+

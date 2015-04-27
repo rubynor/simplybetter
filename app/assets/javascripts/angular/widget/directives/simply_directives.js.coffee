@@ -15,41 +15,6 @@ simplyDirectives.directive 'ideaNew', ->
     $scope.user = Session.user_signed_in()
   ]
 
-simplyDirectives.directive 'ideaItem', ->
-  restrict: 'E'
-  template: JST["angular/widget/directives/templates/idea_item"]
-  controller: ['$scope', 'Session', ($scope, Session) ->
-
-    $scope.owner = (idea) ->
-      Session.owner(idea.creator_email) if idea
-  ]
-
-simplyDirectives.directive 'vote', ->
-  restrict: 'E'
-  template: JST["angular/widget/directives/templates/vote"]
-  controller: ['$scope', 'Vote', 'Session', ($scope, Vote, Session) ->
-    $scope.cant_vote = (idea) ->
-      return unless idea
-      if Session.owner(idea.creator_email)
-        "You can't vote on your own idea"
-
-    $scope.vote = (idea, val) ->
-      # Early exit, not need to send to server
-      return if Session.owner(idea.creator_email)
-
-      hash = {idea_id: idea.id, value: val, votes_count: idea.votes_count, vote: {value: val}}
-      vote = new Vote(hash)
-      vote.$save(
-        (data) ->
-          $scope.idea.voter_status = data.value
-          $scope.idea.votes_count = data.votes_count
-          console.log JSON.stringify(data)
-      , (err) ->
-        console.log 'Something went wrong..'
-        console.log err
-      )
-  ]
-
 simplyDirectives.directive 'comments', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/comments']
