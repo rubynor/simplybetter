@@ -7,10 +7,11 @@ Options = ->
     item: '='
     togglevisible: '&'
   template: JST['angular/shared/options/options']
-  controller: ->
-    # TODO: Use session factory..
-    @isAdmin = false
+  controller: ['Session', (Session) ->
+    @isAdmin = Session.isAdmin()
+
     @
+  ]
   controllerAs: 'options'
 
 angular.module('shared').directive('options', Options)

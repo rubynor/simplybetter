@@ -1,4 +1,4 @@
-widget.factory 'Session', ['$cookies', '$http', '$window', '$timeout', ($cookies, $http, $window, $timeout) ->
+angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$timeout', ($cookies, $http, $window, $timeout) ->
   @email = ''
   @token = undefined
   @admin = undefined
