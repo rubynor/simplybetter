@@ -16,9 +16,8 @@
 //= require sb_tools
 //= require highlight
 //
-//= require angular-1.2.18/angular
-//= require angular-1.2.18/angular-resource
-//= require angular-1.2.18/angular-route
+//= require shared
+//
 //= require ng-rails-csrf
 //= require angular/shared
 //= require_tree ./angular/shared
