@@ -1,4 +1,5 @@
 .idea-layout(ng-class='{ highlighted: highlight.idea }')
-  %vote
-  %idea-item
-  %comments
+  %vote(idea="idea")
+  %idea-admin-options(idea="idea")
+  %idea-item(idea="idea")
+  %comments(idea="idea")
