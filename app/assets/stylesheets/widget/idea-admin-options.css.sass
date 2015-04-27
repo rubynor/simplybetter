@@ -1,0 +1,31 @@
+#simplybetterIdeasModalContent
+  idea-admin-options
+    position: absolute
+    bottom: 15px
+    left: 13px
+    width: 31px
+  .admin-options
+    .options-toggler
+      background: image-url('widget/options-buttons.png') no-repeat
+      height: 31px
+      width: 31px
+      &:hover
+        background-position: -31px 0px
+      &.open
+        background: image-url('widget/options-buttons.png') no-repeat
+        background-position: 0px -31px
+        height: 31px
+        width: 31px
+        &:hover
+          background-position: -31px -31px
+    .mark-as-completed
+      font-size: 34px
+      text-align: center
+      color: $gray
+      cursor: pointer
+      &:hover
+        color: $green
+      &.completed
+        color: $green
+        &:hover
+          color: $gray
