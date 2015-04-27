@@ -1,15 +1,11 @@
 class WidgetApi::CommentsController < ApplicationController
   include CreatorFinder
 
-  before_action :set_idea, only: [:index, :show, :create, :update]
+  before_action :set_idea, only: [:index, :create, :update]
 
   def index
     @comments = @idea.comments
     @comments = @comments.visible unless current_customer
-  end
-
-  def show
-    @comment = @idea.comments.visible.find(params[:id])
   end
 
   def update
@@ -34,18 +30,6 @@ class WidgetApi::CommentsController < ApplicationController
       render 'widget_api/comments/show'
     else
       render json: @comment.errors, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    # TODO: add check for current_user and delete only if params[:user_id] is current_user
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      format.html { redirect_to application_idea_path(@comment.idea.id) }
-      format.json { render :json => {
-          :idea => @comment.idea.to_json
-      }, :callback => params[:callback] || 'idea' }
     end
   end
 
