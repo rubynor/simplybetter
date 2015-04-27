@@ -20,6 +20,8 @@
 //= require angular-1.2.18/angular-resource
 //= require angular-1.2.18/angular-route
 //= require ng-rails-csrf
+//= require angular/shared
+//= require_tree ./angular/shared
 //= require angular/backoffice
 //= require_tree ./angular/backoffice
 //
