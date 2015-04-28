@@ -15,5 +15,5 @@
     %ol.overview.layout
       %li.idea(ng-repeat='idea in ideas | filter: selectedFilter | orderBy: "completed"' ng-class='{ completed: idea.completed }')
         %vote(idea="idea")
-        %idea-item(idea="idea")
+        %idea-item(idea="idea" expanded="false")
         %comments(comments='idea.comments' ng-if='idea.comments')
