@@ -6,6 +6,7 @@ widget.factory 'Idea', ['$resource', 'Session', ($resource, Session) ->
       user_email: Session.email
     },
     {
-      patch: { method: 'PATCH' }
+      patch: { method: 'PATCH' },
+      update: { method: 'PUT' }
     }
 ]

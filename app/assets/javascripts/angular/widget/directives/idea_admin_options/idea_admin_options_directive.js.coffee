@@ -11,7 +11,7 @@ IdeaAdminOptions = ->
 
     @ideaToggleCompleted = =>
       $scope.idea.completed = !$scope.idea.completed
-      $scope.idea.$patch {}, ->
+      $scope.idea.$update {}, ->
         return
       , ->
         $scope.idea.completed = !$scope.idea.completed
