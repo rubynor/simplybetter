@@ -18,7 +18,6 @@
 //
 //= require shared
 //
-//= require ng-rails-csrf
 //= require angular/shared
 //= require_tree ./angular/shared
 //= require angular/backoffice
