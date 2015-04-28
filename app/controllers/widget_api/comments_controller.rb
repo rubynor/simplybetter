@@ -13,8 +13,6 @@ class WidgetApi::CommentsController < ApplicationController
     @comment = @idea.comments.find(params[:id])
     if @comment.update_attributes!(comment_attributes)
       render json: @comment
-    else
-      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
