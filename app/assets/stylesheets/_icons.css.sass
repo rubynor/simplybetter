@@ -35,9 +35,22 @@
   &.visible
     @include icon(-96px)
   &.completed
+    font-size: 26px
     &:after
       content: '✔'
     &.no
       color: $gray
     &.yes
       color: $green
+  &.options
+    background: image-url('widget/options-buttons.png') no-repeat
+    height: 31px
+    width: 31px
+    &:hover
+      background-position: -31px 0px
+    &.open
+      background-position: 0px -31px
+      height: 31px
+      width: 31px
+      &:hover
+        background-position: -31px -31px

@@ -1,6 +1,5 @@
 .admin-options(ng-if="options.isAdmin()")
   %ul(ng-show="options.visible")
     %li
-      .mark-as-completed(ng-click="options.ideaToggleCompleted()" ng-class="{completed: idea.completed}")
-        ✔
-  .options-toggler(ng-click="options.toggle()" ng-class="{open: options.visible}")
+      .icon.completed(ng-click="options.ideaToggleCompleted()" ng-class="{yes: idea.completed, no: !idea.completed}")
+  .icon.options(ng-click="options.toggle()" ng-class="{open: options.visible}")
