@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   before_action :set_application, only: [:update, :destroy, :index]
   before_action :set_idea, only: [:update, :destroy]
 
