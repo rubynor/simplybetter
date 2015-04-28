@@ -13,6 +13,7 @@ angular.module("filters", []).filter "truncate", ->
   'filters'
   'ngRoute'
   'simplyDirectives'
+  'shared'
   'ui.bootstrap'
   'zj.namedRoutes'
   'ngCookies'
