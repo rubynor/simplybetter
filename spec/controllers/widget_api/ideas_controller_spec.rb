@@ -24,8 +24,6 @@ describe WidgetApi::IdeasController do
   end
 
   describe 'PATCH update' do
-    render_views
-
     before do
       @idea = Idea.make!(application: @application, creator: @user)
     end
