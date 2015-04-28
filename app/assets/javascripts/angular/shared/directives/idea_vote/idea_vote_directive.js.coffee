@@ -4,23 +4,21 @@ Vote = ->
   scope:
     idea: '='
   controller: ['$scope', 'Vote', 'Session', ($scope, Vote, Session) ->
-    idea = $scope.idea
     $scope.cantVote = ->
-      return unless idea
-      if Session.owner(idea['creator_email'])
+      return unless $scope.idea
+      if Session.owner($scope.idea['creator_email'])
         "You can't vote on your own idea"
 
     $scope.vote = (val) ->
       # Early exit, not need to send to server
-      return if Session.owner(idea.creator_email)
+      return if Session.owner($scope.idea.creator_email)
 
-      hash = {idea_id: idea.id, value: val, votes_count: idea.votes_count, vote: {value: val}}
+      hash = {idea_id: $scope.idea.id, value: val, votes_count: $scope.idea.votes_count, vote: {value: val}}
       vote = new Vote(hash)
       vote.$save(
         (data) ->
-          idea.voter_status = data.value
-          idea.votes_count = data.votes_count
-          console.log JSON.stringify(data)
+          $scope.idea.voter_status = data.value
+          $scope.idea.votes_count = data.votes_count
       , (err) ->
         console.log 'Something went wrong..'
         console.log err
