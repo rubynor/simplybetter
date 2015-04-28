@@ -38,16 +38,11 @@ class WidgetApi::IdeasController < ApplicationController
 
   def update
     user = get_current_user(application, params[:user_email])
-    if @idea.creator != user
-      return render json: 'Not owner of idea', status: :unprocessable_entity
+    if @idea.creator != user && !current_customer
+      return render json: 'Not owner of idea', status: 403
     end
-    respond_to do |format|
-      if @idea.update(idea_params)
-        format.json { render json: :no_content, status: :ok }
-      else
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-      end
-    end
+
+    @idea.update!(idea_params)
   end
 
   def destroy
@@ -66,7 +61,11 @@ class WidgetApi::IdeasController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def idea_params
-    params.require(:idea).permit(:title, :description)
+    if current_customer && current_customer.admin_for?(application)
+      params.require(:idea).permit(:title, :description, :completed, :visible)
+    else
+      params.require(:idea).permit(:title, :description)
+    end
   end
 
   def application

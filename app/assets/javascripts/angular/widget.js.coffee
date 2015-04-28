@@ -17,6 +17,7 @@ angular.module("filters", []).filter "truncate", ->
   'ui.bootstrap'
   'zj.namedRoutes'
   'ngCookies'
+  'ng-rails-csrf'
 ]
 
 @widget.run ['$cookies', 'Session', ($cookies, Session) ->

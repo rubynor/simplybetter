@@ -1,5 +1,5 @@
 class WidgetApi::ApplicationsController < ApplicationController
-
+  protect_from_forgery except: :client_js
   respond_to :json, :html
 
   def client_js

@@ -37,17 +37,16 @@ describe WidgetApi::IdeasController do
         patch :update, token: @application.token, id: @idea.to_param, user_email: @user.email, idea: { description: 'Edited description' }, format: :json
       end.to change { Idea.last.description }.from(@idea.description).to('Edited description')
     end
-    it 'should return 422' do
+    it 'should raise error if validation fails' do
       expect do
         patch :update, token: @application.token, id: @idea.to_param, user_email: @user.email, idea: { description: '' }, format: :json
-      end.to_not change { Idea.last.description }
-      expect(response.status).to eq(422) # :unprocessable_entity
+      end.to raise_error
     end
-    it 'should return unprocessable_entity unless owner of idea' do
+    it 'should return forbidden unless owner of idea' do
       user = User.make!
       user.widgets << @application
       patch :update, token: @application.token, id: @idea.to_param, user_email: user.email, idea: { description: 'Edited description'}, format: :json
-      expect(response.status).to eq(422)
+      expect(response.status).to eq(403)
     end
   end
 

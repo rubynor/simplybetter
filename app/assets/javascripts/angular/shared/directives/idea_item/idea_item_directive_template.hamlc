@@ -1,15 +1,15 @@
 .not-visible-overlay(ng-if='!idea.visible')
 .idea-item
-  %span(ng-if='!path')
+  %span(ng-if='!expanded')
     %a(named-route='idea' kwarg-id='{{ idea.id }}')
       %h1
         {{ idea.title }}
-  %span(ng-if='path')
+  %span(ng-if='expanded')
     %h1
       {{ idea.title }}
-  %p.desc.ideaView(ng-if='path')
+  %p.desc.ideaView(ng-if='expanded')
     {{ idea.description }}
-  %p.desc(ng-if='!path')
+  %p.desc(ng-if='!expanded')
     {{ idea.description | truncate:120 }}
   .meta
     %a(named-route='idea' kwarg-id='{{ idea.id }}')
@@ -22,5 +22,6 @@
     on
     %span.black
       {{ idea.updated_at }}
-    %a(ng-if='owner(idea)' named-route='idea_edit' kwarg-id='{{ idea.id }}')
+    %a(ng-if='owner()' named-route='idea_edit' kwarg-id='{{ idea.id }}')
       [edit idea]
+
