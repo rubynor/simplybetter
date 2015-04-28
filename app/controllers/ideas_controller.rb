@@ -31,7 +31,7 @@ class IdeasController < ApplicationController
   rescue
     respond_to do |format|
       format.html do
-        flash[:error] =  "U don't seem to have access to this"
+        flash[:error] =  "You don't seem to have access to this"
         redirect_to applications_path
       end
       format.json { render json: { message: 'Not authorized' }, status: :unauthorized}
