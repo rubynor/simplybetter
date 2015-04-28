@@ -2,6 +2,7 @@
 @import fonts
 @import font-awesome
 @import mixins
+@import icons
 @import widget/ideas
 @import widget/navbar
 @import widget/alerts
@@ -177,8 +178,36 @@ strong
      
     td.content
       height: 100%
-      padding: 0px
+      padding: 0
       vertical-align: top
       border-collapse: collapse
       overflow-y: scroll
+
+  ul
+    li
+      position: relative
+      .options
+        display: none
+        position: absolute
+        right: 20px
+        top: 30px
+        z-index: 10
+        .icon
+          margin: 0 10px
+          cursor: pointer
+      &:hover
+        .options
+          display: inline-block
+
+    .not-visible-overlay
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 2px
+      right: 0
+      background: $white
+      opacity: 0.8
+      border-radius: 3px
+      border: 0px
+
 

@@ -1,43 +1,85 @@
 require 'spec_helper'
 
-describe IdeasController do
-  include SessionHelper
-
-  before do
-    @customer = Customer.make!
-    @application = Application.make!(customers: [@customer])
-    sign_in_customer(@customer)
-  end
-
+shared_context 'unauthorized' do
   describe 'index' do
-    it 'should assign @ideas variable' do
-      get :index, application_id: @application.id, format: :json
-      expect(assigns(:ideas)).to eq(@application.ideas)
+    it 'should respond with' do
+      get :index, application_id: application.id, format: :json
+      expect(response.status).to eq(401)
     end
   end
 
   describe 'PUT update' do
+    subject { put :update, application_id: application.id, id: @idea.to_param, idea: { completed: true}, format: :json }
+
     before do
-      @idea = Idea.make!(application: @application, completed: false)
-      @idea.subscribe
+      @idea = Idea.make!(application: application, completed: false)
     end
-    describe 'set complete' do
-      it 'sets completed to true' do
-        expect do
-          put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: true}, format: :json
-        end.to change{ Idea.last.completed }.from(false).to(true)
-      end
-      it 'notifies idea owner' do
-        expect do
-          put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: true}, format: :json
-        end.to change(Notification, :count).by(1)
-      end
+
+    it 'it should not update' do
+      expect{subject}.to_not change{ Idea.last.completed }
     end
-    it 'should not notify if completed changed to false' do
-      @idea.update_attributes! completed: true
-      expect do
-        put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: false}, format: :json
-      end.to change(Notification, :count).by(0)
+
+    it 'should respond with unauthorized' do
+      subject
+      expect(response.status).to eq(401)
     end
   end
+end
+
+
+describe IdeasController do
+  include SessionHelper
+
+  describe 'logged in' do
+    before do
+      @customer = Customer.make!
+      @application = Application.make!(customers: [@customer])
+      sign_in_customer(@customer)
+    end
+
+    describe 'index' do
+      it 'should assign @ideas variable' do
+        get :index, application_id: @application.id, format: :json
+        expect(assigns(:ideas)).to eq(@application.ideas)
+      end
+    end
+
+    describe 'PUT update' do
+      let(:completed) { true }
+      subject { put :update, application_id: @application.id, id: @idea.to_param, idea: { completed: completed}, format: :json }
+      before do
+        @idea = Idea.make!(application: @application, completed: false)
+        @idea.subscribe
+      end
+
+      describe 'set complete' do
+        it 'sets completed to true' do
+          expect { subject }.to change{ Idea.last.completed }.from(false).to(true)
+        end
+        it 'notifies idea owner' do
+          expect { subject }.to change(Notification, :count).by(1)
+        end
+      end
+
+      it 'should not notify if completed changed to false' do
+        @idea.update_attributes! completed: true
+        completed = false
+        expect { subject }.to change(Notification, :count).by(0)
+      end
+    end
+  end
+
+  describe 'not signed in' do
+    let(:application) { Application.make! }
+    it_behaves_like 'unauthorized'
+  end
+
+  describe 'signed in, but not access to app' do
+    before do
+      sign_in_customer(Customer.make!)
+    end
+    let(:application) { Application.make!(customers: [Customer.make!]) }
+    it_behaves_like 'unauthorized'
+  end
+
 end

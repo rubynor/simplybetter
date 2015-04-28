@@ -4,7 +4,8 @@ class WidgetApi::IdeasController < ApplicationController
 
   def index
     app = application
-    @ideas = app.ideas.visible.includes(:comments).includes(:votes).order('votes_count DESC')
+    @ideas = app.ideas.includes(:comments).includes(:votes).order('votes_count DESC')
+    @ideas = @ideas.visible unless current_customer.try { current_customer.admin_for?(app) }
     get_current_user(application, params[:user_email])
   rescue NoUserException
     # It's ok if the user is not logged in

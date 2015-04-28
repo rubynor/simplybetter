@@ -1,3 +1,4 @@
+.not-visible-overlay(ng-if='!idea.visible')
 .idea-item
   %span(ng-if='!path')
     %a(named-route='idea' kwarg-id='{{ idea.id }}')

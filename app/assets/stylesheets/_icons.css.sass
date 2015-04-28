@@ -1,0 +1,43 @@
+.icon
+  display: inline-block
+  width: 14px
+  height: 13px
+  margin-right: 5px
+  &.upvote
+    @include comment-icon(0px)
+  &.downvote
+    @include comment-icon(-13px)
+  &.comment
+    @include comment-icon(-26px)
+  &.upvotes
+    color: $upvote
+  &.downvotes
+    color: $downvote
+  &.user
+    color: $button-hover
+  &.time
+    color: $black
+  &.comment
+    text-decoration: underline
+    cursor: pointer
+  &.dot
+    font-size: 20px
+    display: inline-block
+    text-align: center
+    width: 20px
+    line-height: 0px
+  &.delete
+    @include icon(-72px)
+  &.edit
+    @include icon(-48px)
+  &.not-visible
+    @include icon(-120px)
+  &.visible
+    @include icon(-96px)
+  &.completed
+    &:after
+      content: '✔'
+    &.no
+      color: $gray
+    &.yes
+      color: $green
