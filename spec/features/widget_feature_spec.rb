@@ -51,15 +51,25 @@ describe WidgetController, js: true do
         expect(page).to have_css '.active'
       end
     end
+    example 'up vote single view' do
+      within_frame 0 do
+        title = Idea.last.title
+        expect(page).to have_content title
+        first('h1', text: title).click
+        expect(page).to have_css '.up'
+        first('.up').click
+        expect(page).to have_css '.active'
+      end
+    end
     example 'mark notification as read' do
       within_frame 0 do
-        expect(Notification.last.checked).to eq(nil)
+        expect(Notification.first.checked).to eq(nil)
         expect(page).not_to have_content 'Notifications'
         expect(page).to have_css '.new-notifications'
         first('.new-notifications').click
         expect(page).to have_css '.new'
         first('.new').click
-        expect(Notification.last.checked).to eq(true)
+        expect(Notification.first.checked).to eq(true)
       end
     end
     example 'navigation' do

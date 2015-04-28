@@ -19,6 +19,7 @@ ActiveRecord::Base.transaction do
   puts 'Created comment'
   Notification.create_with(action: comment, subject: idea, recipient: customer, app_id: app.id)
   puts 'Created notification'
+  Idea.create! title: 'En ny ide', description: 'En liten beskrivelse', application_id: app.id, creator: user
 
   unless ENV["RAILS_ENV"] == 'test'
     # Create some more test ideas and comments
