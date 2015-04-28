@@ -1,6 +1,6 @@
 IdeaAdminOptions = ->
   restrict: 'E'
-  template: JST['angular/widget/directives/idea_admin_options/idea_admin_options_directive_template']
+  template: JST['angular/shared/directives/idea_admin_options/idea_admin_options_directive_template']
   scope:
     idea: '='
   controller: ['$scope', 'Idea', 'Session', ($scope, Idea, Session) ->
@@ -25,5 +25,5 @@ IdeaAdminOptions = ->
   controllerAs: 'options'
 
 angular
-  .module('simplyDirectives')
+  .module('shared')
   .directive('ideaAdminOptions', IdeaAdminOptions)

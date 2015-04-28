@@ -1,6 +1,6 @@
 IdeaItem = ->
   restrict: 'E'
-  template: JST["angular/widget/directives/idea_item/idea_item_directive_template"]
+  template: JST["angular/shared/directives/idea_item/idea_item_directive_template"]
   scope:
     idea: '='
   controller: ['$scope', 'Session', ($scope, Session) ->
@@ -9,5 +9,5 @@ IdeaItem = ->
   ]
 
 angular
-  .module('simplyDirectives')
+  .module('shared')
   .directive('ideaItem', IdeaItem)

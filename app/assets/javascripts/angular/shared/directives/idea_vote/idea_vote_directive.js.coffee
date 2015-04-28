@@ -1,6 +1,6 @@
 Vote = ->
   restrict: 'E'
-  template: JST["angular/widget/directives/idea_vote/idea_vote_directive_template"]
+  template: JST["angular/shared/directives/idea_vote/idea_vote_directive_template"]
   scope:
     idea: '='
   controller: ['$scope', 'Vote', 'Session', ($scope, Vote, Session) ->
@@ -28,5 +28,5 @@ Vote = ->
   ]
 
 angular
-  .module('simplyDirectives')
+  .module('shared')
   .directive('vote', Vote)
