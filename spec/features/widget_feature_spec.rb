@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe WidgetController, js: true do
-
+describe WidgetController, js: true, order: :defined do
   before :all do
     Rails.application.load_seed
   end
@@ -23,25 +22,6 @@ describe WidgetController, js: true do
         click_button 'OK'
         expect(page).to have_content('My new comment')
         expect(find_field('Leave a comment...').value).not_to eq('My new comment')
-      end
-    end
-    example 'new idea' do
-      within_frame 0 do
-        fill_in 'title-input', with: 'Idea'
-        fill_in 'Description', with: 'My idea description'
-        click_button 'send'
-        expect(page).to have_css('.comment-body')
-      end
-    end
-    example 'edit idea' do
-      within_frame 0 do
-        expect(page).to have_content '[edit idea]'
-        first('a', text: '[edit idea]').click
-        expect(page).not_to have_css('.comment-body')
-        fill_in 'title-input', with: 'New text for title'
-        click_button 'update'
-        expect(page).to have_css('.comment-body')
-        expect(page).to have_content('New text for title')
       end
     end
     example 'up vote' do
@@ -70,6 +50,25 @@ describe WidgetController, js: true do
         expect(page).to have_css '.new'
         first('.new').click
         expect(Notification.first.checked).to eq(true)
+      end
+    end
+    example 'new idea' do
+      within_frame 0 do
+        fill_in 'title-input', with: 'Idea'
+        fill_in 'Description', with: 'My idea description'
+        click_button 'send'
+        expect(page).to have_css('.comment-body')
+      end
+    end
+    example 'edit idea' do
+      within_frame 0 do
+        expect(page).to have_content '[edit idea]'
+        first('a', text: '[edit idea]').click
+        expect(page).not_to have_css('.comment-body')
+        fill_in 'title-input', with: 'New text for title'
+        click_button 'update'
+        expect(page).to have_css('.comment-body')
+        expect(page).to have_content('New text for title')
       end
     end
     example 'navigation' do
@@ -108,5 +107,4 @@ describe WidgetController, js: true do
       end
     end
   end
-
 end
