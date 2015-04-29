@@ -5,6 +5,6 @@
     %li
       .icon(ng-click="options.ideaToggleVisible()" ng-class="{visible: idea.visible, 'not-visible': !idea.visible}")
     %li
-      .icon.delete(ng-click="options.ideaDelete()")
+      .icon.delete(yes-no-prompt="" yes="options.ideaDelete()" text="'Are you sure?'")
 
   .icon.options(ng-click="options.toggle()" ng-class="{open: options.visible}")
