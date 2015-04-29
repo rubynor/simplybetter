@@ -21,8 +21,10 @@ angular.module("filters", []).filter "truncate", ->
 ]
 
 @widget.run ['$cookies', 'Session', ($cookies, Session) ->
+  console.log 'in widget run'
   Session.set_token($cookies.token)
   Session.set_email($cookies.email)
+  Session.setInfoParam()
 ]
 
 @widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->

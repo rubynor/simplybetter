@@ -1,4 +1,5 @@
 class WidgetApi::IdeasController < ApplicationController
+  include DecodeParams
   include CreatorFinder
   before_action :set_idea, only: [:show, :update, :destroy]
 
@@ -6,13 +7,13 @@ class WidgetApi::IdeasController < ApplicationController
     app = application
     @ideas = app.ideas.includes(:comments).includes(:votes).order('votes_count DESC')
     @ideas = @ideas.visible unless current_customer.try { current_customer.admin_for?(app) }
-    get_current_user(application, params[:user_email])
+    get_current_user(application, params[:email]) if params[:email]
   rescue NoUserException
     # It's ok if the user is not logged in
   end
 
   def show
-    get_current_user(application, params[:user_email])
+    get_current_user(application, params[:email])
   rescue NoUserException
     # It's ok if the user is not logged in
   end
@@ -28,7 +29,7 @@ class WidgetApi::IdeasController < ApplicationController
     @idea = Idea.new(idea_params)
 
     respond_to do |format|
-      if @idea.widget_save_and_notify(application, creator(application, params[:user_email]))
+      if @idea.widget_save_and_notify(application, creator(application, params[:email]))
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }
@@ -37,7 +38,7 @@ class WidgetApi::IdeasController < ApplicationController
   end
 
   def update
-    user = get_current_user(application, params[:user_email])
+    user = get_current_user(application, params[:email])
     if @idea.creator != user && !current_customer
       return render json: 'Not owner of idea', status: 403
     end
@@ -69,6 +70,6 @@ class WidgetApi::IdeasController < ApplicationController
   end
 
   def application
-    @application ||= Application.find_by(token: params[:token]) if params[:token]
+    @application ||= Application.find_by(token: params[:appkey]) if params[:appkey]
   end
 end

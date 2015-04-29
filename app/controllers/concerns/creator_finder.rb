@@ -6,29 +6,22 @@ end
 
 module CreatorFinder
   def get_current_user(application, user_email)
-    if application && user_email
-      @current_user ||= creator(application, user_email)
-    else
-      fail ArgumentError, "Missing one of the arguments application: #{application}, or user_email: #{user_email}"
-    end
+    fail ArgumentError, 'Missing application' unless application
+    @current_user ||= creator(application, user_email)
   end
 
   def creator(application, creator_email)
-    # TODO: Refactor.. this looks kinda messy.. byt trying to exit as early as possible
-    # TODO: and not having to do to many db lookups
-    a_customer = Customer.find_by(email: creator_email)
-    if a_customer
+    fail NoUserException, 'No email provided' unless creator_email
+    if (a_customer = Customer.find_by(email: creator_email))
       return a_customer if a_customer.widgets.include?(application)
-      raise NoAccessException, 'The customer does not have access to this application'
+      fail NoAccessException, 'The customer does not have access to this application'
     end
 
-    user = User.find_by(email: creator_email)
-    if user
+    if (user = User.find_by(email: creator_email))
       return user if user.widgets.include? application
-      raise NoAccessException, 'The user does not have access to this application'
+      fail NoAccessException, 'The user does not have access to this application'
     end
 
-    raise NoUserException, 'This user does not exist'
+    fail NoUserException, 'This user does not exist'
   end
-
 end

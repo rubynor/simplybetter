@@ -2,6 +2,7 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
   @email = ''
   @token = undefined
   @admin = undefined
+  @info = undefined
 
   setAdmin = =>
     that = @
@@ -12,6 +13,13 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
         alert(err)
 
   setAdmin()
+
+  setInfoParam: ->
+    params = location.search
+    console.log 'params is ', params
+    splitted = params.split('=')
+    console.log 'splitted is ', splitted
+    @info = splitted[1]
 
   user_signed_in: ->
     @email && @token
