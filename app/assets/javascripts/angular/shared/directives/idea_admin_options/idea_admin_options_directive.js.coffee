@@ -15,7 +15,13 @@ IdeaAdminOptions = ->
         return
       , ->
         $scope.idea.completed = !$scope.idea.completed
-      return
+
+    @ideaToggleVisible = =>
+      $scope.idea.visible = !$scope.idea.visible
+      $scope.idea.$update {}, ->
+        return
+      , ->
+        $scope.idea.visible = !$scope.idea.visible
 
     @isAdmin = ->
       Session.isAdmin()
