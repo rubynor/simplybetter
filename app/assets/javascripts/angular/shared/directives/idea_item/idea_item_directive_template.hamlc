@@ -1,4 +1,3 @@
-.not-visible-overlay(ng-if='!idea.visible')
 .idea-item
   %span(ng-if='!expanded')
     %a(named-route='idea' kwarg-id='{{ idea.id }}')
@@ -24,4 +23,5 @@
       {{ idea.updated_at }}
     %a(ng-if='owner()' named-route='idea_edit' kwarg-id='{{ idea.id }}')
       [edit idea]
-
+.tranclude(ng-transclude)
+%a.not-visible-overlay(ng-if='!idea.visible' named-route='idea' kwarg-id='{{ idea.id }}')

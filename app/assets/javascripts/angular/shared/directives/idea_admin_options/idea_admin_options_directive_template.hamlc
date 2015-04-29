@@ -3,5 +3,8 @@
     %li
       .icon.completed(ng-click="options.ideaToggleCompleted()" ng-class="{yes: idea.completed, no: !idea.completed}")
     %li
+      .icon(ng-click="options.ideaToggleVisible()" ng-class="{visible: idea.visible, 'not-visible': !idea.visible}")
+    %li
       .icon.delete(ng-click="options.ideaDelete()")
+
   .icon.options(ng-click="options.toggle()" ng-class="{open: options.visible}")
