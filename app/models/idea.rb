@@ -95,6 +95,12 @@ class Idea < ActiveRecord::Base
     completed_changed? && completed?
   end
 
+  # Searchkick method to restrict what we index
+  # Only index visible ideas!
+  def should_index?
+    visible
+  end
+
   private
 
   def self.application(token)
