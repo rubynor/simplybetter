@@ -25,10 +25,7 @@ IdeaAdminOptions = ->
         $scope.idea.visible = !$scope.idea.visible
 
     @ideaDelete = ->
-      #$scope.idea.$delete()
-      console.log $scope
-      index = $scope.ideas.indexOf($scope.idea)
-      $scope.ideas.splice(index, 1)
+      Idea.delete($scope.idea)
       Redirect('overview')
 
     @isAdmin = ->
