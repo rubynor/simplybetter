@@ -2,4 +2,4 @@
   %vote(idea="idea")
   %idea-item(idea="idea" expanded="true")
     %comments(idea="idea")
-  %idea-admin-options(idea="idea" collection="ideas")
+  %idea-admin-options(idea="idea")
