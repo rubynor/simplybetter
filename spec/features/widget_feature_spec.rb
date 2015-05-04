@@ -36,9 +36,15 @@ describe WidgetController, js: true, order: :defined do
         title = Idea.last.title
         expect(page).to have_content title
         first('h1', text: title).click
+
         expect(page).to have_css '.up'
-        first('.up').click
-        expect(page).to have_css '.active'
+        if page.has_css?('.active')
+          first('.up').click
+          expect(page).not_to have_css '.active'
+        else
+          first('.up').click
+          expect(page).to have_css '.active'
+        end
       end
     end
     example 'mark notification as read' do
