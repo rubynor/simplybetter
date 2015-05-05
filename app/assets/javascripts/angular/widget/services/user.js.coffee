@@ -13,12 +13,11 @@ widget.factory 'User', ['$resource', 'Session', ($resource, Session) ->
   @fetchFromBackend = ->
     @user =
       @resource.get
-        email: email
-        token: token
+        info: Session.info
 
   @update = (success, error) ->
     @user.$update(
-      token: token
+      info: Session.info
     ,(data) =>
       success(data)
     , =>
