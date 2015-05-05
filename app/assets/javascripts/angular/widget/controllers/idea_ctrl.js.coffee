@@ -1,13 +1,9 @@
 widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
-  Idea.get({id: $routeParams.id},
-    (data) ->
-      $scope.idea = data
-  , (err) ->
-    $scope.error_message = 'Not available'
-  )
+  $scope.idea = Idea.get($routeParams.id)
+  $scope.error_message = 'Not available' unless $scope.idea
 
   $scope.$on 'ngRepeatFinished', ->
-    $scope.no_ideas = true if $scope.ideas.length == 0
+    $scope.no_ideas = true if $scope.ideas().length == 0
 
   $scope.$parent.path = $location.path()
   $scope.highlight = { idea: false }
