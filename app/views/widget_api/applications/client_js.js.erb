@@ -77,7 +77,7 @@
     // Show notification count on the button
     var requestNotificationCount = function(){
         var xmlhttp=new XMLHttpRequest();
-        var url = urlRoot + '/widget_api/notifications/count?token='+appKey+'&user_email='+email;
+        var url = urlRoot + '/widget_api/notifications/count?appkey='+appKey+'&email='+email;
         xmlhttp.onreadystatechange=function() {
           if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             var responseJson = eval('(' + xmlhttp.responseText + ')');
