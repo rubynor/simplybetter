@@ -20,11 +20,9 @@ angular.module("filters", []).filter "truncate", ->
   'ng-rails-csrf'
 ]
 
-@widget.run ['$cookies', 'Session', ($cookies, Session) ->
-  console.log 'in widget run'
-  Session.set_token($cookies.token)
-  Session.set_email($cookies.email)
+@widget.run ['Session', (Session) ->
   Session.setInfoParam()
+  Session.setParams()
 ]
 
 @widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->

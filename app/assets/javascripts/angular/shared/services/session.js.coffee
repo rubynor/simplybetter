@@ -4,15 +4,29 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
   @admin = undefined
   @info = undefined
 
-  setAdmin = =>
+  setAdmin = (token) =>
     that = @
-    $http.get("/widget_api/applications/#{$cookies.token}/is_admin.json")
+    $http.get("/widget_api/applications/#{token}/is_admin.json")
       .success (data) ->
         that.admin = data.is_admin
       .error (err) ->
         alert(err)
 
-  setAdmin()
+  setParams: ->
+    that = @
+    params = atob(location.search.split('=')[1]).substring(1).split('&')
+    angular.forEach(params, (param) ->
+      splitted_param = param.split('=')
+      key = splitted_param[0]
+      value = splitted_param[1]
+      if key == 'appkey'
+        that.token = value
+        console.log 'token is ', value
+      if key == 'email'
+        that.email = value
+        console.log 'email is ', value
+    )
+    setAdmin(that.token)
 
   setInfoParam: ->
     params = location.search
@@ -27,23 +41,18 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
   owner: (other_email) ->
     @email == other_email
 
-  set_email: (email) ->
-    # For some reason email gets undefined unless I do this
-    # and then the rails controller complain about
-    # missing params email for demo widget
-    @email = if email then email else ''
-
-  set_token: (token) ->
-    @token = token
-
   isAdmin: =>
-    $cookies.auth_token && @admin
+    # $cookies.auth_token && @admin
+    # We can't use cookies for Safari
+    # But not sure if this would be suffice...
+    @admin
 
   adminLogin: ->
+    token = @token
     popup = $window.open(location.origin + '/popup_login', "login", "width=600, height=550")
     popup.onbeforeunload = ->
       $timeout ->
-        setAdmin()
+        setAdmin(token)
       , 1000
       return null
 ]
