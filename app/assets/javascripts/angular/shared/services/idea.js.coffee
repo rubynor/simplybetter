@@ -40,6 +40,7 @@ Idea = ($resource, Session) ->
     ideas
 
   get: (id) ->
+    return resource.get({id: id}) unless ideas
     id = parseInt(id)
     for idea in ideas
       return idea if idea.id == id
