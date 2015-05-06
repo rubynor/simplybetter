@@ -1,4 +1,4 @@
-widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
+IdeaCtrl = ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
   $scope.idea = Idea.get($routeParams.id)
   $scope.error_message = 'Not available' unless $scope.idea
 
@@ -26,4 +26,7 @@ widget.controller 'IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout'
     , (err) ->
       $scope.error_message = err.data
     )
-]
+
+angular
+  .module('shared')
+  .controller('IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', IdeaCtrl])
