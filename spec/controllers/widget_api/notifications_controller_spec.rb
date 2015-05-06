@@ -11,7 +11,7 @@ describe WidgetApi::NotificationsController do
 
   describe 'count' do
     it 'returns notifications count' do
-      get :count, token: @application.token, user_email: @customer.email
+      get :count, appkey: @application.token, email: @customer.email
       res = { count: 1 }.to_json
       expect(response.body).to eq(res)
     end
@@ -26,11 +26,11 @@ describe WidgetApi::NotificationsController do
       Notification.create_with(action: comment2, subject: comment2.idea, recipient: @customer, app_id: application2.id)
       Notification.create_with(action: comment3, subject: comment3.idea, recipient: @customer, app_id: application2.id)
 
-      get :count, token: @application.token, user_email: @customer.email
+      get :count, appkey: @application.token, email: @customer.email
       res = { count: 1 }.to_json
       expect(response.body).to eq(res)
 
-      get :count, token: application2.token, user_email: @customer.email
+      get :count, appkey: application2.token, email: @customer.email
       res = { count: 2 }.to_json
       expect(response.body).to eq(res)
     end
@@ -51,7 +51,7 @@ describe WidgetApi::NotificationsController do
 
       # Notifications should be scoped by user type, so it should only
       # return 1 for this customer
-      get :count, token: @application.token, user_email: @customer.email
+      get :count, appkey: @application.token, email: @customer.email
       res = { count: 1 }.to_json
       expect(response.body).to eq(res)
     end
@@ -59,19 +59,19 @@ describe WidgetApi::NotificationsController do
 
   describe 'index' do
     it 'assigns users notifications' do
-      get :index, token: @application.token, user_email: @customer.email, format: :json
+      get :index, appkey: @application.token, email: @customer.email, format: :json
       expect(assigns(:notifications)).to eq(Notification.for(@customer, @application.id))
     end
 
     it 'raises ArgumentError if no application' do
       expect do
-        get :index, token: 'kh', user_email: @customer.email, format: :json
+        get :index, appkey: 'kh', email: @customer.email, format: :json
       end.to raise_error(ArgumentError)
     end
 
     it 'raises NoUserException if no application' do
       expect do
-        get :index, token: @application.token, user_email: 'nothing', format: :json
+        get :index, appkey: @application.token, email: 'nothing', format: :json
       end.to raise_error(NoUserException)
     end
   end

@@ -1,4 +1,5 @@
 class WidgetApi::CommentsController < ApplicationController
+  include DecodeParams
   include CreatorFinder
 
   before_action :set_idea, only: [:index, :create, :update]
@@ -18,12 +19,12 @@ class WidgetApi::CommentsController < ApplicationController
 
   def create
     # Early exit if no user..
-    if params[:user_email].blank?
+    if params[:email].blank?
       render json: 'You must be signed in to comment', status: :unauthorized and return
     end
     app = @idea.application
     @comment = Comment.new(comment_attributes)
-    @comment.creator = creator(app, params[:user_email]) # From module
+    @comment.creator = creator(app, params[:email]) # From module
     if @comment.save_and_notify!
       render 'widget_api/comments/show'
     else

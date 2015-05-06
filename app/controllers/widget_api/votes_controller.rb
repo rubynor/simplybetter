@@ -1,4 +1,5 @@
 class WidgetApi::VotesController < ApplicationController
+  include DecodeParams
   include CreatorFinder
 
   # POST / GET
@@ -34,7 +35,7 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def application
-    unless @application ||= Application.find_by(token: params[:token])
+    unless @application ||= Application.find_by(token: params[:appkey])
       raise "Can't find application"
     end
     @application
@@ -55,6 +56,6 @@ class WidgetApi::VotesController < ApplicationController
   end
 
   def voter
-    creator(application, params[:voter_email])
+    creator(application, params[:email])
   end
 end
