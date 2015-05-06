@@ -8,14 +8,10 @@ class WidgetApi::IdeasController < ApplicationController
     @ideas = app.ideas.includes(:comments).includes(:votes).order('votes_count DESC')
     @ideas = @ideas.visible unless current_customer.try { current_customer.admin_for?(app) }
     get_current_user(application, params[:email]) if params[:email]
-  rescue NoUserException
-    # It's ok if the user is not logged in
   end
 
   def show
-    get_current_user(application, params[:email])
-  rescue NoUserException
-    # It's ok if the user is not logged in
+    get_current_user(application, params[:email]) if params[:email]
   end
 
   def find_similar
