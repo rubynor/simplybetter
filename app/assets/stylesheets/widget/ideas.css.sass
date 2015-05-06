@@ -152,6 +152,22 @@
       .idea-item
         display: block
         padding: 0px 20px 0px 20px
+
+        input[type="text"]
+          @include input
+          width: 100%
+        textarea
+          @include textarea
+          width: 100%
+        .update
+          @include button-big
+          float: right
+        .cancel
+          float: right
+          padding: 32px 30px 0px 30px
+          text-decoration: underline
+          color: $button-main
+          cursor: pointer
         a
           text-decoration: none
         h1
@@ -171,8 +187,11 @@
             line-height: 34px
             font-weight: 300
         .meta
+          @include clearfix
+          display: block
           color: $gray
-          margin-top: 10px
+          margin: 10px 0px 0px 0px
+          width: 100%
           font-weight: 500
           font-size: 12px
           .comments
