@@ -1,9 +1,10 @@
 class WidgetApi::NotificationsController < ApplicationController
+  include DecodeParams
   include CreatorFinder
   before_filter :application
 
   def index
-    user_email = params[:user_email]
+    user_email = params[:email]
     recipient = get_current_user(@application, user_email)
     @notifications = Notification.for(recipient, @application.id)
   rescue NoAccessException
@@ -17,10 +18,10 @@ class WidgetApi::NotificationsController < ApplicationController
   end
 
   def count
-    user_email = params[:user_email]
+    user_email = params[:email]
     recipient = Customer.find_by(email: user_email)
     recipient = User.find_by(email: user_email) unless recipient
-    notifications = Notification.joins(:application).where(recipient: recipient, applications: {token: params[:token]}).where(checked: nil)
+    notifications = Notification.joins(:application).where(recipient: recipient, applications: {token: params[:appkey]}).where(checked: nil)
     render json: { count: notifications.count }
   end
 
@@ -31,6 +32,6 @@ class WidgetApi::NotificationsController < ApplicationController
     end
 
     def application
-      @application ||= Application.find_by(token: params[:token]) if params[:token]
+      @application ||= Application.find_by(token: params[:appkey]) if params[:appkey]
     end
 end

@@ -2,8 +2,7 @@ Idea = ($resource, Session) ->
   resource = $resource '/widget_api/ideas/:id.json',
     {
       id: '@id',
-      token: Session.token,
-      user_email: Session.email
+      info: Session.info
     },
     {
       patch: { method: 'PATCH' },
