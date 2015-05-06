@@ -21,18 +21,14 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
       value = splitted_param[1]
       if key == 'appkey'
         that.token = value
-        console.log 'token is ', value
       if key == 'email'
         that.email = value
-        console.log 'email is ', value
     )
     setAdmin(that.token)
 
   setInfoParam: ->
     params = location.search
-    console.log 'params is ', params
     splitted = params.split('=')
-    console.log 'splitted is ', splitted
     @info = splitted[1]
 
   user_signed_in: ->
