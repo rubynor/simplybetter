@@ -4,12 +4,21 @@
       %h1
         {{ idea.title }}
   %span(ng-if='expanded')
-    %h1
+    %h1(ng-hide='ideaItemCtrl.editMode')
       {{ idea.title }}
-  %p.desc.ideaView(ng-if='expanded')
+  %p.desc.ideaView(ng-if='expanded' ng-hide='ideaItemCtrl.editMode')
     {{ idea.description }}
   %p.desc(ng-if='!expanded')
     {{ idea.description | truncate:120 }}
+
+  %form(name='editIdeaForm' ng-show='ideaItemCtrl.editMode' novalidate)
+    %input(ng-model='ideaItemCtrl.editIdea.title' required type='text')
+    %textarea(ng-model='ideaItemCtrl.editIdea.description' required)
+    %button.btn.update(ng-click='ideaItemCtrl.ideaUpdate()' ng-disabled='editIdeaForm.$invalid')
+      Update
+    .cancel(ng-click='ideaItemCtrl.cancelIdeaUpdate()')
+      cancel
+
   .meta
     %a(named-route='idea' kwarg-id='{{ idea.id }}')
       .comments
