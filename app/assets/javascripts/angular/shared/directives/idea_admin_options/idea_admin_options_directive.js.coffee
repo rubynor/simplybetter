@@ -1,6 +1,7 @@
 IdeaAdminOptions = ->
   restrict: 'E'
   template: JST['angular/shared/directives/idea_admin_options/idea_admin_options_directive_template']
+  require: '^ideaItem'
   scope:
     idea: '='
     collection: '='
@@ -34,6 +35,9 @@ IdeaAdminOptions = ->
     return
   ]
   controllerAs: 'options'
+  link: (scope, element, attrs, ideaItemCtrl) ->
+    scope.options.ideaEdit = ->
+      ideaItemCtrl.editMode = true
 
 angular
   .module('shared')
