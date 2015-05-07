@@ -55,7 +55,7 @@ describe WidgetApi::IdeasController do
         @application.customers << @customer
         sign_in_customer(@customer)
         @idea.description = 'New edited description'
-        put :update, token: @application.token, id: @idea, user_email: @user.email, idea: @idea.attributes, format: :json
+        put :update, appkey: @application.token, id: @idea, email: @user.email, idea: @idea.attributes, format: :json
         @idea.reload
       end
 
@@ -69,7 +69,7 @@ describe WidgetApi::IdeasController do
     end
 
     it 'should not set last_edit_admin' do
-      patch :update, token: @application.token, id: @idea.to_param, user_email: @user.email, idea: { description: 'Edited description' }, format: :json
+      patch :update, appkey: @application.token, id: @idea.to_param, email: @user.email, idea: { description: 'Edited description' }, format: :json
       @idea.reload
       expect(@idea.last_edit_admin).to be_nil
     end
