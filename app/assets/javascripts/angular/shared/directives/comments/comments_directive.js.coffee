@@ -7,6 +7,8 @@ Comments = ->
     $scope.highlight = { comment: false }
     $scope.user = Session.user_signed_in()
 
+    $scope.isAdmin = Session.isAdmin()
+
     $scope.toggleVisible = (c) ->
       hash = { comment: {visible: !c.visible }, idea_id: $scope.idea.id, id: c.id }
       comment = new Comment(hash)
@@ -14,6 +16,21 @@ Comments = ->
         (data) ->
           c.visible = data.visible
       )
+
+    $scope.owner = (c) ->
+      owner = Session.owner(c.creator_email)
+      console.log 'User is owner = ', owner
+      owner
+
+    $scope.updateComment = (c) ->
+      console.log 'updateComment ', c
+      hash = { comment: { body: c.body }, idea_id: $scope.idea.id, id: c.id }
+      comment = new Comment(hash)
+      comment.$update(
+        (data) ->
+          c.body = data.body
+      )
+
 
     unhighlightComment = ->
       $scope.highlight.comment = false

@@ -10,8 +10,11 @@ class WidgetApi::CommentsController < ApplicationController
   end
 
   def update
-    # TODO: Check auth
+    # unless current_customer
+    #   render json: 'You are not authorized for this', status: :unauthorized and return
+    # end
     @comment = @idea.comments.find(params[:id])
+
     if @comment.update_attributes!(comment_attributes)
       render json: @comment
     end
@@ -35,7 +38,11 @@ class WidgetApi::CommentsController < ApplicationController
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body, :idea_id, :user_email, :customer_email, :visible)
+    if current_customer
+      params.require(:comment).permit(:body, :idea_id, :user_email, :customer_email, :visible)
+    else
+      params.require(:comment).permit(:body)
+    end
   end
 
   def set_idea

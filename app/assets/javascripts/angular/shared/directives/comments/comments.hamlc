@@ -13,7 +13,7 @@
               {{ comment.updated_at }}
           .comment-body
             {{ comment.body }}
-        %options(item='comment' togglevisible='toggleVisible(comment)')
+        %options(item='comment' visible='isAdmin' edit='owner(comment)' togglevisible='toggleVisible(comment)' edititem='updateComment(comment)')
         .not-visible-overlay(ng-if='!comment.visible')
     .new-comment(ng-show='user')
       %form(name='commentForm' ng-submit='commentForm.$valid && save_comment(newComment)' novalidate)

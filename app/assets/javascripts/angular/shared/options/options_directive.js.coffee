@@ -9,6 +9,7 @@ Options = ->
   restrict: 'E'
   scope:
     item: '='             # Required
+    visible: '='          # Optional, use if u want visible symbold
     togglevisible: '&'    # Required
     admin: '='            # Optional to override Session.isAdmin()
     all: '='              # Optional, use if u want all symbols. Don't forget to add methods for actions
@@ -20,7 +21,6 @@ Options = ->
     deleteitem: '&'       # If u want action on delete symbol, then please provide method
   template: JST['angular/shared/options/options']
   controller: ['Session', '$scope', (Session, $scope) ->
-    @isAdmin = $scope.admin || Session.isAdmin()
 
     @
   ]
