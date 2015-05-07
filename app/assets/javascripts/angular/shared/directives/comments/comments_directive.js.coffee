@@ -1,6 +1,6 @@
 Comments = ->
   restrict: 'E'
-  template: JST['angular/shared/comments/comments']
+  template: JST['angular/shared/directives/comments/comments']
   controller: ['$scope', '$location', '$timeout', '$routeParams', 'Session', 'Comment', ($scope, $location, $timeout, $routeParams, Session, Comment) ->
     $scope.comments = Comment.query {idea_id: $routeParams.id}
     $scope.comment_id = $location.search().comment_id
