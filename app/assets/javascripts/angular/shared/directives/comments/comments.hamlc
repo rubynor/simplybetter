@@ -11,9 +11,13 @@
             on
             %span
               {{ comment.updated_at }}
-          .comment-body
+          %form(ng-if='comment.$edit' name='editCommentForm' ng-submit='editCommentForm.$valid && updateComment(comment)' novalidate)
+            %input(type='text' placeholder='Leave a comment...' ng-model='comment.body' ng-focus='write = true' ng-class='{dirty: write}' required)
+            %button.btn.submit-comment(type='submit' ng-class='{ disabled: !editCommentForm.$valid}') OK
+          .comment-body(ng-if='!comment.$edit')
             {{ comment.body }}
-        %options(item='comment' visible='isAdmin' edit='owner(comment)' togglevisible='toggleVisible(comment)' edititem='updateComment(comment)')
+
+        %options(item='comment' visible='isAdmin' edit='owner(comment)' togglevisible='toggleVisible(comment)' edititem='toggleEdit(comment)')
         .not-visible-overlay(ng-if='!comment.visible')
     .new-comment(ng-show='user')
       %form(name='commentForm' ng-submit='commentForm.$valid && save_comment(newComment)' novalidate)

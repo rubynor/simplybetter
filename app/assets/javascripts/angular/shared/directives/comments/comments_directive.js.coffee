@@ -7,6 +7,10 @@ Comments = ->
     $scope.highlight = { comment: false }
     $scope.user = Session.user_signed_in()
 
+
+    $scope.toggleEdit = (c) ->
+      c.$edit = !c.$edit
+
     $scope.isAdmin = Session.isAdmin()
 
     $scope.toggleVisible = (c) ->
@@ -23,12 +27,22 @@ Comments = ->
       owner
 
     $scope.updateComment = (c) ->
+      c.$edit = false
+      $scope.error_message = undefined
+      $scope.success_message = undefined
       console.log 'updateComment ', c
       hash = { comment: { body: c.body }, idea_id: $scope.idea.id, id: c.id }
       comment = new Comment(hash)
       comment.$update(
         (data) ->
           c.body = data.body
+          setTimeout  (->
+            $scope.success_message = undefined
+            $scope.$apply()
+          ), 2000
+          $scope.success_message = 'Your comment has been updated'
+        , (err) ->
+          $scope.error_message = err.data
       )
 
 
