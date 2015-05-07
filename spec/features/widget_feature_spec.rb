@@ -7,8 +7,9 @@ describe WidgetController, js: true, order: :defined do
 
   describe 'widget' do
     before do
+      @customer = Customer.find_by(email: 'lol@lol.com')
       visit login_path
-      fill_in 'email', with: 'lol@lol.com'
+      fill_in 'email', with: @customer.email
       fill_in 'password', with: 'dev'
       click_button 'LOG ME IN'
       click_link 'My widget'
@@ -68,9 +69,9 @@ describe WidgetController, js: true, order: :defined do
     end
     example 'edit idea' do
       within_frame 0 do
+        first('h1', text: @customer.ideas.first.title).click
         expect(page).to have_content '[edit idea]'
         first('a', text: '[edit idea]').click
-        expect(page).not_to have_css('.comment-body')
         fill_in 'title-input', with: 'New text for title'
         click_button 'update'
         expect(page).to have_css('.comment-body')

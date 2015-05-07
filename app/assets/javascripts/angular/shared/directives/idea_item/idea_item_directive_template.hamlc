@@ -12,10 +12,10 @@
     {{ idea.description | truncate:120 }}
 
   %form(name='editIdeaForm' ng-show='ideaItemCtrl.editMode' novalidate)
-    %input(ng-model='ideaItemCtrl.editIdea.title' required type='text')
+    %input(ng-model='ideaItemCtrl.editIdea.title' required type='text' name='title-input')
     %textarea(ng-model='ideaItemCtrl.editIdea.description' required)
     %button.btn.update(ng-click='ideaItemCtrl.ideaUpdate()' ng-disabled='editIdeaForm.$invalid')
-      Update
+      update
     .cancel(ng-click='ideaItemCtrl.cancelIdeaUpdate()')
       cancel
 
@@ -30,7 +30,7 @@
     on
     %span.black
       {{ idea.updated_at }}
-    %a(ng-if='owner()' named-route='idea_edit' kwarg-id='{{ idea.id }}')
+    %a(ng-if='owner() && expanded' ng-click='ideaItemCtrl.editMode = true')
       [edit idea]
 .tranclude(ng-transclude)
 %a.not-visible-overlay(ng-if='!idea.visible' named-route='idea' kwarg-id='{{ idea.id }}')
