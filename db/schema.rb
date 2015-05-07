@@ -16,17 +16,6 @@ ActiveRecord::Schema.define(version: 20150505095057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "abuse_reports", force: true do |t|
-    t.integer  "abuse_reportable_id"
-    t.string   "abuse_reportable_type"
-    t.integer  "reporter_id"
-    t.string   "reporter_type"
-    t.text     "reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "application_id"
-  end
-
   create_table "applications", force: true do |t|
     t.string   "name"
     t.string   "token"
