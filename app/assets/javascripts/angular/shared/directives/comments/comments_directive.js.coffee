@@ -31,14 +31,12 @@ Comments = ->
 
     $scope.owner = (c) ->
       owner = Session.owner(c.creator_email)
-      console.log 'User is owner = ', owner
       owner
 
     $scope.updateComment = (original, c) ->
       original.$edit = false
       $scope.error_message = undefined
       $scope.success_message = undefined
-      console.log 'updateComment ', c
       hash = { comment: { body: c.body }, idea_id: $scope.idea.id, id: c.id }
       comment = new Comment(hash)
       comment.$update(
