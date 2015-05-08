@@ -63,9 +63,14 @@
         @include input
         width: 70%
         margin-top: 20px
-      button[type=submit]
+      button[type=submit], button[type=reset]
         @include button-big
         margin-top: -10px
+
+    .cancel
+      color: $button-main
+      cursor: pointer
+
 
     form
       input.dirty

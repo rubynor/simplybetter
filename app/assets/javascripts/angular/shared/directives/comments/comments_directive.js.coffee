@@ -7,9 +7,17 @@ Comments = ->
     $scope.highlight = { comment: false }
     $scope.user = Session.user_signed_in()
 
+    $scope.editComment = undefined
+
+    resetAllEdit = ->
+      angular.forEach($scope.comments, (comment) ->
+        comment.$edit = false
+      )
 
     $scope.toggleEdit = (c) ->
+      resetAllEdit() unless c.$edit
       c.$edit = !c.$edit
+      $scope.editComment = angular.copy(c) if c.$edit
 
     $scope.isAdmin = Session.isAdmin()
 
@@ -26,8 +34,8 @@ Comments = ->
       console.log 'User is owner = ', owner
       owner
 
-    $scope.updateComment = (c) ->
-      c.$edit = false
+    $scope.updateComment = (original, c) ->
+      original.$edit = false
       $scope.error_message = undefined
       $scope.success_message = undefined
       console.log 'updateComment ', c
@@ -35,7 +43,7 @@ Comments = ->
       comment = new Comment(hash)
       comment.$update(
         (data) ->
-          c.body = data.body
+          original.body = data.body
           setTimeout  (->
             $scope.success_message = undefined
             $scope.$apply()
