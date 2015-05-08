@@ -1,11 +1,25 @@
 Comments = ->
   restrict: 'E'
-  template: JST['angular/shared/comments/comments']
+  template: JST['angular/shared/directives/comments/comments']
   controller: ['$scope', '$location', '$timeout', '$routeParams', 'Session', 'Comment', ($scope, $location, $timeout, $routeParams, Session, Comment) ->
     $scope.comments = Comment.query {idea_id: $routeParams.id}
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = { comment: false }
     $scope.user = Session.user_signed_in()
+
+    $scope.editComment = undefined
+
+    resetAllEdit = ->
+      angular.forEach($scope.comments, (comment) ->
+        comment.$edit = false
+      )
+
+    $scope.toggleEdit = (c) ->
+      resetAllEdit() unless c.$edit
+      c.$edit = !c.$edit
+      $scope.editComment = angular.copy(c) if c.$edit
+
+    $scope.isAdmin = Session.isAdmin()
 
     $scope.toggleVisible = (c) ->
       hash = { comment: {visible: !c.visible }, idea_id: $scope.idea.id, id: c.id }
@@ -14,6 +28,28 @@ Comments = ->
         (data) ->
           c.visible = data.visible
       )
+
+    $scope.owner = (c) ->
+      Session.owner(c.creator_email)
+
+    $scope.updateComment = (original, c) ->
+      original.$edit = false
+      $scope.error_message = undefined
+      $scope.success_message = undefined
+      hash = { comment: { body: c.body }, idea_id: $scope.idea.id, id: c.id }
+      comment = new Comment(hash)
+      comment.$update(
+        (data) ->
+          original.body = data.body
+          setTimeout  (->
+            $scope.success_message = undefined
+            $scope.$apply()
+          ), 2000
+          $scope.success_message = 'Your comment has been updated'
+        , (err) ->
+          $scope.error_message = err.data
+      )
+
 
     unhighlightComment = ->
       $scope.highlight.comment = false
