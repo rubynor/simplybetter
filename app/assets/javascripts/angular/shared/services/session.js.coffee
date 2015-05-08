@@ -4,15 +4,11 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
   @admin = undefined
   @info = undefined
 
-  refresh_if_safari = ->
-    window.location.reload()
-
-  setAdmin = (token, callback) =>
+  setAdmin = (token) =>
     that = @
     $http.get("/widget_api/applications/#{token}/is_admin.json")
       .success (data) ->
         that.admin = data.is_admin
-#        callback() if callback
       .error (err) ->
         alert(err)
 
@@ -52,7 +48,7 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
     popup = $window.open(location.origin + '/popup_login', "login", "width=600, height=550")
     popup.onbeforeunload = ->
       $timeout ->
-        setAdmin(token, refresh_if_safari)
+        setAdmin(token)
       , 1000
       return null
 ]
