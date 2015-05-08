@@ -30,8 +30,7 @@ Comments = ->
       )
 
     $scope.owner = (c) ->
-      owner = Session.owner(c.creator_email)
-      owner
+      Session.owner(c.creator_email)
 
     $scope.updateComment = (original, c) ->
       original.$edit = false
