@@ -19,7 +19,7 @@ Options = ->
     togglecompleted: '&'  # If u want action on complete symbol, then please provide method
     delete: '='           # Optional, use if u want delete symbol
     deleteitem: '&'       # If u want action on delete symbol, then please provide method
-  template: JST['angular/shared/options/options']
+  template: JST['angular/shared/directives/options/options']
   controller: ['Session', '$scope', (Session, $scope) ->
 
     @
