@@ -32,5 +32,15 @@
       {{ idea.updated_at }}
     %a(ng-if='owner() && expanded' ng-click='ideaItemCtrl.editMode = true')
       [edit idea]
+
+    .admin-edited(ng-if='idea.last_edit_admin && expanded')
+      .circle-mask
+        %img(ng-src='{{idea.last_edit_admin.gravatar_url}}')
+      .name
+        Edited by
+        %span.black {{ idea.last_edit_admin.name }}
+      .date
+        On
+        %span.black {{ idea.last_edit_admin_time }}
 .tranclude(ng-transclude)
 %a.not-visible-overlay(ng-if='!idea.visible' named-route='idea' kwarg-id='{{ idea.id }}')
