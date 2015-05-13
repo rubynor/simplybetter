@@ -68,12 +68,17 @@
         width: 100%
         margin-right: 50px
         float: left
-      button[type=submit]
+      button[type=submit], button[type=reset]
         @include button-big
         margin: 0
         position: absolute
         right: 20px
         top: 0px
+
+    .cancel
+      color: $button-main
+      cursor: pointer
+
 
     form
       input.dirty

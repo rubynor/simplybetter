@@ -10,8 +10,13 @@ class WidgetApi::CommentsController < ApplicationController
   end
 
   def update
-    # TODO: Check auth
     @comment = @idea.comments.find(params[:id])
+
+    unless current_customer
+      user = get_current_user(@comment.application, params[:email])
+      return render json: 'error', status: 403 unless @comment.creator == user
+    end
+
     if @comment.update_attributes!(comment_attributes)
       render json: @comment
     end
@@ -35,7 +40,11 @@ class WidgetApi::CommentsController < ApplicationController
   private
 
   def comment_attributes
-    params.require(:comment).permit(:body, :idea_id, :user_email, :customer_email, :visible)
+    if current_customer
+      params.require(:comment).permit(:body, :idea_id, :visible)
+    else
+      params.require(:comment).permit(:body, :idea_id)
+    end
   end
 
   def set_idea

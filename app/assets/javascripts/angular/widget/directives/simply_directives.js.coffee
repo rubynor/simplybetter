@@ -30,6 +30,9 @@ simplyDirectives.directive 'notifications', ->
 
     $scope.toggleNotifications = ->
       $scope.notificationsActive = !$scope.notificationsActive
+      if $scope.notificationsActive
+        $scope.notifications = Notification.query()
+        $scope.updateNotiCount()
 
     if user
       $scope.updateNotiCount()
