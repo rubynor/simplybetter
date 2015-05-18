@@ -11,7 +11,7 @@ Idea = ($resource, Session) ->
 
   ideas = undefined
   lastUpdated = undefined
-  MIN_SECONDS_BETWEEN_UPDATE = 30
+  MIN_SECONDS_BETWEEN_UPDATE = 1
 
   removeIdea = (idea) ->
     index = ideas.indexOf(idea)
@@ -60,6 +60,12 @@ Idea = ($resource, Session) ->
       success(data) if success
     , (err) ->
       error(err) if error
+
+  update: (idea) ->
+    idea.$update()
+
+  dupe: (idea) ->
+    new resource(JSON.parse(angular.toJson(idea)))
 
 
 angular

@@ -18,3 +18,10 @@ node(:voter_status) do |c|
   c.voter_status(@current_user)
 end
 
+child(:last_edit_admin => :last_edit_admin) do
+  attributes :name, :gravatar_url
+end
+
+node(:last_edit_admin_time) do |c|
+  c.last_edit_admin_time.strftime('%F') if c.last_edit_admin_time.present?
+end
