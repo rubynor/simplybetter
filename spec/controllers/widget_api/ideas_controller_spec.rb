@@ -23,7 +23,7 @@ describe WidgetApi::IdeasController do
     end
   end
 
-  describe 'PATCH update' do
+  describe 'PATCH/PUT update' do
     before do
       @idea = Idea.make!(application: @application, creator: @user)
     end
@@ -47,6 +47,31 @@ describe WidgetApi::IdeasController do
       user.widgets << @application
       patch :update, appkey: @application.token, id: @idea.to_param, email: user.email, idea: { description: 'Edited description' }, format: :json
       expect(response.status).to eq(403)
+    end
+
+    context 'edited by admin' do
+      before do
+        @customer = Customer.make!
+        @application.customers << @customer
+        sign_in_customer(@customer)
+        @idea.description = 'New edited description'
+        put :update, appkey: @application.token, id: @idea, email: @user.email, idea: @idea.attributes, format: :json
+        @idea.reload
+      end
+
+      it 'should set last_edit_admin to current_customer' do
+        expect(@idea.last_edit_admin).to eql(@customer)
+      end
+
+      it 'should set last_edit_admin_time to the current time' do
+        expect(@idea.last_edit_admin_time).to be_an_instance_of(ActiveSupport::TimeWithZone)
+      end
+    end
+
+    it 'should not set last_edit_admin' do
+      patch :update, appkey: @application.token, id: @idea.to_param, email: @user.email, idea: { description: 'Edited description' }, format: :json
+      @idea.reload
+      expect(@idea.last_edit_admin).to be_nil
     end
   end
 

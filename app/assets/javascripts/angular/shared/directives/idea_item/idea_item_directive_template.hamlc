@@ -4,12 +4,21 @@
       %h1
         {{ idea.title }}
   %span(ng-if='expanded')
-    %h1
+    %h1(ng-hide='ideaItemCtrl.editMode')
       {{ idea.title }}
-  %p.desc.ideaView(ng-if='expanded')
+  %p.desc.ideaView(ng-if='expanded' ng-hide='ideaItemCtrl.editMode')
     {{ idea.description }}
   %p.desc(ng-if='!expanded')
     {{ idea.description | truncate:120 }}
+
+  %form(name='editIdeaForm' ng-show='ideaItemCtrl.editMode' novalidate)
+    %input(ng-model='ideaItemCtrl.editIdea.title' required type='text' name='title-input')
+    %textarea(ng-model='ideaItemCtrl.editIdea.description' required)
+    %button.btn.update(ng-click='ideaItemCtrl.ideaUpdate()' ng-disabled='editIdeaForm.$invalid')
+      update
+    .cancel(ng-click='ideaItemCtrl.cancelIdeaUpdate()')
+      cancel
+
   .meta
     %a(named-route='idea' kwarg-id='{{ idea.id }}')
       .comments
@@ -21,7 +30,17 @@
     on
     %span.black
       {{ idea.updated_at }}
-    %a(ng-if='owner()' named-route='idea_edit' kwarg-id='{{ idea.id }}')
+    %a(ng-if='owner() && expanded' ng-click='ideaItemCtrl.editMode = true')
       [edit idea]
+
+    .admin-edited(ng-if='idea.last_edit_admin && expanded')
+      .circle-mask
+        %img(ng-src='{{idea.last_edit_admin.gravatar_url}}')
+      .name
+        Edited by
+        %span.black {{ idea.last_edit_admin.name }}
+      .date
+        On
+        %span.black {{ idea.last_edit_admin_time }}
 .tranclude(ng-transclude)
 %a.not-visible-overlay(ng-if='!idea.visible' named-route='idea' kwarg-id='{{ idea.id }}')

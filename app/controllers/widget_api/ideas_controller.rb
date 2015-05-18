@@ -39,6 +39,10 @@ class WidgetApi::IdeasController < ApplicationController
       return render json: 'Not owner of idea', status: 403
     end
 
+    if current_customer && @idea.creator != current_customer
+      @idea.update!(last_edit_admin: current_customer, last_edit_admin_time: Time.now)
+    end
+
     @idea.update!(idea_params)
   end
 
