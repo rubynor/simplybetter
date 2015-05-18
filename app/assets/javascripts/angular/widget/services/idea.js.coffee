@@ -1,4 +1,4 @@
-Idea = ($resource, Session) ->
+Idea = ($resource, Session, ngToast) ->
   resource = $resource '/widget_api/ideas/:id.json',
     {
       id: '@id',
@@ -47,8 +47,17 @@ Idea = ($resource, Session) ->
   delete: (idea) ->
     removeIdea(idea)
     idea.$delete {}, ->
+      ngToast.create(
+        content: 'Idea was deleted'
+      )
       return
     , ->
+      ngToast.create(
+        content: '<strong>Error: </strong>Idea could not be deleted. An error report has been sent to the developers.'
+        dismissOnTimeout: false,
+        className: 'danger'
+        dismissButton: true
+      )
       addIdea(idea)
 
   new: (attributes = {}) ->
@@ -58,10 +67,19 @@ Idea = ($resource, Session) ->
     (new resource(attributes)).$save (data) ->
       ideas.push(data)
       success(data) if success
+      ngToast.create(
+        content: 'Thank you!'
+      )
     , (err) ->
       error(err) if error
+      ngToast.create(
+        content: 'Could not save idea. Please try again later. Developers has been notified'
+        dismissOnTimeout: false,
+        className: 'danger'
+        dismissButton: true
+      )
 
 
 angular
   .module('shared')
-  .factory('Idea', ['$resource', 'Session', Idea])
+  .factory('Idea', ['$resource', 'Session', 'ngToast', Idea])
