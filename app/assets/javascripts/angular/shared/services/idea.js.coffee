@@ -73,7 +73,7 @@ Idea = ($resource, Session, ngToast) ->
     , (err) ->
       error(err) if error
       ngToast.create(
-        content: 'Could not save idea. Please try again later. Developers have been notified'
+        content: '<strong>Error: </strong>Could not save idea. Please try again later. Developers have been notified'
         dismissOnTimeout: false,
         className: 'danger'
         dismissButton: true
@@ -84,7 +84,7 @@ Idea = ($resource, Session, ngToast) ->
       ngToast.create(content: 'Updated!')
     , ->
       ngToast.create(
-        content: 'Could not update idea. Please try again later. Developers have been notified'
+        content: '<strong>Error: </strong>Could not update idea. Please try again later. Developers have been notified'
         dismissOnTimeout: false,
         className: 'danger'
         dismissButton: true
