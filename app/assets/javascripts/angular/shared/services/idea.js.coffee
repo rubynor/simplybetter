@@ -73,14 +73,22 @@ Idea = ($resource, Session, ngToast) ->
     , (err) ->
       error(err) if error
       ngToast.create(
-        content: 'Could not save idea. Please try again later. Developers has been notified'
+        content: 'Could not save idea. Please try again later. Developers have been notified'
         dismissOnTimeout: false,
         className: 'danger'
         dismissButton: true
       )
 
   update: (idea) ->
-    idea.$update()
+    idea.$update ->
+      ngToast.create(content: 'Updated!')
+    , ->
+      ngToast.create(
+        content: 'Could not update idea. Please try again later. Developers have been notified'
+        dismissOnTimeout: false,
+        className: 'danger'
+        dismissButton: true
+      )
 
   dupe: (idea) ->
     new resource(JSON.parse(angular.toJson(idea)))
