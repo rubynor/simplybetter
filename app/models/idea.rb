@@ -17,6 +17,8 @@ class Idea < ActiveRecord::Base
 
   scope :visible, -> { where(visible: true) }
 
+  LAST_EDIT_ADMIN_ELIGIBLE_ATTRIBUTES = [:title, :description]
+
   def save_and_notify(params, current_customer)
     creator = params.delete(:creator)
     assign_attributes(params)
@@ -55,6 +57,13 @@ class Idea < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def should_set_last_edit_admin?(attributes)
+    LAST_EDIT_ADMIN_ELIGIBLE_ATTRIBUTES.each do |attr|
+      return true if attributes.has_key?(attr) && attributes[attr] != self.send(attr)
+    end
+    false
   end
 
   def subscribers

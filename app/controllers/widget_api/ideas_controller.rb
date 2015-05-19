@@ -40,7 +40,9 @@ class WidgetApi::IdeasController < ApplicationController
     end
 
     if current_customer && @idea.creator != current_customer
-      @idea.update!(last_edit_admin: current_customer, last_edit_admin_time: Time.now)
+      if @idea.should_set_last_edit_admin?(idea_params)
+        @idea.update!(last_edit_admin: current_customer, last_edit_admin_time: Time.now)
+      end
     end
 
     @idea.update!(idea_params)
