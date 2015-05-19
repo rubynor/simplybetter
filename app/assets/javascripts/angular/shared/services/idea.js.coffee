@@ -53,7 +53,7 @@ Idea = ($resource, Session, ngToast) ->
       return
     , ->
       ngToast.create(
-        content: '<strong>Error: </strong>Idea could not be deleted. An error report has been sent to the developers.'
+        content: '<strong>Error: </strong>Idea could not be deleted. An error report has been sent to the developers'
         dismissOnTimeout: false,
         className: 'danger'
         dismissButton: true
