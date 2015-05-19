@@ -1,3 +1,5 @@
+%toast /Present in each template due to safari redraw issues
+
 %div(ng-controller='IdeaFilterCtrl')
   .ideas-navigate(ng-if='ideas().length > 0')
     %span(ng-click='showAll()' ng-class='{ active: activeClass == "all" }' ) All

@@ -1,3 +1,5 @@
+%toast /Present in each template due to safari redraw issues
+
 #settings
   .box
     %h1
