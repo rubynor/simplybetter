@@ -18,7 +18,6 @@ angular.module("filters", []).filter "truncate", ->
   'zj.namedRoutes'
   'ngCookies'
   'ng-rails-csrf'
-  'ngToast'
 ]
 
 @widget.run ['Session', (Session) ->
