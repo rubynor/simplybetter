@@ -8,7 +8,7 @@
     %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
     %strong Oh snap!
     = flash[:error]
-- if model.errors.any?
+- if flash[:alert] || model.errors.any?
   .alert.alert-danger.alert-dismissable
     %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
     %strong Oh snap!

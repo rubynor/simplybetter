@@ -1,19 +1,18 @@
 class WidgetApi::IdeasController < ApplicationController
+  include DecodeParams
   include CreatorFinder
   before_action :set_idea, only: [:show, :update, :destroy]
 
   def index
+    puts "email is #{params[:email]}"
     app = current_application
-    @ideas = app.ideas.visible.includes(:comments).includes(:votes).order('votes_count DESC')
-    current_user
-  rescue NoUserException
-    # It's ok if the user is not logged in
+    @ideas = app.ideas.includes(:comments).includes(:votes).order('votes_count DESC')
+    @ideas = @ideas.visible unless current_customer.try { current_customer.admin_for?(app) }
+    current_user if params[:email]
   end
 
   def show
-    current_user
-  rescue NoUserException
-    # It's ok if the user is not logged in
+    current_user if params[:email]
   end
 
   def find_similar
@@ -35,16 +34,15 @@ class WidgetApi::IdeasController < ApplicationController
   end
 
   def update
-    if @idea.creator != current_user
-      return render json: 'Not owner of idea', status: :unprocessable_entity
+    if @idea.creator != current_user && !current_customer
+      return render json: 'Not owner of idea', status: 403
     end
-    respond_to do |format|
-      if @idea.update(idea_params)
-        format.json { render json: :no_content, status: :ok }
-      else
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-      end
+
+    if current_customer && @idea.creator != current_customer
+      @idea.update!(last_edit_admin: current_customer, last_edit_admin_time: Time.now)
     end
+
+    @idea.update!(idea_params)
   end
 
   def destroy
@@ -64,6 +62,10 @@ class WidgetApi::IdeasController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def idea_params
-    params.require(:idea).permit(:title, :description)
+    if current_customer && current_customer.admin_for?(current_application)
+      params.require(:idea).permit(:title, :description, :completed, :visible)
+    else
+      params.require(:idea).permit(:title, :description)
+    end
   end
 end

@@ -1,11 +1,10 @@
 class IdeasController < ApplicationController
+  before_action :authorize
   before_action :set_application, only: [:update, :destroy, :index]
   before_action :set_idea, only: [:update, :destroy]
 
   def index
-    if current_customer
-      @ideas = @application.ideas
-    end
+    @ideas = @application.ideas
   end
 
   def update
@@ -29,11 +28,19 @@ class IdeasController < ApplicationController
 
   def set_application
     @application ||= current_customer.applications.find(params[:application_id]) if params[:application_id]
+  rescue
+    respond_to do |format|
+      format.html do
+        flash[:error] =  "You don't seem to have access to this"
+        redirect_to applications_path
+      end
+      format.json { render json: { message: 'Not authorized' }, status: :unauthorized}
+    end
+
   end
 
   def set_idea
-    if current_customer
-      @idea ||= set_application.ideas.find(params[:id])
-    end
+    @idea ||= @application.ideas.find(params[:id])
   end
+
 end

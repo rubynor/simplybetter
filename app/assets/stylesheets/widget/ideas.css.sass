@@ -1,4 +1,14 @@
 #simplybetterIdeasModal
+  .not-visible-overlay
+    position: absolute
+    top: 0px
+    bottom: 0px
+    left: 0px
+    right: 0px
+    background: $white
+    opacity: 0.8
+    border-radius: 3px
+    border: 0px
 
   @mixin vote-buttons
     .vote-buttons
@@ -32,8 +42,14 @@
       .up
         @include thumb(-44px)
         margin-left: 4px
+        &.owner
+          &:hover
+            background-position: -2px -44px
+            cursor: not-allowed
         &.active
           @include thumb(0px)
+      .tooltip-inner
+        width: 200px !important
       .down
         @include thumb(-66px)
         &.active
@@ -46,9 +62,19 @@
     overflow-Y: scroll
     position: relative
     padding: 0px 20px 10px 20px
+    transition: all 0.3s ease
 
     .close-view-button
       display: none
+    .no-ideas
+      background-color: $button-main
+      padding: 20px
+      border-radius: 30px
+      color: white
+      box-sizing: border-box
+      -moz-box-sizing: border-box
+      margin-top: 50px
+      font-size: 20px
     .overview
       .idea-layout
         .close-view-button
@@ -119,6 +145,9 @@
           font-weight: 700
           font-size: 12px
 
+      a
+        cursor: pointer
+
       &.highlighted
         box-shadow: inset 0px 0px 10px 0px $notification-background
         transition: all 1s linear
@@ -126,6 +155,22 @@
       .idea-item
         display: block
         padding: 0px 20px 0px 20px
+
+        input[type="text"]
+          @include input
+          width: 100%
+        textarea
+          @include textarea
+          width: 100%
+        .update
+          @include button-big
+          float: right
+        .cancel
+          float: right
+          padding: 32px 30px 0px 30px
+          text-decoration: underline
+          color: $button-main
+          cursor: pointer
         a
           text-decoration: none
         h1
@@ -145,8 +190,11 @@
             line-height: 34px
             font-weight: 300
         .meta
+          @include clearfix
+          display: block
           color: $gray
-          margin-top: 10px
+          margin: 10px 0px 0px 0px
+          width: 100%
           font-weight: 500
           font-size: 12px
           .comments
@@ -162,6 +210,22 @@
             &.blue
               color: $button-main
               margin-right: 15px
+          .admin-edited
+            clear: both
+            float: right
+            width: 200px
+            font-size: 10px
+            line-height: 10px
+            .circle-mask
+              float: left
+              width: 25px
+              height: 25px
+              margin-right: 5px
+              border-radius: 15px
+              overflow: hidden
+            img
+              width: 100%
+              height: 100%
 
   .ideas-navigate
     text-align: left

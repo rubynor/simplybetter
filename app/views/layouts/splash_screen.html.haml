@@ -16,4 +16,5 @@
     #content.compressed
       = yield
 
-    = render 'shared/widget'
+    - unless @current_action == "popup_new" || @current_action == "popup_create"
+      = render 'shared/widget'

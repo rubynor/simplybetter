@@ -1,11 +1,35 @@
 require 'spec_helper'
 
 describe CommentsController do
-  example 'toggle visible' do
-    idea = Idea.make!
-    comment = Comment.make! idea: idea
-    expect do
-      patch :update, { id: comment.id, comment: { visible: false } }
-    end.to change { Comment.last.visible }.from(true).to(false)
+
+  include SessionHelper
+
+  let(:idea) { Idea.make! }
+  let(:comment) { Comment.make! idea: idea }
+
+  describe 'update comment' do
+    subject { patch :update, { id: comment.id, comment: { visible: false }, format: :json } }
+
+    it 'updates for authorized customers' do
+      customer = idea.creator
+      customer.applications << idea.application
+      sign_in_customer(customer)
+
+      expect { subject }.to change { comment.reload.visible }.from(true).to(false)
+    end
+
+
+    describe 'not authorized' do
+      it 'deny if not signed in' do
+        subject
+        expect(response.status).to be(401)
+      end
+
+      it 'denies if app not in customers apps' do
+        sign_in_customer(idea.creator)
+        subject
+        expect(response.status).to be(422)
+      end
+    end
   end
 end

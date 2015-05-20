@@ -48,6 +48,9 @@ class ApplicationsController < ApplicationController
 
   def set_application
     @application ||= current_customer.applications.find(params[:id]) if params[:id]
+  rescue
+    flash[:error] = "We couldn't find that application, or u don't have rights to that application"
+    redirect_to edit_customer_path
   end
 
   def application_attributes

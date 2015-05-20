@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928142854) do
+ActiveRecord::Schema.define(version: 20150513115931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20140928142854) do
     t.boolean  "support_enabled", default: true, null: false
     t.string   "support_email"
   end
+
+  add_index "applications", ["token"], name: "index_applications_on_token", unique: true, using: :btree
 
   create_table "applications_customers", id: false, force: true do |t|
     t.integer "customer_id"
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 20140928142854) do
     t.string   "auth_token"
     t.string   "promotion_code"
   end
+
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
 
   create_table "email_settings", force: true do |t|
     t.integer  "mailable_id"
@@ -97,12 +101,14 @@ ActiveRecord::Schema.define(version: 20140928142854) do
     t.integer  "application_id"
     t.integer  "creator_id"
     t.string   "creator_type"
-    t.integer  "votes_count",    default: 0
+    t.integer  "votes_count",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "idea_group_id"
-    t.boolean  "completed",      default: false
-    t.boolean  "visible",        default: true
+    t.boolean  "completed",            default: false
+    t.boolean  "visible",              default: true
+    t.integer  "last_edit_admin_id"
+    t.datetime "last_edit_admin_time"
   end
 
   add_index "ideas", ["application_id"], name: "ideas_application_id_ix", using: :btree
@@ -127,6 +133,7 @@ ActiveRecord::Schema.define(version: 20140928142854) do
   add_index "notifications", ["action_attribute_changed_by_id", "action_attribute_changed_by_type"], name: "notifications_action_attribute_poly_ix", using: :btree
   add_index "notifications", ["action_id", "action_type"], name: "index_notifications_on_action_id_and_action_type", using: :btree
   add_index "notifications", ["application_id"], name: "notification_application_id_ix", using: :btree
+  add_index "notifications", ["recipient_id", "application_id", "checked"], name: "notifications_count_index", using: :btree
   add_index "notifications", ["recipient_id", "recipient_type"], name: "index_notifications_on_recipient_id_and_recipient_type", using: :btree
   add_index "notifications", ["subject_id", "subject_type"], name: "index_notifications_on_subject_id_and_subject_type", using: :btree
 
@@ -148,6 +155,8 @@ ActiveRecord::Schema.define(version: 20140928142854) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false

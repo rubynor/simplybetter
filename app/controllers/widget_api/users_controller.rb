@@ -1,4 +1,5 @@
 class WidgetApi::UsersController < ApplicationController
+  include DecodeParams
   include CreatorFinder
   before_action :set_user
 
@@ -6,7 +7,7 @@ class WidgetApi::UsersController < ApplicationController
   end
 
   def update
-    @user.name = params[:name]
+    @user.name = params[:user][:name]
     @user.save!
   end
 

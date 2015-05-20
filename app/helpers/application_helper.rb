@@ -4,8 +4,6 @@ module ApplicationHelper
   end
 
   def active(app)
-    if app.name == @application.name
-      'active'
-    end
+    'active' if app.id == @application.id
   end
 end

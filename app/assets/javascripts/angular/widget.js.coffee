@@ -13,21 +13,23 @@ angular.module("filters", []).filter "truncate", ->
   'filters'
   'ngRoute'
   'simplyDirectives'
+  'shared'
   'ui.bootstrap'
   'zj.namedRoutes'
   'ngCookies'
+  'ng-rails-csrf'
 ]
 
-@widget.run ['$cookieStore', '$cookies', ($cookieStore, $cookies) ->
-  $cookieStore.put('token', $cookies.token)
-  $cookieStore.put('email', $cookies.email)
+@widget.run ['Session', (Session) ->
+  Session.setInfoParam()
+  Session.setParams()
 ]
 
 @widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
     # use hashbang fallback mode
     $locationProvider
       .hashPrefix("")
-      .html5Mode(false);
+      .html5Mode(false)
 
     $routeProvider
       .when '/widget',

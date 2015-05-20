@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
+    %meta{content: 'user-scalable=no, initial-scale=1', name: 'viewport'}
+    %meta{content: 'telephone=no', name: 'format-detection'}
+    %title SimplyBetter
+    = stylesheet_link_tag    'landing_page', media: 'all'
+    = javascript_include_tag 'landing'
+    = csrf_meta_tags
+  %body(ng-app='LandingPage')
+    .container(ng-init='scroll = 0')
+      %span(scroll-position='scroll')
+      %header
+        .header-content
+          .logoBox
+            %img.logo{alt: 'Simply Better', src: 'img/logo.png'}
+            %img.sLogo{alt: 'Simply Better', src: 'img/sLogo.png'}
+          .contactBox
+            %ul
+              = render 'landing_page/navigation_list'
+              - if current_customer
+                %li.divider-list
+                  %a{href: '#', 'ng-click'=>'display_menu = !display_menu'}
+                    = image_tag current_customer.gravatar_url, class: 'avatar'
+                %li
+                  %a(href='#' ng-click='display_menu = !display_menu')
+                    %span ▾
+                .customer-menu(ng-if='display_menu')
+                  %ul
+                    %li
+                      = link_to applications_path do
+                        Dashboard
+                    %li
+                      = link_to sign_out_path, method: :delete do
+                        Sign out
+              - else
+                %li.divider-list
+                  = link_to 'SIGN IN', login_path
+                %li.last
+                  = link_to 'GET SIMPLY BETTER', new_customer_path, class: 'contact'
+          .clear
+      = yield

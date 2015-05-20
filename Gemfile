@@ -15,10 +15,9 @@ gem 'font-awesome-rails'
 gem 'haml_coffee_assets', git: "https://github.com/netzpirat/haml_coffee_assets"
 gem 'ng-rails-csrf'
 gem 'autoprefixer-rails'
+gem 'honeybadger', '~> 2.0'
 
 group :production do
-  gem 'newrelic_rpm'
-  gem "sentry-raven"
   gem 'aws-ses', require: 'aws/ses'
 end
 
@@ -40,7 +39,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.45'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'machinist'
@@ -77,4 +76,5 @@ gem 'nokogiri'
 
 group :staging,:production do
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end

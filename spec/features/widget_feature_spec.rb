@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe WidgetController, js: true do
-
+describe WidgetController, js: true, order: :defined do
   before :all do
     Rails.application.load_seed
   end
 
   describe 'widget' do
     before do
-      visit root_path
-      fill_in 'email', with: 'lol@lol.com'
+      @customer = Customer.find_by(email: 'lol@lol.com')
+      visit login_path
+      fill_in 'email', with: @customer.email
       fill_in 'password', with: 'dev'
       click_button 'LOG ME IN'
       click_link 'My widget'
@@ -25,6 +25,40 @@ describe WidgetController, js: true do
         expect(find_field('Leave a comment...').value).not_to eq('My new comment')
       end
     end
+    example 'up vote' do
+      within_frame 0 do
+        expect(page).to have_css '.up'
+        first('.up').click
+        expect(page).to have_css '.active'
+      end
+    end
+    example 'up vote single view' do
+      within_frame 0 do
+        title = Idea.last.title
+        expect(page).to have_content title
+        first('h1', text: title).click
+
+        expect(page).to have_css '.up'
+        if page.has_css?('.active')
+          first('.up').click
+          expect(page).not_to have_css '.active'
+        else
+          first('.up').click
+          expect(page).to have_css '.active'
+        end
+      end
+    end
+    example 'mark notification as read' do
+      within_frame 0 do
+        expect(Notification.first.checked).to eq(nil)
+        expect(page).not_to have_content 'Notifications'
+        expect(page).to have_css '.new-notifications'
+        first('.new-notifications').click
+        expect(page).to have_css '.new'
+        first('.new').click
+        expect(Notification.first.checked).to eq(true)
+      end
+    end
     example 'new idea' do
       within_frame 0 do
         fill_in 'title-input', with: 'Idea'
@@ -35,31 +69,13 @@ describe WidgetController, js: true do
     end
     example 'edit idea' do
       within_frame 0 do
+        first('h1', text: @customer.ideas.first.title).click
         expect(page).to have_content '[edit idea]'
         first('a', text: '[edit idea]').click
-        expect(page).not_to have_css('.comment-body')
         fill_in 'title-input', with: 'New text for title'
         click_button 'update'
         expect(page).to have_css('.comment-body')
         expect(page).to have_content('New text for title')
-      end
-    end
-    example 'up vote' do
-      within_frame 0 do
-        expect(page).to have_css '.up'
-        first('.up').click
-        expect(page).to have_css '.active'
-      end
-    end
-    example 'mark notification as read' do
-      within_frame 0 do
-        expect(Notification.last.checked).to eq(nil)
-        expect(page).not_to have_content 'Notifications'
-        expect(page).to have_css '.new-notifications'
-        first('.new-notifications').click
-        expect(page).to have_css '.new'
-        first('.new').click
-        expect(Notification.last.checked).to eq(true)
       end
     end
     example 'navigation' do
@@ -99,5 +115,4 @@ describe WidgetController, js: true do
     end
     pending 'example support message'
   end
-
 end

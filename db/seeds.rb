@@ -19,6 +19,7 @@ ActiveRecord::Base.transaction do
   puts 'Created comment'
   Notification.create_with(action: comment, subject: idea, recipient: customer, app_id: app.id)
   puts 'Created notification'
+  Idea.create! title: 'En ny ide', description: 'En liten beskrivelse', application_id: app.id, creator: user
 
   unless ENV["RAILS_ENV"] == 'test'
     # Create some more test ideas and comments
@@ -31,7 +32,7 @@ ActiveRecord::Base.transaction do
       Notification.create_with(action: c, subject: i, recipient: i.creator, app_id: app.id)
     end
     Idea.last.update_attributes! completed: true
-    Idea.find(3).update_attributes! visible: false
+    Idea.all[-2].update_attributes! visible: false
     customer = Customer.create!(email: Faker::Internet.email, name: Faker::Name.name, password: 'dev', password_confirmation: 'dev')
     app = customer.applications.create!(name: Faker::Lorem.sentence, intro: Faker::Lorem.sentence)
     user = app.users.create!(email: Faker::Internet.email, name: Faker::Name.name)

@@ -1,0 +1,7 @@
+.vote
+  .vote-buttons
+    %a.up(ng-click='vote(2)' ng-class='{"active": !owner() && idea.voter_status == 1, "owner": owner()}' tooltip='{{ cantVote() }}' tooltip-trigger='mouseenter' tooltip-placement='right')
+    %br
+    .votes
+      {{ idea.votes_count }}
+    -#%a.down(ng-click='vote(idea, -2)' ng-class='{active: idea.voter_status == -1}')

@@ -1,0 +1,2 @@
+.modal-backdrop.ng-hide(ng-show="visible" ng-click="modal.close()")
+  .modal-content(ng-click="modal.stopPropagation($event)")

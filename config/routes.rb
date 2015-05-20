@@ -1,18 +1,23 @@
 SimplyBetter::Application.routes.draw do
 
+  resources :landing_page, only: :index do
+    post :contact_us, on: :collection
+  end
+
   namespace :widget_api do
     resources :ideas, except: [:new, :edit] do
-      resources :comments, only: [:create, :destroy, :index, :show]
+      resources :comments, only: [:create, :index, :update]
       get :find_similar, on: :collection
     end
     resources :votes, only: [] do
       get :cast, on: :collection
       post :cast, on: :collection
     end
-    resources :applications, only: [:show] do
+    resources :applications, only: [], param: :token do
       get :client_js, on: :collection
+      get :is_admin, on: :member
     end
-    resources :notifications, only: [:index,:update] do
+    resources :notifications, only: [:index, :update] do
       get :count, on: :collection
     end
     resource :user, only: [:show, :update]
@@ -40,13 +45,20 @@ SimplyBetter::Application.routes.draw do
     get :unsubscribe, on: :member
   end
 
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update] do
+    get :check_email, on: :collection
+  end
 
-  get 'widget' => "widget#widget"
+  get 'widget' => 'widget#widget'
 
-  get '/login' => "sessions#new"
-  post '/sessions/create' => "sessions#create"
-  root 'sessions#new'
-  delete '/sessions/destroy' => "sessions#destroy", as: "sign_out"
+  resource :sessions, only: [], path: '', as: '' do
+    get :login, action: :new
+    get :popup_login, action: :popup_new
+    get :popup_close
+    post :create, path: 'sessions/create'
+    post :popup_create, path: 'sessions/popup_create'
+    delete :destroy, path: 'sessions/destroy', as: 'sign_out'
+  end
 
+  root 'landing_page#index'
 end

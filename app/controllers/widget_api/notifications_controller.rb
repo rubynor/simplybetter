@@ -1,4 +1,5 @@
 class WidgetApi::NotificationsController < ApplicationController
+  include DecodeParams
   include CreatorFinder
 
   def index
@@ -14,9 +15,11 @@ class WidgetApi::NotificationsController < ApplicationController
   end
 
   def count
-    render json: {count: index.where(checked: nil).count}
-  rescue NoMethodError
-    render json: :no_content
+    user_email = params[:email]
+    recipient = Customer.find_by(email: user_email)
+    recipient = User.find_by(email: user_email) unless recipient
+    notifications = Notification.joins(:application).where(recipient: recipient, applications: {token: params[:appkey]}).where(checked: nil)
+    render json: { count: notifications.count }
   end
 
   private

@@ -16,7 +16,7 @@
       link.id   = cssId;
       link.rel  = 'stylesheet';
       link.type = 'text/css';
-      link.href = urlRoot + '/assets/widget/'+name+'.css';
+      link.href = urlRoot + '/assets/static/widget/'+name+'.css';
       link.media = 'all';
       head.appendChild(link);
     };
@@ -28,19 +28,23 @@
 
     var appendToBody = function(html){
         document.getElementsByTagName('body')[0].appendChild(html);
-    }
+    };
 
     var appendActivateButton = function(){
         var buttonWrapperDiv = document.createElement('div');
         buttonWrapperDiv.innerHTML = '<div id="simplybetterActivateButton"></div>';
         appendToBody(buttonWrapperDiv);
-    }
+    };
+
+    var widgetURI = function() {
+      return urlRoot + '/widget?info=' + btoa('?appkey=' + appKey + '&email=' + email + '&name=' + name);
+    };
 
     var appendSimplyBetterWidget = function(){
         var html = document.createElement('div');
-        html.innerHTML = '<div id="simplybetterBackdropLayer" style="display: none;"></div><div id="simplybetterIframeWrapper" style="display: none;"><div id="simplybetterCloseButton">⨯</div><iframe class="simplybetterIframe" src="' + urlRoot + '/widget?appkey='+appKey+'&email='+email+'&name='+name+'" frameborder="0", scrolling="no"></iframe></div>';
+        html.innerHTML = '<div id="simplybetterBackdropLayer" style="display: none;"></div><div id="simplybetterIframeWrapper" style="display: none;"><div id="simplybetterCloseButton">⨯</div><iframe class="simplybetterIframe" src="' + widgetURI() + '" frameborder="0", scrolling="no"></iframe></div>';
         appendToBody(html);
-    }
+    };
 
     var closeModal = function() {
         iframeWrapper.setAttribute('style','display: none;');
@@ -73,7 +77,7 @@
     // Show notification count on the button
     var requestNotificationCount = function(){
         var xmlhttp=new XMLHttpRequest();
-        var url = urlRoot + '/widget_api/notifications/count?token='+appKey+'&user_email='+email;
+        var url = urlRoot + '/widget_api/notifications/count?appkey='+appKey+'&email='+email;
         xmlhttp.onreadystatechange=function() {
           if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             var responseJson = eval('(' + xmlhttp.responseText + ')');

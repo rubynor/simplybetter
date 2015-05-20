@@ -1,8 +1,8 @@
 widget.factory 'User', ['$resource', 'Session', ($resource, Session) ->
   @user = {}
   @authParams = {}
-  email = Session.email()
-  token = Session.token()
+  email = Session.email
+  token = Session.token
 
   @get = ->
     if @user.length > 0
@@ -13,12 +13,11 @@ widget.factory 'User', ['$resource', 'Session', ($resource, Session) ->
   @fetchFromBackend = ->
     @user =
       @resource.get
-        email: email
-        token: token
+        info: Session.info
 
   @update = (success, error) ->
     @user.$update(
-      token: token
+      info: Session.info
     ,(data) =>
       success(data)
     , =>

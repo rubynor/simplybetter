@@ -4,6 +4,7 @@ class Idea < ActiveRecord::Base
 
   belongs_to :application
   belongs_to :creator, polymorphic: true
+  belongs_to :last_edit_admin, foreign_key: :last_edit_admin_id, class_name: Customer
   has_many :votes, as: :vote_receiver, dependent: :destroy
   has_many :comments, inverse_of: :idea, dependent: :destroy
   has_many :idea_subscriptions, dependent: :destroy
@@ -94,6 +95,12 @@ class Idea < ActiveRecord::Base
 
   def has_been_completed?
     completed_changed? && completed?
+  end
+
+  # Searchkick method to restrict what we index
+  # Only index visible ideas!
+  def should_index?
+    visible
   end
 
   private
