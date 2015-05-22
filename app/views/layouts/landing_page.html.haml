@@ -8,7 +8,7 @@
     = stylesheet_link_tag    'landing_page', media: 'all'
     = javascript_include_tag 'landing'
     = csrf_meta_tags
-  %body(ng-app='LandingPage')
+  %body(ng-app='LandingPage' ng-strict-di)
     .container(ng-init='scroll = 0')
       %span(scroll-position='scroll')
       %header
