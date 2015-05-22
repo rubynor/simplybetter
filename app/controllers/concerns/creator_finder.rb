@@ -1,3 +1,5 @@
+require 'base64'
+
 class NoUserException < StandardError
 end
 
@@ -8,12 +10,14 @@ module CreatorFinder
 
   def current_user
     #TODO: OMA: We should always use the same user param, for simplicity. Convention :)
-    get_current_user(current_application, params[:user_email] || params[:email])
+    decode_params if params["info"].present? && !(params[:user_email].present? || params[:email].present?)
+    get_current_user(current_application, params[:user_email] || params[:email]) if params[:email] || params[:user_email]
   end
 
 
   def current_application
-    @application ||= Application.find_by!(token: params[:token] || params[:appkey])
+    decode_params if params["info"].present? && !(params["token"].present? || params["appkey"].present?)
+    @widget ||= Application.find_by!(token: params[:token] || params[:appkey]) if params[:token] || params[:appkey]
   end
 
   def creator(application, creator_email)
@@ -31,11 +35,18 @@ module CreatorFinder
     fail NoUserException, 'This user does not exist'
   end
 
-  private
 
   def get_current_user(application, user_email)
     fail ArgumentError, 'Missing application' unless application
     @current_user ||= creator(application, user_email)
+  end
+
+  def decode_params
+    raise 'Nothing to decode' unless params["info"].present?
+    matches = Base64.decode64(params["info"]).scan(/(\?|\&)([^=]+)\=([^&]+)/)
+    matches.each do |match|
+      params[match[1]] = match[2]
+    end
   end
 
 end

@@ -1,6 +1,4 @@
-class WidgetApi::VotesController < ApplicationController
-  include DecodeParams
-  include CreatorFinder
+class WidgetApi::VotesController < WidgetController
 
   # POST / GET
   def cast

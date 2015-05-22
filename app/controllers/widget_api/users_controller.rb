@@ -1,6 +1,4 @@
-class WidgetApi::UsersController < ApplicationController
-  include DecodeParams
-  include CreatorFinder
+class WidgetApi::UsersController < WidgetController
   before_action :set_user
 
   def show

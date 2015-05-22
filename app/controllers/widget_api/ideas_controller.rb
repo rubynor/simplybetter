@@ -1,18 +1,15 @@
-class WidgetApi::IdeasController < ApplicationController
-  include DecodeParams
-  include CreatorFinder
+class WidgetApi::IdeasController < WidgetController
   before_action :set_idea, only: [:show, :update, :destroy]
 
   def index
-    puts "email is #{params[:email]}"
     app = current_application
     @ideas = app.ideas.includes(:comments).includes(:votes).order('votes_count DESC')
     @ideas = @ideas.visible unless current_customer.try { current_customer.admin_for?(app) }
-    current_user if params[:email]
+    current_user
   end
 
   def show
-    current_user if params[:email]
+    current_user
   end
 
   def find_similar

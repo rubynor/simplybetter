@@ -1,4 +1,4 @@
-class WidgetApi::SupportMessagesController < ApplicationController
+class WidgetApi::SupportMessagesController < WidgetController
   include CreatorFinder
 
   respond_to :json

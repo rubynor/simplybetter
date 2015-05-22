@@ -1,6 +1,4 @@
-class WidgetApi::EmailSettingsController < ApplicationController
-  include DecodeParams
-  include CreatorFinder
+class WidgetApi::EmailSettingsController < WidgetController
   before_action :find_or_create_email_settings
 
   def show

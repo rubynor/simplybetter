@@ -1,7 +1,4 @@
-class WidgetApi::CommentsController < ApplicationController
-  include DecodeParams
-  include CreatorFinder
-
+class WidgetApi::CommentsController < WidgetController
   before_action :set_idea, only: [:index, :create, :update]
 
   def index

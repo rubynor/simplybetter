@@ -1,6 +1,4 @@
-class WidgetApi::NotificationsController < ApplicationController
-  include DecodeParams
-  include CreatorFinder
+class WidgetApi::NotificationsController < WidgetController
 
   def index
     @notifications = Notification.for(current_user, current_application.id)
