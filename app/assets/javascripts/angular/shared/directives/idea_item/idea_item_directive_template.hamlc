@@ -1,6 +1,6 @@
 .idea-item
   %span(ng-if='!expanded')
-    %a(named-route='idea' kwarg-id='{{ idea.id }}')
+    %a(ui-sref='idea({id: idea.id})')
       %h1
         {{ idea.title }}
   %span(ng-if='expanded')
@@ -20,7 +20,7 @@
       cancel
 
   .meta
-    %a(named-route='idea' kwarg-id='{{ idea.id }}')
+    %a(ui-sref='idea({id: idea.id})')
       .comments
       %span.blue
         {{ idea.comments_count }} comments
@@ -43,4 +43,4 @@
         On
         %span.black {{ idea.last_edit_admin_time }}
 .tranclude(ng-transclude)
-%a.not-visible-overlay(ng-if='!idea.visible' named-route='idea' kwarg-id='{{ idea.id }}')
+%a.not-visible-overlay(ng-if='!idea.visible' ui-sref='idea({id: idea.id})')
