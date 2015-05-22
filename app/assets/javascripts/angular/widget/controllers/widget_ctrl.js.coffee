@@ -8,9 +8,6 @@ widget.controller 'WidgetCtrl', ['$scope', 'Idea', 'FindSimilarIdea', 'Redirect'
   $scope.reset_path = () ->
     $scope.path = undefined
 
-  $scope.ideas = ->
-    Idea.all()
-
   $scope.find_similar = (txt) ->
     return if !txt || txt.length < 10
     FindSimilarIdea.query({ query: txt },
