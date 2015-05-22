@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-//= require angular-1.2.18/angular
-//= require angular-1.2.18/angular-resource
+//= require angular/angular
+//= require angular/angular-resource
 //= require angular/landing_page
 //= require_tree ./angular/landing_page
 
