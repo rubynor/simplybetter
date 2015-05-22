@@ -1,1 +1,4 @@
-angular.module('shared', ['ngCookies'])
+angular.module 'shared', [
+  'ngCookies'
+  'ui.router'
+]
