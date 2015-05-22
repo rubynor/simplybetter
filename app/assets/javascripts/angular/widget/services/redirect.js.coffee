@@ -1,4 +1,4 @@
-widget.factory 'Redirect', ['$NamedRouteService', ($NamedRouteService) ->
-  return (name, options, urlParameters='') ->
-    window.location = $NamedRouteService.reverse(name, options) + urlParameters
+widget.factory 'Redirect', ['$state', ($state) ->
+  return (name, options) ->
+    $state.go(name, options)
 ]
