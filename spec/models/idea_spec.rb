@@ -64,4 +64,20 @@ describe Idea do
       end.to change(Notification, :count).by 1
     end
   end
+
+  describe '#should_set_last_edit_admin?' do
+    context 'eligible attributes has been changed' do # See Idea::LAST_EDIT_ADMIN_ELIGIBLE_ATTRIBUTES
+      it 'returns true' do
+        result = @idea.should_set_last_edit_admin?({ description: '' })
+        expect(result).to be_truthy
+      end
+    end
+
+    context 'eligible attributes have not been changed' do
+      it 'returns false' do
+        result = @idea.should_set_last_edit_admin?({ completed: true, hidden: true })
+        expect(result).to be_falsey
+      end
+    end
+  end
 end
