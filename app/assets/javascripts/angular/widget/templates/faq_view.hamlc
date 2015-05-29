@@ -1,1 +1,8 @@
-%h3 heisann
+%h1 FAQ
+%table
+  %tr
+    %th Question
+    %th Answer
+  %tr(ng-repeat="faq in faqs")
+    %td {{faq.question}}
+    %td {{faq.answer}}
