@@ -20,6 +20,7 @@ SimplyBetter::Application.routes.draw do
     resources :notifications, only: [:index, :update] do
       get :count, on: :collection
     end
+    resources :faqs
     resource :user, only: [:show, :update]
     resource :email_settings, only: [:show, :update]
   end
