@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505095057) do
+ActiveRecord::Schema.define(version: 20150519131120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 20150505095057) do
   end
 
   add_index "email_settings", ["mailable_id", "mailable_type"], name: "index_email_settings_on_mailable_id_and_mailable_type", using: :btree
+
+  create_table "faqs", force: true do |t|
+    t.integer  "application_id"
+    t.text     "question"
+    t.text     "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "faqs", ["application_id", "question"], name: "index_faqs_on_application_id_and_question", unique: true, using: :btree
 
   create_table "idea_groups", force: true do |t|
     t.integer "application_id"
