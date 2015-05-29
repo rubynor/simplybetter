@@ -1,8 +1,10 @@
-%h1 FAQ
-%table
-  %tr
-    %th Question
-    %th Answer
-  %tr(ng-repeat="faq in faqs")
-    %td {{faq.question}}
-    %td {{faq.answer}}
+.faq_header
+  %h1 
+    %i.fa.fa-cog
+      Frequently Asked Questions
+
+.faq_list(ng-repeat="faq in faqs")
+  %h2 {{faq.question}}
+
+  .faq_answers
+    %p {{faq.answer}} - {{faq.updated_at | date: 'MMM dd yyyy'}}

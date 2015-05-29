@@ -5,3 +5,4 @@ Faqs = ->
 angular
   .module('shared')
   .directive('faqs', Faqs)
+
