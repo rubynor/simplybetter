@@ -43,6 +43,10 @@ angular.module("filters", []).filter "truncate", ->
         controller: 'SettingsCtrl as setting'
         template: JST['angular/widget/templates/settings_view']
         name: 'settings'
+      .when '/widget/faqs',
+        controller: 'FaqCtrl as faq'
+        template: JST['angular/widget/templates/faq_view']
+        name: 'settings'
       .when '/widget/ideas/:id/edit',
         controller: 'IdeaCtrl'
         template: JST['angular/widget/templates/idea_edit']
