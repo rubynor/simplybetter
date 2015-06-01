@@ -2,7 +2,7 @@ class FaqsController < ApplicationController
 	before_action :set_application
 
   def index
-		@faqs = Faq.all.order(:question)
+		@faqs = @application.faqs.order(:question)
   end
 
 	def create

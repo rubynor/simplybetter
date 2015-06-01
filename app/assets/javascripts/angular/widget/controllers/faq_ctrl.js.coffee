@@ -1,6 +1,6 @@
-FaqCtrl = ($http, $scope) ->
+FaqCtrl = ($http, $scope, Session) ->
   $scope.$parent.path = true
-  $http.get('/widget_api/faqs.json').success(
+  $http(method:'GET', url:'/widget_api/faqs.json', params: {info: Session.info}).success(
     (data) ->
       $scope.faqs=data
   ).error(
@@ -8,4 +8,4 @@ FaqCtrl = ($http, $scope) ->
       console.log error
   )
 
-angular.module('Simplybetter').controller('FaqCtrl', ['$http', '$scope', FaqCtrl])
+angular.module('Simplybetter').controller('FaqCtrl', ['$http', '$scope', 'Session', FaqCtrl])
