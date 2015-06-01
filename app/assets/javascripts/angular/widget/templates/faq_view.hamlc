@@ -1,7 +1,7 @@
 .faq_header
   %h1 
     %i.fa.fa-cog
-      Frequently Asked Questions
+      FAQs
 
 .faq_list(ng-repeat="faq in faqs")
   %h2 {{faq.question}}
