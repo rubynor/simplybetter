@@ -2,17 +2,24 @@ class FaqsController < ApplicationController
 	before_action :set_application
 
   def index
+  	@faq = Faq.new
 		@faqs = @application.faqs.order(:question)
   end
 
 	def create
 		@faq = @application.faqs.new faq_params
 		if @faq.save
-			render json: {}, status: :created
+			#render json: {}, status: :created
+			redirect_to application_faqs_path(@application.id), notice: 'Successfuly added' 
 		else
 			render json: { errors: @faq.errors }, status: :unprocessable_entity
 		end
 	end
+
+#	def edit
+#		@faq.edit
+#		redirect_to edit_application_faq_path(@application.id)
+#	end
 
 	def destroy
 		@faq.destroy
@@ -20,7 +27,11 @@ class FaqsController < ApplicationController
 
 
 	def faq_params
-		params.require(:faq).permit(:question, :answer )
+		params.require(:faq).
+		  permit(
+		  	:question, 
+		  	:answer 
+		  	)
 	end
 
 	def set_application

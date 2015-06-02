@@ -10,7 +10,6 @@
     @include input
     display: block
     width: $form-width
-    margin-bottom: 30px
   textarea
     @include textarea
     width: $form-width
@@ -21,11 +20,12 @@
     button
       @include button-big
       display: block
+      margin-bottom: 30px
 
 .old_faqs
   @include box
   padding: 15px
   margin-top: 10px
+  width: 500px
 
-  &:nth-child(even)
-    background: #b8d1f3
+.faq_answer

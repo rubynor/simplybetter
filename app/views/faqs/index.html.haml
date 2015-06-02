@@ -1,14 +1,19 @@
-%h1 FAQ
+%h1 Manage your FAQ
+= render 'shared/alerts', model: current_customer
 
 .faq_form
-  %form{:action => "/new", :method => "post"}
-    %fieldset
-      %label{:for => "question"} Question:
-      %input{:name => "question", :type => "text", :value => "Write the question here"}/
-      %label{:for => "answer"} Answer:
-      %input{:name => "answer", :type => "text", :value => "Write the answer here"}/
-    %button{:for => "button"} Save
+  = form_for [@application, @faq], html: { role: 'form'} do |f|
+    = f.label :question
+    = f.text_field :question
+    = f.label :answer
+    = f.text_area :answer
+    = f.button 'Save'
 
-.old_faqs
-  - @faqs.each do |faq|
-    = faq.question
+- @faqs.each do |faq|
+  .old_faqs
+    %h2= faq.question
+
+    .show_answer
+      %p= faq.answer
+      %button{:class => 'btn btn-primary btn-sm', :action => 'faqs#update'} Edit
+      %button{:class => 'btn btn-danger btn-sm', :action => 'faqs#destroy'} Delete
