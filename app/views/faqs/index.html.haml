@@ -6,16 +6,17 @@
 .faq_form
   = form_for [@application, @faq], html: { role: 'form'} do |f|
     = f.label :question
-    = f.text_field :question
+    = f.text_field :question, :placeholder => "Write your question here"
     = f.label :answer
-    = f.text_area :answer
+    = f.text_area :answer, :placeholder => "And the answer here"
     = f.button 'Save'
+    /= f.button 'Reset', type: 'reset'
 
 - @faqs.each do |faq|
   .old_faqs
-    %h2= faq.question
+    %h2=simple_format faq.question
     .answers
-      %p= faq.answer
+      %p= simple_format faq.answer
       = link_to "Edit", {:controller => :faqs,
       :action => 'edit', :id => faq.id }, {:class => 'btn btn-primary btn-md', :method => :get}
       = link_to "Delete", {:controller => :faqs,
