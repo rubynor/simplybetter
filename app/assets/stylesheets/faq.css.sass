@@ -10,12 +10,15 @@
     @include input
     display: block
     width: $form-width
+  text_field
+    @include: textfield
+    mirgin-bottom: 0px
   textarea
     @include textarea
     width: $form-width
     height: 300px
     margin: 0px
-    margin-bottom: 30px
+    margin-bottom: 10px
   form
     button
       @include button-big
@@ -27,5 +30,3 @@
   padding: 15px
   margin-top: 10px
   width: 500px
-
-.faq_answer

@@ -1,4 +1,6 @@
-%h1 Manage your FAQ
+%h1 
+  %i.fa.fa-pencil
+    Manage your FAQ
 = render 'shared/alerts', model: current_customer
 
 .faq_form
@@ -12,8 +14,9 @@
 - @faqs.each do |faq|
   .old_faqs
     %h2= faq.question
-
-    .show_answer
+    .answers
       %p= faq.answer
-      %button{:class => 'btn btn-primary btn-sm', :action => 'faqs#update'} Edit
-      %button{:class => 'btn btn-danger btn-sm', :action => 'faqs#destroy'} Delete
+      = link_to "Edit", {:controller => :faqs,
+      :action => 'edit', :id => faq.id }, {:class => 'btn btn-primary btn-md', :method => :get}
+      = link_to "Delete", {:controller => :faqs,
+      :action => 'destroy', :id => faq.id }, {:class => 'btn btn-default btn-md', :method => :delete}

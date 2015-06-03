@@ -9,20 +9,33 @@ class FaqsController < ApplicationController
 	def create
 		@faq = @application.faqs.new faq_params
 		if @faq.save
-			#render json: {}, status: :created
-			redirect_to application_faqs_path(@application.id), notice: 'Successfuly added' 
+			redirect_to application_faqs_path(@application.id), notice: 'Successfully added' 
 		else
 			render json: { errors: @faq.errors }, status: :unprocessable_entity
 		end
 	end
 
-#	def edit
-#		@faq.edit
-#		redirect_to edit_application_faq_path(@application.id)
-#	end
+	def edit
+		@faq = Faq.find(params[:id])			
+	end
+
+	def update
+		@faq = Faq.find(params[:id])
+		if @faq.update_attributes(faq_params)
+		  redirect_to application_faqs_path(@application.id), notice: 'Successfully updated'
+		# TODO - Add a elsif to check if user clicked cancel button and make it redirect to index			
+		else
+			render 'edit'
+		end
+	end
 
 	def destroy
-		@faq.destroy
+		@faq = Faq.find(params[:id])
+		if @faq.destroy
+			redirect_to application_faqs_path(@application.id), notice: 'Successfully removed'
+	  else
+			render json: { errors: @faq.errors }, status: :unprocessable_entity
+		end
 	end
 
 

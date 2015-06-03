@@ -1,6 +1,6 @@
 .faq_header
   %h1 
-    %i.fa.fa-cog
+    %i.fa.fa-question-circle
       Frequently Asked Questions
 
 .faq_list(ng-repeat="faq in faqs" ng-click="showAnswer = ! showAnswer")
@@ -8,3 +8,5 @@
 
   .faq_answers(ng-show="showAnswer")
     %p {{faq.answer}} - {{faq.updated_at | date: 'MMM dd yyyy'}}
+    /.edit_btn(ng-click="edit(faq.id)" class="btn btn-primary btn-md")Edit
+    /.delete_btn(ng-click="delete(faq.id)" class="btn btn-default btn-md")Delete

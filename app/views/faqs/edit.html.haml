@@ -1,0 +1,12 @@
+%h1 
+  %i.fa.fa-edit
+    Change your FAQ
+
+.faq_form
+  = form_for [@application, @faq], html: { role: 'form'} do |f|
+    = f.label :question
+    = f.text_field :question
+    = f.label :answer
+    = f.text_area :answer
+    = f.button 'Save', name: 'save', method: 'put'
+    / TODO - Add button to cancel and make it redirect to /application/:application_id/faqs/:id
