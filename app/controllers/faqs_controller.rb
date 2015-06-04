@@ -20,10 +20,10 @@ class FaqsController < ApplicationController
 	end
 
 	def update
+		redirect_to application_faqs_path(@application.id) and return if params[:cancel]
 		@faq = Faq.find(params[:id])
 		if @faq.update_attributes(faq_params)
 		  redirect_to application_faqs_path(@application.id), notice: 'Successfully updated'
-		# TODO - Add a elsif to check if user clicked cancel button and make it redirect to index			
 		else
 			render 'edit'
 		end
@@ -37,7 +37,6 @@ class FaqsController < ApplicationController
 			render json: { errors: @faq.errors }, status: :unprocessable_entity
 		end
 	end
-
 
 	def faq_params
 		params.require(:faq).
@@ -57,7 +56,6 @@ class FaqsController < ApplicationController
 	  	end
 	  	format.json { render json: { message: 'Not authorized' }, status: :unauthorized}
 		end
-
 	end
 
 end
