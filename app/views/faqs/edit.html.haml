@@ -1,8 +1,9 @@
-%h1 
-  %i.fa.fa-edit
-    Change your FAQ
+.header-text
+  %h2 
+    %i.fa.fa-edit
+      Change your FAQ
 
-.faq_form
+.edit_faq_form
   = form_for [@application, @faq], html: { role: 'form'} do |f|
     = f.label :question
     = f.text_field :question

@@ -1,26 +1,26 @@
 #navbar
   = render 'shared/navbar'
 
-%h1 
-  %i.fa.fa-pencil
-    Manage your FAQ
-= render 'shared/alerts', model: current_customer
+.faq_page
+  .header-text
+    %h2 Manage your FAQ
+  = render 'shared/alerts', model: current_customer
 
-.faq_form
-  = form_for [@application, @faq], html: { role: 'form'} do |f|
-    = f.label :question
-    = f.text_field :question, :placeholder => "Write your question here"
-    = f.label :answer
-    = f.text_area :answer, :placeholder => "And the answer here"
-    = f.button 'Save'
-    /= f.button 'Reset', type: 'reset'
+  .new_faq_form
+    = form_for [@application, @faq], html: { role: 'form'} do |f|
+      = f.label :question
+      = f.text_field :question, :placeholder => "Write your question here"
+      = f.label :answer
+      = f.text_area :answer, :placeholder => "And the answer here"
+      = f.button 'Save'
+      /= f.button 'Reset', type: 'reset'
 
-- @faqs.each do |faq|
-  .old_faqs
-    %h2= faq.question
-    .answers
-      %p= simple_format faq.answer
-      = link_to "Edit", {:controller => :faqs,
-      :action => 'edit', :id => faq.id }, {:class => 'btn btn-primary btn-md', :method => :get}
-      = link_to "Delete", {:controller => :faqs,
-      :action => 'destroy', :id => faq.id }, {:class => 'btn btn-default btn-md', :method => :delete}
+  - @faqs.each do |faq|
+    .old_faqs
+      %h2= faq.question
+      .answers
+        %p= simple_format faq.answer
+        = link_to "Edit", {:controller => :faqs,
+        :action => 'edit', :id => faq.id }, {:class => 'btn btn-primary btn-md', :method => :get}
+        = link_to "Delete", {:controller => :faqs,
+        :action => 'destroy', :id => faq.id }, {:class => 'btn btn-default btn-md', :method => :delete}
