@@ -1,3 +1,6 @@
+#navbar
+  = render 'shared/navbar'
+
 %h1 
   %i.fa.fa-pencil
     Manage your FAQ
@@ -14,7 +17,7 @@
 
 - @faqs.each do |faq|
   .old_faqs
-    %h2=simple_format faq.question
+    %h2= faq.question
     .answers
       %p= simple_format faq.answer
       = link_to "Edit", {:controller => :faqs,
