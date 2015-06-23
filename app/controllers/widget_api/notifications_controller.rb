@@ -1,4 +1,5 @@
 class WidgetApi::NotificationsController < WidgetController
+  include CreatorFinder
 
   def index
     @notifications = Notification.for(current_user, current_application.id)
@@ -13,6 +14,7 @@ class WidgetApi::NotificationsController < WidgetController
   end
 
   def count
+    decode_params unless params[:email].present? && params[:appkey].present?
     user_email = params[:email]
     recipient = Customer.find_by(email: user_email)
     recipient = User.find_by(email: user_email) unless recipient
