@@ -4,7 +4,7 @@ class WidgetController < ApplicationController
   after_action :allow_iframe
 
   def widget
-    decode_params
+    decode_params unless params[:appkey].present? && params[:email].present?
     cookies[:token] = params[:appkey]
     cookies[:email] = params[:email]
     @app = Application.find_by(token: params[:appkey])
