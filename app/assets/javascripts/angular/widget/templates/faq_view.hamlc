@@ -1,5 +1,5 @@
 .faq_header
-  %h1 
+  %h1
     %i.fa.fa-question-circle
       Frequently Asked Questions
 
