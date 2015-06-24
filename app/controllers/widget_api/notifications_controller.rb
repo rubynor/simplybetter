@@ -1,12 +1,8 @@
-class WidgetApi::NotificationsController < ApplicationController
-  include DecodeParams
+class WidgetApi::NotificationsController < WidgetController
   include CreatorFinder
-  before_filter :application
 
   def index
-    user_email = params[:email]
-    recipient = get_current_user(@application, user_email)
-    @notifications = Notification.for(recipient, @application.id)
+    @notifications = Notification.for(current_user, current_application.id)
   rescue NoAccessException
     # No problem if no user
   end
@@ -18,6 +14,7 @@ class WidgetApi::NotificationsController < ApplicationController
   end
 
   def count
+    decode_params unless params[:email].present? && params[:appkey].present?
     user_email = params[:email]
     recipient = Customer.find_by(email: user_email)
     recipient = User.find_by(email: user_email) unless recipient
@@ -27,11 +24,7 @@ class WidgetApi::NotificationsController < ApplicationController
 
   private
 
-    def notification_attributes
-      params.require(:notification).permit(:id, :checked)
-    end
-
-    def application
-      @application ||= Application.find_by(token: params[:appkey]) if params[:appkey]
-    end
+  def notification_attributes
+    params.require(:notification).permit(:id, :checked)
+  end
 end

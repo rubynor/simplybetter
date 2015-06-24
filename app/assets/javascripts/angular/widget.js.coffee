@@ -47,5 +47,9 @@ angular.module("filters", []).filter "truncate", ->
         controller: 'IdeaCtrl'
         template: JST['angular/widget/templates/idea_edit']
         name: 'idea_edit'
+      .when '/widget/support',
+        controller: 'SupportCtrl as support'
+        template: JST['angular/widget/templates/support_view']
+        name: 'support'
       .otherwise(redirectTo: '/widget')
   ]

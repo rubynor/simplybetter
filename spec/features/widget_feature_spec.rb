@@ -113,5 +113,6 @@ describe WidgetController, js: true, order: :defined do
         end
       end
     end
+    pending 'example support message'
   end
 end

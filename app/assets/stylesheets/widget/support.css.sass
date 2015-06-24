@@ -1,0 +1,33 @@
+
+#support
+  .box
+    @include box
+    padding: 15px
+    margin: 15px
+  h1
+    margin-bottom: 30px
+    .support-icon
+      margin-top: 5px
+      background-color: lightgrey
+      float: left
+  #support-form
+    form
+      .error
+        color: $red
+      .success
+        background-color: $green
+      textarea
+        @include textarea
+        width: 50%
+        min-width: 300px
+        height: 100px
+        margin: 0px
+
+      label
+        @include label
+
+
+      button
+        @include button-big
+        display: block
+

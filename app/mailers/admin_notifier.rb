@@ -1,6 +1,6 @@
 class AdminNotifier < ActionMailer::Base
   extend MailerHelpers
-  default from: 'noreply@simplybetter.io'
+  default from: 'support@simplybetter.io'
 
   def self.send_to_group(group, idea)
     creator = idea.creator
