@@ -1,9 +1,8 @@
-class WidgetApi::FaqsController < ApplicationController
-	include DecodeParams
+class WidgetApi::FaqsController < WidgetController
 	respond_to :json
 
 	def index
-		app = application
+		app = current_application
 		@faqs = app.faqs.order(:question)
 		render json: @faqs.to_json
 	end

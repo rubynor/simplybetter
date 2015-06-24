@@ -23,6 +23,7 @@ SimplyBetter::Application.routes.draw do
     resources :faqs
     resource :user, only: [:show, :update]
     resource :email_settings, only: [:show, :update]
+    resources :support_messages, only: [:create]
   end
 
   resources :customers, only: [:index, :new, :create, :edit, :update] do

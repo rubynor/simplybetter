@@ -1,6 +1,7 @@
 @import imports
 @import fonts
 @import font-awesome
+@import icons
 @import mixins
 @import icons
 @import modal
@@ -12,6 +13,7 @@
 @import widget/new_idea
 @import widget/success
 @import widget/settings
+@import widget/support
 @import widget/edit-idea
 @import widget/idea-admin-options
 @import widget/faq
@@ -39,6 +41,9 @@ strong
   background-color: $background
   padding-left: 60px
 
+  .support-icon
+    @include support-icon
+
   .logobar
     background: linear-gradient(to bottom, rgb(56,158,215) 0%,rgb(148,73,224) 60%,rgb(169,73,224) 100%)
     height: 100%
@@ -63,6 +68,17 @@ strong
     a:hover
       text-decoration: none
 
+    .support-button
+      height: 31px
+      width: 31px
+      position: absolute
+      left: 16px
+      bottom: 115px
+      cursor: pointer
+      overflow: visible
+      color: rgba(255, 255, 255, 0.5)
+      &:hover
+        color: rgba(255, 255, 255, 0.8)
     .settings-button
       background: image-url('widget/settings-icon.png') no-repeat center center
       position: absolute
@@ -178,7 +194,7 @@ strong
     width: 100%
     tr.hax
       height: 100%
-     
+
     td.content
       height: 100%
       padding: 0

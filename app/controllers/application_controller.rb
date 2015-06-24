@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
 
   include CurrentCustomer
 
-
   private
 
   helper_method :current_customer
