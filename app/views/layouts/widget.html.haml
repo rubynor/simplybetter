@@ -19,6 +19,7 @@
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
           .logo-text Simply Better
+        %faqs-button(ng-show="#{@app.faqs_enabled}")
         %support-button(ng-show="#{@app.support_enabled}")
         %account-settings-button
         %notifications

@@ -54,6 +54,6 @@ class ApplicationsController < ApplicationController
   end
 
   def application_attributes
-    params.require(:application).permit(:name, :intro, :icon, :support_enabled, :support_email)
+    params.require(:application).permit(:name, :intro, :icon, :support_enabled, :support_email, :faqs_enabled)
   end
 end

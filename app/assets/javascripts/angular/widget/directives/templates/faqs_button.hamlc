@@ -1,0 +1,2 @@
+%a.faqs-button(data-named-route='faqs' ng-hide='button.hidden' tooltip-placement='right' tooltip='FAQ' tooltip-trigger='mouseenter')
+  %i.fa.fa-question-circle

@@ -1,0 +1,39 @@
+.faq_page
+  margin-left: 17px
+
+.edit_faq_page
+  margin-left: 17px
+
+.faq_form
+  $form-width: 500px
+
+  label
+    font-size: 30px
+    color: $black
+    display: block
+    margin-top: 30px
+  input[type=text]
+    @include input
+    display: block
+    width: $form-width
+    margin-right: 100px
+  text_field
+    mirgin-bottom: 0px
+  textarea
+    @include textarea
+    width: $form-width
+    height: 300px
+    margin-right: 100px
+    margin-bottom: 10px
+  form
+    button
+      @include button-big
+      display: inline
+      margin-bottom: 30px
+      margin-right: 10px
+
+.old_faqs
+  @include box
+  padding: 15px
+  margin-top: 10px
+  width: 500px
