@@ -12,6 +12,6 @@ class WidgetApi::UsersController < WidgetController
   private
 
   def set_user
-    @user = current_user
+    @user = widget_user
   end
 end

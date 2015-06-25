@@ -3,13 +3,13 @@ class WidgetApi::VotesController < WidgetController
   # POST / GET
   def cast
     # Early exit if voter is the creator of the idea..
-    if current_user.email == vote_receiver.creator.email
+    if widget_user.email == vote_receiver.creator.email
       return render json: { error: "You can't wote for your own idea" }, status: 403
     end
     vote_val = params[:value] || 0
     if vote_val == 0
       status
-    elsif current_user
+    elsif widget_user
       cast_vote(vote_val)
     else
       render json: { error: 'You need to be signed in to vote' }, status: 403
@@ -20,7 +20,7 @@ class WidgetApi::VotesController < WidgetController
 
   def status
     vote_receiver
-    if current_user
+    if widget_user
       vote
     else
       @vote = Vote.new
@@ -43,6 +43,6 @@ class WidgetApi::VotesController < WidgetController
   end
 
   def vote
-    @vote ||= current_user.votes.find_or_initialize_by(vote_receiver: vote_receiver)
+    @vote ||= widget_user.votes.find_or_initialize_by(vote_receiver: vote_receiver)
   end
 end

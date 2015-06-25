@@ -5,11 +5,11 @@ class WidgetApi::IdeasController < WidgetController
     app = current_application
     @ideas = app.ideas.includes(:comments).includes(:votes).order('votes_count DESC')
     @ideas = @ideas.visible unless current_customer.try { current_customer.admin_for?(app) }
-    current_user
+    widget_user
   end
 
   def show
-    current_user
+    widget_user
   end
 
   def find_similar
@@ -22,7 +22,7 @@ class WidgetApi::IdeasController < WidgetController
     @idea = Idea.new(idea_params)
 
     respond_to do |format|
-      if @idea.widget_save_and_notify(current_application, current_user)
+      if @idea.widget_save_and_notify(current_application, widget_user)
         format.json { render action: 'show', status: :created }
       else
         format.json { render json: @idea.errors, status: :unprocessable_entity }
@@ -31,7 +31,7 @@ class WidgetApi::IdeasController < WidgetController
   end
 
   def update
-    if @idea.creator != current_user && !current_customer
+    if @idea.creator != widget_user && !current_customer
       return render json: 'Not owner of idea', status: 403
     end
 

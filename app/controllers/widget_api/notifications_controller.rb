@@ -1,10 +1,7 @@
 class WidgetApi::NotificationsController < WidgetController
-  include CreatorFinder
 
   def index
-    @notifications = Notification.for(current_user, current_application.id)
-  rescue NoAccessException
-    # No problem if no user
+    @notifications = Notification.for(widget_user, current_application.id)
   end
 
   def update
@@ -20,8 +17,6 @@ class WidgetApi::NotificationsController < WidgetController
     recipient = User.find_by(email: user_email) unless recipient
     notifications = Notification.joins(:application).where(recipient: recipient, applications: {token: params[:appkey]}).where(checked: nil)
     render json: { count: notifications.count }
-  rescue NoAccessException
-    # No problem if no user
   end
 
   private
