@@ -1,5 +1,7 @@
 SimplyBetter::Application.routes.draw do
 
+  get 'ping' => 'application#ping'
+
   resources :landing_page, only: :index do
     post :contact_us, on: :collection
   end

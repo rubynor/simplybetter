@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   include CurrentCustomer
 
+  def ping
+    render text: "What's crackin' newrelic?"
+  end
+
   private
 
   helper_method :current_customer
