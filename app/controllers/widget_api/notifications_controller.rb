@@ -20,6 +20,8 @@ class WidgetApi::NotificationsController < WidgetController
     recipient = User.find_by(email: user_email) unless recipient
     notifications = Notification.joins(:application).where(recipient: recipient, applications: {token: params[:appkey]}).where(checked: nil)
     render json: { count: notifications.count }
+  rescue NoAccessException
+    # No problem if no user
   end
 
   private
