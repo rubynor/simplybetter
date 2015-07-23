@@ -18,7 +18,7 @@ Router = ($stateProvider, $urlRouterProvider, $locationProvider) ->
       url: 'widget/faqs'
       template: JST['angular/widget/templates/faq_view']
       controller: 'FaqCtrl as faq'
-    .when 'support',
+    .state 'support',
       url: 'widget/support'
       template: JST['angular/widget/templates/support_view']
       controller: 'SupportCtrl as support'
