@@ -1,9 +1,6 @@
-IdeaCtrl = ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
-  $scope.idea = Idea.get($routeParams.id)
+IdeaCtrl = ($scope, $stateParams, $location, $timeout, Idea, Redirect) ->
+  $scope.idea = Idea.get($stateParams.id)
   $scope.error_message = 'Not available' unless $scope.idea
-
-  $scope.$on 'ngRepeatFinished', ->
-    $scope.no_ideas = true if $scope.ideas().length == 0
 
   $scope.$parent.path = $location.path()
   $scope.highlight = { idea: false }
@@ -20,4 +17,4 @@ IdeaCtrl = ($scope, $routeParams, $location, $timeout, Idea, Redirect) ->
 
 angular
   .module('shared')
-  .controller('IdeaCtrl', ['$scope', '$routeParams', '$location', '$timeout', 'Idea', 'Redirect', IdeaCtrl])
+  .controller('IdeaCtrl', ['$scope', '$stateParams', '$location', '$timeout', 'Idea', 'Redirect', IdeaCtrl])

@@ -1,6 +1,12 @@
-@IdeaFilterCtrl =  ['$scope', 'Session', ($scope, Session) ->
+OverviewCtrl = ($scope, Session, Idea) ->
 
   $scope.activeClass = 'all'
+
+  $scope.ideas = ->
+    Idea.all()
+
+  $scope.$on 'ngRepeatFinished', ->
+    $scope.no_ideas = true if $scope.ideas().length == 0
 
   $scope.showAll = ->
     $scope.activeClass = 'all'
@@ -28,4 +34,7 @@
 
   $scope.isAdmin = ->
     Session.isAdmin()
-]
+
+angular
+  .module('Simplybetter')
+  .controller('OverviewCtrl', ['$scope', 'Session', 'Idea', OverviewCtrl])

@@ -14,7 +14,7 @@
     / Directives are found in angular/widget.js.coffee
     / Templates are found in angular/templates folder
     / Using directives wich are all found in angular/directives with the templates
-    #simplybetterIdeasModal(ng-app='Simplybetter' ng-controller='WidgetCtrl')
+    #simplybetterIdeasModal(ng-app='Simplybetter' ng-controller='WidgetCtrl' ng-strict-di)
       .logobar
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
@@ -26,7 +26,7 @@
 
       #simplybetterNavbar(ng-class='{ overview: !path }' ng-init="app_name='#{@app.name}'")
         %span(ng-if='path')
-          %a.link(named-route='overview' ng-click='reset_path()')
+          %a.link(ui-sref='overview' ng-click='reset_path()')
             .back-arrow
             BACK
         %h2
@@ -35,6 +35,6 @@
 
         %idea-new(ng-if='!path || newIdea.title.length')
 
-      #simplybetterIdeasModalContent(ng-view='' stretch-to-fit)
+      #simplybetterIdeasModalContent(ui-view stretch-to-fit)
       %toast
     = render 'shared/google_analytics_main' if Rails.env.production?

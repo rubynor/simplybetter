@@ -1,4 +1,9 @@
-widget.factory 'Redirect', ['$NamedRouteService', ($NamedRouteService) ->
-  return (name, options, urlParameters='') ->
-    window.location = $NamedRouteService.reverse(name, options) + urlParameters
+widget.factory 'Redirect', ['$state', ($state) ->
+  removeEmptyQueryStringParams = (queryString) ->
+    for key, value of queryString
+      delete queryString[key] unless value
+
+  return (name, options) ->
+    removeEmptyQueryStringParams(options)
+    $state.go(name, options)
 ]

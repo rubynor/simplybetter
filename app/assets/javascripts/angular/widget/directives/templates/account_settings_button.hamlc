@@ -1,1 +1,1 @@
-%a.settings-button(data-named-route='settings' ng-hide='button.hidden' tooltip-placement='right' tooltip='Account settings' tooltip-trigger='mouseenter')
+%a.settings-button(ui-sref='settings' ng-hide='button.hidden' tooltip-placement='right' tooltip='Account settings' tooltip-trigger='mouseenter')

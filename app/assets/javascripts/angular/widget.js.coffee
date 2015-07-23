@@ -11,11 +11,9 @@ angular.module("filters", []).filter "truncate", ->
 @widget = angular.module 'Simplybetter', [
   'ngResource'
   'filters'
-  'ngRoute'
   'simplyDirectives'
   'shared'
   'ui.bootstrap'
-  'zj.namedRoutes'
   'ngCookies'
   'ng-rails-csrf'
 ]
@@ -24,36 +22,3 @@ angular.module("filters", []).filter "truncate", ->
   Session.setInfoParam()
   Session.setParams()
 ]
-
-@widget.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
-    # use hashbang fallback mode
-    $locationProvider
-      .hashPrefix("")
-      .html5Mode(false)
-
-    $routeProvider
-      .when '/widget',
-        template: JST['angular/widget/templates/overview']
-        name: 'overview'
-      .when '/widget/ideas/:id',
-        controller: 'IdeaCtrl'
-        template: JST['angular/widget/templates/idea_view']
-        name: 'idea'
-      .when '/widget/settings',
-        controller: 'SettingsCtrl as setting'
-        template: JST['angular/widget/templates/settings_view']
-        name: 'settings'
-      .when '/widget/faqs',
-        controller: 'FaqCtrl as faq'
-        template: JST['angular/widget/templates/faq_view']
-        name: 'faqs'
-      .when '/widget/ideas/:id/edit',
-        controller: 'IdeaCtrl'
-        template: JST['angular/widget/templates/idea_edit']
-        name: 'idea_edit'
-      .when '/widget/support',
-        controller: 'SupportCtrl as support'
-        template: JST['angular/widget/templates/support_view']
-        name: 'support'
-      .otherwise(redirectTo: '/widget')
-  ]

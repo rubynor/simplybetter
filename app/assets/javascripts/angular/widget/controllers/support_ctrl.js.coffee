@@ -1,4 +1,4 @@
-SupportCtrl = ['$scope', '$routeParams', '$timeout', 'Support', ($scope, $routeParams, $timeout, Support) ->
+SupportCtrl = ($scope, $stateParams, $timeout, Support) ->
   $scope.$parent.path = true
   @app_name = $scope.$parent.app_name
   console.log 'app_name', @app_name
@@ -39,8 +39,9 @@ SupportCtrl = ['$scope', '$routeParams', '$timeout', 'Support', ($scope, $routeP
   element = $('div.spinner')[0]
   element.appendChild(spinner.el)
   return
-]
 
 
-angular.module('Simplybetter').controller('SupportCtrl', SupportCtrl)
+angular
+  .module('Simplybetter')
+  .controller('SupportCtrl', ['$scope', '$stateParams', '$timeout', 'Support', SupportCtrl])
 

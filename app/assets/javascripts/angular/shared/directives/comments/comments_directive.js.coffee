@@ -1,8 +1,8 @@
 Comments = ->
   restrict: 'E'
   template: JST['angular/shared/directives/comments/comments']
-  controller: ['$scope', '$location', '$timeout', '$routeParams', 'Session', 'Comment', ($scope, $location, $timeout, $routeParams, Session, Comment) ->
-    $scope.comments = Comment.query {idea_id: $routeParams.id}
+  controller: ['$scope', '$location', '$timeout', '$stateParams', 'Session', 'Comment', ($scope, $location, $timeout, $stateParams, Session, Comment) ->
+    $scope.comments = Comment.query {idea_id: $stateParams.id}
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = { comment: false }
     $scope.user = Session.user_signed_in()

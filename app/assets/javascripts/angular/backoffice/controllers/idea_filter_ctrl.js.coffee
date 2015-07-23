@@ -1,4 +1,4 @@
-@IdeaFilterCtrl =  ['$scope', ($scope) ->
+IdeaFilterCtrl =  ($scope) ->
 
   $scope.activeClass = 'all'
 
@@ -22,4 +22,6 @@
     $scope.activeClass = 'hide_visible'
     $scope.selectedFilter = { visible: false }
 
-]
+angular
+  .module('Backoffice')
+  .controller('IdeaFilterCtrl', ['$scope', IdeaFilterCtrl])
