@@ -54,6 +54,26 @@ simplyDirectives.directive 'notifications', ->
       )
   ]
 
+simplyDirectives.directive 'supportButton', ->
+  restrict: 'E'
+  template: JST['angular/widget/directives/templates/support_button']
+  controller: ['$scope', 'Session', ($scope, Session) ->
+    @hidden = true
+    if Session.user_signed_in()
+      @hidden = false
+  ]
+  controllerAs: 'button'
+
+simplyDirectives.directive 'faqsButton', ->
+  restrict: 'E'
+  template: JST['angular/widget/directives/templates/faqs_button']
+  controller: ['$scope', 'Session', ($scope, Session) ->
+    @hidden = true
+    if Session.user_signed_in()
+      @hidden = false
+  ]
+  controllerAs: 'button'
+
 simplyDirectives.directive 'accountSettingsButton', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/account_settings_button']

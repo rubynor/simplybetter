@@ -1,5 +1,5 @@
 class CustomerMailer < ActionMailer::Base
-  default from: 'noreply@simplybetter.io'
+  default from: 'support@simplybetter.io'
 
   def password_reset(user)
     @user = user

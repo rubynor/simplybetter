@@ -1,5 +1,7 @@
 SimplyBetter::Application.routes.draw do
 
+  get 'ping' => 'application#ping'
+
   resources :landing_page, only: :index do
     post :contact_us, on: :collection
   end
@@ -20,8 +22,10 @@ SimplyBetter::Application.routes.draw do
     resources :notifications, only: [:index, :update] do
       get :count, on: :collection
     end
+    resources :faqs
     resource :user, only: [:show, :update]
     resource :email_settings, only: [:show, :update]
+    resources :support_messages, only: [:create]
   end
 
   resources :customers, only: [:index, :new, :create, :edit, :update] do
@@ -36,6 +40,7 @@ SimplyBetter::Application.routes.draw do
     get :administrate_group, on: :member
     get :preview, on: :member
     resources :ideas, only: [:index, :update, :destroy]
+    resources :faqs
   end
 
   resources :comments, only: [:update]

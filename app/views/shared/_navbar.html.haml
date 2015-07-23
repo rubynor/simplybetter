@@ -13,3 +13,6 @@
         Customization
       = link_to preview_application_path(@application.id) do
         My widget
+      - if @application.faqs_enabled
+        = link_to application_faqs_path(@application.id) do
+          FAQ

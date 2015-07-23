@@ -17,6 +17,8 @@ class Idea < ActiveRecord::Base
 
   scope :visible, -> { where(visible: true) }
 
+  LAST_EDIT_ADMIN_ELIGIBLE_ATTRIBUTES = [:title, :description]
+
   def save_and_notify(params, current_customer)
     creator = params.delete(:creator)
     assign_attributes(params)
@@ -50,11 +52,19 @@ class Idea < ActiveRecord::Base
         AdminNotifier.send_to_group(app.customers, self)
         ActiveRecord::Base.connection.close
       end
+      #TODO OMA Q:Jeg forstår ikke denne. Her lages det en tråd man må vente på. Ingen andre tråder kjører? Må ha en gruppe tråder, da kan man vente til siste har fullført, før man fortsetter :)
       at_exit { t.join }
       true
     else
       false
     end
+  end
+
+  def should_set_last_edit_admin?(attributes)
+    LAST_EDIT_ADMIN_ELIGIBLE_ATTRIBUTES.each do |attr|
+      return true if attributes.has_key?(attr) && attributes[attr] != self.send(attr)
+    end
+    false
   end
 
   def subscribers
@@ -75,7 +85,7 @@ class Idea < ActiveRecord::Base
 
   def downvotes
     votes.where("value < 0").count
-  end 
+  end
 
   def voter_status(voter)
     votes.find_by(voter: voter).try(:value) if voter

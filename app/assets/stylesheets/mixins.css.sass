@@ -21,7 +21,7 @@
     background: $button-hover
   &:active
     margin-top: 17px
-  
+
 @mixin button
   width: 50px
 
@@ -32,7 +32,7 @@ $input-radius: 3px
   -moz-box-sizing: border-box
   height: 55px
   font-size: 20px
-  font-style: italic
+  //font-style: italic   ole : testing, cleaner straight?
   border: 1px solid $form-border
   border-radius: $input-radius
   padding: 0px 30px
@@ -41,19 +41,6 @@ $input-radius: 3px
     background-color: $form-hover
   &:focus
     background-color: $form-focus
-
-@mixin button-new
-  background: $button-new image-url('dashboard/new.png') no-repeat left center
-  display: inline-block
-  height: 40px
-  padding: 10px 25px 0px 75px
-  border-radius: 50px
-  border: 0px
-  text-transform: uppercase
-  color: white
-  font-weight: 700
-  &:hover
-    text-decoration: none
 
 @mixin textarea
   @include input
@@ -65,25 +52,6 @@ $input-radius: 3px
 @mixin idea-padding
   padding: 0px 15px
 
-@mixin icon($y)
-  background: image-url('widget/icons.png') no-repeat 0 $y
-  height: 24px
-  width: 24px
-  &:hover
-    background-position: -24px $y
-    cursor: pointer
-@mixin thumb($y)
-  background: image-url('widget/thumbs.png') no-repeat -2px $y
-  &:hover
-    background-position: -27px $y
-    cursor: pointer
-
-@mixin comment-icon($y)
-  background: image-url('widget/comment-icons.png') no-repeat 0 $y
-  &:hover
-    background-position: -14px $y
-    cursor: pointer
-
 @mixin box
   background-color: $white
   border-radius: 3px
@@ -94,3 +62,5 @@ $input-radius: 3px
   background-color: $info-box-background
   padding: 15px
   border-radius: 5px
+
+

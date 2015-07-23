@@ -23,7 +23,7 @@ RSpec.configure do |config|
 
   Capybara.server_port = 1234
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # Don't run tests with tag js => true by default
   # To run js tests run command
@@ -39,14 +39,14 @@ RSpec.configure do |config|
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
-  config.infer_base_class_for_anonymous_controllers = false
+  config.infer_base_class_for_anonymous_controllers = true
 
-  # Previously we automatically inferred spec type from a file location, 
+  # Previously we automatically inferred spec type from a file location,
   # this was a surprising behaviour for new users and undesirable for some veteran
   # users so from RSpec 3 onwards this behaviour must be explicitly opted into
   config.infer_spec_type_from_file_location!
 
-  #config.raise_errors_for_deprecations!
+  config.raise_errors_for_deprecations!
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
@@ -61,6 +61,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    ActionMailer::Base.deliveries.clear
   end
 
   config.after(:each) do

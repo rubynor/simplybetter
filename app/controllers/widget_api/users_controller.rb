@@ -1,6 +1,4 @@
-class WidgetApi::UsersController < ApplicationController
-  include DecodeParams
-  include CreatorFinder
+class WidgetApi::UsersController < WidgetController
   before_action :set_user
 
   def show
@@ -14,7 +12,6 @@ class WidgetApi::UsersController < ApplicationController
   private
 
   def set_user
-    app = Application.find_by(token: params[:appkey])
-    @user = get_current_user(app, params[:email])
+    @user = widget_user
   end
 end

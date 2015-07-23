@@ -1,7 +1,5 @@
-class WidgetApi::CommentsController < ApplicationController
-  include DecodeParams
+class WidgetApi::CommentsController < WidgetController
   include CreatorFinder
-
   before_action :set_idea, only: [:index, :create, :update]
 
   def index
@@ -23,6 +21,7 @@ class WidgetApi::CommentsController < ApplicationController
   end
 
   def create
+    decode_params unless params[:email].present?
     # Early exit if no user..
     if params[:email].blank?
       render json: 'You must be signed in to comment', status: :unauthorized and return

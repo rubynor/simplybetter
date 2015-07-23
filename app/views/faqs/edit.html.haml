@@ -1,0 +1,17 @@
+#navbar
+  = render 'shared/navbar'
+
+.edit_faq_page
+
+  .header-text
+    %h2
+      Change your FAQ
+
+  .faq_form
+    = form_for [@application, @faq], html: { role: 'form'} do |f|
+      = f.label :question
+      = f.text_field :question
+      = f.label :answer
+      = f.text_area :answer
+      = f.button 'Save', name: 'save', method: 'put'
+      = f.button 'Cancel', name: 'cancel', method: 'put'

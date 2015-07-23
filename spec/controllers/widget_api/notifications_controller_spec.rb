@@ -66,7 +66,7 @@ describe WidgetApi::NotificationsController do
     it 'raises ArgumentError if no application' do
       expect do
         get :index, appkey: 'kh', email: @customer.email, format: :json
-      end.to raise_error(ArgumentError)
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'raises NoUserException if no application' do

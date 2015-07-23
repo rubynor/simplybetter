@@ -1,9 +1,9 @@
 .col-xs-12
   .new-application
-    = link_to 'New application', new_application_path, class: 'button-new'
+    = link_to 'New project', new_application_path, class: 'button-new'
   .links
     %h3
-      Applications
+      Projects
     - unless applications.blank?
       - applications.each do |a|
         =link_to administrate_group_application_path(a.id) do
@@ -14,7 +14,7 @@
               %span.badge.pull-right
                 =a.ideas.count
     - else
-      You have not created any applications yet
+      You have not created any projects (widgets for your website) yet
 
 .user
   = current_customer.name

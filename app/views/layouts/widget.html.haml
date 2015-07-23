@@ -19,15 +19,18 @@
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
           .logo-text Simply Better
+        %faqs-button(ng-show="#{@app.faqs_enabled}")
+        %support-button(ng-show="#{@app.support_enabled}")
         %account-settings-button
         %notifications
 
-      #simplybetterNavbar(ng-class='{ overview: !path }')
+      #simplybetterNavbar(ng-class='{ overview: !path }' ng-init="app_name='#{@app.name}'")
         %span(ng-if='path')
           %a.link(ui-sref='overview' ng-click='reset_path()')
             .back-arrow
             BACK
-        %h2= @app.name
+        %h2
+          {{app_name}}
         %p= @app.intro
 
         %idea-new(ng-if='!path || newIdea.title.length')
