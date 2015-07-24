@@ -5,3 +5,4 @@
 //= require angular/angular-sanitize
 //= require angular/ngToast
 //= require ng-rails-csrf
+//= require lodash

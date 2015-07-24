@@ -10,12 +10,16 @@ IdeaItem = ->
       Session.owner($scope.idea.creator_email) if $scope.idea
 
     @editMode = false
-    @editIdea = Idea.dupe($scope.idea)
+
+    if $scope.idea.$promise
+      $scope.idea.$promise.then (idea) =>
+        @editIdea = Idea.dupe(idea)
+    else
+      @editIdea = Idea.dupe($scope.idea)
 
     @ideaUpdate = =>
-      $scope.idea = @editIdea
-      Idea.update($scope.idea)
-      @editMode = false
+      Idea.updateOptimistic $scope.idea, @editIdea, =>
+        @editMode = false
 
     @cancelIdeaUpdate = =>
       @editIdea = Idea.dupe($scope.idea)

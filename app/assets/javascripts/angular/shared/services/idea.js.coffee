@@ -11,7 +11,7 @@ Idea = ($resource, Session, ngToast) ->
 
   ideas = undefined
   lastUpdated = undefined
-  MIN_SECONDS_BETWEEN_UPDATE = 1
+  MIN_SECONDS_BETWEEN_UPDATE = 30
 
   removeIdea = (idea) ->
     index = ideas.indexOf(idea)
@@ -31,6 +31,25 @@ Idea = ($resource, Session, ngToast) ->
       lastUpdated = new Date()
       resource.query (data) ->
         ideas = data
+
+  updateLocalIdea = (oldIdea, newIdea) ->
+    for key, value of oldIdea
+      if !_.startsWith(key, '_') && !_.startsWith(key, '$')
+        oldIdea[key] = newIdea[key]
+
+  dupeIdea = (idea) ->
+    new resource(JSON.parse(angular.toJson(idea)))
+
+  updateSuccessNotify = ->
+    ngToast.create(content: 'Updated!')
+
+  updateFailedNotify = ->
+    ngToast.create(
+      content: '<strong>Error: </strong>Could not update idea. Please try again later. Developers have been notified'
+      dismissOnTimeout: false,
+      className: 'danger'
+      dismissButton: true
+    )
 
   all: ->
     # Update ideas in the background, so we don't
@@ -81,17 +100,22 @@ Idea = ($resource, Session, ngToast) ->
 
   update: (idea) ->
     idea.$update ->
-      ngToast.create(content: 'Updated!')
+      updateSuccessNotify()
     , ->
-      ngToast.create(
-        content: '<strong>Error: </strong>Could not update idea. Please try again later. Developers have been notified'
-        dismissOnTimeout: false,
-        className: 'danger'
-        dismissButton: true
-      )
+      updateFailedNotify()
+
+  updateOptimistic: (idea, editedDupe, success) ->
+    oldIdea = dupeIdea(idea)
+    updateLocalIdea(idea, editedDupe)
+    idea.$update ->
+      updateSuccessNotify()
+      success()
+    , ->
+      updateFailedNotify()
+      updateLocalIdea(idea, oldIdea)
 
   dupe: (idea) ->
-    new resource(JSON.parse(angular.toJson(idea)))
+    dupeIdea(idea)
 
 
 angular
