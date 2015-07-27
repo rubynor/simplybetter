@@ -12,7 +12,7 @@ class Application < ActiveRecord::Base
   has_many :notifications
   has_many :faqs
 
-  enumerize :icon, in: [:triangle, :circle], default: :triangle
+  enumerize :icon, in: [:triangle, :circle, :none], default: :triangle
 
   validates_uniqueness_of :token
   validates_presence_of :name

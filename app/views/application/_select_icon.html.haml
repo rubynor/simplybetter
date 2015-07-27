@@ -3,7 +3,6 @@
 .box
   .col-xs-12
     = form_for @application do |f|
-      -# TODO: Use variable @icons from controller
       - @icons.each do |i|
         = f.label "icon_#{i}".to_sym,
           class: selected(@application,i) do
