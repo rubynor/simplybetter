@@ -32,7 +32,7 @@
 
     var appendActivateButton = function(){
         var buttonWrapperDiv = document.createElement('div');
-        buttonWrapperDiv.innerHTML = '<div id="simplybetterActivateButton"></div>';
+        buttonWrapperDiv.innerHTML = '<div id="simplybetterActivateButton" class="simplybetterActivateButton"></div>';
         appendToBody(buttonWrapperDiv);
     };
 
@@ -63,16 +63,18 @@
     // Append the Activate button
     appendActivateButton();
     activateButton = document.getElementById('simplybetterActivateButton');
+    var activationButtons = document.getElementsByClassName('simplybetterActivateButton');
+    for (var i = 0; i < activationButtons.length; i++) {
+      activationButtons[i].onclick = function() {
+          appendSimplyBetterWidget();
+          iframeWrapper = document.getElementById('simplybetterIframeWrapper');
+          backdrop = document.getElementById('simplybetterBackdropLayer');
+          bindCloseButtons();
 
-    activateButton.onclick = function() {
-        appendSimplyBetterWidget();
-        iframeWrapper = document.getElementById('simplybetterIframeWrapper');
-        backdrop = document.getElementById('simplybetterBackdropLayer');
-        bindCloseButtons();
-
-        iframeWrapper.removeAttribute('style');
-        backdrop.removeAttribute('style');
-    };
+          iframeWrapper.removeAttribute('style');
+          backdrop.removeAttribute('style');
+      };
+    }
 
     // Show notification count on the button
     var requestNotificationCount = function(){
