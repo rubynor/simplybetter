@@ -2,7 +2,7 @@
 %p You can change the icon whenever you want
 .box
   .col-xs-12
-    = form_for @application do |f|
+    = form_for @application, html: { class: 'icon_select' } do |f|
       - @icons.each do |i|
         = f.label "icon_#{i}".to_sym,
           class: selected(@application,i) do
