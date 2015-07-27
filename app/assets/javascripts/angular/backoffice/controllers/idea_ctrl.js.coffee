@@ -23,12 +23,12 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, C
       idea.$delete({application_id: $scope.app_id})
       $scope.ideas.splice(idx, 1)
 
-  $scope.save = (idea, idx) ->
+  $scope.save = (idea) ->
     $scope.error_message = undefined
     updated_idea = new Idea({ id: idea.id, title: idea.title, description: idea.description})
     updated_idea.$patch({application_id: $scope.app_id},
       (data) ->
-        $scope.ideas[idx] = data
+        angular.copy(data, idea)
     , (err) ->
       $scope.error_message = err.data
     )
@@ -37,9 +37,10 @@ backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, C
     $scope.copy = angular.copy(idea)
     idea.$edit = true
 
-  $scope.cancel = (idx) ->
+  $scope.cancel = (idea) ->
+    idea.$edit = false
     $scope.copy.$edit = false
-    $scope.ideas[idx] = $scope.copy
+    angular.copy($scope.copy, idea)
 
   $scope.toggleVisibleComment = (comment) ->
     updated_comment = new Comment( { id: comment.id, visible: !comment.visible } )

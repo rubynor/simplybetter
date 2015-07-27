@@ -18,8 +18,8 @@
             %textarea(name='description' ng-model='idea.description')
               {{ idea.description }}
               {{ editIdea }}
-            %button.btn(ng-click='save(idea, $index)' ng-class='{ disabled: !editIdea.$dirty || editIdea.$invalid }') Save
-            %button.btn(ng-click='cancel($index)') Cancel
+            %button.btn(ng-click='save(idea)' ng-class='{ disabled: !editIdea.$dirty || editIdea.$invalid }') Save
+            %button.btn(ng-click='cancel(idea)') Cancel
         %div(ng-if='!idea.$edit')
           %h1
             {{ idea.title }}
