@@ -37,7 +37,6 @@ SimplyBetter::Application.routes.draw do
   end
 
   resources :applications, except: [:destroy] do
-    get :administrate_group, on: :member
     get :preview, on: :member
     resources :ideas, only: [:index, :update, :destroy]
     resources :faqs

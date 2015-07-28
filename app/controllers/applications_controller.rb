@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show, :administrate_group, :edit, :update, :preview]
+  before_action :set_application, only: [:show, :ideas, :edit, :update, :preview]
 
   def index
     if applications.any?
@@ -35,7 +35,7 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  def administrate_group
+  def ideas
   end
 
   def preview

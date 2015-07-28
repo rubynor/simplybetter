@@ -7,7 +7,7 @@
       -#= link_to new_application_idea_path(@application.id), class: 'list-group-item' do
         %i.fa.fa-plus
         New idea
-      = link_to administrate_group_application_path(@application.id) do
+      = link_to application_ideas_path(@application.id) do
         Show ideas
       = link_to application_path(@application.id, anchor: 'customize') do
         Customization
