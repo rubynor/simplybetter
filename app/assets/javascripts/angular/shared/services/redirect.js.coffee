@@ -1,4 +1,4 @@
-widget.factory 'Redirect', ['$state', ($state) ->
+Redirect = ($state) ->
   removeEmptyQueryStringParams = (queryString) ->
     for key, value of queryString
       delete queryString[key] unless value
@@ -6,4 +6,7 @@ widget.factory 'Redirect', ['$state', ($state) ->
   return (name, options) ->
     removeEmptyQueryStringParams(options)
     $state.go(name, options)
-]
+
+angular
+  .module('shared')
+  .factory('Redirect', ['$state', Redirect])
