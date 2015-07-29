@@ -1,4 +1,6 @@
-IdeaFilterCtrl =  ($scope) ->
+IdeasCtrl =  ($rootScope, $scope, Idea) ->
+
+  $scope.ideas = Idea.all({token: $rootScope.appKey})
 
   $scope.activeClass = 'all'
 
@@ -24,4 +26,4 @@ IdeaFilterCtrl =  ($scope) ->
 
 angular
   .module('Backoffice')
-  .controller('IdeaFilterCtrl', ['$scope', IdeaFilterCtrl])
+  .controller('ideasCtrl', ['$rootScope', '$scope', 'Idea', IdeasCtrl])
