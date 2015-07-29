@@ -1,7 +1,7 @@
 Idea = ($resource, Session, ngToast) ->
   resource = $resource '/widget_api/ideas/:id.json',
     {
-      id: '@id',
+      id: '@id'
       info: Session.info
     },
     {
@@ -24,12 +24,12 @@ Idea = ($resource, Session, ngToast) ->
     now = new Date()
     (now.getTime() - lastUpdated.getTime()) / 1000
 
-  cacheIdeasFromBackend = ->
+  cacheIdeasFromBackend = (params) ->
     if !ideas
-      ideas = resource.query()
+      ideas = resource.query(params)
     else if !lastUpdated || secondsSinceLastUpdate() > MIN_SECONDS_BETWEEN_UPDATE
       lastUpdated = new Date()
-      resource.query (data) ->
+      resource.query params, (data) ->
         ideas = data
 
   updateLocalIdea = (oldIdea, newIdea) ->
@@ -51,10 +51,10 @@ Idea = ($resource, Session, ngToast) ->
       dismissButton: true
     )
 
-  all: ->
+  all: (params) ->
     # Update ideas in the background, so we don't
     # have to wait for requests when we navigate
-    cacheIdeasFromBackend()
+    cacheIdeasFromBackend(params)
     ideas
 
   get: (id) ->

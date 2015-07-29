@@ -1,10 +1,7 @@
 require 'base64'
 
-class NoUserException < StandardError
-end
-
-class NoAccessException < StandardError
-end
+class NoUserException   < StandardError;end
+class NoAccessException < StandardError;end
 
 module CreatorFinder
 

@@ -1,7 +1,7 @@
 backoffice.controller 'ideaCtrl', ['$scope', 'Idea', 'Comment', ($scope, Idea, Comment) ->
-  $scope.init = (app_id) ->
-    $scope.app_id = app_id
-    $scope.ideas = Idea.query(application_id: app_id)
+  $scope.init = (appKey) ->
+    $scope.appKey = appKey
+    $scope.ideas = Idea.all({token: appKey})
 
   $scope.toggleVisible = (idea) ->
     updated_idea = new Idea( { id: idea.id, visible: !idea.visible } )
