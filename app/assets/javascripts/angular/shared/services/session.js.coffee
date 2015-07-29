@@ -51,4 +51,7 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
         setAdmin(token)
       , 1000
       return null
+
+  setAdmin: (token) ->
+    setAdmin(token)
 ]
