@@ -1,5 +1,7 @@
+%a.back(ui-sref='overview')
+  Back
 .idea-layout(ng-class='{ highlighted: highlight.idea }')
-  %vote(idea="idea")
+  {{ idea.votes_count }}
   %idea-item(idea="idea" expanded="true")
     %comments(idea="idea")
     %idea-admin-options(idea="idea")
