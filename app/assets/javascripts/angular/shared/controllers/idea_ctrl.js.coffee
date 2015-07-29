@@ -1,4 +1,4 @@
-IdeaCtrl = ($scope, $stateParams, $location, $timeout, Idea, Redirect) ->
+IdeaCtrl = ($scope, $stateParams, $location, $timeout, Idea) ->
   $scope.idea = Idea.get($stateParams.id)
   $scope.error_message = 'Not available' unless $scope.idea
 
@@ -17,4 +17,4 @@ IdeaCtrl = ($scope, $stateParams, $location, $timeout, Idea, Redirect) ->
 
 angular
   .module('shared')
-  .controller('IdeaCtrl', ['$scope', '$stateParams', '$location', '$timeout', 'Idea', 'Redirect', IdeaCtrl])
+  .controller('IdeaCtrl', ['$scope', '$stateParams', '$location', '$timeout', 'Idea', IdeaCtrl])
