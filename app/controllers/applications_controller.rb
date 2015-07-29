@@ -4,7 +4,7 @@ class ApplicationsController < ApplicationController
 
   def index
     if applications.any?
-      redirect_to administrate_group_application_path(applications.first.id)
+      redirect_to application_ideas_path(applications.first.id)
     else
       redirect_to new_application_path
     end
