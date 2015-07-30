@@ -6,7 +6,7 @@
       Projects
     - unless applications.blank?
       - applications.each do |a|
-        =link_to application_ideas_path(a.id) do
+        =link_to show_ideas_application_path(a.id) do
           .row{class: active(a)}
             .col-xs-10.name
               =a.name
