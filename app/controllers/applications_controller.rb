@@ -1,14 +1,15 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show, :ideas, :edit, :update, :preview]
+  before_action :set_application, only: [:show, :show_ideas, :edit, :update, :preview]
 
   def index
     if applications.any?
-      redirect_to application_ideas_path(applications.first.id)
+      redirect_to show_ideas_application_path(applications.first.id)
     else
       redirect_to new_application_path
     end
   end
+
   def new
     @application = Application.new
   end
@@ -18,6 +19,9 @@ class ApplicationsController < ApplicationController
 
   def show
     @icons = Application.icon.values
+  end
+
+  def show_ideas
   end
 
   def update
@@ -35,9 +39,6 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  def ideas
-  end
-
   def preview
     @token = @application.token
     @email = current_customer.email
@@ -47,9 +48,12 @@ class ApplicationsController < ApplicationController
   private
 
   def set_application
-    @application ||= current_customer.applications.find(params[:id]) if params[:id]
+    if params[:id]
+      @application ||= current_customer.applications.find(params[:id])
+      session[:current_application] = @application.id
+    end
   rescue
-    flash[:error] = "We couldn't find that application, or u don't have rights to that application"
+    flash[:error] = "We couldn't find that application, or you don't have rights to that application"
     redirect_to edit_customer_path
   end
 
