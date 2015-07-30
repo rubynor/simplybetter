@@ -5,4 +5,5 @@ angular.module 'shared', [
   'ngToast'
   'filters'
   'ng-rails-csrf'
+  'ui.bootstrap'
 ]

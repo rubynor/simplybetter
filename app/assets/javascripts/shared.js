@@ -1,8 +1,11 @@
 //= require angular/angular
 //= require angular/angular-resource
 //= require angular/angular-cookies
+//= require hamlcoffee
 //= require angular/ui-router
 //= require angular/angular-sanitize
 //= require angular/ngToast
 //= require ng-rails-csrf
 //= require lodash
+//= require angular/ui-bootstrap-custom-0.10.0
+//= require angular/ui-bootstrap-custom-tpls-0.10.0
