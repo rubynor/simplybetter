@@ -1,0 +1,4 @@
+=render 'shared/navbar'
+.col-xs-12(ng-controller="applicationsCtrl" ng-init="init('#{@application.token}', '#{@current_customer.email}')")
+  = render 'shared/alerts', model: current_customer
+  %ui-view
