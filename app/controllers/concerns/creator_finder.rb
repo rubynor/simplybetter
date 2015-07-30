@@ -14,7 +14,11 @@ module CreatorFinder
 
   def current_application
     decode_params if params["info"].present? && !(params["token"].present? || params["appkey"].present?)
-    @widget ||= Application.find_by!(token: params[:token] || params[:appkey]) if params[:token] || params[:appkey]
+    if params[:token] || params[:appkey]
+      @current_application ||= Application.find_by!(token: params[:token] || params[:appkey])
+    elsif session[:current_application]
+      @current_application ||= Application.find(session[:current_application])
+    end
   end
 
   def creator(application, creator_email)
