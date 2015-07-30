@@ -7,4 +7,5 @@
     %a(href='#' ng-click='hideVisible()' ng-class='{ active: activeClass == "hide_visible" }') Hidden
   %ul
     %li.idea(ng-repeat='idea in ideas | filter:selectedFilter' ng-class='{ "completed": idea.completed}')
+      %vote(idea="idea")
       %idea-item(idea="idea" expanded="false")
