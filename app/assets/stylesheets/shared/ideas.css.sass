@@ -1,0 +1,171 @@
+.idea, .idea-layout
+  background: image-url('widget/seperator.png') repeat-y 56px 0px
+  position: relative
+  display: block
+  text-align: left
+  margin-bottom: 10px
+  padding: 20px 0px 20px 56px
+  min-height: 110px
+  width: 100%
+  transition: all 1s linear
+  @include box
+
+  .not-visible-overlay
+    position: absolute
+    top: 0px
+    bottom: 0px
+    left: 0px
+    right: 0px
+    background: $white
+    opacity: 0.8
+    border-radius: 3px
+    border: 0px
+
+  .vote-buttons
+    position: absolute
+    top: 0px
+    left: 0px
+    padding: 20px 0px 20px 0px
+    text-align: center
+    width: 58px
+    line-height: 16px
+    .votes
+      display: inline-block
+      line-height: 13px
+      text-align: center
+      font-size: 12px
+      color: #9f9f9f
+      font-weight: 400
+      height: 16px
+      border: 1px solid #9f9f9f
+      padding: 0px 6px
+      border-radius: 10px
+      &.upvote
+        color: $upvote
+      &.downvote
+        color: $downvote
+    .up, .down, .up.active, .down.active
+      display: inline-block
+      width: 23px
+      height: 22px
+      cursor: pointer
+    .up
+      @include thumb(-44px)
+      margin-left: 4px
+      &.owner
+        &:hover
+          background-position: -2px -44px
+          cursor: not-allowed
+      &.active
+        @include thumb(0px)
+    .tooltip-inner
+      width: 200px !important
+    .down
+      @include thumb(-66px)
+      &.active
+        @include thumb(-22px)
+
+
+
+  &.completed
+    border: 1px solid $completed-border
+    background: $completed-background
+    &:after
+      position: absolute
+      z-index: 1
+      bottom: 10px
+      right: 10px
+      background: $completed-border
+      content: '✔ COMPLETED'
+      padding: 3px 5px
+      color: white
+      border-radius: 20px
+      font-weight: 700
+      font-size: 12px
+
+  a
+    cursor: pointer
+
+  &.highlighted
+    box-shadow: inset 0px 0px 10px 0px $notification-background
+    transition: all 1s linear
+
+  .idea-item
+    display: block
+    padding: 0px 20px 0px 20px
+
+    input[type="text"]
+      @include input
+      width: 100%
+    textarea
+      @include textarea
+      width: 100%
+    .update
+      @include button-big
+      float: right
+    .cancel
+      float: right
+      padding: 32px 30px 0px 30px
+      text-decoration: underline
+      color: $button-main
+      cursor: pointer
+    a
+      text-decoration: none
+    h1
+      color: $black
+      margin: 0px 0px 10px 0px
+      padding: 0
+      line-height: 20px
+      font-size: 24px
+      font-weight: 500
+    p.desc
+      color: $gray
+      font-size: 14px
+      line-height: 20px
+      &.ideaView
+        color: #777
+        font-size: 22px
+        line-height: 34px
+        font-weight: 300
+    .meta
+      @include clearfix
+      display: block
+      color: $gray
+      margin: 10px 0px 0px 0px
+      width: 100%
+      font-weight: 500
+      font-size: 12px
+      a
+        font-size: inherit
+        padding: inherit
+      .comments
+        margin: 4px 3px 0px 0px
+        width: 14px
+        height: 13px
+        display: inline-block
+        float: left
+        @include comment-icon(-26px)
+      span
+        &.black
+          color: $black
+        &.blue
+          color: $button-main
+          margin-right: 15px
+      .admin-edited
+        clear: both
+        float: right
+        width: 200px
+        font-size: 10px
+        line-height: 10px
+        .circle-mask
+          float: left
+          width: 25px
+          height: 25px
+          margin-right: 5px
+          border-radius: 15px
+          overflow: hidden
+        img
+          width: 100%
+          height: 100%
+
+
