@@ -10,13 +10,13 @@
 @import widget/ideas
 @import widget/navbar
 @import widget/alerts
-@import widget/comments
+@import shared/comments
 @import widget/new_idea
 @import widget/success
 @import widget/settings
 @import widget/support
 @import widget/edit-idea
-@import widget/idea-admin-options
+@import shared/idea-admin-options
 @import widget/faq
 
 h1,h2,h3,h4,h5,body,label,input,textarea
@@ -215,32 +215,3 @@ strong
       vertical-align: top
       border-collapse: collapse
       overflow-y: scroll
-
-  ul
-    li
-      position: relative
-      .options
-        display: none
-        position: absolute
-        right: 20px
-        top: 30px
-        z-index: 10
-        .icon
-          margin: 0 10px
-          cursor: pointer
-      &:hover
-        .options
-          display: inline-block
-
-    .not-visible-overlay
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 2px
-      right: 0
-      background: $white
-      opacity: 0.8
-      border-radius: 3px
-      border: 0px
-
-
