@@ -24,7 +24,9 @@ module CreatorFinder
   def creator(application, creator_email)
     fail NoUserException, 'No email provided' unless creator_email
     if (a_customer = Customer.find_by(email: creator_email))
-      return a_customer if a_customer.widgets.include?(application)
+      if a_customer.widgets.include?(application) || a_customer.applications.include?(application)
+        return a_customer
+      end
       fail NoAccessException, 'The customer does not have access to this application'
     end
 

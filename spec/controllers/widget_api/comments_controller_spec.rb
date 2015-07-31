@@ -4,11 +4,20 @@ describe WidgetApi::CommentsController do
   include SessionHelper
   let(:idea) { Idea.make! }
   let(:user) { User.make! }
+  let(:customer) { Customer.make! }
 
   example 'adding a comment' do
     user.widgets << idea.application
     post :create, idea_id: idea.id, comment: { body: 'Oh, hi thar!',idea_id: idea.id }, email: user.email, format: :json
     expect(response).to render_template(:show)
+  end
+
+  context "customer has not visited it's widget, thus is not part of customer.widgets" do
+    example 'adding a comment' do
+      customer.applications << idea.application
+      post :create, idea_id: idea.id, comment: { body: 'Oh, hi thar!',idea_id: idea.id }, email: customer.email, format: :json
+      expect(response).to render_template(:show)
+    end
   end
 
   describe 'update comment' do
