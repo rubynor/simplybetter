@@ -57,4 +57,7 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
 
   setEmail: (email) ->
     @email = email
+
+  setToken: (token) ->
+    @token = token
 ]
