@@ -21,7 +21,13 @@ class WidgetApi::CommentsController < WidgetController
   end
 
   def create
-    decode_params unless params[:email].present?
+    # TODO Pål: We should have some common way to solve this
+    if !params[:email].present? && params[:info].present?
+      decode_params
+    elsif current_customer.present?
+      params[:email] = current_customer.email
+    end
+
     # Early exit if no user..
     if params[:email].blank?
       render json: 'You must be signed in to comment', status: :unauthorized and return
