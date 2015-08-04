@@ -1,6 +1,6 @@
 %h2 Select icon style
 %p You can change the icon whenever you want
-.box
+.box.with-form
   .col-xs-12
     = form_for @application, html: { class: 'icon_select' } do |f|
       - @icons.each do |i|
