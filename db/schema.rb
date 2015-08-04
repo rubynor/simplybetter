@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624122403) do
+ActiveRecord::Schema.define(version: 20150803090314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(version: 20150624122403) do
     t.datetime "updated_at"
     t.text     "intro"
     t.string   "icon"
-    t.boolean  "support_enabled", default: false, null: false
+    t.boolean  "support_enabled",     default: false, null: false
     t.string   "support_email"
-    t.boolean  "faqs_enabled",    default: false, null: false
+    t.boolean  "faqs_enabled",        default: false, null: false
+    t.boolean  "third_party_support", default: false, null: false
   end
 
   add_index "applications", ["token"], name: "index_applications_on_token", unique: true, using: :btree
