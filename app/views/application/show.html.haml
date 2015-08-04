@@ -1,14 +1,13 @@
 =render 'shared/navbar'
 .col-lg-12
-  = render 'application/instalation_instructions'
+  = render 'application/installation_instructions'
   = render 'shared/alert_success'
 #customize.col-lg-12
   .divider
   %h2 Customize your widget (optional)
-  .col-lg-4
-    = render 'application/select_icon'
-  .col-lg-6
+  .row
     = render 'application/form'
+  = render 'application/select_icon'
 
 .col-lg-12
   .divider
