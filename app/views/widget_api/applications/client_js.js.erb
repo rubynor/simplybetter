@@ -40,10 +40,23 @@
       return urlRoot + '/widget?info=' + btoa('?appkey=' + appKey + '&email=' + email + '&name=' + name);
     };
 
+    var receiveMessage = function(event) {
+      if (event.data == "support") {
+        closeModal();
+        window.simplyBetterSupportClick();
+      }
+    };
+
+    var listenForPostMessage = function() {
+        var iframeWindow = document.getElementsByClassName('simplybetterIframe')[0].contentWindow;
+        window.addEventListener("message", receiveMessage, false);
+    };
+
     var appendSimplyBetterWidget = function(){
         var html = document.createElement('div');
         html.innerHTML = '<div id="simplybetterBackdropLayer" style="display: none;"></div><div id="simplybetterIframeWrapper" style="display: none;"><div id="simplybetterCloseButton">⨯</div><iframe class="simplybetterIframe" src="' + widgetURI() + '" frameborder="0", scrolling="no"></iframe></div>';
         appendToBody(html);
+        listenForPostMessage()
     };
 
     var closeModal = function() {
