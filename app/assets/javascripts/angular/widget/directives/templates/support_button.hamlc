@@ -1,2 +1,2 @@
-%a.support-button(ui-sref='support' ng-hide='button.hidden' tooltip-placement='right' tooltip='Need support?' tooltip-trigger='mouseenter')
+%a.support-button(ng-click="goToSupport()" ng-hide='button.hidden' tooltip-placement='right' tooltip='Need support?' tooltip-trigger='mouseenter')
   .support-icon

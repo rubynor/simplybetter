@@ -57,10 +57,20 @@ simplyDirectives.directive 'notifications', ->
 simplyDirectives.directive 'supportButton', ->
   restrict: 'E'
   template: JST['angular/widget/directives/templates/support_button']
-  controller: ['$scope', 'Session', ($scope, Session) ->
+  scope:
+    thirdParty: '='
+  controller: ['$scope', '$state', 'Session', ($scope, $state, Session) ->
     @hidden = true
     if Session.user_signed_in()
       @hidden = false
+
+    $scope.goToSupport = ->
+      if $scope.thirdParty
+        window.parent.postMessage('support', '*')
+      else
+        $state.go('support')
+
+    return
   ]
   controllerAs: 'button'
 
