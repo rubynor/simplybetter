@@ -10,6 +10,7 @@ Idea = ($resource, Session, ngToast) ->
     }
 
   ideas = undefined
+  ideas_count = undefined
   lastUpdated = undefined
   MIN_SECONDS_BETWEEN_UPDATE = 30
 
@@ -31,6 +32,7 @@ Idea = ($resource, Session, ngToast) ->
       lastUpdated = new Date()
       resource.query params, (data) ->
         ideas = data
+        ideas_count = data.length
 
   updateLocalIdea = (oldIdea, newIdea) ->
     for key, value of oldIdea
@@ -50,6 +52,9 @@ Idea = ($resource, Session, ngToast) ->
       className: 'danger'
       dismissButton: true
     )
+
+  ideasCount: ->
+    ideas_count
 
   all: (params) ->
     # Update ideas in the background, so we don't

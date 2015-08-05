@@ -6,7 +6,7 @@
   %span(ng-if='isAdmin()' ng-click='showVisible()' ng-class='{active: activeClass == "visible"}') Visible
   %span(ng-if='signed_in' ng-click='showMine(email)' ng-class='{ active: activeClass == "mine" }') Mine
 
-.no-ideas(ng-if='no_ideas')
+.no-ideas(ng-if='no_ideas()')
   Do you have an idea for how our site can be better? We would love to hear them! Just click in the field above and share your idea :)
 
 #ideas
