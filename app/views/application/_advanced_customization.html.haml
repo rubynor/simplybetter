@@ -1,7 +1,8 @@
+%h2 Advanced cutomization of icon (optional)
 %p
-  It's really easy to use your own custom icon if you want to.
+  It's really easy to style the icon if you want to.
   You can override the css so you'll have complete control. Below is the current
-  styling for the triangle-call-for-action icon. You can override any property by adding at the end !important
+  styling for the triangle-call-for-action icon. You can override any property by using !important.
 
 %pre
   %code
@@ -36,3 +37,19 @@
           -ms-transform: rotate(135deg) !important;
           -webkit-transform: rotate(135deg) !important;
         }
+
+%h2#support-custom-handle
+  Support button
+%p
+  When you check the support button. A button will appear on the side of the widget. This button will take users to a form where they can submit support requests.
+%p
+  If "Trigger my existing support service" has been checked, you will be able to trigger your own support service by implementing the following javascript function in your code:
+%pre
+  %code
+    = preserve do
+      :escaped
+        window.simplyBetterSupportClick = function () {
+          // Trigger my support service
+        }
+%p
+  This is useful if you use a third party support service, or if you have implemented your own and wish to direct simplybetter users to this service.

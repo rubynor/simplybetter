@@ -29,7 +29,8 @@
             = f.check_box :third_party_support, "ng-model" => "thirdPartySupport", "ng-init" => "thirdPartySupport = #{@application.third_party_support}"
             Trigger my existing support service
           %p
-            When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site.
+            When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
+            %a(href="#support-custom-handle") here
 
         %h2 Faq
         .checkbox
