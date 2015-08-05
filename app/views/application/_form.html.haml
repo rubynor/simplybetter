@@ -1,5 +1,5 @@
-.application_form
-  .col-md-12
+.application_form(ng-app="Settings")
+  .col-lg-12
     = form_for @application, html: { role: 'form' } do |f|
       - if @application.errors.any?
         .alert.alert-danger
@@ -17,11 +17,22 @@
 
         = f.label :widget_title_intro
         = f.text_area :intro
+
+        %h2 Support
         .checkbox
           %label
             = f.check_box :support_enabled
             Enable Support (shows a flag in the widget)
-        = f.text_field :support_email, placeholder: "default: #{@application.support_emails}"
+        = f.text_field :support_email, placeholder: "default: #{@application.support_emails}", "ng-hide" => "thirdPartySupport"
+        .checkbox
+          %label
+            = f.check_box :third_party_support, "ng-model" => "thirdPartySupport", "ng-init" => "thirdPartySupport = #{@application.third_party_support}"
+            Trigger my existing support service
+          %p
+            When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
+            %a(href="#support-custom-handle") here
+
+        %h2 Faq
         .checkbox
           %label
             = f.check_box :faqs_enabled
