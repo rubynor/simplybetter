@@ -38,6 +38,29 @@
           -webkit-transform: rotate(135deg) !important;
         }
 
+%h2#no-icon I want to use my own link/icon to trigger simplybetter
+%p
+  Select the "no icon" in the icon selector box. Now all you have to do is assign the css class ".simplybetterActivateButton" to any element you want(See example below), and the widget will open on click
+%pre
+  %code
+    = preserve do
+      :escaped
+        <button class="simplybetterActivateButton">Ideas?</button>
+
+%h3 What about the notifications?
+%p
+  When "No icon" is selcted, the notifications are hidden by default. If you wish to display them, you can override the css like in the example below
+%pre
+  %code
+    = preserve do
+      :escaped
+        .simplybetterActivateButton {
+          span {
+            display: fixed !important;
+            // Styling of your choice
+          }
+        }
+
 %h2#support-custom-handle
   Support button
 %p
