@@ -12,7 +12,7 @@ class WidgetApi::CommentsController < WidgetController
 
     unless current_customer
       user = widget_user
-      return render json: 'error', status: 403 unless @comment.creator == user
+      return render json: { error: 'error' }, status: 403 unless @comment.creator == user
     end
 
     if @comment.update_attributes!(comment_attributes)
