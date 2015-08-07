@@ -1,5 +1,5 @@
 class WidgetApi::CommentsController < WidgetController
-  include CreatorFinder
+  # include CreatorFinder
   before_action :set_idea, only: [:index, :create, :update]
 
   def index
@@ -11,8 +11,8 @@ class WidgetApi::CommentsController < WidgetController
     @comment = @idea.comments.find(params[:id])
 
     unless current_customer
-      user = get_current_user(@comment.application, params[:email])
-      return render json: 'error', status: 403 unless @comment.creator == user
+      user = widget_user
+      return render json: { error: 'error' }, status: 403 unless @comment.creator == user
     end
 
     if @comment.update_attributes!(comment_attributes)
@@ -22,10 +22,10 @@ class WidgetApi::CommentsController < WidgetController
 
   def create
     # TODO Pål: We should have some common way to solve this
-    if !params[:email].present? && params[:info].present?
-      decode_params
-    elsif current_customer.present?
+    if current_customer.present?
       params[:email] = current_customer.email
+    else
+      widget_user
     end
 
     # Early exit if no user..

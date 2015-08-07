@@ -37,7 +37,7 @@
     };
 
     var widgetURI = function() {
-      return urlRoot + '/widget?info=' + btoa('?appkey=' + appKey + '&email=' + email + '&name=' + name);
+      return urlRoot + '/widget?info=' + btoa(unescape(encodeURIComponent('?appkey=' + appKey + '&email=' + email + '&name=' + name)));
     };
 
     var receiveMessage = function(event) {

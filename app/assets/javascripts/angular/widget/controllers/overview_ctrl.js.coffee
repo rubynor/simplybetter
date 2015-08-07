@@ -2,11 +2,11 @@ OverviewCtrl = ($scope, Session, Idea) ->
 
   $scope.activeClass = 'all'
 
+  $scope.no_ideas = ->
+    Idea.ideasCount() == 0
+
   $scope.ideas = ->
     Idea.all()
-
-  $scope.$on 'ngRepeatFinished', ->
-    $scope.no_ideas = true if $scope.ideas().length == 0
 
   $scope.showAll = ->
     $scope.activeClass = 'all'

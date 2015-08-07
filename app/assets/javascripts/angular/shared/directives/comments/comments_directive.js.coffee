@@ -1,7 +1,7 @@
 Comments = ->
   restrict: 'E'
   template: JST['angular/shared/directives/comments/comments']
-  controller: ['$scope', '$location', '$timeout', '$stateParams', 'Session', 'Comment', ($scope, $location, $timeout, $stateParams, Session, Comment) ->
+  controller: ['$scope', '$location', '$timeout', '$stateParams', 'Session', 'ngToast', 'Comment', ($scope, $location, $timeout, $stateParams, Session, ngToast, Comment) ->
     $scope.comments = Comment.query {idea_id: $stateParams.id}
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = { comment: false }
@@ -34,20 +34,19 @@ Comments = ->
 
     $scope.updateComment = (original, c) ->
       original.$edit = false
-      $scope.error_message = undefined
-      $scope.success_message = undefined
       hash = { comment: { body: c.body }, idea_id: $scope.idea.id, id: c.id }
       comment = new Comment(hash)
       comment.$update(
         (data) ->
           original.body = data.body
-          setTimeout  (->
-            $scope.success_message = undefined
-            $scope.$apply()
-          ), 2000
-          $scope.success_message = 'Your comment has been updated'
+          ngToast.create(
+            content: 'Your comment has been updated'
+          )
         , (err) ->
-          $scope.error_message = err.data
+          ngToast.create(
+            content: err.data.error,
+            className: 'danger'
+          )
       )
 
 
@@ -57,10 +56,12 @@ Comments = ->
 
     commentNotFound = (elm) ->
       if elm.length == 0
-        $scope.error_message = 'This comment is not available'
+        ngToast.create(
+          content: 'This comment is not available'
+          className: 'danger'
+        )
         true
       else
-        $scope.error_message = undefined
         false
     
     highlightComment = ->
@@ -77,8 +78,6 @@ Comments = ->
       highlightComment() if shouldHighlightComment()
 
     $scope.save_comment = (newComment) ->
-      $scope.error_message = undefined
-      $scope.success_message = undefined
       hash = { body: newComment, idea_id: $scope.idea.id }
       comment = new Comment(hash)
       comment.$save(
@@ -86,11 +85,16 @@ Comments = ->
           $scope.comments.push(data)
           $scope.idea.comments_count += 1
           $scope.newComment = undefined
-          $scope.success_message = 'Thank you for your comment'
+          ngToast.create(
+            content: 'Than you for your comment'
+          )
           $scope.comment_id = data.id
       , (err) ->
         console.log JSON.stringify(err)
-        $scope.error_message = err.data
+        ngToast.create(
+          content: err.data.error,
+          className: 'danger'
+        )
       )
   ]
 

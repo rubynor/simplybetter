@@ -46,7 +46,7 @@ module CreatorFinder
 
   def decode_params
     raise 'Nothing to decode' unless params["info"].present?
-    matches = Base64.decode64(params["info"]).scan(/(\?|\&)([^=]+)\=([^&]+)/)
+    matches = URI.unescape(URI.escape(Base64.decode64(params["info"]))).scan(/(\?|\&)([^=]+)\=([^&]+)/)
     matches.each do |match|
       params[match[1]] = match[2]
     end
