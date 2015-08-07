@@ -21,10 +21,6 @@
         %options(item='comment' visible='isAdmin' edit='owner(comment) && !comment.$edit' togglevisible='toggleVisible(comment)' edititem='toggleEdit(comment)')
         .not-visible-overlay(ng-if='!comment.visible')
     .new-comment(ng-show='user')
-      .error(ng-if='error_message')
-        {{ error_message }}
-      .success(ng-if='success_message')
-        {{ success_message }}
       %form(name='commentForm' ng-submit='commentForm.$valid && save_comment(newComment)' novalidate)
         %input.comment-body(type='text' placeholder='Leave a comment...' ng-model='newComment' ng-focus='write = true' required)
         %button.btn.submit-comment(type='submit' ng-class='{ disabled: !commentForm.$valid}') OK
