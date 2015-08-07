@@ -5,7 +5,7 @@ describe WidgetApi::CommentsController do
   let(:idea) { Idea.make! }
   let(:user) { User.make! }
   let(:customer) { Customer.make! }
-  let(:info_param) { decode_to_base64(idea.application.token, user.email, user.name) }
+  let(:info_param) { encode_to_base64(idea.application.token, user.email, user.name) }
 
   context 'widget user' do
     before do
