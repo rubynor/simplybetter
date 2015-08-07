@@ -14,7 +14,7 @@ angular.module('shared').factory 'Session', ['$cookies', '$http', '$window', '$t
 
   setParams: ->
     that = @
-    params = atob(location.search.split('=')[1]).substring(1).split('&')
+    params = decodeURIComponent(escape(window.atob(location.search.split('=')[1]))).substring(1).split('&')
     angular.forEach(params, (param) ->
       splitted_param = param.split('=')
       key = splitted_param[0]
