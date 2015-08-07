@@ -1,5 +1,6 @@
 %a.back(ui-sref='overview')
-  <- Back
+  .icon.back-arrow
+  BACK
 .idea-layout(ng-class='{ highlighted: highlight.idea }')
   %vote(idea="idea")
   %idea-item(idea="idea" expanded="true")

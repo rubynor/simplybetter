@@ -27,7 +27,7 @@
       #simplybetterNavbar(ng-class='{ overview: !path }' ng-init="app_name='#{@app.name}'")
         %span(ng-if='path')
           %a.link(ui-sref='overview' ng-click='reset_path()')
-            .back-arrow
+            .icon.back-arrow
             BACK
         %h2
           {{app_name}}
