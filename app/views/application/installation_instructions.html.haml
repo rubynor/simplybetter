@@ -1,0 +1,89 @@
+=render 'shared/navbar'
+.col-lg-12
+  %h2 Add this code to your website
+  %ul
+    %li
+      First you have to copy the snippet below and paste it anywhere inside your &lt;body&gt; tag.
+    %li
+      Replace "INSERT EMAIL HERE" with the signed in user's email address.
+      In a rails app this would typically be \#{current_user.email}. Do the same with the users name or nickname!
+  / Nav tabs
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", href: "#other"} HTML
+    %li
+      %a{"data-toggle" => "tab", href: "#rails"} Rails + Devise (erb)
+    %li
+      %a{"data-toggle" => "tab", href: "#rails_haml"} Rails + Devise (haml)
+  / Tab panes
+  .tab-content
+    #other.fade.tab-pane.active.in
+      %pre.copy-code
+        %code
+          = preserve do
+            :escaped
+              <!-- Paste at the BOTTOM of BODY -->
+              <script>
+                  var _smplyBtr = _smplyBtr || {};
+                  _smplyBtr.email = "<INSERT EMAIL HERE>";
+                  _smplyBtr.name = "<INSERT NAME HERE>" ;
+
+                  _smplyBtr.appKey = "#{@application.token}";
+                  (function() {
+                      var sb = document.createElement('script');
+                      sb.type = 'text/javascript';
+                      sb.async = true;
+                      sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey;
+                      var s = document.getElementsByTagName('body')[0];
+                      s.appendChild(sb);
+                  })();
+              </script>
+    #rails.fade.tab-pane
+      %pre.copy-code
+        %code
+          = preserve do
+            :escaped
+              <!-- Paste at the BOTTOM of BODY -->
+              <% if user_signed_in? && Rails.env.production? %>
+                <script>
+                    var _smplyBtr = _smplyBtr || {};
+                    _smplyBtr.email = "<%= current_user.email %>";
+                    _smplyBtr.name = "<%= current_user.name %>" ;
+
+                    _smplyBtr.appKey = "#{@application.token}";
+                    (function() {
+                        var sb = document.createElement('script');
+                        sb.type = 'text/javascript';
+                        sb.async = true;
+                        sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey;
+                        var s = document.getElementsByTagName('body')[0];
+                        s.appendChild(sb);
+                    })();
+                </script>
+              <% end %>
+    #rails_haml.fade.tab-pane
+      %pre.copy-code
+        %code
+          = preserve do
+            :escaped
+              / Paste at the BOTTOM of BODY
+              - if user_signed_in? && Rails.env.production?
+                :javascript
+                  var _smplyBtr = _smplyBtr || {};
+                  _smplyBtr.email = "\#{current_user.email}";
+                  _smplyBtr.name = "\#{current_user.name}";
+
+                  _smplyBtr.appKey = "#{@application.token}";
+                  (function() {
+                      var sb = document.createElement('script');
+                      sb.type = 'text/javascript';
+                      sb.async = true;
+                      sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey;
+                      var s = document.getElementsByTagName('body')[0];
+                      s.appendChild(sb);
+                  })();
+
+  %p
+    When you have pasted the snippet you are good to go. Click
+    =link_to 'here', application_path(@application.id)
+    if you want to customize your widget

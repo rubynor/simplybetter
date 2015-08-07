@@ -10,4 +10,9 @@ $(function(){
         });
 
     }
+
+    if (SBTools.isPresent($('body.applications.installation_instructions'))) {
+        hljs.initHighlightingOnLoad();
+    }
+
 });

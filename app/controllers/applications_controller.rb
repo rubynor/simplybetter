@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show, :show_ideas, :edit, :update, :preview]
+  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview]
 
   def index
     if applications.any?
@@ -22,6 +22,9 @@ class ApplicationsController < ApplicationController
   end
 
   def show_ideas
+  end
+
+  def installation_instructions
   end
 
   def update

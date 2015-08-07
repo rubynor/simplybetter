@@ -39,6 +39,7 @@ SimplyBetter::Application.routes.draw do
   resources :applications, except: [:destroy] do
     get :preview, on: :member
     get :show_ideas, on: :member
+    get :installation_instructions, on: :member
     resources :ideas, only: [:index, :update, :destroy]
     resources :faqs
   end

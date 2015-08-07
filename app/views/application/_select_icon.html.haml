@@ -1,19 +1,21 @@
-%h2 Select icon style
-%p
-  You can change the icon whenever you want. There is also some
-  %a(href="#custom-icon") optional advanced icon options
-.box.with-form
-  .col-xs-12
-    = form_for @application, html: { class: 'icon_select' } do |f|
-      - @icons.each do |i|
-        = f.label "icon_#{i}".to_sym,
-          class: selected(@application,i) do
-          %table
-            %tr
-              %td
-                = f.radio_button :icon, i
-              %td
-                .icon{class: i}
-%p
-  Read more about the "No icon" option
-  %a(href="#no-icon") here
+.row
+  .col-lg-6
+    %h2 Select icon style
+    %p
+      You can change the icon whenever you want. There is also some
+      %a(href="#custom-icon") optional advanced icon options
+    .box.with-form
+      .col-xs-12
+        = form_for @application, html: { class: 'icon_select' } do |f|
+          - @icons.each do |i|
+            = f.label "icon_#{i}".to_sym,
+              class: selected(@application,i) do
+              %table
+                %tr
+                  %td
+                    = f.radio_button :icon, i
+                  %td
+                    .icon{class: i}
+    %p
+      Read more about the "No icon" option
+      %a(href="#no-icon") here

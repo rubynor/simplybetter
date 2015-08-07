@@ -1,23 +1,28 @@
 .application_form(ng-app="Settings")
-  .col-lg-12
-    = form_for @application, html: { role: 'form' } do |f|
-      - if @application.errors.any?
-        .alert.alert-danger
-          %p
-            %strong
-              Unfortunately some errors prevented you from creating the project:
-          %ul
-            - @application.errors.full_messages.each do |msg|
-              %li= msg
-      = f.label :name
-      = f.text_field :name, placeholder: 'Project name (ie your website name)'
-      - if @current_action == 'new'
-        = f.button 'Get started!'
-      - else
+  = form_for @application, html: { role: 'form' } do |f|
+    .row
+      .col-lg-6
+        - if @application.errors.any?
+          .alert.alert-danger
+            %p
+              %strong
+                Unfortunately some errors prevented you from creating the project:
+            %ul
+              - @application.errors.full_messages.each do |msg|
+                %li= msg
+    .row
+      .col-lg-6
+        %h2 Name and intro
+        = f.label :name
+        = f.text_field :name, placeholder: 'Project name (ie your website name)'
+        - if @current_action == 'new'
+          = f.button 'Get started!'
+        - else
+          = f.label :widget_title_intro
+          = f.text_area :intro
 
-        = f.label :widget_title_intro
-        = f.text_area :intro
-
+    .row
+      .col-lg-6
         %h2 Support
         .checkbox
           %label
@@ -32,6 +37,8 @@
             When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
             %a(href="#support-custom-handle") here
 
+    .row
+      .col-lg-6
         %h2 Faq
         .checkbox
           %label
@@ -39,4 +46,6 @@
             Enable FAQ
         = f.button 'Save'
 
-
+      .col-lg-1
+        .stretch-to-row-height
+          »
