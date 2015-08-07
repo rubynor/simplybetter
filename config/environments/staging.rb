@@ -68,13 +68,12 @@ SimplyBetter::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :user_name => '22435d3abd5b5e2a3',
-      :password => '7667bf56629311',
+      :user_name => '41331694231d76a2b',
+      :password => 'a72667a7289d4f',
       :address => 'mailtrap.io',
       :domain => 'mailtrap.io',
       :port => '2525',
-      :authentication => :cram_md5,
-      :enable_starttls_auto => true
+      :authentication => :cram_md5
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
