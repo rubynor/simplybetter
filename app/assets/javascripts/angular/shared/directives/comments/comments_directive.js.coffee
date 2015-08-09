@@ -2,6 +2,7 @@ Comments = ->
   restrict: 'E'
   template: JST['angular/shared/directives/comments/comments']
   controller: ['$scope', '$location', '$timeout', '$stateParams', 'Session', 'ngToast', 'Comment', ($scope, $location, $timeout, $stateParams, Session, ngToast, Comment) ->
+    $scope.isSaving = false
     $scope.comments = Comment.query {idea_id: $stateParams.id}
     $scope.comment_id = $location.search().comment_id
     $scope.highlight = { comment: false }
@@ -63,7 +64,7 @@ Comments = ->
         true
       else
         false
-    
+
     highlightComment = ->
       $elm = $("##{$scope.comment_id}")
       return if commentNotFound($elm)
@@ -78,6 +79,7 @@ Comments = ->
       highlightComment() if shouldHighlightComment()
 
     $scope.save_comment = (newComment) ->
+      $scope.isSaving = true
       hash = { body: newComment, idea_id: $scope.idea.id }
       comment = new Comment(hash)
       comment.$save(
@@ -88,13 +90,14 @@ Comments = ->
           ngToast.create(
             content: 'Than you for your comment'
           )
+          $scope.isSaving = false
           $scope.comment_id = data.id
       , (err) ->
-        console.log JSON.stringify(err)
         ngToast.create(
           content: err.data.error,
           className: 'danger'
         )
+        $scope.isSaving = false
       )
   ]
 
