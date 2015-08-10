@@ -7,15 +7,13 @@
     .box.with-form
       .col-xs-12
         = form_for @application, html: { class: 'icon_select' } do |f|
-          - @icons.each do |i|
-            = f.label "icon_#{i}".to_sym,
-              class: selected(@application,i) do
-              %table
-                %tr
-                  %td
-                    = f.radio_button :icon, i
-                  %td
-                    .icon{class: i}
+          %table
+            %tr
+            - @icons.each do |i|
+              %td
+                = f.label "icon_#{i}".to_sym, class: selected(@application,i) do
+                  = f.radio_button :icon, i
+                  .icon{class: i}
     %p
       Read more about the "No icon" option
       %a(ng-click="iconHelp = true") here

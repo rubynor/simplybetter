@@ -49,11 +49,21 @@ body.applications.installation_instructions, body.applications.show
     width: 100%
     padding: 0px 20px 0px 0px
     cursor: pointer
-    &.selected
-      background-color: #fdffef
 
   textarea, input[type=text]
     width: 100%
+
+  .icon_select
+    input[type=radio]
+      display: none
+    label
+      padding: 10px 10px 10px 10px
+      margin: 0px 0px 0px 0px
+      &.selected
+        background-color: #fdffef
+
+  a
+    cursor: pointer
 
   .icon
     height: 50px
