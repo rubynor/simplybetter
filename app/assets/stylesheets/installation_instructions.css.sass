@@ -1,15 +1,42 @@
 body.applications.installation_instructions, body.applications.show
+  .relative
+    position: relative
+
+  .static
+    position: static
+
   .box
     @include box
     padding: 15px 0px
     margin-bottom: 20px
 
-  .stretch-to-row-height
+  .read-more
+    @include button-big
     position: absolute
-    left: 0px
-    right: 0px
-    bottom: 0px
-    background: green
+    top: 10px
+    bottom: 10px
+    right: -65px
+    background: $silver
+    width: 50px
+    font-size: 50px
+    font-weight: 300
+    margin: 0
+    z-index: 100
+    &:hover
+      background: $gray
+    .arrow:after
+      position: absolute
+      top: 50%
+      margin-top: -35px
+      left: 20px
+      color: white
+      content: '»'
+    &.active
+      .arrow:after
+        content: '«'
+
+  .help-button-padding
+    padding-left: 70px
 
   .application_form
     label

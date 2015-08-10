@@ -1,7 +1,7 @@
 .application_form(ng-app="Settings")
   = form_for @application, html: { role: 'form' } do |f|
     .row
-      .col-lg-6
+      .col-lg-5
         - if @application.errors.any?
           .alert.alert-danger
             %p
@@ -11,7 +11,7 @@
               - @application.errors.full_messages.each do |msg|
                 %li= msg
     .row
-      .col-lg-6
+      .col-lg-5
         %h2 Name and intro
         = f.label :name
         = f.text_field :name, placeholder: 'Project name (ie your website name)'
@@ -22,7 +22,7 @@
           = f.text_area :intro
 
     .row
-      .col-lg-6
+      .col-lg-5
         %h2 Support
         .checkbox
           %label
@@ -35,7 +35,30 @@
             Trigger my existing support service
           %p
             When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
-            %a(href="#support-custom-handle") here
+            %a(ng-click="supportHelp = true") here
+
+        .read-more(ng-click="supportHelp = !supportHelp" ng-class="{active: supportHelp}")
+          .arrow
+
+      .col-lg-7
+        .help-button-padding(ng-show="supportHelp")
+          %h2#support-custom-handle
+            Support button
+          %p
+            When you check the support button. A button will appear on the side of the widget. This button will take users to a form where they can submit support requests.
+          %p
+            If "Trigger my existing support service" has been checked, you will be able to trigger your own support service by implementing the following javascript function in your code:
+          %pre
+            %code
+              = preserve do
+                :escaped
+                  window.simplyBetterSupportClick = function () {
+                    // Trigger my support service
+                  }
+          %p
+            This is useful if you use a third party support service, or if you have implemented your own and wish to direct simplybetter users to this service.
+
+
 
     .row
       .col-lg-6
@@ -45,7 +68,3 @@
             = f.check_box :faqs_enabled
             Enable FAQ
         = f.button 'Save'
-
-      .col-lg-1
-        .stretch-to-row-height
-          »
