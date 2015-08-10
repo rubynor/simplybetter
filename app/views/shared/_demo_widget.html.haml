@@ -1,0 +1,8 @@
+:javascript
+  var _smplyBtr = _smplyBtr || {};
+  _smplyBtr.appKey = 'DEMO';
+  _smplyBtr.email = "demo@simplybetter.io";
+  _smplyBtr.name = "Guest user" ;
+  (function() {
+  var sb = document.createElement('script'); sb.type = 'text/javascript'; sb.async = true; sb.src = "#{WidgetPath.path}/widget_api/applications/client_js.js?appkey="+_smplyBtr.appKey; var s = document.getElementsByTagName('body')[0]; s.appendChild(sb);
+  })();
