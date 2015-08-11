@@ -24,8 +24,16 @@ class Application < ActiveRecord::Base
 
   before_create :generate_token
 
+  scope :with_engaged_users, -> { all.select { |a| a.engaged_users } }
+
   def support_emails
     support_email || customers.map(&:email).join(',')
+  end
+
+  # List users that has engaged in the widget
+  # By writing an idea, commenting, voting or sending a support message
+  def engaged_users
+    self.users.select { |u| u.ideas.count > 0 || u.comments.count > 0 || u.votes.count > 0 || u.support_messages.count > 0 }
   end
 
   private

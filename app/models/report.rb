@@ -8,11 +8,15 @@ module Report
   end
 
   module Application
-    types = %w(ideas users)
+    types = %w(ideas users comments)
 
     types.each do |type|
       define_singleton_method "with_#{type}" do |num = 1|
         parent::more_than(num, type, 'Application')
+      end
+
+      define_singleton_method "without_#{type}" do |num = 0|
+        parent::same_as(num, type, 'Application')
       end
     end
   end
