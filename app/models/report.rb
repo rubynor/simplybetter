@@ -1,6 +1,6 @@
 module Report
   def self.more_than(num, type, klass)
-    klass.constantize.all.select { |k| k.public_send(type).count > num }
+    klass.constantize.all.select { |k| k.public_send(type).count >= num }
   end
 
   def self.same_as(num, type, klass)
