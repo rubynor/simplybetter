@@ -18,10 +18,6 @@ $(document).ready(function() {
     }
   })
 
-  if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) {
-    $('.contact-section').addClass('parallax')
-  }
-
   function scroll_if_anchor(href) {
     href = typeof(href) == "string" ? href : $(this).attr("href");
 
@@ -54,39 +50,4 @@ $(document).ready(function() {
 
   $("body").on("click", "li a, a.fLogo", scroll_if_anchor);
 
-
-  jQuery('.parallax').each(function() {
-    var $self = jQuery(this);
-
-    var url = $self.css('background-image').replace('url', '').replace('(', '').replace(')', '').replace('"', '').replace('"', '');
-    var bgImg = jQuery('<img />');
-    bgImg.hide();
-    bgImg.bind('load', function()
-    {
-      var bgImgHeight = jQuery(this).height();
-      //jQuery(this).attr("style", "");
-      $self.height(bgImgHeight);
-      var section_height = jQuery(this).height();
-      $self.height(section_height);
-      var rate = (section_height / jQuery(document).height()) * 1;
-      var distance = jQuery(window).scrollTop() - $self.offset().top;
-      var bpos = -(distance * rate);
-      $self.css({
-        'background-position': 'center ' + bpos + 'px'
-      });
-      jQuery(window).bind('scroll',
-          function() {
-            var distance = jQuery(window).scrollTop() - $self.offset().top;
-            var bpos = -(distance * rate);
-            $self.css({
-              'background-position': 'center ' + bpos + 'px'
-            })
-          })
-    });
-    $self.find("img").remove();
-    $self.append(bgImg);
-    bgImg.attr('src', url);
-
-  });
-
-})
+});
