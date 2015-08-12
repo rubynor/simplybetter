@@ -1,9 +1,17 @@
 .sessions.new, .sessions.create, .customers.new, .customers.create, .password_resets, .sessions.popup_new, .sessions.popup_create
-  .form
-    max-width: 600px
+  font-size: 14px
+
+  .white-box
+    max-width: 400px
+    background: white
+    width: 400px
+    margin: auto
+    margin-top: 50px
+    padding: 20px
+
   .field
     display: block
-  font-size: 16px
+
   .notice
     border: 1px solid $red
     padding: 20px
@@ -12,8 +20,10 @@
     &.green
       border: 1px solid $green
       background: #a5ff93
+
   h1
     color: $gray
+
   .info-box
     @include info-box
     font-weight: 500
@@ -21,32 +31,28 @@
     clear: both
     a
       font-weight: 700
+
   input[type=password],input[type=text], input[type=email]
     @include input
     display: block
     width: 100%
+
   input[type=submit]
     @include button-big
     display: block
     margin-top: 20px
     font-size: 18px
+
   .field_with_errors
-    input[type=password],input[type=text], input[type=email]
+    input[type=password], input[type=text], input[type=email]
       border-color: red
-  .field.checkbox
-    margin: 30px 0px
-    display: block
-    font-weight: 500
+
   label
-    @include label
-    margin-top: 20px
+    font-size: 16px
+    display: block
+    font-weight: 300
+    margin: 20px 0 5px 0
     clear: both
-    &.small
-      margin-top: 0px
-      font-size: 16px
-      clear: none
-      display: inline-block
-      font-weight: 500
 
 .sessions.popup_new, .sessions.popup_create
   .info-box
