@@ -94,11 +94,34 @@ describe WidgetApi::IdeasController do
   end
 
   describe 'DELETE destroy' do
-    it 'should destroy the idea' do
-      idea = Idea.make!
-      expect do
-        delete :destroy, id: idea.to_param, format: :json
-      end.to change(Idea, :count).by(-1)
+    describe 'as signed in customer' do
+      before do
+        @customer = Customer.make!
+        sign_in_customer(@customer)
+      end
+      it 'should destroy the idea for customer that owns app' do
+        @application.customers << @customer
+        idea = Idea.make!
+        expect do
+          delete :destroy, id: idea.to_param, token: @application.token, format: :json
+        end.to change(Idea, :count).by(-1)
+      end
+
+      it 'should return error and not delete if customer does not own app' do
+        idea = Idea.make!
+        expect do
+          delete :destroy, id: idea.to_param, format: :json
+        end.to change(Idea, :count).by(0)
+      end
+    end
+
+    describe 'no admin' do
+      it 'should return error and not delete' do
+        idea = Idea.make!
+        expect do
+          delete :destroy, id: idea.to_param, format: :json
+        end.to change(Idea, :count).by(0)
+      end
     end
   end
 

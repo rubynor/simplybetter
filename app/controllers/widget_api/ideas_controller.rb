@@ -46,6 +46,9 @@ class WidgetApi::IdeasController < WidgetController
   end
 
   def destroy
+    unless current_customer && current_customer.admin_for?(current_application)
+      return render json: { error: "U don't have access" }
+    end
     @idea.destroy
     respond_to do |format|
       format.json { head :no_content }
