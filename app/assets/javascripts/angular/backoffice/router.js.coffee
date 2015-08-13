@@ -4,11 +4,11 @@ Router = ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $stateProvider
     .state "overview",
       url: "/"
-      template: JST['angular/backoffice/templates/overview']
-      controller: 'ideasCtrl'
+      template: JST['angular/shared/templates/overview']
+      controller: 'OverviewCtrl'
     .state 'idea',
       url: '/:id?comment_id'
-      template: JST['angular/backoffice/templates/idea']
+      template: JST['angular/shared/templates/idea_view']
       controller: 'IdeaCtrl'
 
   $locationProvider.html5Mode(false)

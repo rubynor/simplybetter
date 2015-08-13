@@ -1,0 +1,20 @@
+@import modal
+@import yes_no_prompt
+@import ideas
+@import idea-admin-options
+@import comments
+
+.ideas-navigate
+  text-align: left
+  span
+    cursor: pointer
+    font-size: 20px
+    margin-bottom: 10px
+    color: $button-main
+    padding: 10px 30px 0px 0px
+    display: inline-block
+    &.active
+      color: $gray
+
+a.back
+  @include back-button
