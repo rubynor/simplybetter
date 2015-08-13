@@ -32,7 +32,7 @@ class WidgetApi::IdeasController < WidgetController
 
   def update
     if @idea.creator != widget_user && !current_customer
-      return render json: 'Not owner of idea', status: 403
+      return render json: { msg: 'you do not have access to update this idea' }, status: 403
     end
 
     if current_customer && @idea.creator != current_customer
@@ -47,7 +47,7 @@ class WidgetApi::IdeasController < WidgetController
 
   def destroy
     unless current_customer && current_customer.admin_for?(current_application)
-      return render json: { error: "You do not have access to this ation" }, status: 403
+      return render json: { error: 'You do not have access to this ation' }, status: 403
     end
     @idea.destroy
     respond_to do |format|

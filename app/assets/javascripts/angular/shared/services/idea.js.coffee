@@ -44,7 +44,7 @@ Idea = ($resource, Session, ngToast) ->
     new resource(JSON.parse(angular.toJson(idea)))
 
   updateSuccessNotify = ->
-    ngToast.create(content: 'Updated!')
+    ngToast.create(content: 'Alright! Update was a <strong>success!</strong>')
 
   updateFailedNotify = ->
     ngToast.create(
