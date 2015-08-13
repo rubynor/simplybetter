@@ -12,9 +12,9 @@
       .logo
       .name
         Simply Better
-    #content.compressed
-      .white-box
-        = yield
+    -##content.compressed
+    .white-box
+      = yield
 
     - unless @current_action == "popup_new" || @current_action == "popup_create"
       = render 'shared/widget'
