@@ -5,11 +5,10 @@
     .field
       %label
         New password
-      = f.password_field :password, placeholder: 'password'
+      = f.password_field :password
     .field
       %label
         Confirm new password
-      = f.password_field :password_confirmation, placeholder: 'confirm password'
+      = f.password_field :password_confirmation
     .field
-      .pull-right
-        .actions= f.submit 'Update password'
+      .actions= f.submit 'Update password'
