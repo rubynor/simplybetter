@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
 
   def new
     @post_path = '/sessions/create'
+    # flash[:notice] = 'success'
+    # flash[:alert] = 'error'
     redirect_if_already_signed_in(applications_path)
   end
 

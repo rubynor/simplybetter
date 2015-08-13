@@ -4,12 +4,16 @@
   You need an account?
   = link_to('Create account', new_customer_path)
 
--if flash.alert
-  .notice
-    = flash.alert
--if flash.notice
-  .notice.green
-    = flash.notice
+- if flash.notice
+  .flash
+    .success
+      %span.glyphicon.glyphicon-ok
+      = flash.notice
+- if flash.alert
+  .flash
+    .error
+      %span.glyphicon.glyphicon-remove
+      = flash.alert
 
 = form_tag @post_path, class: 'form-horizontal' do
   .field
