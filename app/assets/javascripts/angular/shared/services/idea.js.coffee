@@ -15,6 +15,7 @@ Idea = ($resource, Session, ngToast) ->
   MIN_SECONDS_BETWEEN_UPDATE = 30
 
   removeIdea = (idea) ->
+    return unless ideas
     index = ideas.indexOf(idea)
     ideas.splice(index, 1)
 
