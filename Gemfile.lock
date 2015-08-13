@@ -117,10 +117,15 @@ GEM
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
+    guard-compat (1.2.1)
     guard-livereload (2.3.0)
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
+    guard-rspec (4.6.4)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -217,6 +222,10 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.3)
@@ -309,6 +318,7 @@ DEPENDENCIES
   font-awesome-rails
   gravtastic
   guard-livereload
+  guard-rspec
   haml-rails
   haml_coffee_assets!
   honeybadger (~> 2.0)
