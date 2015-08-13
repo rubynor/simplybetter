@@ -1,7 +1,7 @@
 %section#contact.contact-section{'ng-controller' => 'ContactUsCtrl'}
   .site-content
     %h2 Contact
-    .form-box(ng-hide='message_to_customer')
+    .form-box{'ng-hide' => 'message_to_customer'}
       %form{name: 'contactForm', 'ng-submit' => 'sendForm()', novalidate: true}
         %label Name
         %input{name: 'name', type: 'text', 'ng-model' => 'name'}
