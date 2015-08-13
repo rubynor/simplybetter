@@ -336,18 +336,9 @@ a.choose
     background: #e1e2e7
 
 .site-wrapper section.contact-section
-  background-image: url(../img/contact-bg.png)
-  background-repeat: no-repeat
-  background-position: top center
+  background: #52596b
   padding-bottom: 100px
-  padding-top: 95px
   background-size: auto
-
-.parallax
-  background-attachment: fixed
-  background-position: center top
-  background-repeat: no-repeat
-  background-size: cover
 
 .form-box
   max-width: 470px
@@ -397,6 +388,10 @@ a.choose
     &:hover
       background: #128abd !important
       cursor: pointer
+    &.disabled
+      opacity: 0.65
+      &:hover
+        background: #1f9fd5 !important
 
 footer
   background: #fff
@@ -611,8 +606,7 @@ footer .site-content
       margin: 65px auto 44px
       right: auto
   ul.fMenu
-    max-width: 335px
-    margin: 0 auto
+    display: none
   p.copy
     max-width: 300px
     text-align: center
