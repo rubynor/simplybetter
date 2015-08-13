@@ -47,7 +47,7 @@ class WidgetApi::IdeasController < WidgetController
 
   def destroy
     unless current_customer && current_customer.admin_for?(current_application)
-      return render json: { error: "U don't have access" }
+      return render json: { error: "You do not have access to this ation" }, status: 403
     end
     @idea.destroy
     respond_to do |format|
@@ -59,8 +59,7 @@ class WidgetApi::IdeasController < WidgetController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_idea
-    #TODO: OMA: unsafe. use scope. current_user.ideas.find
-    @idea = Idea.find(params[:id])
+    @idea = current_application.ideas.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
