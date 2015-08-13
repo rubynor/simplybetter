@@ -1,5 +1,5 @@
 %h1 Create your account
-%p Please fill in the fields below
+%p Please fill in the fields below with a real email and strong password
 .form
   - if @customer.errors.any?
     .notice
@@ -12,26 +12,25 @@
     .field
       %label
         Name
-      = f.text_field :name, placeholder: 'your name'
+      = f.text_field :name
     .field
       %label
         E-mail
-      = f.email_field :email, placeholder: 'email'
+      = f.email_field :email
     .field
       %label
         Password
-      = f.password_field :password, placeholder: 'password'
+      = f.password_field :password
     .field
       %label
         Confirm password
-      = f.password_field :password_confirmation, placeholder: 'confirm password'
+      = f.password_field :password_confirmation
     .field
       %label
         Promotion code(optional)
-      = f.text_field :promotion_code, placeholder: 'promotion code'
-    .field.clearfix
-      .pull-right
-        = f.submit 'CREATE ACCOUNT'
+      = f.text_field :promotion_code
+    .field
+      = f.submit 'CREATE ACCOUNT'
 
     .info-box
       Do you already have an account?

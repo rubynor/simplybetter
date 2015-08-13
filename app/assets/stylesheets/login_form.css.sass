@@ -5,7 +5,8 @@
     color: grey
 
   .white-box
-    @include vertical-align
+    @media (min-width: 620px)
+      @include vertical-align
     max-width: 400px
     background: white
     margin: auto
@@ -46,6 +47,7 @@
     width: 100%
     display: block
     margin-top: 20px
+    margin-bottom: 20px
     font-size: 18px
 
   .field_with_errors
