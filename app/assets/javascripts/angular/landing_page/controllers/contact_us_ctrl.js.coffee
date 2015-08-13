@@ -11,8 +11,6 @@ landing_page.controller 'ContactUsCtrl', ['$scope', '$resource', ($scope, $resou
       alert "something went wrong, and your message couldn't be sent"
     )
 
-  $scope.email_pattern = /^[a-zA-Z]+[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z.]{2,5}$/
-
   $scope.valid = ->
     !($scope.invalidEmail() || $scope.invalidMessage())
 
