@@ -22,6 +22,7 @@
     - if @application.present? && !@application.new_record?
       #content(ng-controller="applicationsCtrl" ng-init="init('#{@application.token}', '#{@current_customer.email}', '#{@application.id}')")
         = yield
+        %toast
     - else
       #content
         = yield
