@@ -7,12 +7,12 @@ describe WidgetApi::CommentsController do
   let(:customer) { Customer.make! }
   let(:info_param) { encode_to_base64(idea.application.token, user.email, user.name) }
 
-  context 'widget user' do
+  context 'as widget user' do
     before do
       user.widgets << idea.application
     end
 
-    describe 'adding a comment' do
+    describe 'creating a comment' do
       after do
         expect(response).to render_template(:show)
       end
@@ -59,14 +59,31 @@ describe WidgetApi::CommentsController do
           end.not_to change { Comment.last.body }
         end
       end
+    end
+  end
 
-      example 'admin - update visible' do
-        sign_in_customer(Customer.make!)
-        comment = Comment.make!(idea: idea)
-        expect do
-          put :update, idea_id: idea.id, id: comment.id, comment: { visible: false }, format: :json
-        end.to change { Comment.last.visible }.from(true).to(false)
-      end
+  context 'as admin user' do
+    let(:comment) { Comment.make! idea: idea }
+
+    subject do
+      put :update,
+          idea_id: idea.id,
+          id: comment.id,
+          comment: { visible: false },
+          format: :json
+    end
+
+    before do
+      sign_in_customer(customer)
+    end
+
+    example 'admin - update visible no access' do
+      expect { subject }.not_to change { comment.reload.visible }
+    end
+
+    example 'admin - update visible' do
+      customer.applications << idea.application
+      expect { subject }.to change { comment.reload.visible }.from(true).to(false)
     end
   end
 

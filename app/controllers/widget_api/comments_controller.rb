@@ -9,14 +9,17 @@ class WidgetApi::CommentsController < WidgetController
 
   def update
     @comment = @idea.comments.find(params[:id])
+    user = nil
 
     unless current_customer
       user = widget_user
       return render json: { error: 'error' }, status: 403 unless @comment.creator == user
     end
 
-    if @comment.update_attributes!(comment_attributes)
+    if (user || current_customer.applications.include?(@comment.application)) && @comment.update_attributes!(comment_attributes)
       render json: @comment
+    else
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
