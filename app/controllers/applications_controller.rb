@@ -27,7 +27,7 @@ class ApplicationsController < ApplicationController
   def update
     @application.update_attributes!(application_attributes)
   rescue ActiveRecord::RecordInvalid
-    render json: { error: @application.error.full_messages }
+    render json: { errors: @application.errors.full_messages }, status: 400
   end
 
   def create
