@@ -1,5 +1,6 @@
 landing_page.controller 'ContactUsCtrl', ['$scope', '$resource', ($scope, $resource) ->
   $scope.sendForm = ->
+    return unless $scope.valid()
     $resource('/landing_page/contact_us', name: $scope.name, email: $scope.email, message: $scope.message).save(
       (data) ->
         $scope.name = ''
@@ -9,4 +10,14 @@ landing_page.controller 'ContactUsCtrl', ['$scope', '$resource', ($scope, $resou
     , (err) ->
       alert "something went wrong, and your message couldn't be sent"
     )
+
+  $scope.valid = ->
+    !($scope.invalidEmail() || $scope.invalidMessage())
+
+  $scope.invalidEmail = ->
+    !$scope.contactForm.email.$valid || $scope.contactForm.email.$error.required
+
+  $scope.invalidMessage = ->
+    $scope.contactForm.message.$error.required
+
 ]

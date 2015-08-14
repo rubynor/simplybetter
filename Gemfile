@@ -54,8 +54,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
-  # Faker, a port of Data::Faker from Perl, is used to easily generate fake data
-  gem 'faker'
 end
 gem 'bcrypt', '~> 3.1.0'
 
@@ -78,3 +76,6 @@ group :staging,:production do
   gem 'rails_12factor'
   gem 'newrelic_rpm'
 end
+
+# Faker, a port of Data::Faker from Perl, is used to easily generate fake data
+gem 'faker'

@@ -4,7 +4,7 @@
       .error(ng-if='error_message')
         {{ error_message }}
       %input#title-input.title(placeholder='Share your idea with us' type='text' ng-focus='write = true' ng-model='newIdea.title' ng-class="{ dirty: write, 'show-similar-ideas': show_similar() }" ng-keyup='find_similar(newIdea.title)' required )
-      .similar-ideas(ng-class="{ 'fade-hidden': !show_similar() }")
+      .similar-ideas(ng-class="{ 'fade-hidden': !show_similar() || !write }")
         %ol
           %li.idea(ng-repeat='idea in similar_ideas')
             %idea-item(idea="idea")
