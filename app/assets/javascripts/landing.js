@@ -16,7 +16,7 @@ $(document).ready(function() {
     }else {
       $("header").removeClass("scrollHeader");
     }
-  })
+  });
 
   function scroll_if_anchor(href) {
     href = typeof(href) == "string" ? href : $(this).attr("href");
