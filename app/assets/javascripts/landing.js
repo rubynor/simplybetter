@@ -22,10 +22,9 @@ $(document).ready(function() {
     href = typeof(href) == "string" ? href : $(this).attr("href");
 
     // You could easily calculate this dynamically if you prefer
+    var fromTop = 68;
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-      var fromTop = 50;
-    } else {
-      var fromTop = 68;
+      fromTop = 50;
     }
 
     // If our Href points to a valid, non-empty anchor, and is on the same page (e.g. #foo)

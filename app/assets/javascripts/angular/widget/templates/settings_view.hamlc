@@ -15,7 +15,8 @@
           as our avatar provider. We plan to support uploading and hosting of avatars in the future. Visit
           %a(href='http://gravatar.com' target='_blank') Gravatar
           to change your avatar. It is linked to your email:
-          %a {{setting.user.email}}
+          %a
+            {{ setting.user.email }}
 
     %form(ng-submit='setting.submitForm()')
       %label Your name

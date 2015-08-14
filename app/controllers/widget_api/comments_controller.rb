@@ -21,7 +21,6 @@ class WidgetApi::CommentsController < WidgetController
   end
 
   def create
-    # TODO Pål: We should have some common way to solve this
     if current_customer.present?
       params[:email] = current_customer.email
     else

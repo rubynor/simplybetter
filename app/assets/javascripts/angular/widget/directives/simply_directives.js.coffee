@@ -17,7 +17,7 @@ simplyDirectives.directive 'ideaNew', ->
 
 simplyDirectives.directive 'notifications', ->
   restrict: 'E'
-  template: JST['angular/widget/directives/templates/notifications'],
+  template: JST['angular/widget/directives/templates/notifications']
   controller: ['$scope', 'Session', 'Notification', 'NotificationsCount', 'Redirect', ($scope, Session, Notification, NotificationsCount, Redirect) ->
     user = Session.user_signed_in()
     $scope.notifications = Notification.query() if user
