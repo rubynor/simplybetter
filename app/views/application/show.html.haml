@@ -1,7 +1,4 @@
 =render 'shared/navbar'
-.col-lg-12
-  = render 'shared/alert_success'
-
-#customize.col-lg-12(ng-controller="customizationCtrl")
+#customize.col-lg-12(ng-controller="customizationCtrl as customize")
   = render 'application/select_icon'
   = render 'application/form'
