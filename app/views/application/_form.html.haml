@@ -13,7 +13,7 @@
     .col-lg-5
       %h2 Name and intro
       %label(for="application_name") Name
-      %input#application_name(type="text" placeholder="Project name (ie your website name)" ng-model="application.name")
+      %input#application_name(type="text" placeholder="Project name (ie your website name)" ng-model="application.name" required)
       %label(for="application_intro") Introduction
       %textarea#application_intro(ng-model="application.intro")
 
@@ -22,9 +22,9 @@
       %h2 Support
       .checkbox
         %label(for="application_support")
-          %input#application_support(type="checkbox" ng-model="application.support")
+          %input#application_support(type="checkbox" ng-model="application.support_enabled")
           Enable Support (shows a flag in the widget)
-      %input(type="text" ng-model="application.support_email" placeholder="default: #{@application.support_emails}" ng-hide="thirdPartySupport")
+      %input(type="text" ng-model="application.support_email" placeholder="default: #{@application.support_emails}" ng-if="application.support_enabled")
       .checkbox
         %label
           %input(type="checkbox" ng-model="application.third_party_support")
@@ -57,10 +57,21 @@
 
 
   .row
-    .col-lg-6
+    .col-lg-5
       %h2 Faq
       .checkbox
         %label
-          %input(type="checkbox" ng-model="faqs_enabled")
+          %input(type="checkbox" ng-model="application.faqs_enabled")
           Enable FAQ
-      %button(ng-click="customize.save()") Save
+
+  .row
+    .col-lg-5
+      .errors(ng-if="errors")
+        %h3 The following errors prevented us from saving:
+        .error(ng-repeat="error in errors")
+          %span.glyphicon.glyphicon-remove
+            {{ error }}
+
+      %button(ng-click="customize.save()" ng-disabled="customize.isUnchanged() || !form.$valid")
+        {{ customize.saveText }}
+        %span.glyphicon.glyphicon-ok(ng-if="customize.hasJustBeenSaved()")
