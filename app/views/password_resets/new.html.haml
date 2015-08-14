@@ -1,5 +1,5 @@
 %h1 Send reset instructions
-%p Enter your email below
+%p So you managed to forget your password? Please tell us your email.
 .form
   -if flash.alert
     .notice
@@ -7,8 +7,7 @@
   = form_tag password_resets_path, method: :post do
     .field
       %label
-        E-mail
-      = email_field_tag :email, params[:email], placeholder: 'your email'
+        Your email
+      = email_field_tag :email, params[:email]
     .field
-      .pull-right
-        .actions= submit_tag 'Reset password'
+      .actions= submit_tag 'Reset password'

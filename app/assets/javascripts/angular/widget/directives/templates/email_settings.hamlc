@@ -1,8 +1,6 @@
 %form.form-horizontal(role='form')
-  .form-group
-    .checkbox
-      %label
-        %input(type='checkbox' name='unsubscribe' ng-model='emailSetting.settings.unsubscribed') Unsubscribe from email notifications
+  .checkbox-wrapper
+    %input(type='checkbox' name='unsubscribe' ng-model='emailSetting.settings.unsubscribed') Unsubscribe from email notifications
   .subscribed.success(ng-show='emailSetting.justSubscribed') You are now subscribed
   .unsubscribed.success(ng-show='emailSetting.justUnsubscribed') You are now unsubscribed
   .error(ng-show='emailSetting.error') Something bad happened and we could not save this data :-(
