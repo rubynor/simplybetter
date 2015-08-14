@@ -26,7 +26,8 @@ class ApplicationsController < ApplicationController
 
   def update
     @application.update_attributes!(application_attributes)
-    redirect_to :back, notice: 'Updated!'
+  rescue ActiveRecord::RecordInvalid
+    render json: { error: @application.error.full_messages }
   end
 
   def create
