@@ -14,9 +14,6 @@ class ApplicationsController < ApplicationController
     @application = Application.new
   end
 
-  def edit
-  end
-
   def show
     @icons = Application.icon.values
   end
