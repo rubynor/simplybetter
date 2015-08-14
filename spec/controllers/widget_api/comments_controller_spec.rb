@@ -2,10 +2,19 @@ require 'spec_helper'
 
 describe WidgetApi::CommentsController do
   include SessionHelper
+
+  def shared_params
+    { idea_id: idea.id, id: comment.id,
+      comment: { body: 'new body tekst', visible: false } }
+  end
+
   let(:idea) { Idea.make! }
   let(:user) { User.make! }
   let(:customer) { Customer.make! }
   let(:info_param) { encode_to_base64(idea.application.token, user.email, user.name) }
+  let(:comment) { Comment.make! idea: idea }
+  let(:params) { { email: user.email, token: idea.application.token }.merge!(shared_params) }
+  let(:params_with_info) { { info: info_param }.merge!(shared_params) }
 
   context 'as widget user' do
     before do
@@ -13,80 +22,79 @@ describe WidgetApi::CommentsController do
     end
 
     describe 'creating a comment' do
-      after do
-        expect(response).to render_template(:show)
-      end
+      after { expect(response).to render_template(:show) }
 
+      # TODO Hilde: Refactor
+      # For some reason I can't do the same here as I do
+      # with update (the use of params and params_with_info returns error)
       example 'with email and token params' do
-        post :create, idea_id: idea.id, comment: { body: 'Oh, hi thar!', idea_id: idea.id }, email: user.email, token: idea.application.token, format: :json
+        expect do
+          post :create,
+               idea_id: idea.id,
+               comment: { body: 'Oh, hi thar!', idea_id: idea.id },
+               email: user.email,
+               token: idea.application.token,
+               format: :json
+        end.to change { Comment.count }.by(1)
       end
 
       example 'with info param' do
-        post :create, idea_id: idea.id, comment: { body: 'Oh, hi thar!', idea_id: idea.id }, info: info_param, format: :json
+        expect do
+          post :create,
+               idea_id: idea.id,
+               comment: { body: 'Oh, hi thar!', idea_id: idea.id },
+               info: info_param,
+               format: :json
+        end.to change { Comment.count }.by(1)
       end
     end
 
     describe 'update comment' do
-      describe 'own comment' do
-        before do
-          @comment = Comment.make!(idea: idea, creator: user)
-        end
-        example 'with email and token params' do
-          expect do
-            put :update, idea_id: idea.id, id: @comment.id, comment: { body: 'new body tekst' }, email: user.email, token: idea.application.token, format: :json
-          end.to change { Comment.last.body }.from(@comment.body).to('new body tekst')
+      context 'can update own comment' do
+        before { comment.update_attributes creator: user }
+        after { expect(response.status).to eq(200) }
+
+        it 'with email and token params' do
+          expect { put :update, params, format: :json }.to change { comment.reload.body }.from(comment.body).to('new body tekst')
         end
 
-        example 'with info param' do
-          expect do
-            put :update, idea_id: idea.id, id: @comment.id, comment: { body: 'new body tekst' }, info: info_param, format: :json
-          end.to change { Comment.last.body }.from(@comment.body).to('new body tekst')
+        it 'with info params' do
+          expect { put :update, params_with_info }.to change { comment.reload.body }.from(comment.body).to('new body tekst')
         end
       end
 
-      describe "can't update other comments" do
-        before do
-          @comment = Comment.make!(idea: idea)
+      context 'cannot update ohters comments' do
+        after { expect(response.status).to eq(403) }
+
+        it 'with email and token params' do
+          put :update, params, format: :json
         end
-        example 'with email and token params' do
-          expect do
-            put :update, idea_id: idea.id, id: @comment.id, comment: { body: 'new body tekst' }, email: user.email, token: idea.application.token, format: :json
-          end.not_to change { Comment.last.body }
+
+        it 'with info params' do
+          put :update, params_with_info
         end
-        example 'with info param' do
-          expect do
-            put :update, idea_id: idea.id, id: @comment.id, comment: { body: 'new body tekst' }, info: info_param, format: :json
-          end.not_to change { Comment.last.body }
-        end
+      end
+
+      it 'cannot update visibility' do
+        expect { put :update, params_with_info }.not_to change { comment.visible }
       end
     end
   end
 
   context 'as admin user' do
-    let(:comment) { Comment.make! idea: idea }
-
-    subject do
-      put :update,
-          idea_id: idea.id,
-          id: comment.id,
-          comment: { visible: false },
-          format: :json
-    end
-
-    before do
-      sign_in_customer(customer)
-    end
+    before { sign_in_customer(customer) }
 
     example 'admin - update visible no access' do
-      expect { subject }.not_to change { comment.reload.visible }
+      expect { put :update, params }.not_to change { comment.reload.visible }
     end
 
     example 'admin - update visible' do
       customer.applications << idea.application
-      expect { subject }.to change { comment.reload.visible }.from(true).to(false)
+      expect { put :update, params }.to change { comment.reload.visible }.from(true).to(false)
     end
   end
 
+  # TODO Hilde: is this neccessary?
   context "customer has not visited it's widget, thus is not part of customer.widgets" do
     example 'adding a comment' do
       customer.applications << idea.application
