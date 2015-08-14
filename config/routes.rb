@@ -43,8 +43,6 @@ SimplyBetter::Application.routes.draw do
     resources :faqs
   end
 
-  resources :comments, only: [:update]
-
   resources :email_settings, param: :unsubscribe_token, only: [] do
     get :unsubscribe, on: :member
   end
