@@ -10,6 +10,7 @@
 @import show_ideas
 @import login_form
 @import installation_instructions
+@import customization
 @import shared/idea-admin-options
 @import shared/modal
 @import shared/yes_no_prompt
@@ -130,3 +131,6 @@ $navigation-width-compressed: 40px
   &.compressed
     padding-left: $logo-width + $navigation-width-compressed + $content-padding
 
+pre
+  @include box
+  border: 0px

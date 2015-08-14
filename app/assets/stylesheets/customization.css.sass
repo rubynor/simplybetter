@@ -1,0 +1,116 @@
+body.applications.show
+  .box
+    @include box
+    padding: 15px 0px
+    margin-bottom: 20px
+
+
+  input.ng-invalid
+    border-color: $red
+
+  .read-more
+    @include button-big
+    position: absolute
+    top: 10px
+    bottom: 10px
+    right: -65px
+    background: transparent
+    width: 50px
+    font-size: 50px
+    font-weight: 300
+    margin: 0
+    z-index: 100
+    border-radius: 0
+    color: $dark_grey
+    border: 2px solid $gray
+    &:hover
+      background: $white
+    .arrow:after
+      position: absolute
+      top: 50%
+      margin-top: -35px
+      left: 20px
+      content: '»'
+    &.active
+      .arrow:after
+        content: '«'
+
+  .help-button-padding
+    padding-left: 70px
+
+  .application_form
+    label
+      font-size: 14px
+      font-weight: 500
+    .checkbox label
+      font-size: 14px
+
+  label
+    width: 100%
+    padding: 0px 20px 0px 0px
+    cursor: pointer
+
+  textarea, input[type=text]
+    width: 100%
+
+  .icon_select
+    input[type=radio]
+      display: none
+    label
+      padding: 10px 10px 10px 10px
+      margin: 0px 0px 0px 0px
+      &.selected
+        background-color: #fdffef
+
+  a
+    cursor: pointer
+
+  .icon
+    height: 50px
+    width: 50px
+    display: inline-block
+    float: left
+    border-radius: 5px
+    margin: 10px
+    &.circle
+      background: url('/lightbulb_circle.png') center center
+      background-repeat: no-repeat
+      background-size: contain
+    &.triangle
+      background: url('/lightbulb_triangle_rotatet.png') center center
+      background-repeat: no-repeat
+      background-size: contain
+    &.none:after
+      line-height: 50px
+      content: 'No icon'
+  #application-code
+    visibility: visible
+    opacity: 1
+    transition: opacity 1s
+    -webkit-transition: opacity 1s
+    -moz-transition: opacity 1s
+    -o-transition: opacity 1s
+    &.invisible
+      visibility: hidden
+      opacity: 0
+      transition: opacity 1s
+      -webkit-transition: opacity 1s
+      -moz-transition: opacity 1s
+      -o-transition: opacity 1s
+
+  p
+    color: $dark_grey
+    font-weight: 500
+
+  button
+    margin: 40px 0px 40px 0px
+    display: block
+    float: right
+
+  .errors
+    @include info-box
+    margin: 40px 0 0 0
+    h3
+      margin: 0 0 20px 0
+    .error
+      color: $error
