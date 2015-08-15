@@ -6,7 +6,7 @@
         %label Name
         %input{name: 'name', type: 'text', 'ng-model' => 'name'}
         %label E-mail
-        %input{name: 'email', type: 'email', 'ng-model' => 'email', 'ng-model' => 'email', 'ng-class' => '{ correct: !invalidEmail(), error: invalidEmail() }', required: true }
+        %input{name: 'email', type: 'email', 'ng-model' => 'email', 'ng-class' => '{ correct: !invalidEmail(), error: invalidEmail() }', required: true }
         %label You are bothering us because...
         %textarea{name: 'message', 'ng-model' => 'message', 'ng-class' => '{ correct: !invalidMessage(), error: invalidMessage() }', required: true}
         %input.disabled{type: 'submit', value: 'SUBMIT', 'ng-class' => '{ disabled: !valid() }'}
