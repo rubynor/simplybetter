@@ -1,0 +1,5 @@
+=render 'shared/navbar'
+#customize.col-lg-12(ng-controller="customizationCtrl as customize")
+  %form(name="form" novalidate)
+    = render 'application/select_icon'
+    = render 'application/form'

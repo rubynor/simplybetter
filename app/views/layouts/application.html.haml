@@ -18,8 +18,14 @@
           Account
     #navigation
       = render 'shared/sidebar'
-    #content
-      = yield
+
+    - if @application.present? && !@application.new_record?
+      #content(ng-controller="applicationsCtrl" ng-init="init('#{@application.token}', '#{@current_customer.email}', '#{@application.id}')")
+        = yield
+        %toast
+    - else
+      #content
+        = yield
 
     = render 'shared/widget'
     = render 'shared/google_analytics_main' if Rails.env.production?

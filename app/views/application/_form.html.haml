@@ -1,6 +1,6 @@
-.application_form(ng-app="Settings")
-  .col-lg-12
-    = form_for @application, html: { role: 'form' } do |f|
+.application_form
+  .row
+    .col-lg-5
       - if @application.errors.any?
         .alert.alert-danger
           %p
@@ -9,34 +9,69 @@
           %ul
             - @application.errors.full_messages.each do |msg|
               %li= msg
-      = f.label :name
-      = f.text_field :name, placeholder: 'Project name (ie your website name)'
-      - if @current_action == 'new'
-        = f.button 'Get started!'
-      - else
+  .row
+    .col-lg-5
+      %h2 Name and intro
+      %label(for="application_name") Name
+      %input#application_name(type="text" placeholder="Project name (ie your website name)" ng-model="application.name" required)
+      %label(for="application_intro") Introduction
+      %textarea#application_intro(ng-model="application.intro")
 
-        = f.label :widget_title_intro
-        = f.text_area :intro
+  .row
+    .col-lg-5
+      %h2 Support
+      .checkbox
+        %label(for="application_support")
+          %input#application_support(type="checkbox" ng-model="application.support_enabled")
+          Enable Support (shows a flag in the widget)
+      %input(type="text" ng-model="application.support_email" placeholder="default: #{@application.support_emails}" ng-if="application.support_enabled")
+      .checkbox
+        %label
+          %input(type="checkbox" ng-model="application.third_party_support")
+          Trigger my existing support service
+        %p
+          When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
+          %a(ng-click="supportHelp = true") here
 
-        %h2 Support
-        .checkbox
-          %label
-            = f.check_box :support_enabled
-            Enable Support (shows a flag in the widget)
-        = f.text_field :support_email, placeholder: "default: #{@application.support_emails}", "ng-hide" => "thirdPartySupport"
-        .checkbox
-          %label
-            = f.check_box :third_party_support, "ng-model" => "thirdPartySupport", "ng-init" => "thirdPartySupport = #{@application.third_party_support}"
-            Trigger my existing support service
-          %p
-            When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
-            %a(href="#support-custom-handle") here
+      .read-more(ng-click="supportHelp = false" ng-class="{active: supportHelp}" ng-show="supportHelp")
+        .arrow
 
-        %h2 Faq
-        .checkbox
-          %label
-            = f.check_box :faqs_enabled
-            Enable FAQ
-        = f.button 'Save'
+    .col-lg-7
+      .help-button-padding(ng-show="supportHelp")
+        %h2#support-custom-handle
+          Support button
+        %p
+          When you check the support button. A button will appear on the side of the widget. This button will take users to a form where they can submit support requests.
+        %p
+          If "Trigger my existing support service" has been checked, you will be able to trigger your own support service by implementing the following javascript function in your code:
+        %pre
+          %code
+            = preserve do
+              :escaped
+                window.simplyBetterSupportClick = function () {
+                  // Trigger my support service
+                }
+        %p
+          This is useful if you use a third party support service, or if you have implemented your own and wish to direct simplybetter users to this service.
 
 
+
+  .row
+    .col-lg-5
+      %h2 Faq
+      .checkbox
+        %label
+          %input(type="checkbox" ng-model="application.faqs_enabled")
+          Enable FAQ
+
+  .row
+    .col-lg-5
+      .errors(ng-if="errors")
+        %h3 The following errors prevented us from saving:
+        .error(ng-repeat="error in errors")
+          %span.glyphicon.glyphicon-remove
+            {{ error }}
+
+      %button(ng-click="customize.save()" ng-disabled="customize.isUnchanged() || !form.$valid")
+        {{ customize.saveText }}
+        %span.glyphicon.glyphicon-ok(ng-if="customize.hasJustBeenSaved()")
