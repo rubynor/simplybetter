@@ -16,7 +16,7 @@
       Read more about the "No icon" option
       %a(ng-click="iconHelp = true") here
 
-    .read-more(ng-click="iconHelp = !iconHelp" ng-class="{active: iconHelp}")
+    .read-more(ng-click="iconHelp = false" ng-class="{active: iconHelp}" ng-show="iconHelp")
       .arrow
 
   .col-lg-7

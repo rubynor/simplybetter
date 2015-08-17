@@ -33,7 +33,7 @@
           When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
           %a(ng-click="supportHelp = true") here
 
-      .read-more(ng-click="supportHelp = !supportHelp" ng-class="{active: supportHelp}")
+      .read-more(ng-click="supportHelp = false" ng-class="{active: supportHelp}" ng-show="supportHelp")
         .arrow
 
     .col-lg-7
