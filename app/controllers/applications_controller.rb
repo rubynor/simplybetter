@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview]
+  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization]
 
   def index
     if applications.any?
@@ -15,7 +15,9 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @icons = Application.icon.values
+  end
+
+  def customization
   end
 
   def show_ideas
@@ -34,7 +36,7 @@ class ApplicationsController < ApplicationController
     @application = Application.new(application_attributes)
     @application.customers << current_customer
     if @application.save
-      redirect_to application_path(@application.id), notice: 'Application successfully created!'
+      redirect_to customization_application_path(@application.id), notice: 'Application successfully created!'
     else
       render :index
     end

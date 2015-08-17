@@ -40,6 +40,7 @@ SimplyBetter::Application.routes.draw do
     get :preview, on: :member
     get :show_ideas, on: :member
     get :installation_instructions, on: :member
+    get :customization, on: :member
     resources :ideas, only: [:index, :update, :destroy]
     resources :faqs
   end
