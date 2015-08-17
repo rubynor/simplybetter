@@ -18,7 +18,8 @@ CustomizationCtrl = ($rootScope, $scope, ngToast, Application) ->
       $scope.applicationOriginal = angular.copy(data)
       $scope.form.$setPristine()
       @saveText = BUTTON_SAVED_TEXT
-    , (response) ->
+    , (response) =>
+      @saveText = BUTTON_UNSAVED_TEXT
       $scope.errors = response.data.errors
 
   @isUnchanged = ->
