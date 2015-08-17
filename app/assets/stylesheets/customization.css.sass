@@ -57,8 +57,8 @@ body.applications.show
     input[type=radio]
       display: none
     label
-      padding: 10px 10px 10px 10px
-      margin: 0px 0px 0px 0px
+      padding: 10px
+      margin: 0
       &.selected
         background-color: #fdffef
 
@@ -83,20 +83,6 @@ body.applications.show
     &.none:after
       line-height: 50px
       content: 'No icon'
-  #application-code
-    visibility: visible
-    opacity: 1
-    transition: opacity 1s
-    -webkit-transition: opacity 1s
-    -moz-transition: opacity 1s
-    -o-transition: opacity 1s
-    &.invisible
-      visibility: hidden
-      opacity: 0
-      transition: opacity 1s
-      -webkit-transition: opacity 1s
-      -moz-transition: opacity 1s
-      -o-transition: opacity 1s
 
   p
     color: $dark_grey
