@@ -4,58 +4,53 @@ describe WidgetApi::CommentsController do
   include SessionHelper
 
   def shared_params
-    { idea_id: idea.id, id: comment.id,
-      comment: { body: 'new body tekst', visible: false } }
+    { idea_id: idea.id,
+      comment: { body: 'new body tekst', visible: false, idea_id: idea.id },
+      format: :json }
+  end
+
+  def info_param
+    encode_to_base64(idea.application.token, user.email, user.name)
   end
 
   let(:idea) { Idea.make! }
   let(:user) { User.make! }
   let(:customer) { Customer.make! }
-  let(:info_param) { encode_to_base64(idea.application.token, user.email, user.name) }
   let(:comment) { Comment.make! idea: idea }
-  let(:params) { { email: user.email, token: idea.application.token }.merge!(shared_params) }
-  let(:params_with_info) { { info: info_param }.merge!(shared_params) }
+  let(:new_comment_params) { { email: user.email, token: idea.application.token }.merge!(shared_params) }
+  let(:new_comment_params_with_info) { { info: info_param }.merge!(shared_params) }
+  let(:params) { new_comment_params.merge!({ id: comment.id }) }
+  let(:params_with_info) { new_comment_params_with_info.merge!({id: comment.id}) }
 
   context 'as widget user' do
     before do
       user.widgets << idea.application
     end
 
-    describe 'creating a comment' do
+    describe '#create' do
       after { expect(response).to render_template(:show) }
 
-      # TODO Hilde: Refactor
-      # For some reason I can't do the same here as I do
-      # with update (the use of params and params_with_info returns error)
       example 'with email and token params' do
         expect do
-          post :create,
-               idea_id: idea.id,
-               comment: { body: 'Oh, hi thar!', idea_id: idea.id },
-               email: user.email,
-               token: idea.application.token,
-               format: :json
+          post :create, new_comment_params.except!(:id)
         end.to change { Comment.count }.by(1)
       end
 
       example 'with info param' do
         expect do
           post :create,
-               idea_id: idea.id,
-               comment: { body: 'Oh, hi thar!', idea_id: idea.id },
-               info: info_param,
-               format: :json
+               new_comment_params_with_info
         end.to change { Comment.count }.by(1)
       end
     end
 
-    describe 'update comment' do
+    describe '#update' do
       context 'can update own comment' do
         before { comment.update_attributes creator: user }
         after { expect(response.status).to eq(200) }
 
         it 'with email and token params' do
-          expect { put :update, params, format: :json }.to change { comment.reload.body }.from(comment.body).to('new body tekst')
+          expect { put :update, params }.to change { comment.reload.body }.from(comment.body).to('new body tekst')
         end
 
         it 'with info params' do
@@ -63,15 +58,27 @@ describe WidgetApi::CommentsController do
         end
       end
 
-      context 'cannot update ohters comments' do
+      context 'cannot update others comments' do
         after { expect(response.status).to eq(403) }
 
         it 'with email and token params' do
-          put :update, params, format: :json
+          put :update, params
         end
 
         it 'with info params' do
           put :update, params_with_info
+        end
+      end
+
+      context 'with invalid comment paramaters' do
+        before do
+          comment.update_attributes creator: user
+          params[:comment] = { body: nil }
+          put :update, params
+        end
+
+        it 'fails' do
+          expect(response.status).to eq(422)
         end
       end
 
@@ -101,6 +108,24 @@ describe WidgetApi::CommentsController do
       sign_in_customer(customer)
       post :create, idea_id: idea.id, comment: { body: 'Oh, hi thar!', idea_id: idea.id }, format: :json
       expect(response).to render_template(:show)
+    end
+  end
+
+  context 'widget user of another widget' do
+    context '#create' do
+      it 'raises error' do
+        expect{ put :create, params }.to raise_error(NoAccessException)
+      end
+    end
+
+    context '#update' do
+      it 'raises error with email and token params' do
+        expect { put :update, params }.to raise_error(NoAccessException)
+      end
+
+      it 'raises error with info params' do
+        expect { put :update, params_with_info }.to raise_error(NoAccessException)
+      end
     end
   end
 end

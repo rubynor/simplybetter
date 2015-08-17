@@ -8,7 +8,7 @@ SimplyBetter::Application.routes.draw do
 
   namespace :widget_api do
     resources :ideas, except: [:new, :edit] do
-      resources :comments, only: [:create, :index, :update]
+      resources :comments, only: [:create, :index, :update], format: :json
       get :find_similar, on: :collection
     end
     resources :votes, only: [] do
