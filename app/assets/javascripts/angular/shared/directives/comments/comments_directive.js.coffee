@@ -87,7 +87,7 @@ Comments = ->
         $scope.idea.comments_count += 1
         $scope.newComment = undefined
         ngToast.create(
-          content: 'Than you for your comsdfsfment'
+          content: 'Thank you for your comment'
         )
         $scope.isSaving = false
         $scope.comment_id = data.id
