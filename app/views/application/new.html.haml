@@ -1,4 +1,19 @@
 .col-xs-12
   %h1 Name your project (ie your website's name)
-= render 'application/form'
+  = form_for @application, html: { role: 'form', class: 'application_form' } do |f|
+    .row
+      .col-lg-5
+        - if @application.errors.any?
+          .alert.alert-danger
+            %p
+              %strong
+                Unfortunately some errors prevented you from creating the project:
+            %ul
+              - @application.errors.full_messages.each do |msg|
+                %li= msg
 
+    .row
+      .col-lg-5
+        = f.label :name
+        = f.text_field :name, placeholder: 'Project name (ie your website name)'
+        = f.button 'Get started!'

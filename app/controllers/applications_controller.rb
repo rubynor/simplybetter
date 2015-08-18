@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show, :show_ideas, :edit, :update, :preview]
+  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization]
 
   def index
     if applications.any?
@@ -14,26 +14,29 @@ class ApplicationsController < ApplicationController
     @application = Application.new
   end
 
-  def edit
+  def show
   end
 
-  def show
-    @icons = Application.icon.values
+  def customization
   end
 
   def show_ideas
   end
 
+  def installation_instructions
+  end
+
   def update
     @application.update_attributes!(application_attributes)
-    redirect_to :back, notice: 'Updated!'
+  rescue ActiveRecord::RecordInvalid
+    render json: { errors: @application.errors.full_messages }, status: 400
   end
 
   def create
     @application = Application.new(application_attributes)
     @application.customers << current_customer
     if @application.save
-      redirect_to application_path(@application.id), notice: 'Application successfully created!'
+      redirect_to customization_application_path(@application.id), notice: 'Application successfully created!'
     else
       render :index
     end

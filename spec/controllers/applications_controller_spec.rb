@@ -18,7 +18,7 @@ describe ApplicationsController do
 
   describe 'show' do
     it 'should assign @application' do
-      get :show, id: @application.id
+      get :show, id: @application.id, format: :json
       expect(assigns(:application)).to be_an_instance_of(Application)
     end
   end
@@ -29,9 +29,9 @@ describe ApplicationsController do
         post :create, application: {name: 'The bestest application'}
       }.to change{ Application.all.count }.by(1)
     end
-    it 'should redirect to applications_path' do
+    it 'should redirect to customization_applications_path' do
       post :create, application: {name: 'The bestest application'}
-      expect(response).to redirect_to(application_path(Application.last.id))
+      expect(response).to redirect_to(customization_application_path(Application.last.id))
     end
   end
 end

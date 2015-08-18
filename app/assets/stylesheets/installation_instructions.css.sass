@@ -1,62 +1,7 @@
-body.applications.show
-  .box
-    @include box
-    padding: 15px 0px
-    margin-bottom: 20px
-    &.with-form
-      width: $form-width
-
-  label
-    width: 100%
-    padding: 0px 20px 0px 0px
-    cursor: pointer
-    &.selected
-      background-color: #fdffef
-  .icon
-    height: 50px
-    width: 50px
-    display: inline-block
-    float: left
-    border-radius: 5px
-    margin: 10px
-    &.circle
-      background: url('/lightbulb_circle.png') center center
-      background-repeat: no-repeat
-      background-size: contain
-    &.triangle
-      background: url('/lightbulb_triangle_rotatet.png') center center
-      background-repeat: no-repeat
-      background-size: contain
-    &.none:after
-      line-height: 50px
-      content: 'No icon'
-  #application-code
-    visibility: visible
-    opacity: 1
-    transition: opacity 1s
-    -webkit-transition: opacity 1s
-    -moz-transition: opacity 1s
-    -o-transition: opacity 1s
-    &.invisible
-      visibility: hidden
-      opacity: 0
-      transition: opacity 1s
-      -webkit-transition: opacity 1s
-      -moz-transition: opacity 1s
-      -o-transition: opacity 1s
+body.applications.installation_instructions
+  ul.nav.nav-tabs
+    margin: 30px 0px 0px 0px
 
   ul > li, p
     color: $dark_grey
     font-weight: 500
-
-  pre
-    @include box
-    border: 0px
-
-.divider
-  background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.2))
-  border-radius: 2px
-  height: 5px
-  width: 100%
-  display: inline-block
-  margin-top: 40px
