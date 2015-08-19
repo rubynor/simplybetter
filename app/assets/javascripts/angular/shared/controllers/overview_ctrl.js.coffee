@@ -36,5 +36,5 @@ OverviewCtrl = ($scope, Session, Idea) ->
     Session.isAdmin()
 
 angular
-  .module('Simplybetter')
+  .module('shared')
   .controller('OverviewCtrl', ['$scope', 'Session', 'Idea', OverviewCtrl])

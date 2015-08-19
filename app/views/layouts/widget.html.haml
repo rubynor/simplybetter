@@ -2,7 +2,7 @@
 %html
   %head
     %title SimplyBetter
-    = stylesheet_link_tag    "widget/widget", media: "all"
+    = stylesheet_link_tag    "widget", media: "all"
     = jquery_include_tag :jquery
     = javascript_include_tag "widget"
     = csrf_meta_tags
@@ -19,16 +19,15 @@
         %a{href: 'http://simplybetter.io', target: '_blank'}
           .logo
           .logo-text Simply Better
-        %faqs-button(ng-show="#{@app.faqs_enabled}")
-        %support-button(ng-show="#{@app.support_enabled}" third-party="#{@app.third_party_support}")
-        %account-settings-button
-        %notifications
+        %span(ng-show='signed_in')
+          %faqs-button(ng-show="#{@app.faqs_enabled}")
+          %support-button(ng-show="#{@app.support_enabled}" third-party="#{@app.third_party_support}")
+          %account-settings-button
+          %notifications
 
       #simplybetterNavbar(ng-class='{ overview: !path }' ng-init="app_name='#{@app.name}'")
         %span(ng-if='path')
-          %a.link(ui-sref='overview' ng-click='reset_path()')
-            .icon.back-arrow
-            BACK
+          %back(ng-click='reset_path()')
         %h2
           {{app_name}}
         %p= @app.intro

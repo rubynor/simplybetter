@@ -38,9 +38,11 @@
         %img(ng-src='{{idea.last_edit_admin.gravatar_url}}')
       .name
         Edited by
-        %span.black {{ idea.last_edit_admin.name }}
+        %span.black
+          {{ idea.last_edit_admin.name }}
       .date
         On
-        %span.black {{ idea.last_edit_admin_time }}
+        %span.black
+          {{ idea.last_edit_admin_time }}
 .tranclude(ng-transclude)
 %a.not-visible-overlay(ng-if='!idea.visible' ui-sref='idea({id: idea.id})')

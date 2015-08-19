@@ -10,18 +10,18 @@ class WidgetApi::CommentsController < WidgetController
   def update
     @comment = @idea.comments.find(params[:id])
 
-    unless current_customer
-      user = widget_user
-      return render json: { error: 'error' }, status: 403 unless @comment.creator == user
-    end
+    return render json: { error: 'No access' },
+                  status: :forbidden unless has_access
 
-    if @comment.update_attributes!(comment_attributes)
+    if @comment.update_attributes(comment_attributes)
       render json: @comment
+    else
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
+
   def create
-    # TODO Pål: We should have some common way to solve this
     if current_customer.present?
       params[:email] = current_customer.email
     else
@@ -54,5 +54,13 @@ class WidgetApi::CommentsController < WidgetController
 
   def set_idea
     @idea ||= Idea.find(params[:idea_id])
+  end
+
+  def has_access
+    if current_customer
+      current_customer.applications.include?(@comment.application)
+    else
+      widget_user == @comment.creator
+    end
   end
 end

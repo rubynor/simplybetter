@@ -27,5 +27,7 @@
       #content
         = yield
 
+    %toast
+
     = render 'shared/widget'
     = render 'shared/google_analytics_main' if Rails.env.production?

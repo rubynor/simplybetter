@@ -45,7 +45,7 @@ Comments = ->
           )
         , (err) ->
           ngToast.create(
-            content: err.data.error,
+            content: err.data.error
             className: 'danger'
           )
       )
@@ -82,23 +82,22 @@ Comments = ->
       $scope.isSaving = true
       hash = { body: newComment, idea_id: $scope.idea.id }
       comment = new Comment(hash)
-      comment.$save(
-        (data) ->
-          $scope.comments.push(data)
-          $scope.idea.comments_count += 1
-          $scope.newComment = undefined
-          ngToast.create(
-            content: 'Than you for your comment'
-          )
-          $scope.isSaving = false
-          $scope.comment_id = data.id
+      comment.$save (data) ->
+        $scope.comments.push(data)
+        $scope.idea.comments_count += 1
+        $scope.newComment = undefined
+        ngToast.create(
+          content: 'Thank you for your comment'
+        )
+        $scope.isSaving = false
+        $scope.comment_id = data.id
       , (err) ->
         ngToast.create(
           content: err.data.error,
           className: 'danger'
         )
         $scope.isSaving = false
-      )
+
   ]
 
 angular.module('shared').directive('comments', Comments)

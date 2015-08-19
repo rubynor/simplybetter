@@ -1,8 +1,8 @@
-@import colors
-@import fonts
+@import shared/colors
+@import shared/fonts
 @import font-awesome
-@import 'compass/utilities/general/clearfix'
-@import mixins
+@import compass/utilities/general/clearfix
+@import shared/mixins
 
 body
   background: #f4f4f4
@@ -22,7 +22,8 @@ p
 button
   @include button-big
   height: 55px
-  padding: 10px 55px
+  line-height: 55px
+  padding: 0 55px
   font-size: 18px
   font-weight: normal
   cursor: pointer

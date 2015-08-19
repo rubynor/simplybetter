@@ -6,11 +6,12 @@ describe WidgetApi::IdeasController do
   before do
     @user = User.make!
     @application = Application.make!(users: [@user])
+    @info_param =  encode_to_base64(@application.token, @user.email, @user.name)
   end
 
   describe 'GET index' do
     it 'should assign @ideas variable' do
-      get :index, appkey: @application.token, email: @user.email, format: :json
+      get :index, info: @info_param, format: :json
       expect(assigns(:ideas)).to eq(@application.ideas.visible)
     end
   end
@@ -18,7 +19,7 @@ describe WidgetApi::IdeasController do
   describe 'GET show' do
     it 'should assign @idea variable' do
       @idea = Idea.make!(application: @application)
-      get :show, appkey: @application.token, id: @idea.to_param, email: @user.email, format: :json
+      get :show, info: @info_param, id: @idea.to_param, format: :json
       expect(assigns(:idea)).to eq(@idea)
     end
   end
@@ -29,23 +30,24 @@ describe WidgetApi::IdeasController do
     end
     it 'updates the idea title' do
       expect do
-        patch :update, appkey: @application.token, id: @idea.to_param, email: @user.email, idea: { title: 'Edited title' }, format: :json
+        patch :update, id: @idea.to_param, info: @info_param, idea: { title: 'Edited title' }, format: :json
       end.to change { Idea.last.title }.from(@idea.title).to('Edited title')
     end
     it 'updates the idea description' do
       expect do
-        patch :update, appkey: @application.token, id: @idea.to_param, email: @user.email, idea: { description: 'Edited description' }, format: :json
+        patch :update, id: @idea.to_param, info: @info_param, idea: { description: 'Edited description' }, format: :json
       end.to change { Idea.last.description }.from(@idea.description).to('Edited description')
     end
     it 'should raise error if validation fails' do
       expect do
-        patch :update, appkey: @application.token, id: @idea.to_param, email: @user.email, idea: { description: '' }, format: :json
+        patch :update, id: @idea.to_param, info: @info_param, idea: { description: '' }, format: :json
       end.to raise_error
     end
     it 'should return forbidden unless owner of idea' do
       user = User.make!
       user.widgets << @application
-      patch :update, appkey: @application.token, id: @idea.to_param, email: user.email, idea: { description: 'Edited description' }, format: :json
+      info_param = encode_to_base64(@application.token, user.email, user.name)
+      patch :update, id: @idea.to_param, info: info_param, idea: { description: 'Edited description' }, format: :json
       expect(response.status).to eq(403)
     end
 
@@ -94,11 +96,35 @@ describe WidgetApi::IdeasController do
   end
 
   describe 'DELETE destroy' do
-    it 'should destroy the idea' do
-      idea = Idea.make!
-      expect do
-        delete :destroy, id: idea.to_param, format: :json
-      end.to change(Idea, :count).by(-1)
+    describe 'as signed in customer' do
+      before do
+        @customer = Customer.make!
+        sign_in_customer(@customer)
+      end
+      
+      it 'should destroy the idea for customer that owns app' do
+        @application.customers << @customer
+        idea = Idea.make!(application: @application)
+        expect do
+          delete :destroy, id: idea.to_param, info: @info_param, format: :json
+        end.to change(Idea, :count).by(-1)
+      end
+
+      it 'should return error and not delete if customer does not own app' do
+        idea = Idea.make!(application: @application)
+        expect do
+          delete :destroy, id: idea.to_param, info: @info_param, format: :json
+        end.to change(Idea, :count).by(0)
+      end
+    end
+
+    describe 'no admin' do
+      it 'should return error and not delete' do
+        idea = Idea.make!(application: @application)
+        expect do
+          delete :destroy, id: idea.to_param, info: @info_param, format: :json
+        end.to change(Idea, :count).by(0)
+      end
     end
   end
 

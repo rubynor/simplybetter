@@ -1,24 +1,6 @@
-@import imports
-@import shared/checkbox
-@import compass/layout/stretching
-@import icons
-@import mixins
-@import fonts
-@import navbar
+@import shared/shared
+@import backoffice/*
 @import highlight_github
-@import shared/ideas
-@import show_ideas
-@import login_form
-@import installation_instructions
-@import customization
-@import shared/idea-admin-options
-@import shared/modal
-@import shared/yes_no_prompt
-@import shared/comments
-@import new_edit_application.css.sass
-@import user_settings
-@import preview
-@import faq
 
 html
   height: 100%
@@ -37,10 +19,6 @@ p
 $logo-width: 70px
 $navigation-width: 270px
 $navigation-width-compressed: 40px
-
-// ngToast notifications fixed, so users can always se them
-.ng-toast .ng-toast__list
-  position: fixed
 
 #logo
   width: $logo-width
