@@ -16,8 +16,12 @@
     - else
       You have not created any projects (widgets for your website) yet
 
-.user
-  = current_customer.name
-  |
-  = link_to "Sign out", sign_out_path, class: 'navbar-link', method: :delete
+.bottom
+  .support
+    %a.simplybetterSupportButton
+      Need support?
+  .user
+    = current_customer.name
+    |
+    = link_to "Sign out", sign_out_path, class: 'navbar-link', method: :delete
 

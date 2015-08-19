@@ -11,7 +11,8 @@ $(function(){
 
     }
 
-    if (SBTools.isPresent($('body.applications.installation_instructions'))) {
+    if (SBTools.isPresent($('body.applications.installation_instructions')) ||
+        SBTools.isPresent($('body.applications.customization'))) {
         hljs.initHighlightingOnLoad();
     }
 
