@@ -47,8 +47,12 @@
       }
     };
 
+    var getIframe = function () {
+      // add .contentWindow if you want to send postMessages
+      return document.getElementsByClassName('simplybetterIframe')[0];
+    }
+
     var listenForPostMessage = function() {
-        var iframeWindow = document.getElementsByClassName('simplybetterIframe')[0].contentWindow;
         window.addEventListener("message", receiveMessage, false);
     };
 
@@ -73,19 +77,31 @@
         };
     };
 
+    var openSimplyBetterWidget = function () {
+      appendSimplyBetterWidget();
+      iframeWrapper = document.getElementById('simplybetterIframeWrapper');
+      backdrop = document.getElementById('simplybetterBackdropLayer');
+      bindCloseButtons();
+
+      iframeWrapper.removeAttribute('style');
+      backdrop.removeAttribute('style');
+    };
+
     // Append the Activate button
     appendActivateButton();
     activateButton = document.getElementById('simplybetterActivateButton');
     var activationButtons = document.getElementsByClassName('simplybetterActivateButton');
     for (var i = 0; i < activationButtons.length; i++) {
       activationButtons[i].onclick = function() {
-          appendSimplyBetterWidget();
-          iframeWrapper = document.getElementById('simplybetterIframeWrapper');
-          backdrop = document.getElementById('simplybetterBackdropLayer');
-          bindCloseButtons();
+        openSimplyBetterWidget();
+      };
+    }
 
-          iframeWrapper.removeAttribute('style');
-          backdrop.removeAttribute('style');
+    var supportButtons = document.getElementsByClassName('simplybetterSupportButton');
+    for (var i = 0; i < supportButtons.length; i++) {
+      supportButtons[i].onclick = function() {
+        openSimplyBetterWidget();
+        getIframe().src = widgetURI() + '#/support';
       };
     }
 

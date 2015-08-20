@@ -15,11 +15,11 @@ Router = ($stateProvider, $urlRouterProvider, $locationProvider) ->
       template: JST['angular/widget/templates/settings_view']
       controller: 'SettingsCtrl as setting'
     .state 'faqs',
-      url: 'widget/faqs'
+      url: '/faqs'
       template: JST['angular/widget/templates/faq_view']
       controller: 'FaqCtrl as faq'
     .state 'support',
-      url: 'widget/support'
+      url: '/support'
       template: JST['angular/widget/templates/support_view']
       controller: 'SupportCtrl as support'
 

@@ -23,4 +23,4 @@
 //= require angular/backoffice
 //= require_tree ./angular/backoffice
 //
-//= require setup_instructions
+//= require highlight_init
