@@ -3,25 +3,25 @@
     %h2 Select icon style
     %p
       You can change the icon whenever you want. There is also some
-      %a(ng-click="iconHelp = true") optional advanced icon options
+      %a(ng-click="toggleIconHelp()") optional advanced icon options
     .box.with-form
       .col-xs-12.icon_select
         %table
           %tr
             %td(ng-repeat="icon in application.icons")
-              %label(ng-class="{selected: application.icon == icon}" for="application_icon_{{icon}}")
+              %label(ng-class="{ selected: application.icon == icon }" for="application_icon_{{icon}}")
                 %input(id="application_icon_{{icon}}" type='radio' name="icon" ng-model="application.icon" ng-value="icon")
                 .icon(ng-class="icon")
     %p
       Read more about the "No icon" option
-      %a(ng-click="iconHelp = true") here
+      %a(ng-click="toggleIconHelp()") here
 
-    .read-more(ng-click="iconHelp = false" ng-class="{active: iconHelp}" ng-show="iconHelp")
+    .read-more(ng-click="toggleIconHelp()" ng-class="{active: iconHelp}" ng-show="iconHelp")
       .arrow
 
   .col-lg-7
     .help-button-padding(ng-show="iconHelp")
-      %h2#custom-icon Advanced cutomization of icon (optional)
+      %h2#custom-icon Advanced customization of icon (optional)
       %p
         It's really easy to style the icon if you want to.
         You can override the css so you'll have complete control. Below is the current
