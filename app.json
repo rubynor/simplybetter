@@ -1,5 +1,4 @@
 {
-  "name": "simplybetter",
   "scripts": {
     "postdeploy": "bundle exec rake db:setup"
   },
@@ -25,11 +24,5 @@
     "RAILS_ENV": {
       "required": true
     }
-  },
-  "addons": [
-    "sentry",
-    "bonsai",
-    "heroku-postgresql",
-    "newrelic"
-  ]
+  }
 }
