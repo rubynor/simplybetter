@@ -89,11 +89,11 @@ SimplyBetter::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { host: 'simplybetter-stagin.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'simplybetter-staging.herokuapp.com' }
 
   class WidgetPath
     def self.path
-      "https://simplybetter-staging.herokuapp.com"
+      ENV['URL']
     end
   end
 end

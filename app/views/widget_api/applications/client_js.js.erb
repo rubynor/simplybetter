@@ -23,7 +23,12 @@
 
     if (!document.getElementById(cssId)){
       createStyleLink('widget-client');
-      createStyleLink('icons/<%=@icon%>');
+      if ("<%= @icon %>") {
+        createStyleLink('icons/<%=@icon%>');
+      }
+      if ("<%= @error %>") {
+        console.log("<%= @error %>");
+      }
     }
 
     var appendToBody = function(html){

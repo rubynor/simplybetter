@@ -40,6 +40,18 @@ ActiveRecord::Base.transaction do
     c = i.comments.create! body: Faker::Lorem.sentence, creator_id: user.id, creator_type: 'User'
   end
 
-  Idea.reindex
+  customer = Customer.create! name: 'Guest User', email: 'demo@simplybetter.io', password: 'dev', password_confirmation: 'dev'
+  puts 'created customer demo@simplybetter.io with password dev'
+  app = customer.applications.create! name: 'Demo', intro: 'Try out SimplyBetter here', icon: 'none'
+  app.token = 'DEMO'
+  app.save
+  puts 'added DEMO application'
+
+  3.times do |n|
+    app.users.create!(email: "demo#{n}@simplybetter.io", name: Faker::Name.name)
+  end
+  Rake::Task['sb:reset_demo_app'].invoke unless Rails.env.test?
+
+  Idea.reindex if Rails.env.development?
 end
 

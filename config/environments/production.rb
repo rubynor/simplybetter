@@ -89,7 +89,7 @@ SimplyBetter::Application.configure do
 
   class WidgetPath
     def self.path
-      "https://www.simplybetter.io"
+      ENV['URL']
     end
   end
 end
