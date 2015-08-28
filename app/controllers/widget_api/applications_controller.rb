@@ -4,8 +4,11 @@ class WidgetApi::ApplicationsController < ApplicationController
 
   def client_js
     expires_in 20.minutes
-    app = Application.find_by(token: params[:appkey])
-    @icon = app.icon
+    if (app = Application.find_by(token: params[:appkey]))
+      @icon = app.icon
+    else
+      @error = "Could not find application with appkey #{params[:appkey]}"
+    end
   end
 
   def is_admin
