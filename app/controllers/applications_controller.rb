@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization]
+  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization, :collaborators]
 
   def index
     if applications.any?
@@ -24,6 +24,26 @@ class ApplicationsController < ApplicationController
   end
 
   def installation_instructions
+  end
+
+  def collaborators
+    @collaborators = @application.customers
+  end
+
+  def invite_customer
+    @customer = Customer.find_by(email: params[:email])
+    if @customer
+      if @customer.applications.find_by(id: @application.id)
+        render json: { error: 'is already invited' }
+      end
+    else
+      password = SecureRandom.urlsafe_base64(6)
+      @customer = Customer.create(email: params[:email], password: password, password_confirmation: password)
+    end
+
+    # Send mail with password to the new e-mail address
+    @customer.applications << @application
+    render json: { success: 'user has been added' }
   end
 
   def update

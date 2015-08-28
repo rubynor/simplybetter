@@ -1,7 +1,7 @@
 class Application < ActiveRecord::Base
   extend Enumerize
   has_paper_trail
-  has_and_belongs_to_many :customers
+  has_and_belongs_to_many :customers, -> { uniq }
   has_and_belongs_to_many :users, join_table: 'widget_users'
   has_and_belongs_to_many :widget_customers, class_name: 'Customer', join_table: 'widget_customers'
 

@@ -1,0 +1,24 @@
+=render 'shared/navbar'
+
+%div(ng-controller="InvitesCtrl as invite")
+  %h1
+    Collaborators
+  %table.table
+    - @collaborators.each do |col|
+      %tr
+        %td
+          %img(src="#{col.gravatar_url(size: 40)}")
+        %td
+          = col.name
+        %td
+          = col.email
+
+  %button(ng-click="visible = true")
+    Add collaborator
+
+  %modal(visible="visible")
+    %h1 New collaborator
+    %label Email Address
+    %input(type='email' placeholder='user@domain.com')
+    %button
+      Add collaborator

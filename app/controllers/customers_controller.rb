@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authorize, except: [:new, :create]
-  before_action :set_application, only: [:edit, :update, :edit_unsafe, :update_unsafe]
+  before_action :set_application, only: [:edit, :update, :edit_unsafe, :update_unsafe, :invite_customer]
   layout "splash_screen", except: [:edit, :update, :edit_unsafe, :update_unsafe]
 
   def new

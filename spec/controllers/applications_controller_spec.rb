@@ -34,4 +34,10 @@ describe ApplicationsController do
       expect(response).to redirect_to(customization_application_path(Application.last.id))
     end
   end
+
+  describe 'invite_customer' do
+    it 'should invite a customer by creating a new user' do
+      post :invite_customer, id: @application.id, email: 'test@invite.com'
+    end
+  end
 end
