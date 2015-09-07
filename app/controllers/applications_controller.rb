@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization, :collaborators]
+  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization, :collaborators, :invite_customer]
 
   def index
     if applications.any?
@@ -32,18 +32,17 @@ class ApplicationsController < ApplicationController
 
   def invite_customer
     @customer = Customer.find_by(email: params[:email])
-    if @customer
-      if @customer.applications.find_by(id: @application.id)
-        render json: { error: 'is already invited' }
-      end
-    else
+
+    unless @customer
       password = SecureRandom.urlsafe_base64(6)
-      @customer = Customer.create(email: params[:email], password: password, password_confirmation: password)
+      @customer = Customer.create!(email: params[:email], name: params[:name], password: password, password_confirmation: password)
+      # Send mail with password to the new e-mail address
     end
 
-    # Send mail with password to the new e-mail address
-    @customer.applications << @application
+    @application.customers << @customer
     render json: { success: 'user has been added' }
+  rescue ActiveRecord::RecordNotUnique
+    render json: { error: 'is already invited' }, status: 409
   end
 
   def update
