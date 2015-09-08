@@ -36,13 +36,14 @@ class ApplicationsController < ApplicationController
     unless @customer
       password = SecureRandom.urlsafe_base64(6)
       @customer = Customer.create!(email: params[:email], name: params[:name], password: password, password_confirmation: password)
-      # Send mail with password to the new e-mail address
     end
 
     @application.customers << @customer
+    CustomerMailer.invite_new_customer(@customer, password).deliver_later if password
+    CustomerMailer.invite(@customer).deliver_later unless password
     render json: { success: 'user has been added' }
   rescue ActiveRecord::RecordNotUnique
-    render json: { error: 'is already invited' }, status: 409
+    render json: { errors: 'is already invited' }, status: 409
   end
 
   def update
