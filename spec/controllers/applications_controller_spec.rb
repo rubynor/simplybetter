@@ -37,7 +37,8 @@ describe ApplicationsController do
 
   describe 'invite_customer' do
     let(:email) { 'test@invite.com' }
-    let(:invite) { post :invite_customer, id: @application.id, email: email, name: 'Bob' }
+    let(:name) { 'Bob' }
+    let(:invite) { post :invite_customer, id: @application.id, email: email, name: name }
 
     context 'non existing user' do
       it 'should create a new user' do
@@ -49,12 +50,16 @@ describe ApplicationsController do
       end
 
       it 'should send an email' do
-        expect(CustomerMailer).to receive(:invite_new_customer)
+        expect(CustomerMailer).to receive(:invite_new_customer).and_call_original
         invite
       end
     end
 
     context 'existing user' do
+      before do
+        Customer.make!(email: email, name: name)
+      end
+
       it 'should invite user' do
         expect(@application.customers.count).to eql(1)
         invite
@@ -62,7 +67,7 @@ describe ApplicationsController do
       end
 
       it 'should send an email' do
-        expect(CustomerMailer).to receive(:invite)
+        expect(CustomerMailer).to receive(:invite).and_call_original
         invite
       end
     end
@@ -81,6 +86,13 @@ describe ApplicationsController do
       it 'renders status conflict(409)' do
         invite
         expect(response.status).to eql(409)
+      end
+    end
+
+    context 'validation errors' do
+      it 'should render error messages' do
+        post :invite_customer, id: @application.id, email: email, name: ''
+        expect(response.body).to include('errors')
       end
     end
   end
