@@ -36,8 +36,52 @@ describe ApplicationsController do
   end
 
   describe 'invite_customer' do
-    it 'should invite a customer by creating a new user' do
-      post :invite_customer, id: @application.id, email: 'test@invite.com'
+    let(:email) { 'test@invite.com' }
+    let(:invite) { post :invite_customer, id: @application.id, email: email, name: 'Bob' }
+
+    context 'non existing user' do
+      it 'should create a new user' do
+        expect(Customer).to receive(:create!)
+                        .with(a_hash_including(email:  email))
+                        .and_call_original
+        invite
+        expect(@application.customers.map(&:email)).to include(email)
+      end
+
+      it 'should send an email' do
+        expect(CustomerMailer).to receive(:invite_new_customer)
+        invite
+      end
+    end
+
+    context 'existing user' do
+      it 'should invite user' do
+        expect(@application.customers.count).to eql(1)
+        invite
+        expect(@application.customers.count).to eql(2)
+      end
+
+      it 'should send an email' do
+        expect(CustomerMailer).to receive(:invite)
+        invite
+      end
+    end
+
+    context 'customer is already in team' do
+      before do
+        @application.customers << Customer.make!(email: email)
+      end
+
+      it 'does not add customer to application.customers' do
+        expect(@application.customers.count).to eql(2)
+        invite
+        expect(@application.customers.count).to eql(2)
+      end
+
+      it 'renders status conflict(409)' do
+        invite
+        expect(response.status).to eql(409)
+      end
     end
   end
 end
