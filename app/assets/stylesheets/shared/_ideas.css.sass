@@ -65,15 +65,13 @@
       &.active
         @include thumb(-22px)
 
-
-
   &.completed
     border: 1px solid $completed-border
-    background: $completed-background
+    background-color: $completed-background
     &:after
       position: absolute
       z-index: 1
-      bottom: 10px
+      top: 10px
       right: 10px
       background: $completed-border
       content: '✔ COMPLETED'
