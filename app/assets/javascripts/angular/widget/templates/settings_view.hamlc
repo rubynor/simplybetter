@@ -27,7 +27,7 @@
         .success(ng-show='setting.successVisible')
           Saved!
         %input(ng-model='setting.user.name' type='text' name='user_name')
-        %button.btn(type='submit' ng-click='setting.showSpinner()' ng-hide='setting.spin') SAVE
+        %button.btn(type='submit' ng-click='setting.showSpinner()' ng-hide='setting.spin') Save
 
     .spinner(ng-show='setting.spinnerVisible')
 
