@@ -35,10 +35,10 @@ describe ApplicationsController do
     end
   end
 
-  describe 'invite_customer' do
+  describe 'add_collaborator' do
     let(:email) { 'test@invite.com' }
     let(:name) { 'Bob' }
-    let(:invite) { post :invite_customer, id: @application.id, email: email, name: name }
+    let(:invite) { post :add_collaborator, id: @application.id, email: email, name: name }
 
     context 'non existing user' do
       it 'should create a new user' do
@@ -91,8 +91,29 @@ describe ApplicationsController do
 
     context 'validation errors' do
       it 'should render error messages' do
-        post :invite_customer, id: @application.id, email: email, name: ''
+        post :add_collaborator, id: @application.id, email: email, name: ''
         expect(response.body).to include('errors')
+      end
+    end
+  end
+
+  describe 'remove_collaborator' do
+    let(:customer) { Customer.make! }
+
+    before do
+      @application.customers << customer
+    end
+
+    it 'should remove collaborator' do
+      expect(@application.customers.count).to eql(2)
+      delete :remove_collaborator, id: @application.id, email: customer.email
+      expect(@application.customers.count).to eql(1)
+    end
+
+    context 'user removes it\'s own user' do
+      it 'should return an error' do
+        delete :remove_collaborator, id: @application.id, email: @customer.email
+        expect(response.status).to eql(400)
       end
     end
   end
