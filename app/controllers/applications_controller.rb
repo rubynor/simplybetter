@@ -34,9 +34,9 @@ class ApplicationsController < ApplicationController
     customer = Customer.find_by(email: params[:email])
     if customer != current_customer
       @application.customers.delete(customer)
-      render json: {success: true}
+      render json: {success: 'collaborator removed'}
     else
-      render json: {error: 'You cannot remove yourself'}, status: 400
+      render json: {errors: ['You cannot remove yourself']}, status: 400
     end
   end
 
