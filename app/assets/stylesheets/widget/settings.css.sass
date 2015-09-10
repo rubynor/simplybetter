@@ -15,11 +15,15 @@
     input[type='text']
       @include input
 
-    input[type='submit']
-      @include button-big
-
     label
       @include label
+
+    button[type=submit]
+      @include button-big
+      // TODO: Remove margin-top.
+      // This is a little hackish,
+      // but its the only way I could make the button aligned
+      margin-top: -8px
 
     .error
       color: $red

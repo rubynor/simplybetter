@@ -1,5 +1,5 @@
 class EmailSettingsController < ApplicationController
-  layout false
+  layout 'info'
 
   def unsubscribe
     @message =
