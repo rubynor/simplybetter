@@ -1,0 +1,14 @@
+= render '/shared/email_header'
+
+#email-box
+  %p
+    The user
+    %strong
+      = @current_customer.name
+    added you as a collaborator for the application named
+    %strong
+      = @application.name
+
+  %br
+  .action-button
+    =link_to 'Go to simplybetter', login_url
