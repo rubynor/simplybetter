@@ -1,4 +1,4 @@
-CollaboratorsCtrl = ($resource, $scope, $rootScope, ngToast) ->
+CollaboratorsCtrl = ($resource, $scope, $rootScope, $http, ngToast) ->
   InviteCustomer = $resource '/applications/:applicationId/add_collaborator', { applicationId: '@applicationId' }
   Collaborators = $resource '/applications/:applicationId/collaborators', { applicationId: '@applicationId' }
 
@@ -6,6 +6,15 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, ngToast) ->
 
   getCollaborators = =>
     @list = Collaborators.query({applicationId: $rootScope.appId})
+
+  showErrors = (response) ->
+    for error in response.data.errors
+      ngToast.create(
+        content: '<strong>Error: </strong>' + error
+        dismissOnTimeout: false,
+        className: 'danger'
+        dismissButton: true
+      )
 
   getCollaborators()
 
@@ -21,16 +30,18 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, ngToast) ->
       ngToast.create(content: '<strong>Success: </strong>' + response.success)
       getCollaborators()
     , (response) =>
-      for error in response.data.errors
-        ngToast.create(
-          content: '<strong>Error: </strong>' + error
-          dismissOnTimeout: false,
-          className: 'danger'
-          dismissButton: true
-        )
+      showErrors(response)
+
+  @remove = (user) =>
+    $http.delete("/applications/#{$rootScope.appId}/remove_collaborator?email=#{user.email}")
+                                                                          .then (response) ->
+      ngToast.create(content: '<strong>Success: </strong>' + response.data.success)
+      getCollaborators()
+    , (response) ->
+      showErrors(response)
 
   return
 
 angular
   .module('Backoffice')
-  .controller('CollaboratorsCtrl', ['$resource', '$scope', '$rootScope', 'ngToast', InvitesCtrl])
+  .controller('CollaboratorsCtrl', ['$resource', '$scope', '$rootScope', '$http', 'ngToast', CollaboratorsCtrl])
