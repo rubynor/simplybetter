@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization, :collaborators, :invite_customer]
+  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization, :collaborators, :add_collaborator, :remove_collaborator]
 
   def index
     if applications.any?
@@ -30,7 +30,17 @@ class ApplicationsController < ApplicationController
     @collaborators = @application.customers
   end
 
-  def invite_customer
+  def remove_collaborator
+    customer = Customer.find_by(email: params[:email])
+    if customer != current_customer
+      @application.customers.delete(customer)
+      render json: {success: true}
+    else
+      render json: {error: 'You cannot remove yourself'}, status: 400
+    end
+  end
+
+  def add_collaborator
     @customer = Customer.find_by(email: params[:email])
 
     unless @customer
@@ -39,11 +49,13 @@ class ApplicationsController < ApplicationController
     end
 
     @application.customers << @customer
-    CustomerMailer.invite_new_customer(@customer, password).deliver_later if password
-    CustomerMailer.invite(@customer).deliver_later unless password
+    CustomerMailer.invite_new_customer(@customer, password).deliver if password
+    CustomerMailer.invite(@customer).deliver unless password
     render json: { success: 'user has been added' }
   rescue ActiveRecord::RecordNotUnique
-    render json: { errors: 'is already invited' }, status: 409
+    render json: { errors: ["#{@customer.email} is already a collaborator"] }, status: 409
+  rescue ActiveRecord::RecordInvalid
+    render json: { errors: @application.errors.full_messages }, status: 400
   end
 
   def update
