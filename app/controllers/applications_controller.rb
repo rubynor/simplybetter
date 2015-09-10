@@ -49,8 +49,17 @@ class ApplicationsController < ApplicationController
     end
 
     @application.customers << @customer
-    CustomerMailer.invite_new_customer(@customer, password).deliver if password
-    CustomerMailer.invite(@customer).deliver unless password
+
+    if password
+      CustomerMailer
+        .add_new_collaborator(@customer, password, @application, current_customer)
+        .deliver
+    else
+      CustomerMailer
+        .add_collaborator(@customer, @application, current_customer)
+        .deliver
+    end
+
     render json: { success: 'user has been added' }
   rescue ActiveRecord::RecordNotUnique
     render json: { errors: ["#{@customer.email} is already a collaborator"] }, status: 409
