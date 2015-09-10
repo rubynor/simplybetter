@@ -5,7 +5,7 @@
     %h3
       Collaborators
   .col-lg-4
-    %button(ng-click="visible = true")
+    %button(type='submit' ng-click="visible = true")
       Add collaborator
   .col-lg-12
     %table.table
@@ -17,7 +17,7 @@
         %td
           {{ customer.email }}
         %td.narrow
-          .icon.delete(ng-click="collaborator.delete(")
+          .icon.delete(yes-no-prompt="" yes="collaborator.remove(customer)" text="'Are you sure you want to remove ' + customer.name + '?'")
 
 
   %modal(visible="visible")
@@ -26,5 +26,5 @@
     %input(type='text' placeholder='John Doe' ng-model='collaborator.name')
     %label Email Address
     %input(type='email' placeholder='user@domain.com' ng-model='collaborator.email')
-    %button(ng-click='collaborator.invite()')
+    %button(type='submit' ng-click='collaborator.invite()')
       Add collaborator
