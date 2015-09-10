@@ -42,7 +42,8 @@ SimplyBetter::Application.routes.draw do
     get :installation_instructions, on: :member
     get :customization, on: :member
     get :collaborators, on: :member
-    post :invite_customer, on: :member
+    post :add_collaborator, on: :member
+    delete :remove_collaborator, on: :member
     resources :ideas, only: [:index, :update, :destroy]
     resources :faqs
   end
