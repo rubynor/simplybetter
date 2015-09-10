@@ -50,7 +50,7 @@ describe ApplicationsController do
       end
 
       it 'should send an email' do
-        expect(CustomerMailer).to receive(:invite_new_customer).and_call_original
+        expect(CustomerMailer).to receive(:add_new_collaborator).and_call_original
         invite
       end
     end
@@ -67,7 +67,7 @@ describe ApplicationsController do
       end
 
       it 'should send an email' do
-        expect(CustomerMailer).to receive(:invite).and_call_original
+        expect(CustomerMailer).to receive(:add_collaborator).and_call_original
         invite
       end
     end
