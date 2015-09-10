@@ -1,24 +1,30 @@
 =render 'shared/navbar'
 
-%div(ng-controller="InvitesCtrl as invite")
-  %h1
-    Collaborators
-  %table.table
-    %tr(ng-repeat="customer in invite.collaborators")
-      %td
-        %img(ng-src="{{customer.gravatar_url}}")
-      %td
-        {{ customer.name }}
-      %td
-        {{ customer.email }}
+.collaborators(ng-controller="CollaboratorsCtrl as collaborator")
+  .col-lg-8
+    %h3
+      Collaborators
+  .col-lg-4
+    %button(ng-click="visible = true")
+      Add collaborator
+  .col-lg-12
+    %table.table
+      %tr(ng-repeat="customer in collaborator.list")
+        %td.narrow
+          %img(ng-src="{{customer.gravatar_url}}")
+        %td
+          {{ customer.name }}
+        %td
+          {{ customer.email }}
+        %td.narrow
+          .icon.delete(ng-click="collaborator.delete(")
 
-  %button(ng-click="visible = true")
-    Add collaborator
 
   %modal(visible="visible")
-    %h1 New collaborator
+    %h3 New collaborator
+    %label Name
+    %input(type='text' placeholder='John Doe' ng-model='collaborator.name')
     %label Email Address
-    %input(type='email' placeholder='user@domain.com' ng-model='invite.email')
-    %input(type='text' placeholder='John Doe' ng-model='invite.name')
-    %button(ng-click='invite.invite()')
+    %input(type='email' placeholder='user@domain.com' ng-model='collaborator.email')
+    %button(ng-click='collaborator.invite()')
       Add collaborator

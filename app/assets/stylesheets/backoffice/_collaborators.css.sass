@@ -1,0 +1,40 @@
+body.applications.collaborators
+  .collaborators
+    margin-top: 20px
+
+    h3
+      margin: 0
+
+    table.table
+      margin-top: 20px
+
+      img
+        border-radius: 50%
+
+      td
+        vertical-align: middle
+        border-top: 0
+        border-bottom: 1px solid #dddddd
+        &.narrow
+          width: 30px
+
+  .modal-content
+    h3
+      margin: 0 0 10px 0
+
+    label
+      display: block
+      font-weight: 500
+      margin-top: 10px
+    input[type='text'], input[type='email']
+      @include input
+      display: block
+      width: 100%
+
+    button
+      margin-top: 10px
+
+  button
+    @include button-small
+    float: right
+    margin: 0
