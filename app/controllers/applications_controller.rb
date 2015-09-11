@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :authorize
-  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :edit, :update, :preview, :customization]
+  before_action :set_application, only: [:show_ideas, :installation_instructions, :show, :update, :preview, :customization]
 
   def index
     if applications.any?
@@ -12,6 +12,7 @@ class ApplicationsController < ApplicationController
 
   def new
     @application = Application.new
+    @application.price_plan = PricePlan.find(cookies[:price_plan]) if cookies[:price_plan]
   end
 
   def show
@@ -36,9 +37,10 @@ class ApplicationsController < ApplicationController
     @application = Application.new(application_attributes)
     @application.customers << current_customer
     if @application.save
-      redirect_to customization_application_path(@application.id), notice: 'Application successfully created!'
+      cookies.delete(:price_plan)
+      redirect_to customization_application_path(@application.id)
     else
-      render :index
+      render :new
     end
   end
 
@@ -61,6 +63,6 @@ class ApplicationsController < ApplicationController
   end
 
   def application_attributes
-    params.require(:application).permit(:name, :intro, :icon, :support_enabled, :support_email, :third_party_support, :faqs_enabled)
+    params.require(:application).permit(:name, :intro, :icon, :support_enabled, :support_email, :third_party_support, :faqs_enabled, :price_plan_id)
   end
 end

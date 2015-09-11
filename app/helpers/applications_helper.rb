@@ -1,5 +1,5 @@
 module ApplicationsHelper
-  def selected(app, icon)
-    "selected" if app.icon == icon
+  def price_plans
+    PricePlan.plans_select
   end
 end
