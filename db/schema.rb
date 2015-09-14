@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914094228) do
+ActiveRecord::Schema.define(version: 20150827085243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150914094228) do
     t.boolean  "faqs_enabled",        default: false, null: false
     t.boolean  "third_party_support", default: false, null: false
     t.boolean  "disabled",            default: false, null: false
+    t.integer  "price_plan_id",       default: 1
   end
 
   add_index "applications", ["disabled"], name: "index_applications_on_disabled", using: :btree
@@ -151,6 +152,12 @@ ActiveRecord::Schema.define(version: 20150914094228) do
   add_index "notifications", ["recipient_id", "application_id", "checked"], name: "notifications_count_index", using: :btree
   add_index "notifications", ["recipient_id", "recipient_type"], name: "index_notifications_on_recipient_id_and_recipient_type", using: :btree
   add_index "notifications", ["subject_id", "subject_type"], name: "index_notifications_on_subject_id_and_subject_type", using: :btree
+
+  create_table "price_plans", force: true do |t|
+    t.string  "name"
+    t.float   "price"
+    t.integer "max_users"
+  end
 
   create_table "support_messages", force: true do |t|
     t.string   "from"
