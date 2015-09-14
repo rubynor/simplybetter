@@ -7,8 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ActiveRecord::Base.transaction do
+
+  price1 = PricePlan.create!(name: 'mini', price: 9.91, max_users: 500)
+  price2 = PricePlan.create!(name: 'standard', price: 49, max_users: 1000)
+  price3 = PricePlan.create!(name: 'plus', price: 149, max_users: 3000)
+
   customer = Customer.create!(email: 'lol@lol.com', name: 'Development user', password: 'dev', password_confirmation: 'dev')
-  app = customer.applications.create!(name: 'Development Application', intro: 'A small description here')
+  app = customer.applications.create!(name: 'Development Application', intro: 'A small description here', price_plan_id: price1.id)
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'
   idea = Idea.create! title: 'Test ide her', description: 'En liten beskrivelse', application_id: app.id, creator: customer
@@ -34,7 +39,7 @@ ActiveRecord::Base.transaction do
     Idea.last.update_attributes! completed: true
     Idea.all[-2].update_attributes! visible: false
     customer = Customer.create!(email: Faker::Internet.email, name: Faker::Name.name, password: 'dev', password_confirmation: 'dev')
-    app = customer.applications.create!(name: Faker::Lorem.sentence, intro: Faker::Lorem.sentence)
+    app = customer.applications.create!(name: Faker::Lorem.sentence, intro: Faker::Lorem.sentence, price_plan_id: price2.id)
     user = app.users.create!(email: Faker::Internet.email, name: Faker::Name.name)
     i = Idea.create! title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, application_id: app.id, creator: user
     c = i.comments.create! body: Faker::Lorem.sentence, creator_id: user.id, creator_type: 'User'

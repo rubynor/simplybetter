@@ -5,7 +5,7 @@ class LandingPageController < ActionController::Base
   include CurrentCustomer
 
   def index
-    #nothing here...
+    @priceplans = PricePlan.all
   end
 
   def contact_us

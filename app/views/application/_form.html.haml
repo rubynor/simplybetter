@@ -1,16 +1,6 @@
 .application_form
   .row
     .col-lg-5
-      - if @application.errors.any?
-        .alert.alert-danger
-          %p
-            %strong
-              Unfortunately some errors prevented you from creating the project:
-          %ul
-            - @application.errors.full_messages.each do |msg|
-              %li= msg
-  .row
-    .col-lg-5
       %h2 Name and intro
       %label(for="application_name") Name
       %input#application_name(type="text" placeholder="Project name (ie your website name)" ng-model="application.name" required)
@@ -19,21 +9,26 @@
 
   .row
     .col-lg-5
+      %h2 Priceplan
+      %select(ng-options='plan[1] as plan[0] for plan in application.priceplans' ng-model='application.price_plan_id')
+
+  .row
+    .col-lg-5
       %h2 Support
       .checkbox
         %label(for="application_support")
           %input#application_support(type="checkbox" ng-model="application.support_enabled")
           Enable Support (shows a flag in the widget)
-      %input(type="text" ng-model="application.support_email" placeholder="default: #{@application.support_emails}" ng-if="application.support_enabled")
+      %input(type="text" ng-model="application.support_email" placeholder="default: {{ application.support_emails }}" ng-if="application.support_enabled")
       .checkbox
         %label
           %input(type="checkbox" ng-model="application.third_party_support")
           Trigger my existing support service
         %p
           When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
-          %a(ng-click="supportHelp = true") here
+          %a(ng-click="toggleSupportHelp()") here
 
-      .read-more(ng-click="supportHelp = false" ng-class="{active: supportHelp}" ng-show="supportHelp")
+      .read-more(ng-click="toggleSupportHelp()" ng-class="{ active: supportHelp }" ng-show="supportHelp")
         .arrow
 
     .col-lg-7

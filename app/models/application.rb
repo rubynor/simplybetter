@@ -1,6 +1,7 @@
 class Application < ActiveRecord::Base
   extend Enumerize
   has_paper_trail
+  belongs_to :price_plan
   has_and_belongs_to_many :customers
   has_and_belongs_to_many :users, join_table: 'widget_users'
   has_and_belongs_to_many :widget_customers, class_name: 'Customer', join_table: 'widget_customers'
@@ -27,6 +28,8 @@ class Application < ActiveRecord::Base
   before_create :generate_token
 
   scope :with_engaged_users, -> { all.select { |a| a.engaged_users } }
+
+  delegate :price, to: :price_plan
 
   def support_emails
     support_email || customers.map(&:email).join(',')

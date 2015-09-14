@@ -4,6 +4,7 @@ class CustomersController < ApplicationController
   layout "splash_screen", except: [:edit, :update, :edit_unsafe, :update_unsafe]
 
   def new
+    cookies[:price_plan] = params[:price_plan]
     @customer = Customer.new
   end
 
