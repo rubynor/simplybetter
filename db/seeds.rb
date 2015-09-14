@@ -39,7 +39,7 @@ ActiveRecord::Base.transaction do
     Idea.last.update_attributes! completed: true
     Idea.all[-2].update_attributes! visible: false
     customer = Customer.create!(email: Faker::Internet.email, name: Faker::Name.name, password: 'dev', password_confirmation: 'dev')
-    app = customer.applications.create!(name: Faker::Lorem.sentence, intro: Faker::Lorem.sentence, price_plan_id: price2.id)
+    app = customer.applications.create!(name: Faker::Lorem.sentence, intro: Faker::Lorem.sentence, price_plan_id: price2.id, owner: customer)
     user = app.users.create!(email: Faker::Internet.email, name: Faker::Name.name)
     i = Idea.create! title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, application_id: app.id, creator: user
     c = i.comments.create! body: Faker::Lorem.sentence, creator_id: user.id, creator_type: 'User'
@@ -47,7 +47,7 @@ ActiveRecord::Base.transaction do
 
   customer = Customer.create! name: 'Guest User', email: 'demo@simplybetter.io', password: 'dev', password_confirmation: 'dev'
   puts 'created customer demo@simplybetter.io with password dev'
-  app = customer.applications.create! name: 'Demo', intro: 'Try out SimplyBetter here', icon: 'none'
+  app = customer.applications.create! name: 'Demo', intro: 'Try out SimplyBetter here', icon: 'none', owner: customer
   app.token = 'DEMO'
   app.save
   puts 'added DEMO application'
