@@ -5,7 +5,7 @@ describe ApplicationsController do
 
   before do
     @customer = Customer.make!
-    @application = Application.make!(customers: [@customer])
+    @application = Application.make!(customers: [@customer], owner: @customer)
     sign_in_customer(@application.customers.first)
   end
 
