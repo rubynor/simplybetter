@@ -31,6 +31,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_superadmin
+    authorize
+    unless current_customer.superadmin?
+      respond_to do |format|
+        format.html { redirect_to applications_url, alert: "You are not authorized" }
+      end
+    end
+  end
+
   def set_controller_and_action_names
     @current_controller = controller_name
     @current_action     = action_name

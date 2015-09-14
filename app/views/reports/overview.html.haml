@@ -1,0 +1,46 @@
+%h1 Reports and statistics
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th App title
+      %th Created at
+      %th Ideas
+      %th Users
+      %th Engaged users
+      %th Admins
+  %tbody
+    - @applications.each do |app|
+      %tr
+        %td= app.name
+        %td= app.created_at
+        %td= app.ideas.count
+        %td= app.users.count
+        %td= app.engaged_users.count
+        %td= app.customers.count
+
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Total apps
+      %th Apps with ideas
+      %th Apps with comments
+      %th Apps with users
+  %tbody
+    %tr
+      %td= @counts[:apps]
+      %td= percent_of_total(@counts[:apps], @counts[:apps_with_ideas])
+      %td= percent_of_total(@counts[:apps], @counts[:apps_with_comments])
+      %td= percent_of_total(@counts[:apps], @counts[:apps_with_users])
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Total customers
+      %th Customers with applications
+  %tbody
+    %tr
+      %td= @counts[:customers]
+      %td= percent_of_total(@counts[:customers], @counts[:customers_with_applications])
+
