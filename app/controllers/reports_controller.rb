@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   before_action :authorize_superadmin
 
   def overview
-    @applications = Application.all
+    @apps = Application.all
 
     @counts = {
         customers: {
@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
             with_applications: Report::Customer.with_applications.count
         },
         apps: {
-            all: @applications.count,
+            all: @apps.count,
             with_ideas: Report::Application.with_ideas.count,
             with_comments: Report::Application.with_comments.count,
             with_users: Report::Application.with_users.count,
@@ -20,13 +20,5 @@ class ReportsController < ApplicationController
         }
     }
 
-    # @counts = {
-    #     customers: Customer.all.count,
-    #     customers_with_applications: Report::Customer.with_applications.count,
-    #     apps: @applications.count,
-    #     apps_with_ideas: Report::Application.with_ideas.count,
-    #     apps_with_comments: Report::Application.with_comments.count,
-    #     apps_with_users: Report::Application.with_users.count
-    # }
   end
 end

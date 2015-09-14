@@ -9,8 +9,9 @@
       %th Users
       %th Engaged users
       %th Admins
+      %th Price plan
   %tbody
-    - @applications.each do |app|
+    - @apps.each do |app|
       %tr
         %td= app.name
         %td= app.created_at
