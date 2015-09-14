@@ -25,6 +25,7 @@ class Application < ActiveRecord::Base
 
   before_create :generate_token
 
+  scope :active, -> { where(disabled: false) }
   scope :with_engaged_users, -> { all.select { |a| a.engaged_users } }
 
   delegate :price, to: :price_plan
