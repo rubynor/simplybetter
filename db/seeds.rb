@@ -13,7 +13,7 @@ ActiveRecord::Base.transaction do
   price3 = PricePlan.create!(name: 'plus', price: 149, max_users: 3000)
 
   customer = Customer.create!(email: 'lol@lol.com', name: 'Development user', password: 'dev', password_confirmation: 'dev')
-  app = customer.applications.create!(name: 'Development Application', intro: 'A small description here', price_plan_id: price1.id)
+  app = customer.applications.create!(name: 'Development Application', intro: 'A small description here', price_plan_id: price1.id, owner: customer)
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'
   idea = Idea.create! title: 'Test ide her', description: 'En liten beskrivelse', application_id: app.id, creator: customer
