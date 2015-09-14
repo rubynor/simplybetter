@@ -32,3 +32,9 @@ For å lage lenker i templates, kan vi bruke fremgangsmåten beskrevet her: http
 Preview email example to preview password_reset: /rails/mailers/customer_mailer/password_reset
 
 /rails/mailers/{file}/{method}
+
+
+#### Auto deploy to heroku
+
+We have enabled [auto-deploy](https://devcenter.heroku.com/articles/github-integration) to heroku. The develop branch will automatically be deployed to staging. 
+We have also enabled [review apps](https://devcenter.heroku.com/articles/github-integration-review-apps). This means that all PR will automatically create a new temporary application on heroku for testing. The file app.json file is config for review-apps

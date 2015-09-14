@@ -1,5 +1,5 @@
 %back
-.idea-layout(ng-class='{ highlighted: highlight.idea }')
+.idea-layout(ng-class='{ highlighted: highlight.idea }' ng-class='{ completed: idea.completed }')
   %vote(idea="idea")
   %idea-item(idea="idea" expanded="true")
     %comments(idea="idea")

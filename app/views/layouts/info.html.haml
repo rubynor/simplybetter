@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title SimplyBetter
+    = stylesheet_link_tag    "info", media: "all"
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+  %body
+    .dialog
+      %img(src="/img/logo.png")
+      = yield
+
+    %a(href='/' class='button') GO TO SIMPLYBETTER

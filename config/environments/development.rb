@@ -37,8 +37,7 @@ SimplyBetter::Application.configure do
 
   class WidgetPath
     def self.path
-      ip = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
-      ip ? "http://#{ip.ip_address}:3000" : "http://localhost:3000"
+      ENV['URL']
     end
   end
 
