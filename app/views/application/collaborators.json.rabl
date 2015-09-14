@@ -8,3 +8,7 @@ end
 node :is_me do |c|
   current_customer == c
 end
+
+node :owner do |c|
+  @application.owner == c
+end

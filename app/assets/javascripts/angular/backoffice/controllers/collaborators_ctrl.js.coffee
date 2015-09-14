@@ -40,6 +40,12 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, $http, ngToast) ->
     , (response) ->
       showErrors(response)
 
+  @ownerOrCollaborator = (customer) =>
+    if customer.owner
+      'owner'
+    else
+      'collaborator'
+
   return
 
 angular
