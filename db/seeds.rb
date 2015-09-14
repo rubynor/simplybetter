@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ActiveRecord::Base.transaction do
-  customer = Customer.create!(email: 'lol@lol.com', name: 'Development user', password: 'dev', password_confirmation: 'dev')
+  customer = Customer.create!(email: 'lol@lol.com', name: 'Development user', password: 'dev', password_confirmation: 'dev', superadmin: true)
   app = customer.applications.create!(name: 'Development Application', intro: 'A small description here')
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'

@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_superadmin
     authorize
-    unless current_customer.superadmin?
+    unless current_customer.nil? || current_customer.superadmin?
       respond_to do |format|
         format.html { redirect_to applications_url, alert: "You are not authorized" }
       end

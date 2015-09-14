@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914085630) do
+ActiveRecord::Schema.define(version: 20150914094228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20150914085630) do
     t.string   "support_email"
     t.boolean  "faqs_enabled",        default: false, null: false
     t.boolean  "third_party_support", default: false, null: false
+    t.boolean  "disabled",            default: false, null: false
   end
 
+  add_index "applications", ["disabled"], name: "index_applications_on_disabled", using: :btree
   add_index "applications", ["token"], name: "index_applications_on_token", unique: true, using: :btree
 
   create_table "applications_customers", id: false, force: true do |t|

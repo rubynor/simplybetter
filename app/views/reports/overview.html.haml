@@ -18,21 +18,28 @@
         %td= app.users.count
         %td= app.engaged_users.count
         %td= app.customers.count
+        %td= app.price_plan.name
 
 
 %table.table.table-striped
   %thead
     %tr
       %th Total apps
-      %th Apps with ideas
-      %th Apps with comments
-      %th Apps with users
+      %th with ideas
+      %th with comments
+      %th with users
+      %th support enabled
+      %th faqs enabled
+      %th third party support enabled
   %tbody
     %tr
-      %td= @counts[:apps]
-      %td= percent_of_total(@counts[:apps], @counts[:apps_with_ideas])
-      %td= percent_of_total(@counts[:apps], @counts[:apps_with_comments])
-      %td= percent_of_total(@counts[:apps], @counts[:apps_with_users])
+      %td= @counts[:apps][:all]
+      %td= percent_of_total(@counts[:apps][:all], @counts[:apps][:with_ideas])
+      %td= percent_of_total(@counts[:apps][:all], @counts[:apps][:with_comments])
+      %td= percent_of_total(@counts[:apps][:all], @counts[:apps][:with_users])
+      %td= percent_of_total(@counts[:apps][:all], @counts[:apps][:with_support_enabled])
+      %td= percent_of_total(@counts[:apps][:all], @counts[:apps][:with_faqs_enabled])
+      %td= percent_of_total(@counts[:apps][:all], @counts[:apps][:with_third_party_support])
 
 %table.table.table-striped
   %thead
@@ -41,6 +48,6 @@
       %th Customers with applications
   %tbody
     %tr
-      %td= @counts[:customers]
-      %td= percent_of_total(@counts[:customers], @counts[:customers_with_applications])
+      %td= @counts[:customers][:all]
+      %td= percent_of_total(@counts[:customers][:all], @counts[:customers][:with_applications])
 
