@@ -1,19 +1,15 @@
 require 'spec_helper'
 
-describe WidgetController, js: true, order: :defined do
-  before :all do
-    Rails.application.load_seed
-  end
+describe WidgetController, js: true, type: :feature, order: :defined do
+  include SessionHelper
 
-  describe 'widget' do
+  describe 'widget', signed_in: true do
+    before(:all) { @customer = default_customer }
     before do
-      @customer = Customer.find_by(email: 'lol@lol.com')
-      visit login_path
-      fill_in 'email', with: @customer.email
-      fill_in 'password', with: 'dev'
-      click_button 'LOG ME IN'
-      click_link 'My widget'
+      login_as @customer
+      visit preview_application_path(Application.first)
     end
+
     example 'comment an idea' do
       within_frame 0 do
         title = Idea.first.title
