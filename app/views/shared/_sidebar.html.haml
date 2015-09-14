@@ -16,6 +16,13 @@
     - else
       You have not created any projects (widgets for your website) yet
 
+    - if current_customer.superadmin?
+      %h3 Admin
+      = link_to overview_reports_url do
+        .row
+          .col-xs-10.name
+            Statistics
+
 .bottom
   .support
     %a.simplybetterSupportButton
