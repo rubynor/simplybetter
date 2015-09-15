@@ -2,8 +2,7 @@
   .comments-section
     %ul
       %li.comment-item(ng-repeat='comment in comments' ng-class='{ highlighted: highlight.comment && comment_id == comment.id }' id='{{comment.id}}' on-finish-render)
-        .avatar
-          %img(ng-src='{{ comment.gravatar_url }}')
+        %img.round.avatar(ng-src='{{ comment.gravatar_url }}')
         .content
           .meta
             %span.username

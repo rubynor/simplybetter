@@ -11,7 +11,7 @@
     %table.table
       %tr(ng-repeat="customer in collaborator.list")
         %td.narrow
-          %img(ng-src="{{customer.gravatar_url}}")
+          %img.round(ng-src="{{customer.gravatar_url}}")
         %td
           {{ customer.name }}
         %td
