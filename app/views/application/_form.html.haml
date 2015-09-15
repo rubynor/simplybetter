@@ -12,11 +12,13 @@
       %h2 Priceplan
       %select(ng-options='plan[1] as plan[0] for plan in application.priceplans' ng-model='application.price_plan_id')
 
-      %label
-        %input(type='checkbox' ng-model="application.disabled")
-        Disable application
+      .checkbox
+        %label
+          %input(type='checkbox' ng-model="application.disabled")
+          Disable application
+        %p Disabled application will not be charged and the widget will not work anymore
 
-  .row
+  #disabled.row
     .col-lg-5
       %h2 Support
       .checkbox
