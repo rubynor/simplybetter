@@ -17,10 +17,17 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, ngToast, Collaborator) ->
 
   @email = ""
   @name = ""
+  @addCollaboratorModalOpen = false
+
+  @openModal = =>
+    @addCollaboratorModalOpen = true
+
+  @closeModal = =>
+    @addCollaboratorModalOpen = false
 
   @invite = =>
     invite = new Collaborator({email: @email, name: @name})
-    $scope.visible = false
+    @closeModal()
     invite.$save {applicationId: $rootScope.appId}, (response) =>
       @email = ""
       @name = ""
