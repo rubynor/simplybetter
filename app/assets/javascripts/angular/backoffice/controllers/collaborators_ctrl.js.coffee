@@ -30,9 +30,8 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, ngToast, Collaborator) ->
       showErrors(response)
 
   @remove = (user) =>
-    collaborator = new Collaborator({applicationId: $rootScope.appId, id: user.id})
-    collaborator.$delete (response) ->
-      ngToast.create(content: '<strong>Success: </strong>' + response.data.success)
+    Collaborator.delete {applicationId: $rootScope.appId, id: user.id}, (response) ->
+      ngToast.create(content: '<strong>Success: </strong>' + response.success)
       getCollaborators()
     , (response) ->
       showErrors(response)
