@@ -91,5 +91,14 @@ describe CollaboratorsController do
         expect(response.status).to eql(400)
       end
     end
+
+    context 'user removes application owner' do
+      it 'should return an error' do
+        owner = Customer.make!
+        @application = Application.make!(customers: [@customer, owner], owner: owner)
+        delete :destroy, application_id: @application.id, id: @application.owner.id
+        expect(response.status).to eql(400)
+      end
+    end
   end
 end

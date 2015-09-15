@@ -19,7 +19,7 @@
         %td
           {{ collaborator.ownerOrCollaborator(customer) }}
         %td.narrow
-          .icon.delete(ng-hide="customer.is_me" yes-no-prompt="" yes="collaborator.remove(customer)" text="'Are you sure you want to remove ' + customer.name + '?'")
+          .icon.delete(ng-show="collaborator.allowRemove(customer)" yes-no-prompt="" yes="collaborator.remove(customer)" text="'Are you sure you want to remove ' + customer.name + '?'")
 
 
   %modal(visible="visible")

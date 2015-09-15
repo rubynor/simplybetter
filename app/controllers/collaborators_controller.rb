@@ -7,12 +7,19 @@ class CollaboratorsController < ApplicationController
 
   def destroy
     customer = Customer.find(params[:id])
-    if customer != current_customer
-      @application.customers.delete(customer)
-      render json: {success: 'collaborator removed'}
-    else
-      render json: {errors: ['You cannot remove yourself']}, status: 400
+
+    if @application.owner == customer
+      render json: {errors: ['You cannot remove the application owner']}, status: 400
+      return
     end
+
+    if customer == current_customer
+      render json: {errors: ['You cannot remove yourself']}, status: 400
+      return
+    end
+
+    @application.customers.delete(customer)
+    render json: {success: 'collaborator removed'}
   end
 
   def create

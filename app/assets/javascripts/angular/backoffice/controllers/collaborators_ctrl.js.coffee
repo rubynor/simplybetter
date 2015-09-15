@@ -43,6 +43,9 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, ngToast, Collaborator) ->
     else
       'collaborator'
 
+  @allowRemove = (customer) ->
+    !customer.is_me && !customer.owner
+
   return
 
 angular
