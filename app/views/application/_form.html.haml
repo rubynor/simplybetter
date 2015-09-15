@@ -14,7 +14,7 @@
 
       .checkbox
         %label
-          %input(type='checkbox' ng-model="application.disabled")
+          %input#disable-app(type='checkbox' ng-model="application.disabled")
           Disable application
         %p Disabled application will not be charged and the widget will not work anymore
 
@@ -82,6 +82,6 @@
           %span.glyphicon.glyphicon-remove
             {{ error }}
 
-      %button(ng-click="customize.save()" ng-disabled="customize.isUnchanged() || !form.$valid")
+      %button#customization-save(ng-click="customize.save()" ng-disabled="customize.isUnchanged() || !form.$valid")
         {{ customize.saveText }}
         %span.glyphicon.glyphicon-ok(ng-if="customize.hasJustBeenSaved()")

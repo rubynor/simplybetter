@@ -64,11 +64,6 @@ RSpec.configure do |config|
     ActionMailer::Base.deliveries.clear
   end
 
-  config.before(:all, type: :feature) do
-    # Load data from seed to simplify specs
-    Rails.application.load_seed unless Application.count > 0
-  end
-
   config.after(:each) do
     Timecop.return
     DatabaseCleaner.clean

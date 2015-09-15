@@ -2,13 +2,21 @@ require 'spec_helper'
 
 describe 'Customization', js: true, type: :feature do
   include SessionHelper
-  before { login_as_customer }
 
-  describe 'customize' do
-    it 'display the customzation page' do
-      visit applications_path
-      click_link 'Customization'
-      expect(page).to have_content 'Select icon style'
-    end
+  before(:all) do
+    @customer = Customer.make!(:with_apps)
+    @app = @customer.applications.first
+  end
+
+  before do
+    login_as @customer
+    visit customization_application_path(@app)
+  end
+
+  it 'disables the application' do
+    find(:css, '#disable-app').set(true)
+    find(:css, '#customization-save').click
+    expect(page).to have_content('Updated')
+    expect(@app.reload.disabled).to be(true)
   end
 end

@@ -11,14 +11,6 @@ module SessionHelper
     click_button 'LOG ME IN'
   end
 
-  def default_customer
-    Customer.find_by(email: 'lol@lol.com')
-  end
-
-  def login_as_customer
-    login_as default_customer
-  end
-
   def encode_to_base64(appkey, email, name)
     Base64.encode64("?appkey=#{appkey}&email=#{email}&name=#{name}")
   end

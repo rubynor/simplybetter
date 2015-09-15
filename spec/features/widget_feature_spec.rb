@@ -3,11 +3,18 @@ require 'spec_helper'
 describe WidgetController, js: true, type: :feature, order: :defined do
   include SessionHelper
 
-  describe 'widget', signed_in: true do
-    before(:all) { @customer = default_customer }
+  before(:all) { Rails.application.load_seed }
+
+  describe 'widget' do
+
+    before(:all) do
+      @customer = Customer.find_by(email: 'lol@lol.com')
+      @app = @customer.applications.first
+    end
+
     before do
       login_as @customer
-      visit preview_application_path(Application.first)
+      visit preview_application_path(@app)
     end
 
     example 'comment an idea' do
