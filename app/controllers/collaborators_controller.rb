@@ -1,4 +1,5 @@
 class CollaboratorsController < ApplicationController
+  before_action :authorize
   before_action :set_application
 
   def index
