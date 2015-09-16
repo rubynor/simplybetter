@@ -14,7 +14,7 @@
         Simply Better
       .customer
         = link_to edit_customer_path(current_customer.id) do
-          = image_tag current_customer.gravatar_url
+          = image_tag current_customer.gravatar_url, class: 'round'
           Account
     #navigation
       = render 'shared/sidebar'

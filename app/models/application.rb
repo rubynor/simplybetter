@@ -5,6 +5,8 @@ class Application < ActiveRecord::Base
   has_and_belongs_to_many :customers
   has_and_belongs_to_many :users, join_table: 'widget_users'
   has_and_belongs_to_many :widget_customers, class_name: 'Customer', join_table: 'widget_customers'
+  belongs_to :owner, class_name: 'Customer',
+                     foreign_key: 'customer_id'
 
   has_many :support_messages
 
@@ -16,7 +18,7 @@ class Application < ActiveRecord::Base
   enumerize :icon, in: [:triangle, :circle, :none], default: :triangle
 
   validates_uniqueness_of :token
-  validates_presence_of :name
+  validates_presence_of :name, :owner
 
   validates :support_email,
             format: EmailValidator.validator,

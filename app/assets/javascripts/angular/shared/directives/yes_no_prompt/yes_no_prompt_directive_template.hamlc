@@ -2,7 +2,8 @@
   .yes-no-prompt
     .text
       {{ text }}
-    .yes(ng-click="prompt.yes()")
-      YES
-    .no(ng-click="prompt.no()")
-      NO
+    .center
+      .yes(ng-click="prompt.yes()")
+        YES
+      .no(ng-click="prompt.no()")
+        NO

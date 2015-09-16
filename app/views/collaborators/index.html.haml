@@ -1,0 +1,32 @@
+=render 'shared/navbar'
+
+.collaborators(ng-controller="CollaboratorsCtrl as collaborator")
+  .col-lg-8
+    %h3
+      Collaborators
+  .col-lg-4
+    %button(type='submit' ng-click="collaborator.openModal()")
+      Add collaborator
+  .col-lg-12
+    %table.table
+      %tr(ng-repeat="customer in collaborator.list")
+        %td.narrow
+          %img.round(ng-src="{{customer.gravatar_url}}")
+        %td
+          {{ customer.name }}
+        %td
+          {{ customer.email }}
+        %td
+          {{ collaborator.ownerOrCollaborator(customer) }}
+        %td.narrow
+          .icon.delete(ng-show="collaborator.allowRemove(customer)" yes-no-prompt="" yes="collaborator.remove(customer)" text="'Are you sure you want to remove ' + customer.name + '?'")
+
+
+  %modal(visible="collaborator.addCollaboratorModalOpen")
+    %h3 New collaborator
+    %label Name
+    %input(type='text' placeholder='John Doe' ng-model='collaborator.name')
+    %label Email Address
+    %input(type='email' placeholder='user@domain.com' ng-model='collaborator.email')
+    %button(type='submit' ng-click='collaborator.invite()')
+      Add collaborator

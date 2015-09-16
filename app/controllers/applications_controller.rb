@@ -35,6 +35,7 @@ class ApplicationsController < ApplicationController
 
   def create
     @application = Application.new(application_attributes)
+    @application.owner = current_customer
     @application.customers << current_customer
     if @application.save
       cookies.delete(:price_plan)
