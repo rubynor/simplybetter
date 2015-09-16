@@ -2,13 +2,19 @@
   .text
     font-size: 18px
     text-align: center
-  .yes
+    margin: 0px auto
+
+  .center
+    width: 100%
+    text-align: center
+    @include clearfix
+
+  .yes, .no
     @include button-big
-    float: left
+    display: inline-block
+  .yes
     margin-right: 20px
   .no
-    @include button-big
     background: $red
-    float: left
     &:hover
       background: #ff6d65

@@ -2,7 +2,7 @@ class AddDemoWidget < ActiveRecord::Migration
   def up
     customer = Customer.create! name: 'Guest User', email: 'demo@simplybetter.io', password: 'dev', password_confirmation: 'dev'
     puts 'created customer demo@simplybetter.io with password dev'
-    app = customer.applications.create! name: 'Demo', intro: 'Try out SimplyBetter here', icon: 'none'
+    app = customer.applications.create! name: 'Demo', intro: 'Try out SimplyBetter here', icon: 'none', owner: customer
     app.token = 'DEMO'
     app.save
     puts 'added DEMO application'

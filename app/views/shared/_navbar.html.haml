@@ -21,3 +21,5 @@
       - if @application.faqs_enabled
         = link_to application_faqs_path(@application.id) do
           FAQ
+      = link_to application_collaborators_path(@application.id) do
+        Collaborators

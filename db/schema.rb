@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914094228) do
+ActiveRecord::Schema.define(version: 20150914102828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150914094228) do
     t.integer "application_id"
   end
 
-  add_index "applications_customers", ["application_id", "customer_id"], name: "index_applications_customers_on_application_id_and_customer_id", using: :btree
+  add_index "applications_customers", ["application_id", "customer_id"], name: "index_applications_customers_on_application_id_and_customer_id", unique: true, using: :btree
   add_index "applications_customers", ["customer_id"], name: "index_applications_customers_on_customer_id", using: :btree
 
   create_table "comments", force: true do |t|
