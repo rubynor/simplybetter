@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20150914102828) do
     t.string   "support_email"
     t.boolean  "faqs_enabled",        default: false, null: false
     t.boolean  "third_party_support", default: false, null: false
-    t.boolean  "disabled",            default: false, null: false
     t.integer  "price_plan_id",       default: 1
+    t.boolean  "disabled",            default: false, null: false
   end
 
   add_index "applications", ["disabled"], name: "index_applications_on_disabled", using: :btree
