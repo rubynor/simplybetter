@@ -5,12 +5,45 @@ namespace :sb do
     app.ideas.destroy_all
     customer = Customer.find_by_email('demo@simplybetter.io')
 
+    ideas = [
+      {title: "Show album covers in music tables", description: "It would be great if you could show the album covers in the music tables"},
+      {title: "Create an android app with a feed", description: "Your website is my number one source of news, and i would really like to see an android app that can notify me whenever new articles have been published."},
+      {title: "RSS support", description: "No explenation needed"},
+      {title: "New logo?", description: "Your logo is sooo #{Time.now.yesterday.strftime('%D')}. It's time to change!"},
+      {title: "Share that an idea has been Accepted/Completed", description: "If MyApp completes a feature, I'd love to share that with the people I know. If I proposed it, I'd be very proud, happy and impressed to see it get through and get implemented! POSITIVE ENERGY :)"},
+      {title: "Changelog page and notifications", description: "Build a changelog page within the app. Pop-up changelog if the author enables it (should be able to set filters based on the user data, and to set delay)"}
+    ]
+
+    comments = [
+      "I like the general idea! Could you please elaborate?",
+      "Yes, this is it!",
+      "I share your view on this, but i think it would be better if we added bluetooth",
+      "Everything is better with bluetooth",
+      "How come?",
+      "This will require tremendous effort from the dev team, but we will start working on it right away!",
+      "Best idea ever!",
+      "I think this can be solved differently",
+      "Joe, where do you stand on this?",
+      "Perhaps we should start a kickstarter campaign to make this happen",
+      "I have a feeling that this could revolutionize the world",
+      "I like this idea. I will have a talk with the board",
+      "There is already an app that solves this",
+      "If this was true, i would definitely be interested",
+      "There is one side effect though, if we implement this some parts of the application will no longer be useful",
+      "You are on to something here",
+      "What if we change it up a little, and use the second approach in stead?",
+      "This could solve a lot of my problems",
+      "We'll add this to our roadmap",
+    ]
+
     # TODO: Add some real text to make the Demo app more legit
-    idea = customer.ideas.create!(title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, application_id: app.id)
+    idea = customer.ideas.create!(title: ideas[-1][:title], description: ideas[-1][:description], application_id: app.id)
     users = app.users
     users.each_with_index do |u, n|
-      i = u.ideas.create! title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, application_id: app.id, completed: n == 1
-      comment = idea.comments.create! body: Faker::Lorem.sentence, creator_id: u.id, creator_type: 'User'
+      puts ideas[n][:title]
+      i = u.ideas.create! title: ideas[n][:title], description: ideas[n][:description], application_id: app.id, completed: n == 1
+      comment_text = comments.delete_at(Random.rand(comments.length))
+      comment = idea.comments.create! body: comment_text, creator_id: u.id, creator_type: 'User'
       vote = u.votes.create!(value: 99, vote_receiver: idea)
       Notification.create_with(action: comment, subject: idea, recipient: idea.creator, app_id: app.id) if n == 0
       Notification.create_with(action: vote, subject: idea, recipient: idea.creator, app_id: app.id ) if n == 2
@@ -18,8 +51,9 @@ namespace :sb do
 
     users.each do |u|
       app.ideas.all.each do |i|
+        comment_text = comments.delete_at(Random.rand(comments.length))
         u.votes.create!(value: rand(1000), vote_receiver: i)
-        i.comments.create! body: Faker::Lorem.sentence, creator_id: u.id, creator_type: 'User'
+        i.comments.create! body: comment_text, creator_id: u.id, creator_type: 'User'
       end
     end
   end
