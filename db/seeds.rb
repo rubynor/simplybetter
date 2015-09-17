@@ -12,7 +12,7 @@ ActiveRecord::Base.transaction do
   price2 = PricePlan.create!(name: 'standard', price: 49, max_users: 1000)
   price3 = PricePlan.create!(name: 'plus', price: 149, max_users: 3000)
 
-  customer = Customer.create!(email: 'lol@lol.com', name: 'Development user', password: 'dev', password_confirmation: 'dev')
+  customer = Customer.create!(email: 'lol@lol.com', name: 'Development user', password: 'dev', password_confirmation: 'dev', superadmin: true)
   app = customer.applications.create!(name: 'Development Application', intro: 'A small description here', price_plan_id: price1.id, owner: customer)
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'
@@ -26,7 +26,7 @@ ActiveRecord::Base.transaction do
   puts 'Created notification'
   Idea.create! title: 'En ny ide', description: 'En liten beskrivelse', application_id: app.id, creator: user
 
-  unless ENV["RAILS_ENV"] == 'test'
+  unless Rails.env.test?
     # Create some more test ideas and comments
     3.times do |n|
       app.users.create!(email: Faker::Internet.email, name: Faker::Name.name)
@@ -43,19 +43,19 @@ ActiveRecord::Base.transaction do
     user = app.users.create!(email: Faker::Internet.email, name: Faker::Name.name)
     i = Idea.create! title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, application_id: app.id, creator: user
     c = i.comments.create! body: Faker::Lorem.sentence, creator_id: user.id, creator_type: 'User'
-  end
 
-  customer = Customer.create! name: 'Guest User', email: 'demo@simplybetter.io', password: 'dev', password_confirmation: 'dev'
-  puts 'created customer demo@simplybetter.io with password dev'
-  app = customer.applications.create! name: 'Demo', intro: 'Try out SimplyBetter here', icon: 'none', owner: customer
-  app.token = 'DEMO'
-  app.save
-  puts 'added DEMO application'
+    customer = Customer.create! name: 'Guest User', email: 'demo@simplybetter.io', password: 'dev', password_confirmation: 'dev'
+    puts 'created customer demo@simplybetter.io with password dev'
+    app = customer.applications.create! name: 'Demo', intro: 'Try out SimplyBetter here', icon: 'none', owner: customer
+    app.token = 'DEMO'
+    app.save
+    puts 'added DEMO application'
 
-  3.times do |n|
-    app.users.create!(email: "demo#{n}@simplybetter.io", name: Faker::Name.name)
+    3.times do |n|
+      app.users.create!(email: "demo#{n}@simplybetter.io", name: Faker::Name.name)
+    end
+    Rake::Task['sb:reset_demo_app'].invoke
   end
-  Rake::Task['sb:reset_demo_app'].invoke unless Rails.env.test?
 
   Idea.reindex if Rails.env.development?
 end

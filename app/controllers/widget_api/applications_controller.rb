@@ -4,7 +4,7 @@ class WidgetApi::ApplicationsController < ApplicationController
 
   def client_js
     expires_in 20.minutes
-    if (app = Application.find_by(token: params[:appkey]))
+    if (app = Application.active.find_by(token: params[:appkey]))
       @icon = app.icon
     else
       @error = "Could not find application with appkey #{params[:appkey]}"
@@ -12,7 +12,7 @@ class WidgetApi::ApplicationsController < ApplicationController
   end
 
   def is_admin
-    answer = current_customer && current_customer.applications.find_by(token: params[:token])
+    answer = current_customer && current_customer.applications.active.find_by(token: params[:token])
     render json: { is_admin: !!answer }.to_json
   end
 end

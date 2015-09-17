@@ -23,9 +23,13 @@ end
 Customer.blueprint do
   name { "Acme Inc" }
   email { "customer-#{sn}@example.com" }
-  password { "secret" }
-  password_confirmation { "secret" }
+  password { "dev" }
+  password_confirmation { "dev" }
   email_setting
+end
+
+Customer.blueprint(:with_apps) do
+  applications(1)
 end
 
 Comment.blueprint do

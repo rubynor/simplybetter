@@ -46,6 +46,9 @@ class ApplicationsController < ApplicationController
   end
 
   def preview
+    if @application.disabled
+      redirect_to show_ideas_application_path(@application.id), alert: 'This applications is disabled'
+    end
     @token = @application.token
     @email = current_customer.email
     @name = current_customer.name
@@ -64,6 +67,6 @@ class ApplicationsController < ApplicationController
   end
 
   def application_attributes
-    params.require(:application).permit(:name, :intro, :icon, :support_enabled, :support_email, :third_party_support, :faqs_enabled, :price_plan_id)
+    params.require(:application).permit(:name, :intro, :icon, :support_enabled, :support_email, :third_party_support, :faqs_enabled, :price_plan_id, :disabled)
   end
 end

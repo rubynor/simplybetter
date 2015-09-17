@@ -12,9 +12,19 @@
               =a.name
             .col-xs-2.info
               %span.badge.pull-right
-                =a.ideas.count
+                - if a.disabled?
+                  %span.glyphicon.glyphicon-ban-circle(style='font-size: 16px')
+                - else
+                  =a.ideas.count
     - else
       You have not created any projects (widgets for your website) yet
+
+    - if current_customer.superadmin?
+      %h3 Admin
+      = link_to overview_reports_url do
+        .row
+          .col-xs-10.name
+            Statistics
 
 .bottom
   .support

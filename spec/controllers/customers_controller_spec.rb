@@ -36,18 +36,18 @@ describe CustomersController do
 
   describe 'update' do
     before do
-      @customer = Customer.make! email: 'myemail@test.com', password: 'secret', name: 'my name'
+      @customer = Customer.make! email: 'myemail@test.com', password: 'dev', name: 'my name'
       sign_in_customer(@customer)
     end
     describe 'PATCH update_unsafe' do
       describe 'change email' do
         it 'should update customers email' do
-          patch :update_unsafe, id: @customer.to_param, customer: { email: 'test@test.no', current_password: 'secret' }
+          patch :update_unsafe, id: @customer.to_param, customer: { email: 'test@test.no', current_password: 'dev' }
           expect(response).to redirect_to edit_unsafe_customer_path(@customer.id)
           expect(Customer.last.email).to eq('test@test.no')
         end
         it 'should render edit_unsafe' do
-          patch :update_unsafe, id: @customer.to_param, customer: { email: '', current_password: 'secret' }
+          patch :update_unsafe, id: @customer.to_param, customer: { email: '', current_password: 'dev' }
           expect(response).to render_template :edit_unsafe
         end
         it 'should redirect to back' do
@@ -58,7 +58,7 @@ describe CustomersController do
       end
       describe 'change password' do
         it 'should update customers password' do
-          patch :update_unsafe, id: @customer.to_param, customer: { password: '12345', password_confirmation: '12345', current_password: 'secret' }
+          patch :update_unsafe, id: @customer.to_param, customer: { password: '12345', password_confirmation: '12345', current_password: 'dev' }
           expect(response).to redirect_to edit_unsafe_customer_path(@customer.id)
           expect(Customer.last.password_digest).not_to eq(@customer.password_digest)
         end

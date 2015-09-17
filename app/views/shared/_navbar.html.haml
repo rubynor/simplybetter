@@ -1,6 +1,13 @@
 #navbar
   .col-xs-12
-    %h1= @application.name
+    %h1
+      = @application.name
+      - if @application.disabled?
+        = link_to customization_application_path(@application.id, anchor: 'disabled') do
+          %span(style='font-size: 16px')
+            %span.label.label-default
+              %span.glyphicon.glyphicon-ban-circle
+              &nbsp;disabled
     .links
       = link_to installation_instructions_application_path(@application.id) do
         Installation instructions
@@ -8,8 +15,9 @@
         Show ideas
       = link_to customization_application_path(@application.id) do
         Customization
-      = link_to preview_application_path(@application.id) do
-        My widget
+      - unless @application.disabled
+        = link_to preview_application_path(@application.id) do
+          My widget
       - if @application.faqs_enabled
         = link_to application_faqs_path(@application.id) do
           FAQ

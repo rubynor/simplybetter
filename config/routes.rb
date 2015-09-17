@@ -65,5 +65,9 @@ SimplyBetter::Application.routes.draw do
     delete :destroy, path: 'sessions/destroy', as: 'sign_out'
   end
 
+  resource :reports, only: [] do
+    get :overview
+  end
+
   root 'landing_page#index'
 end
