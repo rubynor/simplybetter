@@ -9,7 +9,9 @@ namespace :sb do
       {title: "Show album covers in music tables", description: "It would be great if you could show the album covers in the music tables"},
       {title: "Create an android app with a feed", description: "Your website is my number one source of news, and i would really like to see an android app that can notify me whenever new articles have been published."},
       {title: "RSS support", description: "No explenation needed"},
-      {title: "New logo?", description: "Your logo is sooo #{Time.now.yesterday.strftime('%D')}. It's time to change!"}
+      {title: "New logo?", description: "Your logo is sooo #{Time.now.yesterday.strftime('%D')}. It's time to change!"},
+      {title: "Share that an idea has been Accepted/Completed", description: "If MyApp completes a feature, I'd love to share that with the people I know. If I proposed it, I'd be very proud, happy and impressed to see it get through and get implemented! POSITIVE ENERGY :)"},
+      {title: "Changelog page and notifications", description: "Build a changelog page within the app. Pop-up changelog if the author enables it (should be able to set filters based on the user data, and to set delay)"}
     ]
 
     comments = [
