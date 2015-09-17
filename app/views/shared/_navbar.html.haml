@@ -3,7 +3,7 @@
     %h1
       = @application.name
       - if @application.disabled?
-        = link_to customization_application_path(@application.id) + "#disabled" do
+        = link_to customization_application_path(@application.id, anchor: 'disabled') do
           %span(style='font-size: 16px')
             %span.label.label-default
               %span.glyphicon.glyphicon-ban-circle
