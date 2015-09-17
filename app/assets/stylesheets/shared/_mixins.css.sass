@@ -7,15 +7,15 @@ $input-radius: 3px
   font-weight: 300
   margin: 0 0 5px 0
 
-@mixin button-big
+@mixin button
   cursor: pointer
   outline: none
   border-radius: $input-radius
   color: $button-text
   border: 0
   background: $button-main
-  padding: 0 30px
-  line-height: 55px
+  padding: 0 20px
+  line-height: 40px
   text-transform: uppercase
   font-weight: 700
   margin-top: 15px
@@ -28,13 +28,15 @@ $input-radius: 3px
   &:disabled
     background: $silver
 
+@mixin button-big
+  @include button
+  padding: 0 30px
+  line-height: 55px
+
 @mixin button-small
-  @include button-big
+  @include button
   line-height: 35px
   padding: 0 10px
-
-@mixin button
-  width: 50px
 
 @mixin input
   outline: none

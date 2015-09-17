@@ -1,5 +1,5 @@
 collection @collaborators
-attributes :email, :name
+attributes :id, :email, :name
 
 node :gravatar_url do |c|
   c.gravatar_url(size: 30)

@@ -1,11 +1,8 @@
-CollaboratorsCtrl = ($resource, $scope, $rootScope, $http, ngToast) ->
-  InviteCustomer = $resource '/applications/:applicationId/add_collaborator', { applicationId: '@applicationId' }
-  Collaborators = $resource '/applications/:applicationId/collaborators', { applicationId: '@applicationId' }
-
+CollaboratorsCtrl = ($resource, $scope, $rootScope, ngToast, Collaborator) ->
   @list = []
 
   getCollaborators = =>
-    @list = Collaborators.query({applicationId: $rootScope.appId})
+    @list = Collaborator.query({applicationId: $rootScope.appId})
 
   showErrors = (response) ->
     for error in response.data.errors
@@ -20,10 +17,17 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, $http, ngToast) ->
 
   @email = ""
   @name = ""
+  @addCollaboratorModalOpen = false
+
+  @openModal = =>
+    @addCollaboratorModalOpen = true
+
+  @closeModal = =>
+    @addCollaboratorModalOpen = false
 
   @invite = =>
-    invite = new InviteCustomer({email: @email, name: @name})
-    $scope.visible = false
+    invite = new Collaborator({email: @email, name: @name})
+    @closeModal()
     invite.$save {applicationId: $rootScope.appId}, (response) =>
       @email = ""
       @name = ""
@@ -33,9 +37,8 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, $http, ngToast) ->
       showErrors(response)
 
   @remove = (user) =>
-    $http.delete("/applications/#{$rootScope.appId}/remove_collaborator?email=#{user.email}")
-                                                                          .then (response) ->
-      ngToast.create(content: '<strong>Success: </strong>' + response.data.success)
+    Collaborator.delete {applicationId: $rootScope.appId, id: user.id}, (response) ->
+      ngToast.create(content: '<strong>Success: </strong>' + response.success)
       getCollaborators()
     , (response) ->
       showErrors(response)
@@ -46,8 +49,11 @@ CollaboratorsCtrl = ($resource, $scope, $rootScope, $http, ngToast) ->
     else
       'collaborator'
 
+  @allowRemove = (customer) ->
+    !customer.is_me && !customer.owner
+
   return
 
 angular
   .module('Backoffice')
-  .controller('CollaboratorsCtrl', ['$resource', '$scope', '$rootScope', '$http', 'ngToast', CollaboratorsCtrl])
+  .controller('CollaboratorsCtrl', ['$resource', '$scope', '$rootScope', 'ngToast', 'Collaborator', CollaboratorsCtrl])
