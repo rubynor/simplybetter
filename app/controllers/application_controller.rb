@@ -23,21 +23,12 @@ class ApplicationController < ActionController::Base
   helper_method :applications
 
   def authorize
-    if current_customer.nil?
-      respond_to do |format|
-        format.html { redirect_to login_url, alert: "Not authorized" }
-        format.json { render json: { message: 'Not authorized' }, status: :unauthorized}
-      end
-    end
+    redirect_to_login unless current_customer
   end
 
   def authorize_superadmin
-    authorize
-    unless current_customer.nil? || current_customer.superadmin?
-      respond_to do |format|
-        format.html { redirect_to applications_url, alert: "You are not authorized" }
-      end
-    end
+    authorize and return unless current_customer
+    redirect_to_applications unless current_customer.superadmin?
   end
 
   def set_controller_and_action_names
@@ -50,6 +41,21 @@ class ApplicationController < ActionController::Base
     ::NewRelic::Agent.add_custom_parameters(
         params: params
     )
+  end
+
+  private
+
+  def redirect_to_login
+    respond_to do |format|
+      format.html { redirect_to login_url, alert: "Not authorized" }
+      format.json { render json: { message: 'Not authorized' }, status: :unauthorized}
+    end
+  end
+
+  def redirect_to_applications
+    respond_to do |format|
+      format.html { redirect_to applications_url, alert: "You are not authorized" }
+    end
   end
 
 end
