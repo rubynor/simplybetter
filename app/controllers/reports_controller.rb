@@ -16,7 +16,8 @@ class ReportsController < ApplicationController
             with_users: Report::Application.with_users.count,
             with_support_enabled: Report::Application.with_support_enabled.count,
             with_faqs_enabled: Report::Application.with_faqs_enabled.count,
-            with_third_party_support: Report::Application.with_third_party_support.count
+            with_third_party_support: Report::Application.with_third_party_support.count,
+            disabled: Application.disabled.count
         }
     }
 
