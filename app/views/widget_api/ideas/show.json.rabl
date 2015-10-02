@@ -1,8 +1,12 @@
 object @idea
-attributes :id, :title, :description, :updated_at, :votes_count, :completed, :visible
+attributes :id, :title, :description, :created_at, :updated_at, :votes_count, :completed, :visible
 
 node(:updated_at) do |c|
   c.updated_at.strftime('%F')
+end
+
+node(:created_at) do |c|
+  c.created_at.strftime('%F')
 end
 
 glue(:creator) do

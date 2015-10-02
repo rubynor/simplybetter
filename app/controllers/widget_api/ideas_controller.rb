@@ -15,7 +15,7 @@ class WidgetApi::IdeasController < WidgetController
   def find_similar
     conditions = { application_id: current_application.id, visible: true }
     @ideas = Idea.search(params[:query], where: conditions, fields: [:title, :description], limit: 4, misspellings: { distance: 2 }, partial: true)
-    render template: 'ideas/index'
+    render template: 'widget_api/ideas/index'
   end
 
   def create
