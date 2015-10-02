@@ -66,6 +66,7 @@ gem 'bcrypt', '~> 3.1.0'
 group :development, :test do
   gem 'pry'
   gem 'guard-rspec', require: false
+  gem 'guard-rubocop', require: false
 end
 
 gem 'rack-timeout'
