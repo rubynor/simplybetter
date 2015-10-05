@@ -55,7 +55,7 @@ class CustomersController < ApplicationController
   end
 
   def customer_attributes
-    params.require(:customer).permit(:name, :email, :password, :password_confirmation)
+    params.require(:customer).permit(:name, :email, :password, :password_confirmation, :promotion_code)
   end
 
   def safe_attributes
