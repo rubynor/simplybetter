@@ -9,7 +9,8 @@ describe CustomersController do
         name: 'My Name',
         email: 'my@email.com',
         password: 'password',
-        password_confirmation: 'password'
+        password_confirmation: 'password',
+        promotion_code: 'promo'
     }
   end
 
@@ -31,6 +32,13 @@ describe CustomersController do
       expect do
         post :create, customer: valid_attributes
       end.to change { Customer.count }.by(0)
+    end
+
+    it 'should register promotion code' do
+      expect do
+        post :create, customer: valid_attributes
+      end.to change { Customer.count }.by(1)
+      expect(Customer.last.promotion_code).to eq('promo')
     end
   end
 
