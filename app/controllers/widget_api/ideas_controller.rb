@@ -3,6 +3,9 @@ class WidgetApi::IdeasController < WidgetController
 
   def index
     app = current_application
+    # For some reason we have to add this @current_user
+    # To get voter_status to work in backoffice...
+    @current_user = current_customer
     @ideas = app.ideas.includes(:comments).includes(:votes).order('votes_count DESC')
     @ideas = @ideas.visible unless current_customer.try { current_customer.admin_for?(app) }
     widget_user
