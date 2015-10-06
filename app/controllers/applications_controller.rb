@@ -12,7 +12,7 @@ class ApplicationsController < ApplicationController
 
   def new
     @application = Application.new
-    @application.price_plan = PricePlan.find(cookies[:price_plan]) if cookies[:price_plan]
+    @application.price_plan = PricePlan.find_by_id(cookies[:price_plan])
   end
 
   def show
