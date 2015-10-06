@@ -12,6 +12,7 @@
 //
 //= require hamlcoffee
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require bootstrap
 //= require sb_tools
 //= require highlight
