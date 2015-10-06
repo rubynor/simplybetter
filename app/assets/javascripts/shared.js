@@ -7,5 +7,5 @@
 //= require ngtoast/dist/ngToast
 //= require ng-rails-csrf
 //= require lodash
-//= require angular/ui-bootstrap-custom-0.10.0
-//= require angular/ui-bootstrap-custom-tpls-0.10.0
+//= require angular-bootstrap/ui-bootstrap
+//= require angular-bootstrap/ui-bootstrap-tpls
