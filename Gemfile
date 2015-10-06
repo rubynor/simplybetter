@@ -9,10 +9,10 @@ gem 'pg'
 gem 'haml-rails'
 gem 'rabl'
 gem 'sass-rails', '~> 4.0.0'
-gem 'compass-rails', "~> 1.1.2"
+gem 'compass-rails', '~> 1.1.2'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'font-awesome-rails'
-gem 'haml_coffee_assets', git: "https://github.com/netzpirat/haml_coffee_assets"
+gem 'haml_coffee_assets', git: 'https://github.com/netzpirat/haml_coffee_assets'
 gem 'ng-rails-csrf'
 gem 'autoprefixer-rails'
 gem 'honeybadger', '~> 2.0'
@@ -66,6 +66,7 @@ gem 'bcrypt', '~> 3.1.0'
 group :development, :test do
   gem 'pry'
   gem 'guard-rspec', require: false
+  gem 'guard-rubocop', require: false
 end
 
 gem 'rack-timeout'
