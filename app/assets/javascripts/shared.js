@@ -1,9 +1,9 @@
 //= require angular/angular
-//= require angular/angular-resource
-//= require angular/angular-cookies
+//= require angular-resource/angular-resource
+//= require angular-cookies/angular-cookies
 //= require hamlcoffee
 //= require angular/ui-router
-//= require angular/angular-sanitize
+//= require angular-sanitize/angular-sanitize
 //= require angular/ngToast
 //= require ng-rails-csrf
 //= require lodash
