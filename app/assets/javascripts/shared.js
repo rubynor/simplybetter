@@ -4,7 +4,7 @@
 //= require hamlcoffee
 //= require angular/ui-router
 //= require angular-sanitize/angular-sanitize
-//= require angular/ngToast
+//= require ngtoast/dist/ngToast
 //= require ng-rails-csrf
 //= require lodash
 //= require angular/ui-bootstrap-custom-0.10.0
