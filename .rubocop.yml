@@ -1,0 +1,12 @@
+# Disable "Missing top-level module documentation comment."
+Documentation:
+  Enabled: false
+
+# Disable "Use nested module/class definitions instead of compact style."
+ClassAndModuleChildren:
+  Enabled: false
+
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'db/schema.rb'  

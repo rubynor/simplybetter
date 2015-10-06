@@ -29,7 +29,7 @@
       {{ idea.creator_name }}
     on
     %span.black
-      {{ idea.updated_at }}
+      {{ idea.created_at }}
     %a(ng-if='owner() && expanded' ng-click='ideaItemCtrl.editMode = true')
       [edit idea]
 
