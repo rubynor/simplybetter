@@ -1,0 +1,24 @@
+{
+  "name": "simplybetter",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rubynor/simplybetter",
+  "authors": [
+    "Hilde Vestol <hilde@rubynor.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0"
+  }
+}
