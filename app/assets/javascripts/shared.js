@@ -2,7 +2,7 @@
 //= require angular-resource/angular-resource
 //= require angular-cookies/angular-cookies
 //= require hamlcoffee
-//= require angular/ui-router
+//= require angular-ui-router/release/angular-ui-router
 //= require angular-sanitize/angular-sanitize
 //= require ngtoast/dist/ngToast
 //= require ng-rails-csrf
