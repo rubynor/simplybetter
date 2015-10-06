@@ -40,13 +40,13 @@ describe CreatorFinder do
   it 'raises error if user not part of application' do
     @user = User.make!
     @app = Application.make!
-    expect{ object.send(:get_current_user, @app, @user.email) }.to raise_error
+    expect{ object.send(:get_current_user, @app, @user.email) }.to raise_error(NoAccessException)
   end
 
   it 'raises error if customer not part of application' do
     @user = Customer.make!
     @app = Application.make!
-    expect{ object.send(:get_current_user, @app, @user.email)}.to raise_error
+    expect{ object.send(:get_current_user, @app, @user.email)}.to raise_error(NoAccessException)
   end
 
   it 'raises NoUserException' do

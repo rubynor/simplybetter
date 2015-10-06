@@ -41,7 +41,7 @@ describe WidgetApi::IdeasController do
     it 'should raise error if validation fails' do
       expect do
         patch :update, id: @idea.to_param, info: @info_param, idea: { description: '' }, format: :json
-      end.to raise_error
+      end.to raise_error(ActiveRecord::RecordInvalid)
     end
     it 'should return forbidden unless owner of idea' do
       user = User.make!
