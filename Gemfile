@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.2.2'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.13'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'pg'
 gem 'haml-rails'
 gem 'rabl'
-gem 'sass-rails', '~> 4.0.0'
-gem 'compass-rails', '~> 1.1.2'
-gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'sass-rails', '~> 5.0.4'
+gem 'compass-rails', '~> 2.0.4'
+gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-rails'
 gem 'haml_coffee_assets', git: 'https://github.com/netzpirat/haml_coffee_assets'
 gem 'ng-rails-csrf'
@@ -40,7 +40,7 @@ end
 group :test do
   gem 'capybara'
   gem 'selenium-webdriver', '~> 2.45'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.3.3'
   gem 'shoulda-matchers'
   gem 'machinist'
   gem 'database_cleaner'

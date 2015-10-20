@@ -22,7 +22,7 @@ describe Notification do
     it 'should raise if one of the required arguments are missing' do
       expect {
         Notification.create_with(action: action, subject: subject, app_id: 1)
-      }.to raise_exception
+      }.to raise_exception(ArgumentError)
     end
   end
 end
