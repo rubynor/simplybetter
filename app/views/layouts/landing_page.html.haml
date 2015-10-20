@@ -8,6 +8,12 @@
     = stylesheet_link_tag    'landing_page', media: 'all'
     = javascript_include_tag 'landing'
     = csrf_meta_tags
+    // CrazyEgg snippet
+    :javascript
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName("script")[0];
+      a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0041/2194.js?"+Math.floor(new Date().getTime()/3600000);
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
   %body(ng-app='LandingPage' ng-strict-di)
     .container(ng-init='scroll = 0')
       %span(scroll-position='scroll')
