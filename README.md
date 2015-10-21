@@ -28,13 +28,23 @@ Noen ganger trenger vi å legge på ekstra url-parametre på slutten
 For å lage lenker i templates, kan vi bruke fremgangsmåten beskrevet her: https://github.com/airtonix/angular-named-routes#directive
 
 
-#### Email preview
+### Email preview
 Preview email example to preview password_reset: /rails/mailers/customer_mailer/password_reset
 
 /rails/mailers/{file}/{method}
 
 
-#### Auto deploy to heroku
+### Auto deploy to heroku
 
 We have enabled [auto-deploy](https://devcenter.heroku.com/articles/github-integration) to heroku. The develop branch will automatically be deployed to staging. 
 We have also enabled [review apps](https://devcenter.heroku.com/articles/github-integration-review-apps). This means that all PR will automatically create a new temporary application on heroku for testing. The file app.json file is config for review-apps
+
+### Bower
+
+We are using bower for assets. [Simple guide for bower and rails](http://dotwell.io/taking-advantage-of-bower-in-your-rails-4-app/).
+
+#### Install bower
+`npm install -g bower`
+
+#### Update assets
+Modify `bower.json` run `bower install`

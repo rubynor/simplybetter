@@ -1,0 +1,30 @@
+{
+  "name": "simplybetter",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rubynor/simplybetter",
+  "authors": [
+    "Hilde Vestol <hilde@rubynor.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-cookies": "~1.4.0",
+    "angular-resource": "~1.4.0",
+    "angular-sanitize": "~1.4.0",
+    "ngtoast": "~1.5.6",
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "~0.13.4"
+  }
+}

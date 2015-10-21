@@ -29,5 +29,7 @@ module SimplyBetter
 
     config.assets.precompile += ['jquery.js']
     config.assets.precompile += %w( widget.css landing_page.css landing.js widget.js email.css )
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+
   end
 end
