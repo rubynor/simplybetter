@@ -22,8 +22,9 @@ class Application < ActiveRecord::Base
 
   validates :support_email,
             format: EmailValidator.validator,
-            if: -> { support_email_changed? && (support_email.blank? ? self.support_email = nil : true)}
-            #length TODO: OMA: er offline. husker ikke hvordan man validerer lengde hvis satt, minimum 1 tegn. nil skal her være godtatt og empty skal bli nil. Sorry, får det ikke til :)
+            if: -> { support_email_changed? && (support_email.blank? ? (self.support_email = nil) : true)}
+            # length TODO: OMA: er offline. husker ikke hvordan man validerer lengde hvis satt, minimum 1 tegn.
+            # nil skal her være godtatt og empty skal bli nil. Sorry, får det ikke til :)
 
   before_create :generate_token
 

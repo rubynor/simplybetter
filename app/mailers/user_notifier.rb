@@ -35,9 +35,11 @@ class UserNotifier < ActionMailer::Base
     @idea = idea
     @receiver = receiver
 
-    subject = @receiver == idea.creator ?
-        'SimplyBetter: Your idea has been implemented' :
-        'SimplyBetter: An idea you commented has been implemented'
+    subject = if @receiver == idea.creator
+                'SimplyBetter: Your idea has been implemented'
+              else
+                'SimplyBetter: An idea you commented has been implemented'
+              end
 
     mail to: @receiver.email, subject: subject
   end

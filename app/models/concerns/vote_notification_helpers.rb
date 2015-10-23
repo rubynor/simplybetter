@@ -5,7 +5,7 @@ module VoteNotificationHelpers
     end
   end
 
-  def notification_text(recipient, **args)
+  def notification_text(recipient, **_args)
     txt = if vote_receiver.mine?(recipient)
             "#{past_tence} your idea: "
           else

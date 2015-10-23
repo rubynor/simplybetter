@@ -32,7 +32,7 @@ class Vote < ActiveRecord::Base
   end
 
   def set_vote_value(value)
-    return if value == 0 || value == nil
+    return if value.nil? || value.zero?
     # The value input could be <1 or >-1
     # so we just need to convert them to
     # correct value..

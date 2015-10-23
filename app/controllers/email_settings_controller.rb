@@ -2,11 +2,9 @@ class EmailSettingsController < ApplicationController
   layout 'info'
 
   def unsubscribe
-    @message =
-      begin
-        EmailSetting.unsubscribe!(params[:unsubscribe_token])
-      rescue ArgumentError => e
-        "Unfortunately we could not unsubscribe you. Your link might be expired"
-      end
+    @message = EmailSetting.unsubscribe!(params[:unsubscribe_token])
+  rescue ArgumentError => e
+    @message = 'Unfortunately we could not unsubscribe you. Your link might be expired'
+    Honeybadger.notify_or_ignore(e)
   end
 end

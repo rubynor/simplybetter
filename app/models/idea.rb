@@ -52,7 +52,6 @@ class Idea < ActiveRecord::Base
         AdminNotifier.send_to_group(app.customers, self)
         ActiveRecord::Base.connection.close
       end
-      #TODO OMA Q:Jeg forstår ikke denne. Her lages det en tråd man må vente på. Ingen andre tråder kjører? Må ha en gruppe tråder, da kan man vente til siste har fullført, før man fortsetter :)
       at_exit { t.join }
       true
     else
@@ -110,11 +109,5 @@ class Idea < ActiveRecord::Base
   # Only index visible ideas!
   def should_index?
     visible
-  end
-
-  private
-
-  def self.application(token)
-    Application.find_by(token: token)
   end
 end
