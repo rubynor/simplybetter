@@ -1,6 +1,6 @@
 FaqCtrl = ($http, $scope, Session) ->
   $scope.$parent.path = true
-  $http(method:'GET', url:'/widget_api/faqs.json', params: {info: Session.info}).success(
+  $http(method: 'GET', url: '/widget_api/faqs,json', params: { info: Session.info }).success(
     (data) ->
       $scope.faqs=data
   ).error(
