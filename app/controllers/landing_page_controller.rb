@@ -5,7 +5,7 @@ class LandingPageController < ActionController::Base
   include CurrentCustomer
 
   def index
-    @priceplans = PricePlan.all
+    @priceplans = PricePlan.all.order(price: :asc)
   end
 
   def contact_us

@@ -1,13 +1,15 @@
 %section#price.purple-section
   .site-content
-    %h2 Price plans
+    %h2 Pricing
     - @priceplans.each do |plan|
       .pk-box(class="#{plan.default? ? 'pk-white-box' : '' }")
+        - if plan.default?
+          .popular Most popular
         .pk-left
           %p.pk-title= plan.name.capitalize
           %p.pk-price
             %sup $
-            = plan.price
+            = plan.price.floor
             %sub /month
           %p.pk-text
             Up to
@@ -25,4 +27,6 @@
       .pk-right
         %a.choose(href='#contact') Contact us
     .clear
-    You get a free 30-day trial! No credit card needed
+    .price-info
+      You get a free 30-day trial! No credit card needed.
+      = link_to 'Get SimplyBetter now', new_customer_path
