@@ -10,7 +10,7 @@ ActiveRecord::Base.transaction do
 
   price1 = PricePlan.create!(name: 'mini', price: 9.91, max_users: 500)
   price2 = PricePlan.create!(name: 'standard', price: 49, max_users: 1000)
-  price3 = PricePlan.create!(name: 'plus', price: 149, max_users: 3000)
+  PricePlan.create!(name: 'plus', price: 149, max_users: 3000)
 
   customer = Customer.create!(email: 'lol@lol.com', name: 'Development user', password: 'dev', password_confirmation: 'dev', superadmin: true)
   app = customer.applications.create!(name: 'Development Application', intro: 'A small description here', price_plan_id: price1.id, owner: customer)
@@ -28,7 +28,7 @@ ActiveRecord::Base.transaction do
 
   unless Rails.env.test?
     # Create some more test ideas and comments
-    3.times do |n|
+    3.times do
       app.users.create!(email: Faker::Internet.email, name: Faker::Name.name)
     end
     User.all.each do |u|
@@ -42,7 +42,7 @@ ActiveRecord::Base.transaction do
     app = customer.applications.create!(name: Faker::Lorem.sentence, intro: Faker::Lorem.sentence, price_plan_id: price2.id, owner: customer)
     user = app.users.create!(email: Faker::Internet.email, name: Faker::Name.name)
     i = Idea.create! title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, application_id: app.id, creator: user
-    c = i.comments.create! body: Faker::Lorem.sentence, creator_id: user.id, creator_type: 'User'
+    i.comments.create! body: Faker::Lorem.sentence, creator_id: user.id, creator_type: 'User'
 
     customer = Customer.create! name: 'Guest User', email: 'demo@simplybetter.io', password: 'dev', password_confirmation: 'dev'
     puts 'created customer demo@simplybetter.io with password dev'

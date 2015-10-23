@@ -6,7 +6,7 @@ class NoAccessException < StandardError;end
 module CreatorFinder
 
   def widget_user
-    #TODO: OMA: We should always use the same user param, for simplicity. Convention :)
+    # TODO: OMA: We should always use the same user param, for simplicity. Convention :)
     decode_params if params["info"].present? && !(params[:user_email].present? || params[:email].present?)
     get_current_user(current_application, params[:user_email] || params[:email]) if params[:email] || params[:user_email]
   end

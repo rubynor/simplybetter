@@ -10,3 +10,7 @@ AllCops:
   RunRailsCops: true
   Exclude:
     - 'db/schema.rb'  
+
+# Override linelength. Sometimes u need to break the 80chars rule..
+Metrics/LineLength:
+  Max: 150

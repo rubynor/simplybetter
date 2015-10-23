@@ -10,14 +10,14 @@ class EmailSetting < ActiveRecord::Base
   def self.unsubscribe!(unsubscribe_token)
     email_setting = find_by(unsubscribe_token: unsubscribe_token)
     unless email_setting
-      raise ArgumentError, "Could not find an email setting based on this unsubscribe_token: #{unsubscribe_token}"
+      fail ArgumentError, "Could not find an email setting based on this unsubscribe_token: #{unsubscribe_token}"
     end
 
     if email_setting.unsubscribed?
-      "You are already unsubscribed from email notifications"
+      'You are already unsubscribed from email notifications'
     else
       email_setting.update_attributes!(unsubscribed: true)
-      "You have been unsubscribed from email notifications"
+      'You have been unsubscribed from email notifications'
     end
   end
 

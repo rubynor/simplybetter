@@ -34,12 +34,12 @@ class WidgetApi::VotesController < WidgetController
 
   def vote_receiver
     @vote_receiver ||= if params[:idea_id]
-      current_application.ideas.find(params[:idea_id])
-    elsif params[:comment_id]
-      current_application.comments.find(params[:comment_id])
-    else
-      raise 'No vote receiver'
-    end
+                         current_application.ideas.find(params[:idea_id])
+                       elsif params[:comment_id]
+                         current_application.comments.find(params[:comment_id])
+                       else
+                         raise 'No vote receiver'
+                       end
   end
 
   def vote
