@@ -1,15 +1,15 @@
 %section#contact.contact-section{'ng-controller' => 'ContactUsCtrl'}
   .site-content
-    %h2 Contact
+    %h2 Contact us
     .form-box{'ng-hide' => 'message_to_customer'}
       %form{name: 'contactForm', 'ng-submit' => 'sendForm()', novalidate: true}
-        %label Name
+        %label Hello, what can we call you?
         %input{name: 'name', type: 'text', 'ng-model' => 'name'}
-        %label E-mail
+        %label What is your email?
         %input{name: 'email', type: 'email', 'ng-model' => 'email', 'ng-class' => '{ correct: !invalidEmail(), error: invalidEmail() }', required: true }
-        %label You are reaching out because...
+        %label What's on your mind?
         %textarea{name: 'message', 'ng-model' => 'message', 'ng-class' => '{ correct: !invalidMessage(), error: invalidMessage() }', required: true}
-        %input.disabled{type: 'submit', value: 'SUBMIT', 'ng-class' => '{ disabled: !valid() }'}
+        %input.disabled{type: 'submit', value: 'SEND', 'ng-class' => '{ disabled: !valid() }'}
         .clear
     .message_to_customer(ng-show='message_to_customer')
       {{ message_to_customer }}
