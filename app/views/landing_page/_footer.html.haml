@@ -22,6 +22,10 @@
         %a.price{href: "#price", title: "Price"}
           %span.item
           %span.text Pricing
+      %li
+        %a.faq{href: "#faq", title: "Faq"}
+          %span.item
+          %span.text FAQ
       - if current_customer
         %li
           = link_to applications_path, class: 'avatar' do
