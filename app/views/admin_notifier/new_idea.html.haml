@@ -14,7 +14,7 @@
       %hr
 
   .action-button
-    = link_to show_ideas_application_url(@idea.application.id) do
+    = link_to show_ideas_application_url(@idea.application.id, anchor: @idea.id) do
       %button GO TO SIMPLYBETTER
   %br
 
