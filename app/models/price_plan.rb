@@ -2,7 +2,7 @@ class PricePlan < ActiveRecord::Base
   has_many :applications
 
   def self.plans_select
-    PricePlan.all.map { |p| ["#{p.name} $#{p.price}", p.id] }
+    PricePlan.all.order(price: :asc).map { |p| ["#{p.name} $#{p.price} - Up to #{p.max_users} users", p.id] }
   end
 
   def default?
