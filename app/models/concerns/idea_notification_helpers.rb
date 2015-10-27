@@ -15,6 +15,10 @@ module IdeaNotificationHelpers
     end
   end
 
+  def notification_url
+    { route: 'idea', params: { id: self.id } }
+  end
+
   private
 
   def changed_text(recipient, attribute, changer_user)

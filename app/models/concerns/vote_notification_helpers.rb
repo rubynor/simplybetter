@@ -24,4 +24,8 @@ module VoteNotificationHelpers
     return 'blank voted' if self.value == 0
     self.value > 0 ? 'upvoted' : 'downvoted'
   end
+
+  def notification_url
+    self.vote_receiver.notification_url
+  end
 end

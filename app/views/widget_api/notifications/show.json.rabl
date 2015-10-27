@@ -21,3 +21,6 @@ node :comment_id do |n|
   n.comment
 end
 
+node :url do |n|
+  n.url
+end

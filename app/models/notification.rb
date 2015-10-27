@@ -40,7 +40,7 @@ class Notification < ActiveRecord::Base
   end
 
   def idea
-    subject.id
+    subject.try(:id)
   end
 
   def comment
@@ -59,6 +59,10 @@ class Notification < ActiveRecord::Base
 
   def time
     self.created_at
+  end
+
+  def url
+    action.notification_url
   end
 
   private

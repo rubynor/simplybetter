@@ -15,4 +15,8 @@ module CommentNotificationHelpers
       { bold: "“#{idea.title}”" }
     ]
   end
+
+  def notification_url
+    { route: 'idea', params: { id: self.idea.id, comment_id: self.id } }
+  end
 end
