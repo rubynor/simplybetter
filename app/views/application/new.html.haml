@@ -18,4 +18,7 @@
         = f.text_field :name, placeholder: 'Project name (ie your website name)'
         = f.label :price_plan_id
         = f.select :price_plan_id, price_plans
+
+        = render 'shared/promo_codes.html.haml/promo_codes'
+
         = f.button 'Get started!', id: 'create_app'

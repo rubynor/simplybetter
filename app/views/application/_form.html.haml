@@ -12,6 +12,8 @@
       %h2 Price plan
       %select(ng-options='plan[1] as plan[0] for plan in application.priceplans' ng-model='application.price_plan_id')
 
+      = render 'shared/promo_codes.html.haml/promo_codes'
+
       #disabled.checkbox
         %label
           %input#disable-app(type='checkbox' ng-model="application.disabled")

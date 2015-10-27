@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
 
   def new
     cookies[:price_plan] = params[:price_plan]
-    @customer = Customer.new
+    @customer = Customer.new(promotion_code: params[:promotion_code])
   end
 
   def create

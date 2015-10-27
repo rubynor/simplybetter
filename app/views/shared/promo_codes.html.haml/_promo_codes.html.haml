@@ -1,0 +1,9 @@
+- if current_customer.promotion_code == 'irb2015'
+  .alert.alert-info(style='margin-top: 10px')
+    You have a promotion code for free use of small until Dec. 31 2015
+
+- if current_customer.promotion_code == 'f6sTrial'
+  .alert.alert-info(style='margin-top: 10px')
+    You have a promotion code for free use until
+    = (current_customer.created_at + 180.days).to_date
+    and will not be charged before this periode is over.
