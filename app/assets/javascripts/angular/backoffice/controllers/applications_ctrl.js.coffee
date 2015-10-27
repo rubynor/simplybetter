@@ -1,5 +1,5 @@
 ApplicationsCtrl = ($rootScope, $scope, Session) ->
-  $scope.supportHelp = false
+  $scope.supportHelp = $scope.supportHelp2 = false
   $scope.iconHelp = false
 
   $scope.init = (appKey, email, id) ->
@@ -11,6 +11,9 @@ ApplicationsCtrl = ($rootScope, $scope, Session) ->
 
   $scope.toggleSupportHelp = ->
     $scope.supportHelp =!$scope.supportHelp
+
+  $scope.toggleSupportHelp2 = ->
+    $scope.supportHelp2 =!$scope.supportHelp2
 
   $scope.toggleIconHelp = ->
     $scope.iconHelp = !$scope.iconHelp

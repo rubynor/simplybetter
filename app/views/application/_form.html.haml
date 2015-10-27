@@ -24,25 +24,48 @@
       .checkbox
         %label(for="application_support")
           %input#application_support(type="checkbox" ng-model="application.support_enabled")
-          Enable Support (shows a flag in the widget)
-      %input(type="text" ng-model="application.support_email" placeholder="default: {{ application.support_emails }}" ng-if="application.support_enabled")
-      .checkbox
-        %label
-          %input(type="checkbox" ng-model="application.third_party_support")
-          Trigger my existing support service
+          Enable Support
         %p
-          When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
-          %a(ng-click="toggleSupportHelp()") here
+          Enables a new icon where users can post support requests to you email account (or a custom email).
+          %a(ng-click="toggleSupportHelp()") Read more
+      %input(type="text" ng-model="application.support_email" placeholder="default: {{ application.support_emails }}" ng-if="application.support_enabled")
 
       .read-more(ng-click="toggleSupportHelp()" ng-class="{ active: supportHelp }" ng-show="supportHelp")
         .arrow
 
     .col-lg-7
       .help-button-padding(ng-show="supportHelp")
-        %h2#support-custom-handle
-          Support button
+        %h3 Enable Support
         %p
           When you check the support button. A button will appear on the side of the widget. This button will take users to a form where they can submit support requests.
+          %br
+          By default a support request will be sendt to all collaborators emails, if you want to use a custom email you can simply provide a new email in the input field (this field appears after you enables support.)
+        %h3 Your own support button
+        %p
+          You can add your own custom support button. This button will open the widget and navigate to the support page. Just assign the class .simplybetterSupportButton to any html tag.
+        %pre
+          %code
+            =preserve do
+              :escaped
+                <button class="simplybetterSupportButton">Support</button>
+
+  .row
+    .col-lg-5
+      .checkbox
+        %label
+          %input(type="checkbox" ng-model="application.third_party_support")
+          Trigger my existing support service
+        %p
+          When clicked it will trigger window.simplyBetterSupportClick(), so make sure you implement this function and make it trigger whatever you want it to trigger on your site. You can read more about this
+          %a(ng-click="toggleSupportHelp2()") here
+
+      .read-more(ng-click="toggleSupportHelp2()" ng-class="{ active: supportHelp2 }" ng-show="supportHelp2")
+        .arrow
+
+    .col-lg-7
+      .help-button-padding(ng-show="supportHelp2")
+        %h2#support-custom-handle
+          Trigger existing support service
         %p
           If "Trigger my existing support service" has been checked, you will be able to trigger your own support service by implementing the following javascript function in your code:
         %pre
@@ -54,16 +77,6 @@
                 }
         %p
           This is useful if you use a third party support service, or if you have implemented your own and wish to direct simplybetter users to this service.
-
-        %h3 Your own support button
-        %p
-          You can add your own custom support button. This button will open the widget and navigate to the support page. Just assign the class .simplybetterSupportButton to any html tag.
-        %pre
-          %code
-            =preserve do
-              :escaped
-                <button class="simplybetterSupportButton">Support</button>
-
 
 
   .row
