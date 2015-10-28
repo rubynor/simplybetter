@@ -1,7 +1,7 @@
 %section#contact.contact-section{'ng-controller' => 'ContactUsCtrl'}
   .site-content
+    %h2 Contact us
     .contact-form
-      %h2 Contact us
       .form-box{'ng-hide' => 'message_to_customer'}
         %form{name: 'contactForm', 'ng-submit' => 'sendForm()', novalidate: true}
           %label Hello, what can we call you?
@@ -11,7 +11,6 @@
           %label What's on your mind?
           %textarea{name: 'message', 'ng-model' => 'message', 'ng-class' => '{ correct: !invalidMessage(), error: invalidMessage() }', required: true}
           %input.disabled{type: 'submit', value: 'SEND', 'ng-class' => '{ disabled: !valid() }'}
-          .clear
       .message_to_customer(ng-show='message_to_customer')
         {{ message_to_customer }}
     = render 'landing_page/social'
