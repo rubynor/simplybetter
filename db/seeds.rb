@@ -16,6 +16,13 @@ ActiveRecord::Base.transaction do
   app = customer.applications.create!(name: 'Development Application', intro: 'A small description here', price_plan_id: price1.id, owner: customer)
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'
+
+  # Notification with info from support user
+  support = Customer.create!(email: 'support@simplybetter.io', name: 'SimplyBetter', password: 'dev', password_confirmation: 'dev', superadmin: true)
+  info = Info.create!(body: 'Did you know that you can sign is as admin and manage ideas directly in the widget?', route: 'settings')
+  Notification.create!(subject: info, action: info, recipient: customer, action_attribute_changed_by: support, application_id: app.id)
+  puts 'Created an info notification'
+
   idea = Idea.create! title: 'Test ide her', description: 'En liten beskrivelse', application_id: app.id, creator: customer
   puts 'Created an idea'
   user = app.users.create!(email: 'test@test.com', name: 'Arne')
