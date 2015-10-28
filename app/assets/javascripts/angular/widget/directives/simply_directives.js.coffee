@@ -47,7 +47,10 @@ simplyDirectives.directive 'notifications', ->
 
       updated.$update(
         (data) ->
-          Redirect('idea', { id: notification.idea_id, comment_id: notification.comment_id })
+          if notification.url.external
+            window.open(notification.url.route)
+          else
+            Redirect(notification.url.route, notification.url.params)
           $scope.updateNotiCount()
       , (err) ->
         console.log(JSON.stringify(err))
