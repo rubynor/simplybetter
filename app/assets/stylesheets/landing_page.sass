@@ -195,6 +195,7 @@ section h2
   margin-bottom: 71px
   color: #fff
 
+
 .faq-wrapper
   margin: -5%
 
@@ -298,6 +299,25 @@ section h2
   background: #52596b
   padding-bottom: 100px
   background-size: auto
+  .contact-form
+    float: left
+    width: 65%
+  .social
+    margin-top: 110px
+    float: left
+    width: 35%
+
+.social
+  a
+    color: white
+  ul
+    li
+      padding: 2px
+      list-style: none
+      text-align: left
+    li:last-child
+      margin-top: 20px
+
 
 .form-box
   max-width: 470px
@@ -356,6 +376,23 @@ footer
   background: #fff
   background-size: cover
   padding: 35px 0 40px
+  .social
+    position: absolute
+    top: -15px
+    right: 55px
+    ul > li
+      float: left
+      &.email
+        position: absolute
+        &:after
+          content: ''
+      &.last
+        &:after
+          content: ''
+      a
+        color: #128abd
+      &:after
+        content: '|'
 
 ul.fMenu
   padding: 0

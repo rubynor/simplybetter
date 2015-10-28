@@ -1,6 +1,7 @@
 %footer
   .site-content
     %a.fLogo{href: "#wrapper", title: "Go Top"}
+    = render 'landing_page/social'
     %ul.fMenu
       = render 'landing_page/navigation_list'
     .clear
@@ -11,6 +12,8 @@
       %a(href='/privacy') Privacy Policy
       |
       %a(href='/terms.pdf') Terms & Conditions
+
+
 
   .mobile-menu
     %ul
