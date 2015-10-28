@@ -122,7 +122,7 @@ describe 'FeaturesWithSeeds', js: true, type: :feature, order: :defined do
   describe 'register customer and create app' do
     it 'without choosing priceplan at first' do
       visit root_path
-      click_link 'GET SIMPLY BETTER'
+      click_link 'GET SIMPLYBETTER'
       fill_in 'customer_name', with: 'My name'
       fill_in 'customer_email', with: 'my@email.com'
       fill_in 'customer_password', with: 'mypassword'

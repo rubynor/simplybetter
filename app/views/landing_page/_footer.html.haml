@@ -1,6 +1,7 @@
 %footer
   .site-content
     %a.fLogo{href: "#wrapper", title: "Go Top"}
+    = render 'landing_page/social'
     %ul.fMenu
       = render 'landing_page/navigation_list'
     .clear
@@ -8,6 +9,13 @@
       \©
       = Date.today.year
       SimplyBetter. All rights reserved.
+      %span.privacy
+        %a(href='/privacy') Privacy Policy
+        |
+        %a(href='/terms.pdf') Terms & Conditions
+
+
+
   .mobile-menu
     %ul
       %li
@@ -17,11 +25,15 @@
       %li
         %a.feature{href: "#why", title: "Feature"}
           %span.item
-          %span.text Feature
+          %span.text Features
       %li
         %a.price{href: "#price", title: "Price"}
           %span.item
-          %span.text Price
+          %span.text Pricing
+      %li
+        %a.faq{href: "#faq", title: "Faq"}
+          %span.item
+          %span.text FAQ
       - if current_customer
         %li
           = link_to applications_path, class: 'avatar' do
@@ -30,4 +42,4 @@
       %li.last
         %a.contactF{href: "#contact", title: "Contact"}
           %span.item
-          %span.text Contact
+          %span.text Contact us
