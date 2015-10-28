@@ -17,12 +17,6 @@ ActiveRecord::Base.transaction do
   app.update_attributes!(token: 'BYGKGJYA')
   puts 'Created customer: lol@lol.com with password: dev'
 
-  # Notification with info from support user
-  support = Customer.create!(email: 'support@simplybetter.io', name: 'SimplyBetter', password: 'dev', password_confirmation: 'dev', superadmin: true)
-  info = Info.create!(body: 'Did you know that you can sign is as admin and manage ideas directly in the widget?', route: 'settings')
-  Notification.create!(subject: info, action: info, recipient: customer, action_attribute_changed_by: support, application_id: app.id)
-  puts 'Created an info notification'
-
   idea = Idea.create! title: 'Test ide her', description: 'En liten beskrivelse', application_id: app.id, creator: customer
   puts 'Created an idea'
   user = app.users.create!(email: 'test@test.com', name: 'Arne')
@@ -32,6 +26,12 @@ ActiveRecord::Base.transaction do
   Notification.create_with(action: comment, subject: idea, recipient: customer, app_id: app.id)
   puts 'Created notification'
   Idea.create! title: 'En ny ide', description: 'En liten beskrivelse', application_id: app.id, creator: user
+
+  # Notification with info from support user
+  support = Customer.create!(email: 'support@simplybetter.io', name: 'SimplyBetter', password: 'dev', password_confirmation: 'dev', superadmin: true)
+  info = Info.create!(body: 'Did you know that you can sign is as admin and manage ideas directly in the widget?', route: 'settings')
+  Notification.create!(subject: info, action: info, recipient: customer, action_attribute_changed_by: support, application_id: app.id)
+  puts 'Created an info notification'
 
   unless Rails.env.test?
     # Create some more test ideas and comments
