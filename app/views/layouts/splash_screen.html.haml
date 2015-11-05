@@ -1,7 +1,17 @@
 !!!
 %html
   %head
-    %title SimplyBetter
+    -# Todo: Refactor http://davidlesches.com/blog/elegant-titles-and-seo-meta-tags-in-rails
+    - if @current_action == 'new'
+      - if @current_controller == 'customers'
+        %title Register | SimplyBetter - Ideas and Innovation Management App
+        %meta(name='description' content='30-day free trial. Use real user data to build your product and improve your product development with SimplyBetter, an Ideas and Innovation management app.')
+      - elsif @current_controller == 'sessions'
+        %title Login | SimplyBetter - Ideas and Innovation Management App
+        %meta(name='description' content='Move from beta to product launch with faster and better iteration. Involve your users in your product development with SimplyBetter, the Ideas and Innovation Management Tool.')
+    - else
+      %title SimplyBetter
+
     = stylesheet_link_tag    "application", media: "all"
     = jquery_include_tag :jquery
     = javascript_include_tag "application"
