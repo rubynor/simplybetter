@@ -1,6 +1,7 @@
 !!!
-%html
+%html{itemscope: '', itemtype: 'http://schema.org/Product'}
   %head
+    = render 'shared/social_meta'
     -# Todo: Refactor http://davidlesches.com/blog/elegant-titles-and-seo-meta-tags-in-rails
     - if @current_action == 'new'
       - if @current_controller == 'customers'

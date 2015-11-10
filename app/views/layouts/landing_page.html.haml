@@ -1,9 +1,10 @@
 !!!
-%html
+%html{itemscope: '', itemtype: 'http://schema.org/Product'}
   %head
     %meta{content: 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
     %meta{content: 'user-scalable=no, initial-scale=1', name: 'viewport'}
     %meta{content: 'telephone=no', name: 'format-detection'}
+    = render 'shared/social_meta'
     %meta(name='description' content='SimplyBetter is an Ideas and Innovation management app for user-driven Product Development success. Allow your users to improve your product. Learn more..')
     %title Ideas and Innovation Management App | SimplyBetter.io
     = stylesheet_link_tag    'landing_page', media: 'all'
