@@ -245,6 +245,34 @@ section h2
   width: 64px
   height: 64px
 
+.contact-us
+  float: left
+  clear: left
+  margin-top: 30px
+  line-height: 10px
+  a
+    color: white
+
+.icon-contact
+  float: left
+  margin-left: 25px
+  display: inline-block
+  text-align: left !important
+  height: 12px
+  width: 16px
+  margin-right: 10px
+  background: url(../img/social/contact.png) no-repeat
+
+.icon
+  height: 60px
+  width: 60px
+  display: inline-block
+  float: left
+  margin: 20px
+  @each $icon in facebook, twitter, f6s, angellist
+    &.#{$icon}
+      background: url("../img/social/#{$icon}.png") no-repeat
+
 .idea-logo
   background: url(../img/ideas.png) no-repeat
 

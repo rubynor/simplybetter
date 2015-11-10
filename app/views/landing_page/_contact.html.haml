@@ -13,6 +13,22 @@
           %input.disabled{type: 'submit', value: 'SEND', 'ng-class' => '{ disabled: !valid() }'}
       .message_to_customer(ng-show='message_to_customer')
         {{ message_to_customer }}
-    = render 'landing_page/social'
+
+    %div(style='float: left')
+      %a(href='https://www.facebook.com/simplybetterio')
+        .icon.facebook
+      %a(href='https://twitter.com/SimplyBetterio')
+        .icon.twitter
+      .clear
+      %a(href='https://angel.co/simplybetter')
+        .icon.angellist
+      %a(href='https://www.f6s.com/simplybetter1/edit/deal/4885/ideas-innovation-management')
+        .icon.f6s
+
+      .contact-us
+        %a(href='mailto:support@simplybetter.io')
+          .icon-contact
+          support@simplybetter.io
+
     .clear
 .clear
