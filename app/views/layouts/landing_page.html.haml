@@ -51,4 +51,4 @@
       = yield
 
       = render 'shared/demo_widget'
-      = render 'shared/google_analytics_main' if Rails.env.production?
+      = render 'shared/google_analytics_main', landing_page: true if Rails.env.production?
