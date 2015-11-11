@@ -1,10 +1,12 @@
 !!!
-%html
+%html{itemscope: '', itemtype: 'http://schema.org/Product'}
   %head
     %meta{content: 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
     %meta{content: 'user-scalable=no, initial-scale=1', name: 'viewport'}
     %meta{content: 'telephone=no', name: 'format-detection'}
-    %title SimplyBetter
+    = render 'shared/social_meta'
+    %meta(name='description' content='SimplyBetter is an Ideas and Innovation management app for user-driven Product Development success. Allow your users to improve your product. Learn more..')
+    %title Ideas and Innovation Management App | SimplyBetter.io
     = stylesheet_link_tag    'landing_page', media: 'all'
     = javascript_include_tag 'landing'
     = csrf_meta_tags
@@ -20,8 +22,8 @@
       %header
         .header-content
           .logoBox
-            %img.logo{alt: 'Simply Better', src: 'img/logo.png'}
-            %img.sLogo{alt: 'Simply Better', src: 'img/sLogo.png'}
+            %img.logo{alt: 'Ideas and Innovation Management App SimplyBetter.io', src: 'img/logo.png'}
+            %img.sLogo{alt: 'Ideas and Innovation Management App SimplyBetter.io', src: 'img/sLogo.png'}
           .contactBox
             %ul
               = render 'landing_page/navigation_list'
@@ -49,3 +51,4 @@
       = yield
 
       = render 'shared/demo_widget'
+      = render 'shared/google_analytics_main', landing_page: true if Rails.env.production?
