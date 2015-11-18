@@ -11,3 +11,4 @@
       = yield
 
     %a(href='/' class='button') GO TO SIMPLYBETTER
+    = render 'shared/google_analytics_main' if Rails.env.production?

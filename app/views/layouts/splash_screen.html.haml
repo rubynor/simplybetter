@@ -28,3 +28,4 @@
 
     - unless @current_action == "popup_new" || @current_action == "popup_create"
       = render 'shared/widget'
+    = render 'shared/google_analytics_main' if Rails.env.production?
