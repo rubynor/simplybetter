@@ -2,7 +2,7 @@
   .alert.alert-info(style='margin-top: 10px')
     You have a promotion code for free use of small until Dec. 31 2015
 
-- if current_customer.promotion_code == 'f6sTrial'
+- if current_customer.promotion_code == 'f6sTrial' || current_customer.promotion_code.downcase == 'testing'
   .alert.alert-info(style='margin-top: 10px')
     You have a promotion code for free use until
     = (current_customer.created_at + 180.days).to_date
