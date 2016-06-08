@@ -45,9 +45,11 @@
               - else
                 %li.divider-list
                   = link_to 'SIGN IN', login_path
-                %li.last
-                  = link_to 'GET SIMPLYBETTER', new_customer_path, class: 'contact'
+                -#%li.last
+                -#  = link_to 'GET SIMPLYBETTER', new_customer_path, class: 'contact'
           .clear
+      .closing-notification
+        = render 'landing_page/discontinued'
       = yield
 
       = render 'shared/demo_widget'

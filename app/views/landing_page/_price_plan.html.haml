@@ -1,32 +1,34 @@
 %section#price.purple-section
   .site-content
     %h2 Pricing
-    - @priceplans.each do |plan|
-      .pk-box(class="#{plan.default? ? 'pk-white-box' : '' }")
-        - if plan.default?
-          .popular Most popular
-        .pk-left
-          %p.pk-title= plan.name.capitalize
-          %p.pk-price
-            %sup $
-            = plan.price.floor
-            %sub /month
-          %p.pk-text
-            Up to
-            = plan.max_users
-            users
-        .pk-right
-          = link_to new_customer_path(price_plan: plan.id), class: 'choose' do
-            CHOOSE
-    .pk-box.last
-      .pk-left
-        %p.pk-title Enterprise
-        %p.pk-price
-        %p.pk-text
-          %span Let us customize the perfect solution for your business.
-      .pk-right
-        %a.choose(href='#contact') Contact us
-    .clear
-    .price-info
-      You get a free 30-day trial! No credit card needed.
-      = link_to 'Get SimplyBetter now', new_customer_path
+    -#- @priceplans.each do |plan|
+    -#  .pk-box(class="#{plan.default? ? 'pk-white-box' : '' }")
+    -#    - if plan.default?
+    -#      .popular Most popular
+    -#    .pk-left
+    -#      %p.pk-title= plan.name.capitalize
+    -#      %p.pk-price
+    -#        %sup $
+    -#        = plan.price.floor
+    -#        %sub /month
+    -#      %p.pk-text
+    -#        Up to
+    -#        = plan.max_users
+    -#        users
+    -#    .pk-right
+    -#      = link_to new_customer_path(price_plan: plan.id), class: 'choose' do
+    -#        CHOOSE
+    -#.pk-box.last
+    -#  .pk-left
+    -#    %p.pk-title Enterprise
+    -#    %p.pk-price
+    -#    %p.pk-text
+    -#      %span Let us customize the perfect solution for your business.
+    -#  .pk-right
+    -#    %a.choose(href='#contact') Contact us
+    -#.clear
+    -#.price-info
+    -#  You get a free 30-day trial! No credit card needed.
+    -#  = link_to 'Get SimplyBetter now', new_customer_path
+
+    = render 'landing_page/discontinued'
