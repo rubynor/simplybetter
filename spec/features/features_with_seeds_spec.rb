@@ -119,7 +119,8 @@ describe 'FeaturesWithSeeds', js: true, type: :feature, order: :defined do
     pending 'example support message'
   end
 
-  describe 'register customer and create app' do
+  # The registration links has been commented out because we are closing :/
+  pending 'register customer and create app' do
     it 'without choosing priceplan at first' do
       visit root_path
       click_link 'GET SIMPLYBETTER'

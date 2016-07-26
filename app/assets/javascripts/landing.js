@@ -22,7 +22,7 @@ $(document).ready(function() {
     href = typeof(href) == "string" ? href : $(this).attr("href");
 
     // You could easily calculate this dynamically if you prefer
-    var fromTop = 68;
+    var fromTop = 168;
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       fromTop = 50;
     }

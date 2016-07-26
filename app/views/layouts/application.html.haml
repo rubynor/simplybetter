@@ -22,10 +22,14 @@
 
     - if @application.present? && !@application.new_record?
       #content(ng-controller="applicationsCtrl" ng-init="init('#{@application.token}', '#{@current_customer.email}', '#{@application.id}')")
+        .discontinued
+          = render 'landing_page/discontinued'
         = yield
         %toast
     - else
       #content
+        .discontinued
+          = render 'landing_page/discontinued'
         = yield
 
     %toast

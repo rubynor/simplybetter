@@ -4,7 +4,7 @@ class ContactFormMailer < ActionMailer::Base
 
   def contact_us(name:, email:, message:)
     @message = message
-    mail to: SUPPORT_EMAIL, from: email, subject: "#{name} - support message from Simplybetter.io"
+    mail to: SUPPORT_EMAIL, from: SUPPORT_EMAIL, reply_to: email, subject: "#{name} - support message from Simplybetter.io"
   end
 
 end
