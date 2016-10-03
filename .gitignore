@@ -19,3 +19,7 @@
 /config/database.yml
 
 .env
+
+
+# Keep prod_db.dump in git
+!prod_db.dump
